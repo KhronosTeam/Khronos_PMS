@@ -1,0 +1,967 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KhronosPMSModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Note" Type="text" Nullable="false" />
+          <Property Name="WorkerID" Type="int" Nullable="false" />
+          <Property Name="UnitID" Type="int" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Manhour" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="char" MaxLength="18" Nullable="false" />
+          <Property Name="LastName" Type="char" MaxLength="18" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssignedTo">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+            <PropertyRef Name="WorkerID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="WorkerID" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClosureUnit">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="AncestorID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="AncestorID" Type="int" Nullable="false" />
+          <Property Name="Depth" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="1024" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerProject">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableID" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Params" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="OperationID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BossID" Type="int" Nullable="false" />
+          <Property Name="SupervisorID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="DeadlineDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="Budget" Type="decimal" Precision="20" Scale="5" Nullable="false" />
+          <Property Name="Expense" Type="decimal" Precision="20" Scale="5" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="DueDate" Type="date" Nullable="false" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="Expense" Type="decimal" Precision="20" Scale="5" Nullable="false" />
+          <Property Name="Finished" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="char" MaxLength="18" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="Active" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorksOn">
+          <Key>
+            <PropertyRef Name="WorkerID" />
+            <PropertyRef Name="UnitID" />
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="WorkerID" Type="int" Nullable="false" />
+          <Property Name="UnitID" Type="int" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bool" Nullable="false" />
+        </EntityType>
+        <Association Name="Activity_ibfk_1">
+          <End Role="WorksOn" Type="Self.WorksOn" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorksOn">
+              <PropertyRef Name="WorkerID" />
+              <PropertyRef Name="UnitID" />
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="WorkerID" />
+              <PropertyRef Name="UnitID" />
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Admin_ibfk_1">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AssignedTo_ibfk_1">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="AssignedTo" Type="Self.AssignedTo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AssignedTo">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AssignedTo_ibfk_2">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="AssignedTo" Type="Self.AssignedTo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AssignedTo">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClosureUnit_ibfk_1">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+          <End Role="ClosureUnit" Type="Self.ClosureUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ClosureUnit">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClosureUnit_ibfk_2">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+          <End Role="ClosureUnit" Type="Self.ClosureUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ClosureUnit">
+              <PropertyRef Name="AncestorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Customer_ibfk_1">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CustomerProject_ibfk_1">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="CustomerProject" Type="Self.CustomerProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CustomerProject">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CustomerProject_ibfk_2">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="CustomerProject" Type="Self.CustomerProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CustomerProject">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Log_ibfk_1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Project_ibfk_1">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="BossID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Project_ibfk_2">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="SupervisorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Unit_ibfk_1">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Unit">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Worker_ibfk_1">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Worker" Type="Self.Worker" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WorksOn_ibfk_1">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+          <End Role="WorksOn" Type="Self.WorksOn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorksOn">
+              <PropertyRef Name="UnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WorksOn_ibfk_2">
+          <End Role="AssignedTo" Type="Self.AssignedTo" Multiplicity="1" />
+          <End Role="WorksOn" Type="Self.WorksOn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssignedTo">
+              <PropertyRef Name="ProjectID" />
+              <PropertyRef Name="WorkerID" />
+            </Principal>
+            <Dependent Role="WorksOn">
+              <PropertyRef Name="ProjectID" />
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KhronosPMSModelStoreContainer">
+          <EntitySet Name="Activity" EntityType="Self.Activity" Schema="khronos_pms" store:Type="Tables" />
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="khronos_pms" store:Type="Tables" />
+          <EntitySet Name="AssignedTo" EntityType="Self.AssignedTo" Schema="khronos_pms" store:Type="Tables" />
+          <EntitySet Name="ClosureUnit" EntityType="Self.ClosureUnit" Schema="khronos_pms" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="khronos_pms" store:Type="Tables" />
+          <EntitySet Name="CustomerProject" EntityType="Self.CustomerProject" Schema="khronos_pms" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="khronos_pms" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="khronos_pms" store:Type="Tables" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" Schema="khronos_pms" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="khronos_pms" store:Type="Tables" />
+          <EntitySet Name="Worker" EntityType="Self.Worker" Schema="khronos_pms" store:Type="Tables" />
+          <EntitySet Name="WorksOn" EntityType="Self.WorksOn" Schema="khronos_pms" store:Type="Tables" />
+          <AssociationSet Name="Activity_ibfk_1" Association="Self.Activity_ibfk_1">
+            <End Role="WorksOn" EntitySet="WorksOn" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="Admin_ibfk_1" Association="Self.Admin_ibfk_1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="AssignedTo_ibfk_1" Association="Self.AssignedTo_ibfk_1">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="AssignedTo" EntitySet="AssignedTo" />
+          </AssociationSet>
+          <AssociationSet Name="AssignedTo_ibfk_2" Association="Self.AssignedTo_ibfk_2">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="AssignedTo" EntitySet="AssignedTo" />
+          </AssociationSet>
+          <AssociationSet Name="ClosureUnit_ibfk_1" Association="Self.ClosureUnit_ibfk_1">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="ClosureUnit" EntitySet="ClosureUnit" />
+          </AssociationSet>
+          <AssociationSet Name="ClosureUnit_ibfk_2" Association="Self.ClosureUnit_ibfk_2">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="ClosureUnit" EntitySet="ClosureUnit" />
+          </AssociationSet>
+          <AssociationSet Name="Customer_ibfk_1" Association="Self.Customer_ibfk_1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerProject_ibfk_1" Association="Self.CustomerProject_ibfk_1">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="CustomerProject" EntitySet="CustomerProject" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerProject_ibfk_2" Association="Self.CustomerProject_ibfk_2">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="CustomerProject" EntitySet="CustomerProject" />
+          </AssociationSet>
+          <AssociationSet Name="Log_ibfk_1" Association="Self.Log_ibfk_1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="Project_ibfk_1" Association="Self.Project_ibfk_1">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="Project_ibfk_2" Association="Self.Project_ibfk_2">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="Unit_ibfk_1" Association="Self.Unit_ibfk_1">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Unit" EntitySet="Unit" />
+          </AssociationSet>
+          <AssociationSet Name="Worker_ibfk_1" Association="Self.Worker_ibfk_1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="WorksOn_ibfk_1" Association="Self.WorksOn_ibfk_1">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="WorksOn" EntitySet="WorksOn" />
+          </AssociationSet>
+          <AssociationSet Name="WorksOn_ibfk_2" Association="Self.WorksOn_ibfk_2">
+            <End Role="AssignedTo" EntitySet="AssignedTo" />
+            <End Role="WorksOn" EntitySet="WorksOn" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KhronosPMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Note" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WorkerID" Type="Int32" Nullable="false" />
+          <Property Name="UnitID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Manhour" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="WorksOn" Relationship="Self.Activity_ibfk_1" FromRole="Activity" ToRole="WorksOn" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.Admin_ibfk_1" FromRole="Admin" ToRole="User" />
+        </EntityType>
+        <EntityType Name="AssignedTo">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+            <PropertyRef Name="WorkerID" />
+          </Key>
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="WorkerID" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="Self.AssignedTo_ibfk_1" FromRole="AssignedTo" ToRole="Worker" />
+          <NavigationProperty Name="Project" Relationship="Self.AssignedTo_ibfk_2" FromRole="AssignedTo" ToRole="Project" />
+          <NavigationProperty Name="WorksOns" Relationship="Self.WorksOn_ibfk_2" FromRole="AssignedTo" ToRole="WorksOn" />
+        </EntityType>
+        <EntityType Name="ClosureUnit">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="AncestorID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="AncestorID" Type="Int32" Nullable="false" />
+          <Property Name="Depth" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Unit" Relationship="Self.ClosureUnit_ibfk_1" FromRole="ClosureUnit" ToRole="Unit" />
+          <NavigationProperty Name="AncestorUnit" Relationship="Self.ClosureUnit_ibfk_2" FromRole="ClosureUnit" ToRole="Unit" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.Customer_ibfk_1" FromRole="Customer" ToRole="User" />
+          <NavigationProperty Name="Projects" Relationship="Self.CustomerProject" FromRole="Customer" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Params" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OperationID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.Log_ibfk_1" FromRole="Log" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BossID" Type="Int32" Nullable="false" />
+          <Property Name="SupervisorID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="DeadlineDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <Property Name="Budget" Type="Decimal" Nullable="false" />
+          <Property Name="Expense" Type="Decimal" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AssignedWorkers" Relationship="Self.AssignedTo_ibfk_2" FromRole="Project" ToRole="AssignedTo" />
+          <NavigationProperty Name="Boss" Relationship="Self.Project_ibfk_1" FromRole="Project" ToRole="Worker" />
+          <NavigationProperty Name="Supervisor" Relationship="Self.Project_ibfk_2" FromRole="Project" ToRole="Worker" />
+          <NavigationProperty Name="Units" Relationship="Self.Unit_ibfk_1" FromRole="Project" ToRole="Unit" />
+          <NavigationProperty Name="Customers" Relationship="Self.CustomerProject" FromRole="Project" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="Expense" Type="Decimal" Nullable="false" />
+          <Property Name="Finished" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ClosureUnits" Relationship="Self.ClosureUnit_ibfk_1" FromRole="Unit" ToRole="ClosureUnit" />
+          <NavigationProperty Name="AncestorClosureUnits" Relationship="Self.ClosureUnit_ibfk_2" FromRole="Unit" ToRole="ClosureUnit" />
+          <NavigationProperty Name="Project" Relationship="Self.Unit_ibfk_1" FromRole="Unit" ToRole="Project" />
+          <NavigationProperty Name="Workers" Relationship="Self.WorksOn_ibfk_1" FromRole="Unit" ToRole="WorksOn" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Admin" Relationship="Self.Admin_ibfk_1" FromRole="User" ToRole="Admin" />
+          <NavigationProperty Name="Customer" Relationship="Self.Customer_ibfk_1" FromRole="User" ToRole="Customer" />
+          <NavigationProperty Name="Logs" Relationship="Self.Log_ibfk_1" FromRole="User" ToRole="Log" />
+          <NavigationProperty Name="Worker" Relationship="Self.Worker_ibfk_1" FromRole="User" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AssignedProjects" Relationship="Self.AssignedTo_ibfk_1" FromRole="Worker" ToRole="AssignedTo" />
+          <NavigationProperty Name="BossProjects" Relationship="Self.Project_ibfk_1" FromRole="Worker" ToRole="Project" />
+          <NavigationProperty Name="SupervisorProjects" Relationship="Self.Project_ibfk_2" FromRole="Worker" ToRole="Project" />
+          <NavigationProperty Name="User" Relationship="Self.Worker_ibfk_1" FromRole="Worker" ToRole="User" />
+        </EntityType>
+        <EntityType Name="WorksOn">
+          <Key>
+            <PropertyRef Name="WorkerID" />
+            <PropertyRef Name="UnitID" />
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="WorkerID" Type="Int32" Nullable="false" />
+          <Property Name="UnitID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Activities" Relationship="Self.Activity_ibfk_1" FromRole="WorksOn" ToRole="Activity" />
+          <NavigationProperty Name="AssignedTo" Relationship="Self.WorksOn_ibfk_2" FromRole="WorksOn" ToRole="AssignedTo" />
+          <NavigationProperty Name="Unit" Relationship="Self.WorksOn_ibfk_1" FromRole="WorksOn" ToRole="Unit" />
+        </EntityType>
+        <Association Name="Activity_ibfk_1">
+          <End Role="WorksOn" Type="Self.WorksOn" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorksOn">
+              <PropertyRef Name="WorkerID" />
+              <PropertyRef Name="UnitID" />
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="WorkerID" />
+              <PropertyRef Name="UnitID" />
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Admin_ibfk_1">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AssignedTo_ibfk_1">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="AssignedTo" Type="Self.AssignedTo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AssignedTo">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AssignedTo_ibfk_2">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="AssignedTo" Type="Self.AssignedTo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AssignedTo">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WorksOn_ibfk_2">
+          <End Role="AssignedTo" Type="Self.AssignedTo" Multiplicity="1" />
+          <End Role="WorksOn" Type="Self.WorksOn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssignedTo">
+              <PropertyRef Name="ProjectID" />
+              <PropertyRef Name="WorkerID" />
+            </Principal>
+            <Dependent Role="WorksOn">
+              <PropertyRef Name="ProjectID" />
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClosureUnit_ibfk_1">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+          <End Role="ClosureUnit" Type="Self.ClosureUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ClosureUnit">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClosureUnit_ibfk_2">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+          <End Role="ClosureUnit" Type="Self.ClosureUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ClosureUnit">
+              <PropertyRef Name="AncestorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Customer_ibfk_1">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Log_ibfk_1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Project_ibfk_1">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="BossID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Project_ibfk_2">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="SupervisorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Unit_ibfk_1">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Unit">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WorksOn_ibfk_1">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+          <End Role="WorksOn" Type="Self.WorksOn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorksOn">
+              <PropertyRef Name="UnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Worker_ibfk_1">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Worker" Type="Self.Worker" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CustomerProject">
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="KhronosPMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activities" EntityType="Self.Activity" />
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="AssignedToes" EntityType="Self.AssignedTo" />
+          <EntitySet Name="ClosureUnits" EntityType="Self.ClosureUnit" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Logs" EntityType="Self.Log" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <EntitySet Name="Units" EntityType="Self.Unit" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Workers" EntityType="Self.Worker" />
+          <EntitySet Name="WorksOns" EntityType="Self.WorksOn" />
+          <AssociationSet Name="Activity_ibfk_1" Association="Self.Activity_ibfk_1">
+            <End Role="WorksOn" EntitySet="WorksOns" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="Admin_ibfk_1" Association="Self.Admin_ibfk_1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Admin" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="AssignedTo_ibfk_1" Association="Self.AssignedTo_ibfk_1">
+            <End Role="Worker" EntitySet="Workers" />
+            <End Role="AssignedTo" EntitySet="AssignedToes" />
+          </AssociationSet>
+          <AssociationSet Name="AssignedTo_ibfk_2" Association="Self.AssignedTo_ibfk_2">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="AssignedTo" EntitySet="AssignedToes" />
+          </AssociationSet>
+          <AssociationSet Name="WorksOn_ibfk_2" Association="Self.WorksOn_ibfk_2">
+            <End Role="AssignedTo" EntitySet="AssignedToes" />
+            <End Role="WorksOn" EntitySet="WorksOns" />
+          </AssociationSet>
+          <AssociationSet Name="ClosureUnit_ibfk_1" Association="Self.ClosureUnit_ibfk_1">
+            <End Role="Unit" EntitySet="Units" />
+            <End Role="ClosureUnit" EntitySet="ClosureUnits" />
+          </AssociationSet>
+          <AssociationSet Name="ClosureUnit_ibfk_2" Association="Self.ClosureUnit_ibfk_2">
+            <End Role="Unit" EntitySet="Units" />
+            <End Role="ClosureUnit" EntitySet="ClosureUnits" />
+          </AssociationSet>
+          <AssociationSet Name="Customer_ibfk_1" Association="Self.Customer_ibfk_1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="Log_ibfk_1" Association="Self.Log_ibfk_1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Log" EntitySet="Logs" />
+          </AssociationSet>
+          <AssociationSet Name="Project_ibfk_1" Association="Self.Project_ibfk_1">
+            <End Role="Worker" EntitySet="Workers" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="Project_ibfk_2" Association="Self.Project_ibfk_2">
+            <End Role="Worker" EntitySet="Workers" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="Unit_ibfk_1" Association="Self.Unit_ibfk_1">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Unit" EntitySet="Units" />
+          </AssociationSet>
+          <AssociationSet Name="WorksOn_ibfk_1" Association="Self.WorksOn_ibfk_1">
+            <End Role="Unit" EntitySet="Units" />
+            <End Role="WorksOn" EntitySet="WorksOns" />
+          </AssociationSet>
+          <AssociationSet Name="Worker_ibfk_1" Association="Self.Worker_ibfk_1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Worker" EntitySet="Workers" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerProject" Association="Self.CustomerProject">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KhronosPMSModelStoreContainer" CdmEntityContainer="KhronosPMSEntities">
+          <EntitySetMapping Name="Activities">
+            <EntityTypeMapping TypeName="KhronosPMSModel.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Manhour" ColumnName="Manhour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="KhronosPMSModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssignedToes">
+            <EntityTypeMapping TypeName="KhronosPMSModel.AssignedTo">
+              <MappingFragment StoreEntitySet="AssignedTo">
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClosureUnits">
+            <EntityTypeMapping TypeName="KhronosPMSModel.ClosureUnit">
+              <MappingFragment StoreEntitySet="ClosureUnit">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AncestorID" ColumnName="AncestorID" />
+                <ScalarProperty Name="Depth" ColumnName="Depth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="KhronosPMSModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="KhronosPMSModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Params" ColumnName="Params" />
+                <ScalarProperty Name="OperationID" ColumnName="OperationID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="KhronosPMSModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BossID" ColumnName="BossID" />
+                <ScalarProperty Name="SupervisorID" ColumnName="SupervisorID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Budget" ColumnName="Budget" />
+                <ScalarProperty Name="Expense" ColumnName="Expense" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="KhronosPMSModel.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Expense" ColumnName="Expense" />
+                <ScalarProperty Name="Finished" ColumnName="Finished" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="KhronosPMSModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workers">
+            <EntityTypeMapping TypeName="KhronosPMSModel.Worker">
+              <MappingFragment StoreEntitySet="Worker">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorksOns">
+            <EntityTypeMapping TypeName="KhronosPMSModel.WorksOn">
+              <MappingFragment StoreEntitySet="WorksOn">
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CustomerProject" TypeName="KhronosPMSModel.CustomerProject" StoreEntitySet="CustomerProject">
+            <EndProperty Name="Project">
+              <ScalarProperty Name="ID" ColumnName="ProjectID" />
+            </EndProperty>
+            <EndProperty Name="Customer">
+              <ScalarProperty Name="ID" ColumnName="CustomerID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
