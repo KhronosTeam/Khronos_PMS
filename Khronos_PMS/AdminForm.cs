@@ -10,8 +10,10 @@ using System.Windows.Forms;
 
 namespace Khronos_PMS {
     public partial class AdminForm : Form {
-        public AdminForm() {
+        private Admin admin;
+        public AdminForm(Admin admin) {
             InitializeComponent();
+            this.admin = admin;
         }
     }
 }

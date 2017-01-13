@@ -10,8 +10,10 @@ using System.Windows.Forms;
 
 namespace Khronos_PMS {
     public partial class MainForm : Form {
-        public MainForm() {
+        private User user;
+        public MainForm(User user) {
             InitializeComponent();
+            this.user = user;
         }
     }
 }
