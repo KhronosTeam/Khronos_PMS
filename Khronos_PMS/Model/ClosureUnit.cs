@@ -7,17 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Khronos_PMS
+namespace Khronos_PMS.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Admin
+    public partial class ClosureUnit
     {
         public int ID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public int AncestorID { get; set; }
+        public int Depth { get; set; }
     
-        public virtual User User { get; set; }
+        public virtual Unit Unit { get; set; }
+        public virtual Unit AncestorUnit { get; set; }
     }
 }

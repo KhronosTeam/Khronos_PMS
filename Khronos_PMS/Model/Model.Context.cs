@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Khronos_PMS
+namespace Khronos_PMS.Model
 {
     using System;
     using System.Data.Entity;

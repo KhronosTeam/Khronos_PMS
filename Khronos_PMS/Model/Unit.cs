@@ -7,31 +7,35 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Khronos_PMS
+namespace Khronos_PMS.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Worker
+    public partial class Unit
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Worker()
+        public Unit()
         {
-            this.AssignedProjects = new HashSet<AssignedTo>();
-            this.BossProjects = new HashSet<Project>();
-            this.SupervisorProjects = new HashSet<Project>();
+            this.ClosureUnits = new HashSet<ClosureUnit>();
+            this.AncestorClosureUnits = new HashSet<ClosureUnit>();
+            this.Workers = new HashSet<WorksOn>();
         }
     
         public int ID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public int ProjectID { get; set; }
+        public string Name { get; set; }
+        public System.DateTime DueDate { get; set; }
+        public int Priority { get; set; }
+        public decimal Expense { get; set; }
+        public bool Finished { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AssignedTo> AssignedProjects { get; set; }
+        public virtual ICollection<ClosureUnit> ClosureUnits { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Project> BossProjects { get; set; }
+        public virtual ICollection<ClosureUnit> AncestorClosureUnits { get; set; }
+        public virtual Project Project { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Project> SupervisorProjects { get; set; }
-        public virtual User User { get; set; }
+        public virtual ICollection<WorksOn> Workers { get; set; }
     }
 }

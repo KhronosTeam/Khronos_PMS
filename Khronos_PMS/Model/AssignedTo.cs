@@ -7,27 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Khronos_PMS
+namespace Khronos_PMS.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class WorksOn
+    public partial class AssignedTo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public WorksOn()
+        public AssignedTo()
         {
-            this.Activities = new HashSet<Activity>();
+            this.WorksOns = new HashSet<WorksOn>();
         }
     
-        public int WorkerID { get; set; }
-        public int UnitID { get; set; }
         public int ProjectID { get; set; }
+        public int WorkerID { get; set; }
         public bool Active { get; set; }
     
+        public virtual Worker Worker { get; set; }
+        public virtual Project Project { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Activity> Activities { get; set; }
-        public virtual AssignedTo AssignedTo { get; set; }
-        public virtual Unit Unit { get; set; }
+        public virtual ICollection<WorksOn> WorksOns { get; set; }
     }
 }

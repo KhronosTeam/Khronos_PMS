@@ -32,6 +32,8 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.errorTextLabel = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,7 +68,7 @@
             // loginButton
             // 
             this.loginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.loginButton.Location = new System.Drawing.Point(308, 110);
+            this.loginButton.Location = new System.Drawing.Point(308, 121);
             this.loginButton.Margin = new System.Windows.Forms.Padding(0);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(111, 31);
@@ -101,7 +103,7 @@
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.cancelButton.Location = new System.Drawing.Point(429, 110);
+            this.cancelButton.Location = new System.Drawing.Point(429, 121);
             this.cancelButton.Margin = new System.Windows.Forms.Padding(0);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(111, 31);
@@ -126,10 +128,30 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(134, 130);
+            this.pictureBox1.Size = new System.Drawing.Size(134, 140);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
+            // 
+            // errorTextLabel
+            // 
+            this.errorTextLabel.AutoSize = true;
+            this.errorTextLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorTextLabel.Location = new System.Drawing.Point(231, 103);
+            this.errorTextLabel.Name = "errorTextLabel";
+            this.errorTextLabel.Size = new System.Drawing.Size(52, 13);
+            this.errorTextLabel.TabIndex = 8;
+            this.errorTextLabel.Text = "Error text.";
+            this.errorTextLabel.Visible = false;
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(231, 105);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(309, 10);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar.TabIndex = 9;
+            this.progressBar.Visible = false;
             // 
             // LoginForm
             // 
@@ -137,7 +159,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(555, 154);
+            this.ClientSize = new System.Drawing.Size(555, 165);
+            this.Controls.Add(this.progressBar);
+            this.Controls.Add(this.errorTextLabel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cancelButton);
@@ -167,5 +191,7 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label errorTextLabel;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }

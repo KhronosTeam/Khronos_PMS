@@ -7,19 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Khronos_PMS
+namespace Khronos_PMS.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Log
+    public partial class Admin
     {
         public int ID { get; set; }
-        public string TableID { get; set; }
-        public System.DateTime Date { get; set; }
-        public string Params { get; set; }
-        public string OperationID { get; set; }
-        public int UserID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     
         public virtual User User { get; set; }
     }

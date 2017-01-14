@@ -7,18 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Khronos_PMS
+namespace Khronos_PMS.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ClosureUnit
+    public partial class Activity
     {
         public int ID { get; set; }
-        public int AncestorID { get; set; }
-        public int Depth { get; set; }
+        public string Note { get; set; }
+        public int WorkerID { get; set; }
+        public int UnitID { get; set; }
+        public int ProjectID { get; set; }
+        public System.DateTime Date { get; set; }
+        public int Manhour { get; set; }
     
-        public virtual Unit Unit { get; set; }
-        public virtual Unit AncestorUnit { get; set; }
+        public virtual WorksOn WorksOn { get; set; }
     }
 }

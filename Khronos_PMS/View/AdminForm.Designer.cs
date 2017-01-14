@@ -23,9 +23,17 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // AdminForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "AdminForm";
+            this.ClientSize = new System.Drawing.Size(1032, 475);
+            this.Name = "AdminForm";
+            this.Text = "Khronos Project Management System Administration";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
