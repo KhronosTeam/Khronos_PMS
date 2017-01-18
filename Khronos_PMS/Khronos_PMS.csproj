@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Util\AccountManagement.cs" />
     <Compile Include="Util\Login.cs" />
     <Compile Include="Util\PasswordUtil.cs" />
     <Compile Include="Model\Activity.cs">
