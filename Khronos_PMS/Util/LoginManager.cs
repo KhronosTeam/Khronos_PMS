@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using Khronos_PMS.Model;
 
 namespace Khronos_PMS.Util {
-    class Login {
+    class LoginManager {
         private KhronosPMSEntities entities;
         private String username;
         private String password;
@@ -12,7 +12,7 @@ namespace Khronos_PMS.Util {
         private bool isValid;
         private String message;
 
-        public Login(String username, String password) {
+        public LoginManager(String username, String password) {
             try {
                 entities = new KhronosPMSEntities();
                 this.username = username;
@@ -31,7 +31,7 @@ namespace Khronos_PMS.Util {
                 if (user.Admin != null)
                     form = new AdminForm(user.Admin);
                 else if (user.Worker != null)
-                    form = new MainForm(user.Worker);
+                    form = new MainForm(user);
                 else if (user.Customer != null) {
                     //form = new MainForm(user.Customer);
                 } else

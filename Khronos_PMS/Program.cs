@@ -14,7 +14,7 @@ namespace Khronos_PMS {
         public static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            Application.Run(new MainForm(null));
         }
     }
 }

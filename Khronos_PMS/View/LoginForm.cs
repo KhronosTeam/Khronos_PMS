@@ -33,9 +33,9 @@ namespace Khronos_PMS {
                 if (String.IsNullOrEmpty(password))
                     passwordTextBox.CreateGraphics().DrawRectangle(Pens.Red, 0, 0, passwordTextBox.Width - 1, passwordTextBox.Height - 1);
             } else {
-                Login login = null;
+                LoginManager login = null;
                 progressBar.Visible = true;
-                await Task.Run(() => { login = new Login(username, password); });
+                await Task.Run(() => { login = new LoginManager(username, password); });
                 if (login.IsValid)
                     startNewForm(login.Form);
                 else {
