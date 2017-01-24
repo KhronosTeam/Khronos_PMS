@@ -25,7 +25,6 @@ namespace Khronos_PMS {
         
 
         private void button1_Click(Object sender, EventArgs e) {
-            rightTableLayout.ColumnStyles[0].Width = 100;
             rightTableLayout.ColumnStyles[1].Width = 0;
         }
 
