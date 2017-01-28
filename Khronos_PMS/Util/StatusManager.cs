@@ -49,5 +49,10 @@ namespace Khronos_PMS.Util {
         public static void UpdateStatus(Unit unit, Status status) {
             //todo sačuvati u bazu status
         }
+
+        public static Status getStausById(int id)
+        {
+            return (Status)Enum.ToObject(typeof(Status), id);
+        }
     }
 }

@@ -362,6 +362,7 @@ namespace Khronos_PMS.View {
             this.projectsSearchTextbox.TabIndex = 3;
             this.projectsSearchTextbox.WaterMarkColor = System.Drawing.Color.Gray;
             this.projectsSearchTextbox.WaterMarkText = "Search projects";
+            this.projectsSearchTextbox.TextChanged += new System.EventHandler(this.projectsSearchTextbox_TextChanged);
             // 
             // projectsSearchButton
             // 
