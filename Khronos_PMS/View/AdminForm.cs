@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Khronos_PMS.Model;
 using Khronos_PMS.Util;
+using Khronos_PMS.ModelView;
+using Khronos_PMS.View;
 
 namespace Khronos_PMS {
     public partial class AdminForm : Form {
@@ -242,6 +244,37 @@ namespace Khronos_PMS {
             {
                 changeUsernameComboBox.DataSource = AccountManagement.GetUsernames();
             }
+        }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            ProjectManagement.loadData(projectDataGridView,ProjectManagement.entities);
+            ProjectManagement.formatColumns(projectDataGridView);
+        }
+
+        private void projectDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            ProjectView projectView = (ProjectView)((DataGridView)sender).SelectedRows[0].DataBoundItem;
+            Project project = ProjectManagement.entities.Projects.Where(q => q.ID == projectView.ID).First();
+            projectDetailsTextBox.Text = project.Name;
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            ProjectManagement.searchData(projectDataGridView, searchTextBox.Text, ProjectManagement.entities);
+            ProjectManagement.formatColumns(projectDataGridView);
+        }
+
+        private void addProjectButton_Click(object sender, EventArgs e)
+        {
+            new ProjectForm().Show();
+        }
+
+        private void editProjectButton_Click(object sender, EventArgs e)
+        {
+            ProjectView projectView = (ProjectView)projectDataGridView.SelectedRows[0].DataBoundItem;
+            if(projectView!=null)
+                new ProjectForm(projectView).Show();
         }
     }
 }

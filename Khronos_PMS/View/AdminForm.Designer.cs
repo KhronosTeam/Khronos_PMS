@@ -28,10 +28,6 @@
             this.accountTabPage = new System.Windows.Forms.TabPage();
             this.accountTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.accountToolStrip = new System.Windows.Forms.ToolStrip();
-            this.newAdminToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.newWorkerToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.newCustomerToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.changePasswordToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.newAdminPanel = new System.Windows.Forms.Panel();
             this.adminOKButton = new System.Windows.Forms.Button();
             this.adminLastnameTextBox = new System.Windows.Forms.TextBox();
@@ -67,6 +63,19 @@
             this.changeNewPasswordLabel = new System.Windows.Forms.Label();
             this.changeUsernameLabel = new System.Windows.Forms.Label();
             this.projectTabPage = new System.Windows.Forms.TabPage();
+            this.searchPromptLabel = new System.Windows.Forms.Label();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.refreshButton = new System.Windows.Forms.Button();
+            this.projectGroupBox = new System.Windows.Forms.GroupBox();
+            this.editProjectButton = new System.Windows.Forms.Button();
+            this.addProjectButton = new System.Windows.Forms.Button();
+            this.projectDetailsTextBox = new System.Windows.Forms.TextBox();
+            this.projectDataGridView = new System.Windows.Forms.DataGridView();
+            this.newAdminToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.newWorkerToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.newCustomerToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.changePasswordToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.adminTabControl.SuspendLayout();
             this.accountTabPage.SuspendLayout();
             this.accountTableLayoutPanel.SuspendLayout();
@@ -75,6 +84,9 @@
             this.newCustomerPanel.SuspendLayout();
             this.newWorkerPanel.SuspendLayout();
             this.changePasswordPanel.SuspendLayout();
+            this.projectTabPage.SuspendLayout();
+            this.projectGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.projectDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // adminTabControl
@@ -133,48 +145,6 @@
             this.accountToolStrip.Size = new System.Drawing.Size(210, 211);
             this.accountToolStrip.TabIndex = 0;
             this.accountToolStrip.Text = "toolStrip1";
-            // 
-            // newAdminToolStripButton
-            // 
-            this.newAdminToolStripButton.BackColor = System.Drawing.Color.DarkGray;
-            this.newAdminToolStripButton.Checked = true;
-            this.newAdminToolStripButton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.newAdminToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.newAdminToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newAdminToolStripButton.Image")));
-            this.newAdminToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newAdminToolStripButton.Name = "newAdminToolStripButton";
-            this.newAdminToolStripButton.Size = new System.Drawing.Size(208, 19);
-            this.newAdminToolStripButton.Text = "New Admin";
-            // 
-            // newWorkerToolStripButton
-            // 
-            this.newWorkerToolStripButton.BackColor = System.Drawing.Color.DarkGray;
-            this.newWorkerToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.newWorkerToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newWorkerToolStripButton.Image")));
-            this.newWorkerToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newWorkerToolStripButton.Name = "newWorkerToolStripButton";
-            this.newWorkerToolStripButton.Size = new System.Drawing.Size(208, 19);
-            this.newWorkerToolStripButton.Text = "New Worker";
-            // 
-            // newCustomerToolStripButton
-            // 
-            this.newCustomerToolStripButton.BackColor = System.Drawing.Color.DarkGray;
-            this.newCustomerToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.newCustomerToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newCustomerToolStripButton.Image")));
-            this.newCustomerToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newCustomerToolStripButton.Name = "newCustomerToolStripButton";
-            this.newCustomerToolStripButton.Size = new System.Drawing.Size(208, 19);
-            this.newCustomerToolStripButton.Text = "New Customer";
-            // 
-            // changePasswordToolStripButton
-            // 
-            this.changePasswordToolStripButton.BackColor = System.Drawing.Color.DarkGray;
-            this.changePasswordToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.changePasswordToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("changePasswordToolStripButton.Image")));
-            this.changePasswordToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.changePasswordToolStripButton.Name = "changePasswordToolStripButton";
-            this.changePasswordToolStripButton.Size = new System.Drawing.Size(208, 19);
-            this.changePasswordToolStripButton.Text = "Change Password";
             // 
             // newAdminPanel
             // 
@@ -497,6 +467,14 @@
             // 
             // projectTabPage
             // 
+            this.projectTabPage.Controls.Add(this.projectDataGridView);
+            this.projectTabPage.Controls.Add(this.addProjectButton);
+            this.projectTabPage.Controls.Add(this.editProjectButton);
+            this.projectTabPage.Controls.Add(this.projectGroupBox);
+            this.projectTabPage.Controls.Add(this.refreshButton);
+            this.projectTabPage.Controls.Add(this.searchButton);
+            this.projectTabPage.Controls.Add(this.searchTextBox);
+            this.projectTabPage.Controls.Add(this.searchPromptLabel);
             this.projectTabPage.Location = new System.Drawing.Point(4, 22);
             this.projectTabPage.Name = "projectTabPage";
             this.projectTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -504,6 +482,135 @@
             this.projectTabPage.TabIndex = 1;
             this.projectTabPage.Text = "Project Management";
             this.projectTabPage.UseVisualStyleBackColor = true;
+            // 
+            // searchPromptLabel
+            // 
+            this.searchPromptLabel.AutoSize = true;
+            this.searchPromptLabel.Location = new System.Drawing.Point(8, 11);
+            this.searchPromptLabel.Name = "searchPromptLabel";
+            this.searchPromptLabel.Size = new System.Drawing.Size(98, 13);
+            this.searchPromptLabel.TabIndex = 1;
+            this.searchPromptLabel.Text = "Search For Project:";
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Location = new System.Drawing.Point(112, 8);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(194, 20);
+            this.searchTextBox.TabIndex = 2;
+            // 
+            // searchButton
+            // 
+            this.searchButton.Location = new System.Drawing.Point(312, 6);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(75, 23);
+            this.searchButton.TabIndex = 3;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // refreshButton
+            // 
+            this.refreshButton.Location = new System.Drawing.Point(941, 6);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(75, 23);
+            this.refreshButton.TabIndex = 4;
+            this.refreshButton.Text = "Refresh";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
+            // 
+            // projectGroupBox
+            // 
+            this.projectGroupBox.Controls.Add(this.projectDetailsTextBox);
+            this.projectGroupBox.Location = new System.Drawing.Point(11, 272);
+            this.projectGroupBox.Name = "projectGroupBox";
+            this.projectGroupBox.Size = new System.Drawing.Size(784, 169);
+            this.projectGroupBox.TabIndex = 6;
+            this.projectGroupBox.TabStop = false;
+            this.projectGroupBox.Text = "Project Details";
+            // 
+            // editProjectButton
+            // 
+            this.editProjectButton.Location = new System.Drawing.Point(860, 272);
+            this.editProjectButton.Name = "editProjectButton";
+            this.editProjectButton.Size = new System.Drawing.Size(75, 23);
+            this.editProjectButton.TabIndex = 7;
+            this.editProjectButton.Text = "Edit Project";
+            this.editProjectButton.UseVisualStyleBackColor = true;
+            this.editProjectButton.Click += new System.EventHandler(this.editProjectButton_Click);
+            // 
+            // addProjectButton
+            // 
+            this.addProjectButton.Location = new System.Drawing.Point(941, 272);
+            this.addProjectButton.Name = "addProjectButton";
+            this.addProjectButton.Size = new System.Drawing.Size(75, 23);
+            this.addProjectButton.TabIndex = 8;
+            this.addProjectButton.Text = "Add Project";
+            this.addProjectButton.UseVisualStyleBackColor = true;
+            this.addProjectButton.Click += new System.EventHandler(this.addProjectButton_Click);
+            // 
+            // projectDetailsTextBox
+            // 
+            this.projectDetailsTextBox.Location = new System.Drawing.Point(6, 19);
+            this.projectDetailsTextBox.Multiline = true;
+            this.projectDetailsTextBox.Name = "projectDetailsTextBox";
+            this.projectDetailsTextBox.Size = new System.Drawing.Size(772, 144);
+            this.projectDetailsTextBox.TabIndex = 0;
+            // 
+            // projectDataGridView
+            // 
+            this.projectDataGridView.AllowUserToAddRows = false;
+            this.projectDataGridView.AllowUserToDeleteRows = false;
+            this.projectDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.projectDataGridView.Location = new System.Drawing.Point(3, 34);
+            this.projectDataGridView.Name = "projectDataGridView";
+            this.projectDataGridView.ReadOnly = true;
+            this.projectDataGridView.RowHeadersVisible = false;
+            this.projectDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.projectDataGridView.Size = new System.Drawing.Size(1015, 232);
+            this.projectDataGridView.TabIndex = 9;
+            // 
+            // newAdminToolStripButton
+            // 
+            this.newAdminToolStripButton.BackColor = System.Drawing.Color.DarkGray;
+            this.newAdminToolStripButton.Checked = true;
+            this.newAdminToolStripButton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.newAdminToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.newAdminToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newAdminToolStripButton.Image")));
+            this.newAdminToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.newAdminToolStripButton.Name = "newAdminToolStripButton";
+            this.newAdminToolStripButton.Size = new System.Drawing.Size(208, 19);
+            this.newAdminToolStripButton.Text = "New Admin";
+            // 
+            // newWorkerToolStripButton
+            // 
+            this.newWorkerToolStripButton.BackColor = System.Drawing.Color.DarkGray;
+            this.newWorkerToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.newWorkerToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newWorkerToolStripButton.Image")));
+            this.newWorkerToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.newWorkerToolStripButton.Name = "newWorkerToolStripButton";
+            this.newWorkerToolStripButton.Size = new System.Drawing.Size(208, 19);
+            this.newWorkerToolStripButton.Text = "New Worker";
+            // 
+            // newCustomerToolStripButton
+            // 
+            this.newCustomerToolStripButton.BackColor = System.Drawing.Color.DarkGray;
+            this.newCustomerToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.newCustomerToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newCustomerToolStripButton.Image")));
+            this.newCustomerToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.newCustomerToolStripButton.Name = "newCustomerToolStripButton";
+            this.newCustomerToolStripButton.Size = new System.Drawing.Size(208, 19);
+            this.newCustomerToolStripButton.Text = "New Customer";
+            // 
+            // changePasswordToolStripButton
+            // 
+            this.changePasswordToolStripButton.BackColor = System.Drawing.Color.DarkGray;
+            this.changePasswordToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.changePasswordToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("changePasswordToolStripButton.Image")));
+            this.changePasswordToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.changePasswordToolStripButton.Name = "changePasswordToolStripButton";
+            this.changePasswordToolStripButton.Size = new System.Drawing.Size(208, 19);
+            this.changePasswordToolStripButton.Text = "Change Password";
             // 
             // AdminForm
             // 
@@ -527,6 +634,11 @@
             this.newWorkerPanel.PerformLayout();
             this.changePasswordPanel.ResumeLayout(false);
             this.changePasswordPanel.PerformLayout();
+            this.projectTabPage.ResumeLayout(false);
+            this.projectTabPage.PerformLayout();
+            this.projectGroupBox.ResumeLayout(false);
+            this.projectGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.projectDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -576,5 +688,14 @@
         private System.Windows.Forms.ComboBox changeUsernameComboBox;
         private System.Windows.Forms.Label changeNewPasswordLabel;
         private System.Windows.Forms.Label changeUsernameLabel;
+        private System.Windows.Forms.Button addProjectButton;
+        private System.Windows.Forms.Button editProjectButton;
+        private System.Windows.Forms.GroupBox projectGroupBox;
+        private System.Windows.Forms.TextBox projectDetailsTextBox;
+        private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.TextBox searchTextBox;
+        private System.Windows.Forms.Label searchPromptLabel;
+        private System.Windows.Forms.DataGridView projectDataGridView;
     }
 }
