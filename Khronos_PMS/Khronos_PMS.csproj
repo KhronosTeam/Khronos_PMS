@@ -93,6 +93,7 @@
     <Compile Include="Util\ProjectManager.cs" />
     <Compile Include="Util\Role.cs" />
     <Compile Include="Util\StatusManager.cs" />
+    <Compile Include="Util\UnitManager.cs" />
     <Compile Include="View\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>

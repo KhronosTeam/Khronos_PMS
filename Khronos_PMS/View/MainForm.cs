@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Resources;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BrightIdeasSoftware;
 using Khronos_PMS.Model;
-using Khronos_PMS.Properties;
 using Khronos_PMS.Util;
 
 namespace Khronos_PMS {
@@ -22,7 +19,7 @@ namespace Khronos_PMS {
             projectManager = new ProjectManager();
             userLabel.Text = "Marko Stijak";
         }
-        
+
 
         private void button1_Click(Object sender, EventArgs e) {
             rightTableLayout.ColumnStyles[1].Width = 0;
@@ -32,16 +29,30 @@ namespace Khronos_PMS {
         private async void LoadProjects() {
             List<Project> projects = new List<Project>();
             await Task.Run(() => projects = projectManager.GetProjects(user));
-            
         }
 
+        private void toolStripMenuItem_Click(Object sender, EventArgs e) {
+            Status status = (Status) ((ToolStripItem) sender).Tag;
 
-        private void statusMenuButton_MouseEnter(Object sender, EventArgs e) {
-            ((ToolStripSplitButton) sender).Image = Resources.status_set_complete;
-        }
+            switch (status) {
+                case Status.ACTIVE:
+                    projectStatusButton.Image = StatusManager.Image(Status.ACTIVE);
+                    break;
+                case Status.IN_PROGRESS:
+                    projectStatusButton.Image = StatusManager.Image(Status.IN_PROGRESS);
+                    break;
+                case Status.PAUSED:
+                    projectStatusButton.Image = StatusManager.Image(Status.PAUSED);
+                    break;
+                case Status.COMPLETED:
+                    projectStatusButton.Image = StatusManager.Image(Status.COMPLETED);
+                    break;
+                default:
+                    throw new Exception("Invalid status!");
+            }
 
-        private void statusMenuButton_MouseLeave(Object sender, EventArgs e) {
-
+            //todo project status update 
+            //StatusManager.SaveStatus(project from listview, status);
         }
     }
 }

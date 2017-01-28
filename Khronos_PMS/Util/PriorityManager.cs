@@ -4,53 +4,63 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Khronos_PMS.Model;
 using Khronos_PMS.Properties;
 
 namespace Khronos_PMS.Util {
-    static class Priority {
-        public static int NONE = 0;
-        public static int VERY_LOW = 1;
-        public static int LOW = 2;
-        public static int MEDIUM = 3;
-        public static int HIGH = 4;
-        public static int VERY_HIGH = 5;
 
-        public static Bitmap Image(int priority) {
+    public enum Priority {
+        NONE = 0,
+        VERY_LOW = 1,
+        LOW = 2,
+        MEDIUM = 3,
+        HIGH = 4,
+        VERY_HIGH = 5
+    }
+
+
+    public static class PriorityManager {
+        
+        public static Bitmap Image(Priority priority) {
             switch (priority) {
-                case 0:
+                case Priority.NONE:
                     return Resources.priority_none;
-                case 1:
+                case Priority.VERY_LOW:
                     return Resources.priority_very_low;
-                case 2:
+                case Priority.LOW:
                     return Resources.priority_low;
-                case 3:
+                case Priority.MEDIUM:
                     return Resources.priority_medium;
-                case 4:
+                case Priority.HIGH:
                     return Resources.priority_high;
-                case 5:
+                case Priority.VERY_HIGH:
                     return Resources.priority_very_high;
                 default:
                     throw new Exception("Invalid priority!");
             }
         }
 
-        public static String Name(int priority) {
+        public static String Name(Priority priority) {
             switch (priority) {
-                case 0:
+                case Priority.NONE:
                     return "None";
-                case 1:
+                case Priority.VERY_LOW:
                     return "Very low";
-                case 2:
+                case Priority.LOW:
                     return "Low";
-                case 3:
+                case Priority.MEDIUM:
                     return "Medium";
-                case 4:
+                case Priority.HIGH:
                     return "High";
-                case 5:
+                case Priority.VERY_HIGH:
                     return "Very high";
                 default:
                     throw new Exception("Invalid priority!");
             }
+        }
+
+        public static void SavePriority(Unit unit, Priority priority) {
+            //todo sačuvati u bazu prioritet
         }
 
     }
