@@ -72,6 +72,6 @@ namespace Khronos_PMS.View {
                 //todo Num 11. unit priority update
                 //PriorityManager.UpdatePriority(selected unit, priority);
             }).Start();
-        }   
+        }
     }
 }
