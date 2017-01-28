@@ -54,7 +54,43 @@ namespace Khronos_PMS.Util {
         }
 
         public static void UpdatePriority(Unit unit, Priority priority) {
-            //todo sačuvati u bazu prioritet
+            //todo izvršti validaciju čuvanja izmjene prioriteta unita
+            KhronosPMSEntities entities = ProjectManagement.entities;
+            int intPriority;
+            switch (priority)
+            {
+                case Priority.NONE:
+                    intPriority= 0;
+                    break;
+                case Priority.VERY_LOW:
+                    intPriority = 1;
+                    break;
+                case Priority.LOW:
+                    intPriority = 2;
+                    break;
+                case Priority.MEDIUM:
+                    intPriority = 3;
+                    break;
+                case Priority.HIGH:
+                    intPriority = 4;
+                    break;
+                case Priority.VERY_HIGH:
+                    intPriority = 5;
+                    break;
+                default:
+                    throw new Exception("Invalid priority!");
+            }
+            unit.Priority = intPriority;
+            try
+            {
+                entities.Units.Attach(unit);
+                entities.Entry(unit).State = System.Data.Entity.EntityState.Modified;
+                entities.SaveChanges();
+            }
+            catch (Exception) {
+                // in case of an exception, remove "unit" from entry list
+                entities.Entry(unit).State = System.Data.Entity.EntityState.Detached;
+            }
         }
     }
 }
