@@ -83,6 +83,7 @@
           <Property Name="Budget" Type="decimal" Precision="20" Scale="5" Nullable="false" />
           <Property Name="Expense" Type="decimal" Precision="20" Scale="5" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="2048" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -495,6 +496,7 @@
           <NavigationProperty Name="Supervisor" Relationship="Self.Project_ibfk_2" FromRole="Project" ToRole="Worker" />
           <NavigationProperty Name="Units" Relationship="Self.Unit_ibfk_1" FromRole="Project" ToRole="Unit" />
           <NavigationProperty Name="Customers" Relationship="Self.CustomerProject" FromRole="Project" ToRole="Customer" />
+          <Property Name="Description" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -877,6 +879,7 @@
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="KhronosPMSModel.Project">
               <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="BossID" ColumnName="BossID" />
                 <ScalarProperty Name="SupervisorID" ColumnName="SupervisorID" />

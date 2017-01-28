@@ -96,6 +96,9 @@ namespace Khronos_PMS.View {
             this.projectStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.financialReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activitiesReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectsListView = new BrightIdeasSoftware.DataListView();
+            this.workersListView = new BrightIdeasSoftware.DataListView();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.projectsSearchTextbox = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.workersSearchTextBox = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -114,9 +117,6 @@ namespace Khronos_PMS.View {
             this.lowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.veryLowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.noneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.projectsListView = new BrightIdeasSoftware.DataListView();
-            this.workersListView = new BrightIdeasSoftware.DataListView();
-            this.unitsTreeView = new System.Windows.Forms.TreeView();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.leftTableLayout.SuspendLayout();
@@ -166,18 +166,18 @@ namespace Khronos_PMS.View {
             // refrshToolStripMenuItem
             // 
             this.refrshToolStripMenuItem.Name = "refrshToolStripMenuItem";
-            this.refrshToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.refrshToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.refrshToolStripMenuItem.Text = "Refrsh";
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(138, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             // 
             // helpToolStripMenuItem
@@ -531,7 +531,7 @@ namespace Khronos_PMS.View {
             this.unitTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.unitTableLayoutPanel.Controls.Add(this.panel2, 0, 1);
             this.unitTableLayoutPanel.Controls.Add(this.panel1, 0, 0);
-            this.unitTableLayoutPanel.Controls.Add(this.unitsTreeView, 0, 2);
+            this.unitTableLayoutPanel.Controls.Add(this.treeView1, 0, 2);
             this.unitTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.unitTableLayoutPanel.Location = new System.Drawing.Point(3, 17);
             this.unitTableLayoutPanel.Margin = new System.Windows.Forms.Padding(1);
@@ -886,13 +886,13 @@ namespace Khronos_PMS.View {
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.newToolStripMenuItem.Text = "&New";
             // 
             // unitToolStripMenuItem
             // 
             this.unitToolStripMenuItem.Name = "unitToolStripMenuItem";
-            this.unitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.unitToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.unitToolStripMenuItem.Text = "Unit";
             // 
             // projectStatusToolStripMenuItem
@@ -915,6 +915,37 @@ namespace Khronos_PMS.View {
             this.activitiesReportToolStripMenuItem.Name = "activitiesReportToolStripMenuItem";
             this.activitiesReportToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.activitiesReportToolStripMenuItem.Text = "Activities report";
+            // 
+            // projectsListView
+            // 
+            this.projectsListView.CellEditUseWholeCell = false;
+            this.projectsListView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.projectsListView.DataSource = null;
+            this.projectsListView.Location = new System.Drawing.Point(7, 49);
+            this.projectsListView.Name = "projectsListView";
+            this.projectsListView.Size = new System.Drawing.Size(249, 128);
+            this.projectsListView.TabIndex = 4;
+            this.projectsListView.UseCompatibleStateImageBehavior = false;
+            this.projectsListView.View = System.Windows.Forms.View.Details;
+            // 
+            // workersListView
+            // 
+            this.workersListView.CellEditUseWholeCell = false;
+            this.workersListView.DataSource = null;
+            this.workersListView.Location = new System.Drawing.Point(7, 47);
+            this.workersListView.Name = "workersListView";
+            this.workersListView.Size = new System.Drawing.Size(249, 136);
+            this.workersListView.TabIndex = 5;
+            this.workersListView.UseCompatibleStateImageBehavior = false;
+            this.workersListView.View = System.Windows.Forms.View.Details;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.Location = new System.Drawing.Point(3, 63);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(406, 111);
+            this.treeView1.TabIndex = 2;
             // 
             // projectsSearchTextbox
             // 
@@ -1094,42 +1125,6 @@ namespace Khronos_PMS.View {
             this.noneToolStripMenuItem.Text = "None";
             this.noneToolStripMenuItem.Click += new System.EventHandler(this.unitPriorityToolStripMenuItem_Click);
             // 
-            // projectsListView
-            // 
-            this.projectsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.projectsListView.CellEditUseWholeCell = false;
-            this.projectsListView.DataSource = null;
-            this.projectsListView.Location = new System.Drawing.Point(7, 49);
-            this.projectsListView.Name = "projectsListView";
-            this.projectsListView.Size = new System.Drawing.Size(249, 128);
-            this.projectsListView.TabIndex = 4;
-            this.projectsListView.UseCompatibleStateImageBehavior = false;
-            this.projectsListView.View = System.Windows.Forms.View.Details;
-            // 
-            // workersListView
-            // 
-            this.workersListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.workersListView.CellEditUseWholeCell = false;
-            this.workersListView.DataSource = null;
-            this.workersListView.Location = new System.Drawing.Point(7, 47);
-            this.workersListView.Name = "workersListView";
-            this.workersListView.Size = new System.Drawing.Size(249, 136);
-            this.workersListView.TabIndex = 5;
-            this.workersListView.UseCompatibleStateImageBehavior = false;
-            this.workersListView.View = System.Windows.Forms.View.Details;
-            // 
-            // unitsTreeView
-            // 
-            this.unitsTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.unitsTreeView.Location = new System.Drawing.Point(3, 63);
-            this.unitsTreeView.Name = "unitsTreeView";
-            this.unitsTreeView.Size = new System.Drawing.Size(406, 111);
-            this.unitsTreeView.TabIndex = 2;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1271,6 +1266,6 @@ namespace Khronos_PMS.View {
         private System.Windows.Forms.ToolStripMenuItem activitiesReportToolStripMenuItem;
         private BrightIdeasSoftware.DataListView projectsListView;
         private BrightIdeasSoftware.DataListView workersListView;
-        private System.Windows.Forms.TreeView unitsTreeView;
+        private System.Windows.Forms.TreeView treeView1;
     }
 }
