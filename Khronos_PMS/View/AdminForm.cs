@@ -256,7 +256,7 @@ namespace Khronos_PMS {
         {
             ProjectView projectView = (ProjectView)((DataGridView)sender).SelectedRows[0].DataBoundItem;
             Project project = ProjectManagement.entities.Projects.Where(q => q.ID == projectView.ID).First();
-            projectDetailsTextBox.Text = project.Name;
+            projectDetailsTextBox.Text = project.Description;
         }
 
         private void searchButton_Click(object sender, EventArgs e)

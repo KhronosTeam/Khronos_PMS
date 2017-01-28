@@ -61,7 +61,6 @@ namespace Khronos_PMS.View
         }
 
         private  void fill() {
-            // TODO dodati description
             foreach (Customer customer in project.Customers)
             {
                 projectCustomers.Add(new CustomerView(customer.ID, customer.User.Username, customer.Name));
@@ -69,7 +68,7 @@ namespace Khronos_PMS.View
             bs = new BindingSource();
             bs.DataSource = projectCustomers;
             customerDataGridView.DataSource = bs;
-            
+            descriptionTextBox.Text = project.Description;
             projectNameTextBox.Text = projectView.Name;
             startDateDateTimePicker.Value = projectView.StartDate;
             deadlineDateTimePicker.Value = projectView.DeadlineDate;
@@ -107,7 +106,6 @@ namespace Khronos_PMS.View
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            // TODO dodati description
             if (edit) {
                 try
                 {
@@ -117,6 +115,7 @@ namespace Khronos_PMS.View
                 project.StartDate = startDateDateTimePicker.Value.Date;
                 project.DeadlineDate = deadlineDateTimePicker.Value.Date;
                 project.Budget = decimal.Parse(budgetTextBox.Text);
+                    project.Description = descriptionTextBox.Text;
 
                     project.Customers = new List<Customer>();
                 foreach (CustomerView customer in projectCustomers)
@@ -142,7 +141,7 @@ namespace Khronos_PMS.View
                     newProject.StartDate = startDateDateTimePicker.Value.Date;
                     newProject.DeadlineDate = deadlineDateTimePicker.Value.Date;
                     newProject.Budget = decimal.Parse(budgetTextBox.Text);
-
+                    newProject.Description = descriptionTextBox.Text;
                    
 
                     foreach (CustomerView customer in projectCustomers) {
