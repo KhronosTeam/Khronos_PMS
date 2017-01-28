@@ -122,6 +122,8 @@ namespace Khronos_PMS.View {
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.sfasidofjiaosdj = new System.Windows.Forms.ToolStrip();
             this.userLabel = new System.Windows.Forms.ToolStripButton();
+            this.firstName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.lastName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.leftTableLayout.SuspendLayout();
@@ -392,17 +394,22 @@ namespace Khronos_PMS.View {
             // 
             // workersListView
             // 
+            this.workersListView.AllColumns.Add(this.firstName);
+            this.workersListView.AllColumns.Add(this.lastName);
             this.workersListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.workersListView.CellEditUseWholeCell = false;
+            this.workersListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.firstName,
+            this.lastName});
             this.workersListView.DataSource = null;
             this.workersListView.Location = new System.Drawing.Point(7, 47);
             this.workersListView.Name = "workersListView";
             this.workersListView.Size = new System.Drawing.Size(249, 136);
             this.workersListView.TabIndex = 5;
             this.workersListView.UseCompatibleStateImageBehavior = false;
-            this.workersListView.View = System.Windows.Forms.View.Details;
+            this.workersListView.View = System.Windows.Forms.View.List;
             // 
             // workersSearchTextBox
             // 
@@ -416,6 +423,7 @@ namespace Khronos_PMS.View {
             this.workersSearchTextBox.TabIndex = 4;
             this.workersSearchTextBox.WaterMarkColor = System.Drawing.Color.Gray;
             this.workersSearchTextBox.WaterMarkText = "Search workers";
+            this.workersSearchTextBox.TextChanged += new System.EventHandler(this.workersSearchTextBox_TextChanged);
             // 
             // workersSearchButton
             // 
@@ -1241,6 +1249,16 @@ namespace Khronos_PMS.View {
             this.userLabel.Size = new System.Drawing.Size(83, 21);
             this.userLabel.Text = "User name";
             // 
+            // firstName
+            // 
+            this.firstName.AspectName = "FirstName";
+            this.firstName.Text = "First name";
+            // 
+            // lastName
+            // 
+            this.lastName.AspectName = "LastName";
+            this.lastName.Text = "Last name";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1390,5 +1408,7 @@ namespace Khronos_PMS.View {
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private BrightIdeasSoftware.OLVColumn projectName;
+        private BrightIdeasSoftware.OLVColumn firstName;
+        private BrightIdeasSoftware.OLVColumn lastName;
     }
 }

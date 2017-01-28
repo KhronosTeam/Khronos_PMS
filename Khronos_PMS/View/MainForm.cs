@@ -7,16 +7,20 @@ using Khronos_PMS.Util;
 using BrightIdeasSoftware;
 using Khronos_PMS.ModelView;
 
-namespace Khronos_PMS.View {
-    public partial class MainForm : Form {
+namespace Khronos_PMS.View
+{
+    public partial class MainForm : Form
+    {
         private User user;
 
-        public MainForm(User user) {
+        public MainForm(User user)
+        {
             InitializeComponent();
             this.user = user;
         }
 
-        private void MainForm_Load(Object sender, EventArgs e) {
+        private void MainForm_Load(Object sender, EventArgs e)
+        {
             //todo Num 0. u zavisnoti ko se prijavio (worker, customer, superviosor) neke opcije trebaju biti prikazane, a neke ne
 
             //učitati projekte, popuniti listview i po defaultu neka prvi bude selektovan
@@ -33,52 +37,69 @@ namespace Khronos_PMS.View {
             }
         }
 
-        private void button1_Click(Object sender, EventArgs e) {
+        private void button1_Click(Object sender, EventArgs e)
+        {
             rightTableLayout.ColumnStyles[1].Width = 0;
         }
-        
-        private void projectsSearchButton_Click(Object sender, EventArgs e) {
+
+        private void projectsSearchButton_Click(Object sender, EventArgs e)
+        {
             searchProjects();
             //Nema potrebe za ovim, sad pretrazuje odma na kucanje
         }
 
-        private void workersSearchButton_Click(Object sender, EventArgs e) {
-            //todo Num 7. implementirati pretragu radnika, prikazati obavještenja
+        private void workersSearchButton_Click(Object sender, EventArgs e)
+        {
+            searchWorkers();
         }
 
-        private void unitsSearchButton_Click(Object sender, EventArgs e) {
+        private void unitsSearchButton_Click(Object sender, EventArgs e)
+        {
             //todo Num 8. implementirati pretragu unita, prikazati obavještenja
         }
 
-        private void projectToolStripMenuItem_Click(Object sender, EventArgs e) {
+        private void projectToolStripMenuItem_Click(Object sender, EventArgs e)
+        {
             Status status = (Status)((ToolStripItem)sender).Tag;
             projectStatusMenuButton.Image = StatusManager.Image(status);
 
-            new Task(() => {
-                //todo Num 9. project status update
-                //StatusManager.UpdateStatus(selected project, status);
+            new Task(() =>
+            {
+                //project status update
+                Invoke(new MethodInvoker(() =>
+                {
+                    if (projectsListView.SelectedIndex != -1)
+                    {
+                        Project selectedProject = (Project)projectsListView.SelectedObject;
+                        StatusManager.UpdateStatus(selectedProject, status);
+                    }
+                }));
             }).Start();
         }
 
-        private void unitStatusToolStripMenuItem_Click(Object sender, EventArgs e) {
+        private void unitStatusToolStripMenuItem_Click(Object sender, EventArgs e)
+        {
             Status status = (Status)((ToolStripItem)sender).Tag;
             unitStatusMenuButton.Image = StatusManager.Image(status);
 
-            new Task(() => {
+            new Task(() =>
+            {
                 //todo Num 10. unit status update
                 //StatusManager.UpdateStatus(selected unit, status);
             }).Start();
         }
 
-        private void unitPriorityToolStripMenuItem_Click(Object sender, EventArgs e) {
-            Priority priority = (Priority) ((ToolStripItem)sender).Tag;
+        private void unitPriorityToolStripMenuItem_Click(Object sender, EventArgs e)
+        {
+            Priority priority = (Priority)((ToolStripItem)sender).Tag;
             unitPriorityMenuButton.Image = PriorityManager.Image(priority);
 
-            new Task(() => {
+            new Task(() =>
+            {
                 //todo Num 11. unit priority update
                 //PriorityManager.UpdatePriority(selected unit, priority);
             }).Start();
-        }   
+        }
 
         private void projectsListView_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -118,10 +139,35 @@ namespace Khronos_PMS.View {
         {
             //Ovdje je implementirana pretraga
             projectsListView.UseFiltering = true;
-            projectsListView.ModelFilter = new ModelFilter(x => {
+            projectsListView.ModelFilter = new ModelFilter(x =>
+            {
                 var myProject = x as Project;
                 return x != null && (myProject.Name.ToLower().Contains(projectsSearchTextbox.Text.ToLower()));
             });
+        }
+
+        private void searchWorkers()
+        {
+            Project selectedProject = (Project)projectsListView.SelectedObject;
+            List<Worker> mylist = ProjectManager.GetWorkers(selectedProject);
+            List<Worker> temp = new List<Worker>();
+            if (workersSearchTextBox.Text.Equals(""))
+            {
+                workersListView.DataSource = mylist;
+            }
+            else
+            {
+                foreach (var x in mylist)
+                {
+                    if (x.FirstName.ToLower().Contains(workersSearchTextBox.Text.ToLower()))
+                    {
+
+                        temp.Add(x);
+                    }
+                }
+                workersListView.DataSource = temp;
+            }
+
         }
 
         private void setRole(Project selectedProject)
@@ -179,6 +225,11 @@ namespace Khronos_PMS.View {
                 selectedNode.Nodes.Add(childNode);
             }
             selectedNode.Expand();
+        }
+
+        private void workersSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            searchWorkers();
         }
     }
 }
