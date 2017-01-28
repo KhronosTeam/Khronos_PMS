@@ -30,7 +30,6 @@ namespace Khronos_PMS.Util {
             foreach (Unit unit in project.Units) {
                 units.Add(unit);
             }
-
             return units;
         }
 

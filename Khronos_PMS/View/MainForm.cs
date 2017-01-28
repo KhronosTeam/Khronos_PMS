@@ -106,7 +106,7 @@ namespace Khronos_PMS.View {
         {
             //Ovdje je implementirana pretraga
             projectsListView.UseFiltering = true;
-            projectsListView.ModelFilter = new ModelFilter(delegate (object x) {
+            projectsListView.ModelFilter = new ModelFilter(x => {
                 var myProject = x as Project;
                 return x != null && (myProject.Name.ToLower().Contains(projectsSearchTextbox.Text.ToLower()));
             });
