@@ -208,6 +208,8 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\project.png" />
+    <None Include="Resources\dollar.png" />
     <None Include="Resources\calendar.png" />
     <None Include="Resources\plus_blue.png" />
     <None Include="Resources\search_blue.png" />
