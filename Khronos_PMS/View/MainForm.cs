@@ -18,6 +18,7 @@ namespace Khronos_PMS.View {
             //todo Num 0. u zavisnoti ko se prijavio (worker, customer, superviosor) neke opcije trebaju biti prikazane, a neke ne
 
             //todo Num 1. učitati projekte, popuniti listview i po defaultu neka prvi bude selektovan
+            this.Invoke(new MethodInvoker(() => { projectsListView.DataSource = ProjectManager.GetProjects(user); }));
 
             //todo Num 2. inicijalizovati sva polja vezana za projekat (Project name, role, boss, description, dates, ...) 
 
@@ -72,6 +73,18 @@ namespace Khronos_PMS.View {
                 //todo Num 11. unit priority update
                 //PriorityManager.UpdatePriority(selected unit, priority);
             }).Start();
-        }   
+        }
+
+        private void projectsListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (projectsListView.SelectedIndex != -1)
+            {
+                Project selectedProject = (Project)projectsListView.SelectedObject;
+                projectNameLabel.Text = selectedProject.Name;
+                //projectDescriptionLabel.Text = selectedProject
+                startDateLabel.Text = selectedProject.StartDate.ToShortDateString();
+                endDateLabel.Text = selectedProject.DeadlineDate.ToShortDateString();
+            }
+        }
     }
 }
