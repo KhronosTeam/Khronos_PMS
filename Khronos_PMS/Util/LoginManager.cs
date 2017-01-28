@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using Khronos_PMS.Model;
+using Khronos_PMS.View;
 
 namespace Khronos_PMS.Util {
     class LoginManager {

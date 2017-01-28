@@ -132,7 +132,7 @@
         2Mz2wxeg6/UAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="button2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="projectsSearchButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAOlJREFUOE/t
         kb8KQWEchk/+DAYsBiV2i3IJbkAZjBYZ3IDdTSiLUu7AIlfgAkxWg0UuQBLPW69TLN8RNk895bzf7/d2
@@ -142,7 +142,7 @@
         TkSuQmCC
 </value>
   </data>
-  <data name="button3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="workersSearchButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAOlJREFUOE/t
         kb8KQWEchk/+DAYsBiV2i3IJbkAZjBYZ3IDdTSiLUu7AIlfgAkxWg0UuQBLPW69TLN8RNk895bzf7/d2
@@ -155,7 +155,7 @@
   <metadata name="projectStatusToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>366, 17</value>
   </metadata>
-  <data name="button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="unitsSearchButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAOlJREFUOE/t
         kb8KQWEchk/+DAYsBiV2i3IJbkAZjBYZ3IDdTSiLUu7AIlfgAkxWg0UuQBLPW69TLN8RNk895bzf7/d2

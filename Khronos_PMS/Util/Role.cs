@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Khronos_PMS.Util {
-    static class Role {
-        public static readonly String BOSS = "Boss";
-        public static readonly String WORKER = "Worker";
-        public static readonly String SUPERVISOR = "Supervisor";
-        public static readonly String CUSTOMER = "Customer";
+    public enum Role {
+        Boss,
+        Worker,
+        Supervisor,
+        Customer
     }
 }

@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Khronos_PMS.Model;
 
 namespace Khronos_PMS.Util {
-    class ProjectManager {
-        private KhronosPMSEntities entities;
+    public static class ProjectManager {
+        public static KhronosPMSEntities entities;
 
-        public ProjectManager() {
+        static ProjectManager() {
             entities = new KhronosPMSEntities();
         }
 
-        public List<Project> GetProjects(User user) {
+        public static List<Project> GetProjects(User user) {
             return entities.Projects.ToList();
         }
 
-        public List<Worker> GetWorkers(Project project) {
+        public static List<Worker> GetWorkers(Project project) {
             List<Worker> workers = new List<Worker>();
             foreach (AssignedTo assigned in project.AssignedWorkers) {
                 workers.Add(assigned.Worker);
@@ -25,7 +23,7 @@ namespace Khronos_PMS.Util {
             return workers;
         }
 
-        public List<Unit> GetUnits(Project project) {
+        public static List<Unit> GetUnits(Project project) {
             // Vratiti sve unite vezena za projekat
             List<Unit> units = new List<Unit>();
             foreach (Unit unit in project.Units) {
@@ -35,7 +33,7 @@ namespace Khronos_PMS.Util {
             return units;
         }
 
-        public List<Unit> GetUnits(Project project, User user) {
+        public static List<Unit> GetUnits(Project project, User user) {
             List<Unit> units = new List<Unit>();
             foreach (Unit unit in project.Units) {
             }

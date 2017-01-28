@@ -1,26 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Khronos_PMS.Model;
 using Khronos_PMS.Properties;
 
 namespace Khronos_PMS.Util {
-
     public enum Priority {
-        NONE = 0,
-        VERY_LOW = 1,
-        LOW = 2,
-        MEDIUM = 3,
-        HIGH = 4,
-        VERY_HIGH = 5
+        NONE,
+        VERY_LOW,
+        LOW,
+        MEDIUM,
+        HIGH,
+        VERY_HIGH
     }
 
 
     public static class PriorityManager {
-        
         public static Bitmap Image(Priority priority) {
             switch (priority) {
                 case Priority.NONE:
@@ -59,9 +53,8 @@ namespace Khronos_PMS.Util {
             }
         }
 
-        public static void SavePriority(Unit unit, Priority priority) {
+        public static void UpdatePriority(Unit unit, Priority priority) {
             //todo sačuvati u bazu prioritet
         }
-
     }
 }
