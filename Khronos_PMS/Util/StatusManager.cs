@@ -43,7 +43,18 @@ namespace Khronos_PMS.Util {
         }
 
         public static void UpdateStatus(Project project, Status status) {
-            //todo sačuvati u bazu status
+            //sačuvati u bazu status
+            project.Status = (int)status;
+            try
+            {
+                ProjectManager.entities.Projects.Attach(project);
+                ProjectManager.entities.Entry(project).State = System.Data.Entity.EntityState.Modified;
+                ProjectManager.entities.SaveChanges();
+            }
+            catch (Exception)
+            {
+                ProjectManager.entities.Entry(project).State = System.Data.Entity.EntityState.Detached;
+            }
         }
 
         public static void UpdateStatus(Unit unit, Status status) {
