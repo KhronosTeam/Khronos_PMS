@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Khronos_PMS.Model;
 using Khronos_PMS.Util;
 using BrightIdeasSoftware;
+using Khronos_PMS.ModelView;
 
 namespace Khronos_PMS.View {
     public partial class MainForm : Form {
@@ -94,6 +95,17 @@ namespace Khronos_PMS.View {
                 bossNameLabel.Text = selectedProject.Boss.FirstName + " " + selectedProject.Boss.LastName;
                 projectStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById(selectedProject.Status));
                 setRole(selectedProject);
+
+                // postavka unita
+                // TODO pozvati u thread pa invoke
+                //unitsTreeView.Nodes.Add(UnitView.getRootUnits(selectedProject.ID));
+                unitsTreeView.Nodes.Clear();
+                List<UnitView> units = UnitView.getRootUnits(selectedProject.ID);
+                foreach (UnitView unitView in units) {
+                    TreeNode rootNode = new TreeNode(unitView.Name);
+                    rootNode.Tag = unitView;
+                    unitsTreeView.Nodes.Add(rootNode);
+                }
             }
         }
 
@@ -153,6 +165,20 @@ namespace Khronos_PMS.View {
             {
                 projectRoleLabel.Text = "Unknown";
             }
+        }
+
+        private void unitsTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            TreeNode selectedNode = e.Node;
+            List<UnitView> units = ((UnitView)selectedNode.Tag).getChildren();
+            if(selectedNode.Nodes.Count==0)
+            foreach (UnitView unitView in units)
+            {
+                TreeNode childNode = new TreeNode(unitView.Name);
+                childNode.Tag = unitView;
+                selectedNode.Nodes.Add(childNode);
+            }
+            selectedNode.Expand();
         }
     }
 }
