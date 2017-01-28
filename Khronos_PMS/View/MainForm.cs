@@ -49,7 +49,7 @@ namespace Khronos_PMS.View
 
         private void workersSearchButton_Click(Object sender, EventArgs e)
         {
-            //todo Num 7. implementirati pretragu radnika, prikazati obavještenja
+            searchWorkers();
         }
 
         private void unitsSearchButton_Click(Object sender, EventArgs e)
@@ -134,6 +134,30 @@ namespace Khronos_PMS.View
             });
         }
 
+        private void searchWorkers()
+        {
+            Project selectedProject = (Project)projectsListView.SelectedObject;
+            List<Worker> mylist = ProjectManager.GetWorkers(selectedProject);
+            List<Worker> temp = new List<Worker>();
+            if (workersSearchTextBox.Text.Equals(""))
+            {
+                workersListView.DataSource = mylist;
+            }
+            else
+            {
+                foreach (var x in mylist)
+                {
+                    if (x.FirstName.ToLower().Contains(workersSearchTextBox.Text.ToLower()))
+                    {
+
+                        temp.Add(x);
+                    }
+                }
+                workersListView.DataSource = temp;
+            }
+
+        }
+
         private void setRole(Project selectedProject)
         {
             if (user != null)
@@ -175,6 +199,11 @@ namespace Khronos_PMS.View
             {
                 projectRoleLabel.Text = "Unknown";
             }
+        }
+
+        private void workersSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            searchWorkers();
         }
     }
 }
