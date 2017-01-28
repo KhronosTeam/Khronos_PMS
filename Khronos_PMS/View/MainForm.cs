@@ -81,9 +81,12 @@ namespace Khronos_PMS.View {
             {
                 Project selectedProject = (Project)projectsListView.SelectedObject;
                 projectNameLabel.Text = selectedProject.Name;
-                //projectDescriptionLabel.Text = selectedProject
+                projectDescriptionLabel.Text = selectedProject.Description;
                 startDateLabel.Text = selectedProject.StartDate.ToShortDateString();
                 endDateLabel.Text = selectedProject.DeadlineDate.ToShortDateString();
+                budgetLabel.Text = selectedProject.Budget.ToString() + " KM";
+                expenseLabel.Text = selectedProject.Expense.ToString() + " KM";
+                bossNameLabel.Text = selectedProject.Boss.FirstName + " " + selectedProject.Boss.LastName;
             }
         }
     }

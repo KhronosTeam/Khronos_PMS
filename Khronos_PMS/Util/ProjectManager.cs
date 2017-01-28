@@ -12,6 +12,7 @@ namespace Khronos_PMS.Util {
         }
 
         public static List<Project> GetProjects(User user) {
+            //todo Uraditi da vraca samo projekte za izabranog korisnika
             return entities.Projects.ToList();
         }
 

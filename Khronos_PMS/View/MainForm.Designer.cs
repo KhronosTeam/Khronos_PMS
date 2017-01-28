@@ -57,9 +57,9 @@ namespace Khronos_PMS.View {
             this.label14 = new System.Windows.Forms.Label();
             this.projectStatusToolStrip = new System.Windows.Forms.ToolStrip();
             this.projectStatusMenuButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.label6 = new System.Windows.Forms.Label();
+            this.expenseLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.budgetLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.bossNameLabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -427,9 +427,9 @@ namespace Khronos_PMS.View {
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.projectStatusToolStrip);
-            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.expenseLabel);
             this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.budgetLabel);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.bossNameLabel);
             this.groupBox3.Controls.Add(this.label5);
@@ -511,15 +511,15 @@ namespace Khronos_PMS.View {
             this.projectStatusMenuButton.Text = "Status";
             this.projectStatusMenuButton.ToolTipText = "Project status";
             // 
-            // label6
+            // expenseLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.label6.Location = new System.Drawing.Point(231, 149);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(67, 15);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "10 000 KM";
+            this.expenseLabel.AutoSize = true;
+            this.expenseLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.expenseLabel.Location = new System.Drawing.Point(231, 149);
+            this.expenseLabel.Name = "expenseLabel";
+            this.expenseLabel.Size = new System.Drawing.Size(67, 15);
+            this.expenseLabel.TabIndex = 16;
+            this.expenseLabel.Text = "10 000 KM";
             // 
             // label8
             // 
@@ -531,15 +531,15 @@ namespace Khronos_PMS.View {
             this.label8.TabIndex = 15;
             this.label8.Text = "Expense:";
             // 
-            // label7
+            // budgetLabel
             // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.label7.Location = new System.Drawing.Point(230, 125);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 15);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "15 000 KM";
+            this.budgetLabel.AutoSize = true;
+            this.budgetLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.budgetLabel.Location = new System.Drawing.Point(230, 125);
+            this.budgetLabel.Name = "budgetLabel";
+            this.budgetLabel.Size = new System.Drawing.Size(67, 15);
+            this.budgetLabel.TabIndex = 13;
+            this.budgetLabel.Text = "15 000 KM";
             // 
             // label9
             // 
@@ -1231,11 +1231,11 @@ namespace Khronos_PMS.View {
         private System.Windows.Forms.Label endDateLabel;
         private System.Windows.Forms.Label startDateLabel;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label budgetLabel;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button projectsSearchButton;
         private System.Windows.Forms.Button workersSearchButton;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label expenseLabel;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
