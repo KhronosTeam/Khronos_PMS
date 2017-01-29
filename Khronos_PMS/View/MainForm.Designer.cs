@@ -114,11 +114,6 @@ namespace Khronos_PMS.View {
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.sfasidofjiaosdj = new System.Windows.Forms.ToolStrip();
             this.userLabel = new System.Windows.Forms.ToolStripButton();
-            this.unitsTreeListView = new BrightIdeasSoftware.DataTreeListView();
-            this.unitName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.unitStatus = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.unitPriority = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.unitProgress = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.projectsSearchTextbox = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.workersSearchTextBox = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -156,7 +151,6 @@ namespace Khronos_PMS.View {
             this.tableLayoutPanel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.sfasidofjiaosdj.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.unitsTreeListView)).BeginInit();
             this.SuspendLayout();
             // 
             // workerName
@@ -342,6 +336,7 @@ namespace Khronos_PMS.View {
             // 
             // projectsListView
             // 
+            this.projectsListView.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.projectsListView.Alignment = System.Windows.Forms.ListViewAlignment.Left;
             this.projectsListView.AllColumns.Add(this.projectName);
             this.projectsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -366,7 +361,7 @@ namespace Khronos_PMS.View {
             this.projectsListView.TabIndex = 6;
             this.projectsListView.UseCompatibleStateImageBehavior = false;
             this.projectsListView.View = System.Windows.Forms.View.Details;
-            this.projectsListView.SelectedIndexChanged += new System.EventHandler(this.projectsListView_SelectedIndexChanged);
+            this.projectsListView.SelectionChanged += new System.EventHandler(this.projectsListView_SelectionChanged);
             // 
             // projectName
             // 
@@ -820,7 +815,6 @@ namespace Khronos_PMS.View {
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.unitsTreeListView);
             this.groupBox5.Controls.Add(this.tableLayoutPanel2);
             this.groupBox5.Controls.Add(this.unitNameLabel);
             this.groupBox5.Controls.Add(this.toolStrip1);
@@ -1183,60 +1177,6 @@ namespace Khronos_PMS.View {
             this.userLabel.Size = new System.Drawing.Size(83, 21);
             this.userLabel.Text = "User name";
             // 
-            // unitsTreeListView
-            // 
-            this.unitsTreeListView.AllColumns.Add(this.unitName);
-            this.unitsTreeListView.AllColumns.Add(this.unitStatus);
-            this.unitsTreeListView.AllColumns.Add(this.unitPriority);
-            this.unitsTreeListView.AllColumns.Add(this.unitProgress);
-            this.unitsTreeListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.unitsTreeListView.AutoGenerateColumns = false;
-            this.unitsTreeListView.CellEditUseWholeCell = false;
-            this.unitsTreeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.unitName,
-            this.unitStatus,
-            this.unitPriority,
-            this.unitProgress});
-            this.unitsTreeListView.Cursor = System.Windows.Forms.Cursors.Default;
-            this.unitsTreeListView.DataSource = null;
-            this.unitsTreeListView.FullRowSelect = true;
-            this.unitsTreeListView.GridLines = true;
-            this.unitsTreeListView.Location = new System.Drawing.Point(7, 257);
-            this.unitsTreeListView.MultiSelect = false;
-            this.unitsTreeListView.Name = "unitsTreeListView";
-            this.unitsTreeListView.RootKeyValueString = "";
-            this.unitsTreeListView.ShowGroups = false;
-            this.unitsTreeListView.Size = new System.Drawing.Size(301, 111);
-            this.unitsTreeListView.SmallImageList = this.largeImageList;
-            this.unitsTreeListView.TabIndex = 29;
-            this.unitsTreeListView.UseCompatibleStateImageBehavior = false;
-            this.unitsTreeListView.View = System.Windows.Forms.View.Details;
-            this.unitsTreeListView.VirtualMode = true;
-            // 
-            // unitName
-            // 
-            this.unitName.AspectName = "Name";
-            this.unitName.Text = "Name";
-            this.unitName.Width = 91;
-            // 
-            // unitStatus
-            // 
-            this.unitStatus.AspectName = "Status";
-            this.unitStatus.Text = "Status";
-            // 
-            // unitPriority
-            // 
-            this.unitPriority.AspectName = "Priority";
-            this.unitPriority.Text = "Priority";
-            // 
-            // unitProgress
-            // 
-            this.unitProgress.AspectName = "Progress";
-            this.unitProgress.Text = "Progress";
-            this.unitProgress.Width = 87;
-            // 
             // projectsSearchTextbox
             // 
             this.projectsSearchTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1463,7 +1403,6 @@ namespace Khronos_PMS.View {
             this.toolStrip1.PerformLayout();
             this.sfasidofjiaosdj.ResumeLayout(false);
             this.sfasidofjiaosdj.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.unitsTreeListView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1574,10 +1513,5 @@ namespace Khronos_PMS.View {
         private BrightIdeasSoftware.DataListView projectsListView;
         private BrightIdeasSoftware.OLVColumn projectName;
         private System.Windows.Forms.ImageList largeImageList;
-        private BrightIdeasSoftware.DataTreeListView unitsTreeListView;
-        private BrightIdeasSoftware.OLVColumn unitName;
-        private BrightIdeasSoftware.OLVColumn unitStatus;
-        private BrightIdeasSoftware.OLVColumn unitPriority;
-        private BrightIdeasSoftware.OLVColumn unitProgress;
     }
 }

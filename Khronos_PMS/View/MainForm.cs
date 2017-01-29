@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using Khronos_PMS.Model;
 using Khronos_PMS.Util;
@@ -25,11 +26,7 @@ namespace Khronos_PMS.View {
             projectsListView.GetColumn(0).ImageGetter = i => 0;
             workersListView.GetColumn(0).ImageGetter = i => 1;
             List<Project> projects = ProjectManager.GetProjects(user);
-            List<Worker> workers = ProjectManager.GetWorkers(projects[0]);
-            List<Unit> units = ProjectManager.GetUnits(projects[0]);
             projectsListView.DataSource = projects;
-            workersListView.DataSource = workers;
-            unitsTreeListView.DataSource = units;
         }
 
         private void MainForm_Load(Object sender, EventArgs e) {
@@ -84,33 +81,28 @@ namespace Khronos_PMS.View {
             }).Start();
         }
 
-        private void projectsListView_SelectedIndexChanged(object sender, EventArgs e) {
-            //inicijalizovati sva polja vezana za projekat (Project name, role, boss, description, dates, ...) 
-            if (projectsListView.SelectedIndex != -1) {
-                Project selectedProject = (Project) projectsListView.SelectedObject;
-                projectNameLabel.Text = selectedProject.Name;
-                projectDescriptionLabel.Text = selectedProject.Description;
-                startDateLabel.Text = selectedProject.StartDate.ToShortDateString();
-                endDateLabel.Text = selectedProject.DeadlineDate.ToShortDateString();
-                budgetLabel.Text = selectedProject.Budget + " KM";
-                expenseLabel.Text = selectedProject.Expense + " KM";
-                bossNameLabel.Text = selectedProject.Boss.FullName;
-                projectStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById(selectedProject.Status));
-                setRole(selectedProject);
+        public static int i = 1;
+        private void projectsListView_SelectionChanged(Object sender, EventArgs e) {
+            Console.Out.WriteLine(i++);
+            Project selectedProject = (Project) projectsListView.SelectedObject;
+            List<Worker> workers = ProjectManager.GetWorkers(selectedProject);
+            workersListView.DataSource = workers;
+            projectNameLabel.Text = selectedProject.Name;
+            projectDescriptionLabel.Text = selectedProject.Description;
+            startDateLabel.Text = selectedProject.StartDate.ToShortDateString();
+            endDateLabel.Text = selectedProject.DeadlineDate.ToShortDateString();
+            budgetLabel.Text = selectedProject.Budget + " KM";
+            expenseLabel.Text = selectedProject.Expense + " KM";
+            bossNameLabel.Text = selectedProject.Boss.FullName;
+            projectStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById(selectedProject.Status));
+            setRole(selectedProject);
 
-                // možda treba u background
-                workersListView.DataSource = ProjectManager.GetWorkers(selectedProject);
-
-                // postavka unita
-                // TODO pozvati u thread pa invoke
-                //unitsTreeView.Nodes.Add(UnitView.getRootUnits(selectedProject.ID));
-                unitsTreeView.Nodes.Clear();
-                List<UnitView> units = UnitView.getRootUnits(selectedProject.ID);
-                foreach (UnitView unitView in units) {
-                    TreeNode rootNode = new TreeNode(unitView.Name);
-                    rootNode.Tag = unitView;
-                    unitsTreeView.Nodes.Add(rootNode);
-                }
+            unitsTreeView.Nodes.Clear();
+            List<UnitView> units = UnitView.getRootUnits(selectedProject.ID);
+            foreach (UnitView unitView in units) {
+                TreeNode rootNode = new TreeNode(unitView.Name);
+                rootNode.Tag = unitView;
+                unitsTreeView.Nodes.Add(rootNode);
             }
         }
 
@@ -169,7 +161,7 @@ namespace Khronos_PMS.View {
 
         private void unitsTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
             TreeNode selectedNode = e.Node;
-            List<UnitView> units = ((UnitView)selectedNode.Tag).getChildren();
+            List<UnitView> units = ((UnitView) selectedNode.Tag).getChildren();
             if (selectedNode.Nodes.Count == 0)
                 foreach (UnitView unitView in units) {
                     TreeNode childNode = new TreeNode(unitView.Name);
