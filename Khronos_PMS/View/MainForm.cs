@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using Khronos_PMS.Model;
 using Khronos_PMS.Util;
 using BrightIdeasSoftware;
-using Khronos_PMS.Properties;
+using Khronos_PMS.ModelView;
 
 namespace Khronos_PMS.View {
     public partial class MainForm : Form {
@@ -29,8 +29,7 @@ namespace Khronos_PMS.View {
                 }));
             }).Start();
 
-            //todo Num 3. učitati radnike i popuniti listview
-
+            
             //todo Num 4. učitati unite za selektovani projekat i popuniti treeview
 
             //postaviti userLabel text za logovanog usera
@@ -49,7 +48,7 @@ namespace Khronos_PMS.View {
         }
 
         private void workersSearchButton_Click(Object sender, EventArgs e) {
-            //todo Num 7. implementirati pretragu radnika, prikazati obavještenja
+            searchWorkers();
         }
 
         private void unitsSearchButton_Click(Object sender, EventArgs e) {
@@ -61,8 +60,13 @@ namespace Khronos_PMS.View {
             projectStatusMenuButton.Image = StatusManager.Image(status);
 
             new Task(() => {
-                //todo Num 9. project status update
-                //StatusManager.UpdateStatus(selected project, status);
+                //project status update
+                Invoke(new MethodInvoker(() => {
+                    if (projectsListView.SelectedIndex != -1) {
+                        Project selectedProject = (Project) projectsListView.SelectedObject;
+                        StatusManager.UpdateStatus(selectedProject, status);
+                    }
+                }));
             }).Start();
         }
 
@@ -99,6 +103,17 @@ namespace Khronos_PMS.View {
                 bossNameLabel.Text = selectedProject.Boss.FirstName + " " + selectedProject.Boss.LastName;
                 projectStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById(selectedProject.Status));
                 setRole(selectedProject);
+
+                // postavka unita
+                // TODO pozvati u thread pa invoke
+                //unitsTreeView.Nodes.Add(UnitView.getRootUnits(selectedProject.ID));
+                unitsTreeView.Nodes.Clear();
+                List<UnitView> units = UnitView.getRootUnits(selectedProject.ID);
+                foreach (UnitView unitView in units) {
+                    TreeNode rootNode = new TreeNode(unitView.Name);
+                    rootNode.Tag = unitView;
+                    unitsTreeView.Nodes.Add(rootNode);
+                }
             }
         }
 
@@ -113,6 +128,23 @@ namespace Khronos_PMS.View {
                 var myProject = x as Project;
                 return x != null && (myProject.Name.ToLower().Contains(projectsSearchTextbox.Text.ToLower()));
             });
+        }
+
+        private void searchWorkers() {
+            //todo ovo nije dobro, treba popraviti, mora u background thread
+            Project selectedProject = (Project) projectsListView.SelectedObject;
+            List<Worker> mylist = ProjectManager.GetWorkers(selectedProject);
+            List<Worker> temp = new List<Worker>();
+            if (workersSearchTextBox.Text.Equals("")) {
+                workersListView.DataSource = mylist;
+            } else {
+                foreach (var x in mylist) {
+                    if (x.FirstName.ToLower().Contains(workersSearchTextBox.Text.ToLower())) {
+                        temp.Add(x);
+                    }
+                }
+                workersListView.DataSource = temp;
+            }
         }
 
         private void setRole(Project selectedProject) {
@@ -142,6 +174,22 @@ namespace Khronos_PMS.View {
             } else {
                 projectRoleLabel.Text = "Unknown";
             }
+        }
+
+        private void unitsTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
+            TreeNode selectedNode = e.Node;
+            List<UnitView> units = ((UnitView) selectedNode.Tag).getChildren();
+            if (selectedNode.Nodes.Count == 0)
+                foreach (UnitView unitView in units) {
+                    TreeNode childNode = new TreeNode(unitView.Name);
+                    childNode.Tag = unitView;
+                    selectedNode.Nodes.Add(childNode);
+                }
+            selectedNode.Expand();
+        }
+
+        private void workersSearchTextBox_TextChanged(object sender, EventArgs e) {
+            searchWorkers();
         }
 
         private void ShowUnitAssignees(Unit unit) {

@@ -43,16 +43,29 @@ namespace Khronos_PMS.Util {
         }
 
         public static void UpdateStatus(Project project, Status status) {
-            //todo sačuvati u bazu status
+            project.Status = (int) status;
+            try {
+                ProjectManager.entities.Projects.Attach(project);
+                ProjectManager.entities.Entry(project).State = System.Data.Entity.EntityState.Modified;
+                ProjectManager.entities.SaveChanges();
+            } catch (Exception) {
+                ProjectManager.entities.Entry(project).State = System.Data.Entity.EntityState.Detached;
+            }
         }
 
         public static void UpdateStatus(Unit unit, Status status) {
-            //todo sačuvati u bazu status
+            unit.Status = (int) status;
+            try {
+                ProjectManager.entities.Units.Attach(unit);
+                ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Modified;
+                ProjectManager.entities.SaveChanges();
+            } catch (Exception) {
+                ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Detached;
+            }
         }
 
-        public static Status getStausById(int id)
-        {
-            return (Status)Enum.ToObject(typeof(Status), id);
+        public static Status getStausById(int id) {
+            return (Status) Enum.ToObject(typeof(Status), id);
         }
     }
 }

@@ -29,6 +29,7 @@ namespace Khronos_PMS.Model
         public int Priority { get; set; }
         public decimal Expense { get; set; }
         public bool Finished { get; set; }
+        public Nullable<int> Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClosureUnit> ClosureUnits { get; set; }

@@ -93,6 +93,7 @@
           <Property Name="ProjectID" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="DueDate" Type="date" Nullable="false" />
+          <Property Name="Status" Type="int" />
           <Property Name="Priority" Type="int" Nullable="false" />
           <Property Name="Expense" Type="decimal" Precision="20" Scale="5" Nullable="false" />
           <Property Name="Finished" Type="bool" Nullable="false" />
@@ -513,6 +514,7 @@
           <NavigationProperty Name="AncestorClosureUnits" Relationship="Self.ClosureUnit_ibfk_2" FromRole="Unit" ToRole="ClosureUnit" />
           <NavigationProperty Name="Project" Relationship="Self.Unit_ibfk_1" FromRole="Unit" ToRole="Project" />
           <NavigationProperty Name="Workers" Relationship="Self.WorksOn_ibfk_1" FromRole="Unit" ToRole="WorksOn" />
+          <Property Name="Status" Type="Int32" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -896,6 +898,7 @@
           <EntitySetMapping Name="Units">
             <EntityTypeMapping TypeName="KhronosPMSModel.Unit">
               <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
