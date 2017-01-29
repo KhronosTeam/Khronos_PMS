@@ -336,7 +336,6 @@ namespace Khronos_PMS.View {
             // 
             // projectsListView
             // 
-            this.projectsListView.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.projectsListView.Alignment = System.Windows.Forms.ListViewAlignment.Left;
             this.projectsListView.AllColumns.Add(this.projectName);
             this.projectsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -758,6 +757,7 @@ namespace Khronos_PMS.View {
             this.unitsTreeView.Name = "unitsTreeView";
             this.unitsTreeView.Size = new System.Drawing.Size(406, 111);
             this.unitsTreeView.TabIndex = 2;
+            this.unitsTreeView.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.unitsTreeView_AfterExpand);
             this.unitsTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.unitsTreeView_NodeMouseClick);
             // 
             // tableLayoutPanel3

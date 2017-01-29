@@ -81,9 +81,7 @@ namespace Khronos_PMS.View {
             }).Start();
         }
 
-        public static int i = 1;
         private void projectsListView_SelectionChanged(Object sender, EventArgs e) {
-            Console.Out.WriteLine(i++);
             Project selectedProject = (Project) projectsListView.SelectedObject;
             List<Worker> workers = ProjectManager.GetWorkers(selectedProject);
             workersListView.DataSource = workers;
@@ -103,6 +101,7 @@ namespace Khronos_PMS.View {
                 TreeNode rootNode = new TreeNode(unitView.Name);
                 rootNode.Tag = unitView;
                 unitsTreeView.Nodes.Add(rootNode);
+                setupTreeNode(rootNode);
             }
         }
 
@@ -160,15 +159,46 @@ namespace Khronos_PMS.View {
         }
 
         private void unitsTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
+            // TreeNode selectedNode = e.Node;
+            // UnitView selectedUnit = ((UnitView)selectedNode.Tag);
+            // selectedUnit.setChildrenAndGrandChildren();
+            // if (selectedNode.Nodes.Count == 0)
+            //     foreach (UnitView child in selectedUnit.children) {
+            //         TreeNode childNode = new TreeNode(child.Name);
+            //         childNode.Tag = child;
+            //         selectedNode.Nodes.Add(childNode);
+            //         foreach (UnitView grandChild in child.children)
+            //         {
+            //             TreeNode grandChildNode = new TreeNode(grandChild.Name);
+            //             grandChildNode.Tag = grandChild;
+            //             childNode.Nodes.Add(grandChildNode);
+            //         }
+            //    }
+            // if (selectedNode.IsExpanded)
+            //     selectedNode.Collapse();
+            // else
+            //     selectedNode.Expand();
+        }
+
+        private void unitsTreeView_AfterExpand(object sender, TreeViewEventArgs e) {
             TreeNode selectedNode = e.Node;
-            List<UnitView> units = ((UnitView) selectedNode.Tag).getChildren();
+            setupTreeNode(selectedNode);
+        }
+
+        private void setupTreeNode(TreeNode selectedNode) {
+            UnitView selectedUnit = ((UnitView) selectedNode.Tag);
+            selectedUnit.setChildrenAndGrandChildren();
             if (selectedNode.Nodes.Count == 0)
-                foreach (UnitView unitView in units) {
-                    TreeNode childNode = new TreeNode(unitView.Name);
-                    childNode.Tag = unitView;
+                foreach (UnitView child in selectedUnit.children) {
+                    TreeNode childNode = new TreeNode(child.Name);
+                    childNode.Tag = child;
                     selectedNode.Nodes.Add(childNode);
+                    foreach (UnitView grandChild in child.children) {
+                        TreeNode grandChildNode = new TreeNode(grandChild.Name);
+                        grandChildNode.Tag = grandChild;
+                        childNode.Nodes.Add(grandChildNode);
+                    }
                 }
-            selectedNode.Expand();
         }
     }
 }
