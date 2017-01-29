@@ -34,6 +34,26 @@ namespace Khronos_PMS.Util
             }
         }
 
+        public static List<ProjectView> getData(KhronosPMSEntities entities) {
+            try
+            {
+                List<Project> data;
+                List<ProjectView> dataView = new List<ProjectView>();
+
+                data = entities.Projects.ToList();
+
+                foreach (Project project in data)
+                {
+                    dataView.Add(new ProjectView(project));
+                }
+                return dataView;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public static bool searchData(DataGridView dataGridView,String name ,KhronosPMSEntities entities)
         {
             try
