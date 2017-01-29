@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Navigation;
 using Khronos_PMS.Model;
 using Khronos_PMS.Util;
 using BrightIdeasSoftware;
@@ -19,29 +15,25 @@ namespace Khronos_PMS.View {
         public MainForm(User user) {
             InitializeComponent();
             this.user = user;
+
+            if (user != null)
+                userLabel.Text = user.GetName();
+
+            // pošto u LoginForm imamo progress bar ovdje ćemo učitati sve što treba iz baze
+            // pa kada se forma pokrene sve bude učitano
+
+            projectsListView.GetColumn(0).ImageGetter = i => 0;
+            workersListView.GetColumn(0).ImageGetter = i => 1;
+            List<Project> projects = ProjectManager.GetProjects(user);
+            List<Worker> workers = ProjectManager.GetWorkers(projects[0]);
+            List<Unit> units = ProjectManager.GetUnits(projects[0]);
+            projectsListView.DataSource = projects;
+            workersListView.DataSource = workers;
+            unitsTreeListView.DataSource = units;
         }
 
         private void MainForm_Load(Object sender, EventArgs e) {
-            //todo Num 0. u zavisnoti ko se prijavio (worker, customer, superviosor) neke opcije trebaju biti prikazane, a neke ne
-            projectsListView.GetColumn(0).ImageGetter = i => 0;
-            workersListView.GetColumn(0).ImageGetter = i => 1;
-
-            new Thread(() => {
-                List<Project> projects = ProjectManager.GetProjects(user);
-                Invoke(new MethodInvoker(() => {
-                    projectsListView.DataSource = projects;
-                    projectsListView.SelectedIndex = 0;
-                    workersListView.DataSource = ProjectManager.GetWorkers(projects[0]);
-                }));
-            }).Start();
-
-
-            //todo Num 4. učitati unite za selektovani projekat i popuniti treeview
-
-            //postaviti userLabel text za logovanog usera
-            if (user != null) {
-                userLabel.Text = user.Username;
-            }
+            //todo neke labele treba sakriti u zavisnoti ko se prijavio
         }
 
         private void button1_Click(Object sender, EventArgs e) {
@@ -65,13 +57,10 @@ namespace Khronos_PMS.View {
             projectStatusMenuButton.Image = StatusManager.Image(status);
 
             new Task(() => {
-                //project status update
-                Invoke(new MethodInvoker(() => {
-                    if (projectsListView.SelectedIndex != -1) {
-                        Project selectedProject = (Project) projectsListView.SelectedObject;
-                        StatusManager.UpdateStatus(selectedProject, status);
-                    }
-                }));
+                if (projectsListView.SelectedIndex != -1) {
+                    Project selectedProject = (Project) projectsListView.SelectedObject;
+                    StatusManager.UpdateStatus(selectedProject, status);
+                }
             }).Start();
         }
 
@@ -80,8 +69,8 @@ namespace Khronos_PMS.View {
             unitStatusMenuButton.Image = StatusManager.Image(status);
 
             new Task(() => {
-                //todo Num 10. unit status update
-                //StatusManager.UpdateStatus(selected unit, status);
+                Unit selectedUnit = (Unit) unitsTreeView.SelectedNode.Tag;
+                StatusManager.UpdateStatus(selectedUnit, status);
             }).Start();
         }
 
@@ -90,8 +79,8 @@ namespace Khronos_PMS.View {
             unitPriorityMenuButton.Image = PriorityManager.Image(priority);
 
             new Task(() => {
-                //todo Num 11. unit priority update
-                //PriorityManager.UpdatePriority(selected unit, priority);
+                Unit selectedUnit = (Unit) unitsTreeView.SelectedNode.Tag;
+                PriorityManager.UpdatePriority(selectedUnit, priority);
             }).Start();
         }
 
@@ -111,7 +100,7 @@ namespace Khronos_PMS.View {
 
                 // možda treba u background
                 workersListView.DataSource = ProjectManager.GetWorkers(selectedProject);
-                /*
+
                 // postavka unita
                 // TODO pozvati u thread pa invoke
                 //unitsTreeView.Nodes.Add(UnitView.getRootUnits(selectedProject.ID));
@@ -122,7 +111,6 @@ namespace Khronos_PMS.View {
                     rootNode.Tag = unitView;
                     unitsTreeView.Nodes.Add(rootNode);
                 }
-                */
             }
         }
 
@@ -175,9 +163,13 @@ namespace Khronos_PMS.View {
             }
         }
 
+        private void workersSearchTextBox_TextChanged(object sender, EventArgs e) {
+            searchWorkers();
+        }
+
         private void unitsTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
             TreeNode selectedNode = e.Node;
-            List<UnitView> units = ((UnitView) selectedNode.Tag).getChildren();
+            List<UnitView> units = ((UnitView)selectedNode.Tag).getChildren();
             if (selectedNode.Nodes.Count == 0)
                 foreach (UnitView unitView in units) {
                     TreeNode childNode = new TreeNode(unitView.Name);
@@ -185,22 +177,6 @@ namespace Khronos_PMS.View {
                     selectedNode.Nodes.Add(childNode);
                 }
             selectedNode.Expand();
-        }
-
-        private void workersSearchTextBox_TextChanged(object sender, EventArgs e) {
-            searchWorkers();
-        }
-
-        private void ShowWorkers(List<Worker> workers) {
-            foreach (Worker worker in workers)
-                workersListView.Items.Add(new ListViewItem(worker.FirstName + " " + worker.LastName, 0));
-        }
-
-        private void ShowUnitAssignees(Unit unit) {
-            List<Worker> workers = UnitManager.GetAssigness(unit);
-            assigneesListView.Items.Clear();
-            foreach (Worker worker in workers)
-                assigneesListView.Items.Add(new ListViewItem(worker.FirstName + " " + worker.LastName, 0));
         }
     }
 }

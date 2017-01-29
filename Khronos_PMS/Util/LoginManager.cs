@@ -34,9 +34,9 @@ namespace Khronos_PMS.Util {
                 if (user.Admin != null)
                     form = new AdminForm(user.Admin);
                 else if (user.Worker != null)
-                    form = new MainForm(user);
+                    form = new MainForm(user.Worker);
                 else if (user.Customer != null) {
-                    //form = new MainForm(user.Customer);
+                    form = new MainForm(user.Customer);
                 } else
                     throw new Exception("Something is wrong!");
             } else

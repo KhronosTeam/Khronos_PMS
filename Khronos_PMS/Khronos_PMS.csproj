@@ -79,6 +79,8 @@
     <Compile Include="ModelView\ProjectView.cs" />
     <Compile Include="ModelView\UnitView.cs" />
     <Compile Include="ModelView\WorkerView.cs" />
+    <Compile Include="Model\Customer.view.cs" />
+    <Compile Include="Model\User.view.cs" />
     <Compile Include="Model\Worker.view.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
