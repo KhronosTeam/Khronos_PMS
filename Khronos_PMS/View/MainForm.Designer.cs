@@ -27,8 +27,8 @@ namespace Khronos_PMS.View {
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Marko Stijak", 0);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Nemanja Lukić", 0);
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Marko Stijak", 0);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Nemanja Lukić", 0);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,9 +52,6 @@ namespace Khronos_PMS.View {
             this.projectsSearchTextbox = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.projectsSearchButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.workersListView = new BrightIdeasSoftware.DataListView();
-            this.firstName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.lastName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.workersSearchTextBox = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.workersSearchButton = new System.Windows.Forms.Button();
             this.rightTableLayout = new System.Windows.Forms.TableLayoutPanel();
@@ -132,13 +129,15 @@ namespace Khronos_PMS.View {
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.sfasidofjiaosdj = new System.Windows.Forms.ToolStrip();
             this.userLabel = new System.Windows.Forms.ToolStripButton();
+            this.firstName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.lastName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.workersListView = new BrightIdeasSoftware.DataListView();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.leftTableLayout.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectsListView)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.workersListView)).BeginInit();
             this.rightTableLayout.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -151,6 +150,7 @@ namespace Khronos_PMS.View {
             this.tableLayoutPanel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.sfasidofjiaosdj.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.workersListView)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -401,33 +401,6 @@ namespace Khronos_PMS.View {
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Workers";
-            // 
-            // workersListView
-            // 
-            this.workersListView.AllColumns.Add(this.firstName);
-            this.workersListView.AllColumns.Add(this.lastName);
-            this.workersListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.workersListView.CellEditUseWholeCell = false;
-            this.workersListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.firstName,
-            this.lastName});
-            this.workersListView.DataSource = null;
-            this.workersListView.Location = new System.Drawing.Point(7, 48);
-            this.workersListView.Name = "workersListView";
-            this.workersListView.Size = new System.Drawing.Size(249, 135);
-            this.workersListView.TabIndex = 5;
-            this.workersListView.UseCompatibleStateImageBehavior = false;
-            this.workersListView.View = System.Windows.Forms.View.List;
-            // 
-            // firstName
-            // 
-            this.firstName.AspectName = "FirstName";
-            // 
-            // lastName
-            // 
-            this.lastName.AspectName = "LastName";
             // 
             // workersSearchTextBox
             // 
@@ -1065,8 +1038,8 @@ namespace Khronos_PMS.View {
             this.assigneesListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.assigneesListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.assigneesListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
+            listViewItem3,
+            listViewItem4});
             this.assigneesListView.Location = new System.Drawing.Point(134, 78);
             this.assigneesListView.Name = "assigneesListView";
             this.assigneesListView.Size = new System.Drawing.Size(165, 71);
@@ -1331,6 +1304,34 @@ namespace Khronos_PMS.View {
             this.userLabel.Size = new System.Drawing.Size(83, 21);
             this.userLabel.Text = "User name";
             // 
+            // firstName
+            // 
+            this.firstName.AspectName = "FirstName";
+            // 
+            // lastName
+            // 
+            this.lastName.AspectName = "LastName";
+            // 
+            // workersListView
+            // 
+            this.workersListView.AllColumns.Add(this.firstName);
+            this.workersListView.AllColumns.Add(this.lastName);
+            this.workersListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.workersListView.CellEditUseWholeCell = false;
+            this.workersListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.firstName,
+            this.lastName});
+            this.workersListView.DataSource = null;
+            this.workersListView.Location = new System.Drawing.Point(7, 48);
+            this.workersListView.Name = "workersListView";
+            this.workersListView.Size = new System.Drawing.Size(249, 135);
+            this.workersListView.SmallImageList = this.smallImageList;
+            this.workersListView.TabIndex = 5;
+            this.workersListView.UseCompatibleStateImageBehavior = false;
+            this.workersListView.View = System.Windows.Forms.View.SmallIcon;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1356,7 +1357,6 @@ namespace Khronos_PMS.View {
             ((System.ComponentModel.ISupportInitialize)(this.projectsListView)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.workersListView)).EndInit();
             this.rightTableLayout.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -1377,6 +1377,7 @@ namespace Khronos_PMS.View {
             this.toolStrip1.PerformLayout();
             this.sfasidofjiaosdj.ResumeLayout(false);
             this.sfasidofjiaosdj.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.workersListView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1470,7 +1471,6 @@ namespace Khronos_PMS.View {
         private System.Windows.Forms.ToolStripMenuItem financialReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem activitiesReportToolStripMenuItem;
         private BrightIdeasSoftware.DataListView projectsListView;
-        private BrightIdeasSoftware.DataListView workersListView;
         private System.Windows.Forms.TreeView unitsTreeView;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
@@ -1485,6 +1485,7 @@ namespace Khronos_PMS.View {
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ImageList smallImageList;
         private System.Windows.Forms.ListView assigneesListView;
+        private BrightIdeasSoftware.DataListView workersListView;
         private BrightIdeasSoftware.OLVColumn firstName;
         private BrightIdeasSoftware.OLVColumn lastName;
     }

@@ -29,7 +29,7 @@ namespace Khronos_PMS.View {
                 }));
             }).Start();
 
-            
+
             //todo Num 4. učitati unite za selektovani projekat i popuniti treeview
 
             //postaviti userLabel text za logovanog usera
@@ -132,6 +132,7 @@ namespace Khronos_PMS.View {
 
         private void searchWorkers() {
             //todo ovo nije dobro, treba popraviti, mora u background thread
+            /*
             Project selectedProject = (Project) projectsListView.SelectedObject;
             List<Worker> mylist = ProjectManager.GetWorkers(selectedProject);
             List<Worker> temp = new List<Worker>();
@@ -145,6 +146,12 @@ namespace Khronos_PMS.View {
                 }
                 workersListView.DataSource = temp;
             }
+            */
+            workersListView.UseFiltering = true;
+            projectsListView.ModelFilter = new ModelFilter(x => {
+                var worker = x as Worker;
+                return x != null && (worker.FirstName.ToLower().Contains(workersSearchTextBox.Text.ToLower()));
+            });
         }
 
         private void setRole(Project selectedProject) {
@@ -190,6 +197,11 @@ namespace Khronos_PMS.View {
 
         private void workersSearchTextBox_TextChanged(object sender, EventArgs e) {
             searchWorkers();
+        }
+
+        private void ShowWorkers(List<Worker> workers) {
+            foreach (Worker worker in workers)
+                workersListView.Items.Add(new ListViewItem(worker.FirstName + " " + worker.LastName, 0));
         }
 
         private void ShowUnitAssignees(Unit unit) {
