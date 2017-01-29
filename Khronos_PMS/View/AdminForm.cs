@@ -246,17 +246,29 @@ namespace Khronos_PMS {
             }
         }
 
-        private void refreshButton_Click(object sender, EventArgs e)
+        private async void refreshButton_Click(object sender, EventArgs e)
         {
-            ProjectManagement.loadData(projectDataGridView,ProjectManagement.entities);
+            refreshButton.Enabled = false;
+            List<ProjectView> data = new List<ProjectView>();
+            await Task.Run(() => {
+                data.AddRange(ProjectManagement.getData(ProjectManagement.entities));
+            });
+            projectDataGridView.DataSource = data;
+
             ProjectManagement.formatColumns(projectDataGridView);
+            if (projectDataGridView.RowCount > 0) {
+                projectDataGridView.Rows[0].Selected = true;
+            }
+            refreshButton.Enabled = true;
         }
 
         private void projectDataGridView_SelectionChanged(object sender, EventArgs e)
         {
+            if (projectDataGridView.SelectedRows.Count > 0) { 
             ProjectView projectView = (ProjectView)((DataGridView)sender).SelectedRows[0].DataBoundItem;
             Project project = ProjectManagement.entities.Projects.Where(q => q.ID == projectView.ID).First();
             projectDetailsTextBox.Text = project.Description;
+        }
         }
 
         private void searchButton_Click(object sender, EventArgs e)

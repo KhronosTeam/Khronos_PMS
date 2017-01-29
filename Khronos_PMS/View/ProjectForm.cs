@@ -33,23 +33,31 @@ namespace Khronos_PMS.View
             this.Name = "Edit Project";
         }
 
-        private void ProjectForm_Load(object sender, EventArgs e)
-        {
-            bossUsernameComboBox.DataSource = ProjectManagement.GetWorkers();
+        private async void setupComponents() {
+            List<WorkerView> workerList = null;
+            List<CustomerView> customerList = null;
+            this.Enabled = false;
+            await Task.Run(() => {
+                workerList = ProjectManagement.GetWorkers();
+                customerList = ProjectManagement.GetCustomers();
+            });
+
+            bossUsernameComboBox.DataSource = workerList;
             bossUsernameComboBox.DisplayMember = "Username";
             bossUsernameComboBox.ValueMember = "ID";
 
-            supervisorUsernameComboBox.DataSource = ProjectManagement.GetWorkers();
+            supervisorUsernameComboBox.DataSource = workerList;
             supervisorUsernameComboBox.DisplayMember = "Username";
             supervisorUsernameComboBox.ValueMember = "ID";
 
-            customerComboBox.DataSource = ProjectManagement.GetCustomers();
+            customerComboBox.DataSource = customerList;
             customerComboBox.DisplayMember = "Username";
             customerComboBox.ValueMember = "ID";
 
-            if (edit) {
+            if (edit)
+            {
                 project = ProjectManagement.entities.Projects.Where(p => p.ID == projectView.ID).First();
-                
+
                 fill();
             }
             else
@@ -58,6 +66,12 @@ namespace Khronos_PMS.View
                 bs.DataSource = projectCustomers;
                 customerDataGridView.DataSource = bs;
             }
+            this.Enabled = true;
+        }
+
+        private void ProjectForm_Load(object sender, EventArgs e)
+        {
+            setupComponents();
         }
 
         private  void fill() {
@@ -73,7 +87,7 @@ namespace Khronos_PMS.View
             startDateDateTimePicker.Value = projectView.StartDate;
             deadlineDateTimePicker.Value = projectView.DeadlineDate;
             budgetTextBox.Text = projectView.Budget.ToString();
-            descriptionTextBox.Text = projectView.Name;
+            descriptionTextBox.Text = project.Description;
             //bossUsernameComboBox.SelectedIndex = bossUsernameComboBox.Items.IndexOf(new WorkerView(projectView.Boss.ID, ""));
             bossUsernameComboBox.SelectedIndex = bossUsernameComboBox.FindString(project.Boss.User.Username);
             supervisorUsernameComboBox.SelectedIndex = supervisorUsernameComboBox.FindString(project.Supervisor.User.Username);
@@ -85,6 +99,7 @@ namespace Khronos_PMS.View
         {
             if (!projectCustomers.Contains((CustomerView)customerComboBox.SelectedItem)) {
                 projectCustomers.Add((CustomerView)customerComboBox.SelectedItem);
+                bs.ResetBindings(false);
             }
             
         }
@@ -95,6 +110,7 @@ namespace Khronos_PMS.View
             customer =(CustomerView) customerDataGridView.SelectedRows[0].DataBoundItem;
             if (customer != null) {
                 projectCustomers.Remove(customer);
+                bs.ResetBindings(false);
             }
             
         }
