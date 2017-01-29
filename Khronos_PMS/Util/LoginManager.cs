@@ -6,6 +6,7 @@ using Khronos_PMS.View;
 
 namespace Khronos_PMS.Util {
     class LoginManager {
+        public static User loggedUser;
         private KhronosPMSEntities entities;
         private String username;
         private String password;
@@ -29,6 +30,7 @@ namespace Khronos_PMS.Util {
             User user = entities.Users.FirstOrDefault(u => u.Username == username);
             if (user != null && PasswordUtil.CheckPassword(this.password, user.Password)) {
                 isValid = true;
+                loggedUser = user;
                 if (user.Admin != null)
                     form = new AdminForm(user.Admin);
                 else if (user.Worker != null)
