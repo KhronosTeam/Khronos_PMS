@@ -85,6 +85,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Util\AccountManagement.cs" />
+    <Compile Include="Util\LogManager.cs" />
     <Compile Include="Util\LoginManager.cs" />
     <Compile Include="Util\PasswordUtil.cs" />
     <Compile Include="Model\Activity.cs">
