@@ -3,9 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Khronos_PMS.Model;
 
 namespace Khronos_PMS.Util {
-    class UnitManager {
+    static class UnitManager {
+
+        public static List<Worker> GetAssigness(Unit unit) {
+            List<Worker> list = new List<Worker>();
+            foreach (WorksOn worksOn in unit.Workers) {
+                list.Add(worksOn.AssignedTo.Worker);
+            }
+            return list;
+        }
 
     }
 }

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Khronos_PMS.Model;
 using Khronos_PMS.Util;
 using BrightIdeasSoftware;
+using Khronos_PMS.Properties;
 
 namespace Khronos_PMS.View {
     public partial class MainForm : Form {
@@ -17,17 +20,21 @@ namespace Khronos_PMS.View {
 
         private void MainForm_Load(Object sender, EventArgs e) {
             //todo Num 0. u zavisnoti ko se prijavio (worker, customer, superviosor) neke opcije trebaju biti prikazane, a neke ne
-
-            //učitati projekte, popuniti listview i po defaultu neka prvi bude selektovan
-            this.Invoke(new MethodInvoker(() => { projectsListView.DataSource = ProjectManager.GetProjects(user); }));
+            new Thread(() => {
+                List<Project> projects = ProjectManager.GetProjects(user);
+                Invoke(new MethodInvoker(() => {
+                    projectsListView.DataSource = projects;
+                    projectsListView.SelectedIndex = 0;
+                    workersListView.DataSource = ProjectManager.GetWorkers(projects[0]);
+                }));
+            }).Start();
 
             //todo Num 3. učitati radnike i popuniti listview
 
             //todo Num 4. učitati unite za selektovani projekat i popuniti treeview
 
             //postaviti userLabel text za logovanog usera
-            if (user != null)
-            {
+            if (user != null) {
                 userLabel.Text = user.Username;
             }
         }
@@ -35,7 +42,7 @@ namespace Khronos_PMS.View {
         private void button1_Click(Object sender, EventArgs e) {
             rightTableLayout.ColumnStyles[1].Width = 0;
         }
-        
+
         private void projectsSearchButton_Click(Object sender, EventArgs e) {
             searchProjects();
             //Nema potrebe za ovim, sad pretrazuje odma na kucanje
@@ -50,7 +57,7 @@ namespace Khronos_PMS.View {
         }
 
         private void projectToolStripMenuItem_Click(Object sender, EventArgs e) {
-            Status status = (Status)((ToolStripItem)sender).Tag;
+            Status status = (Status) ((ToolStripItem) sender).Tag;
             projectStatusMenuButton.Image = StatusManager.Image(status);
 
             new Task(() => {
@@ -60,7 +67,7 @@ namespace Khronos_PMS.View {
         }
 
         private void unitStatusToolStripMenuItem_Click(Object sender, EventArgs e) {
-            Status status = (Status)((ToolStripItem)sender).Tag;
+            Status status = (Status) ((ToolStripItem) sender).Tag;
             unitStatusMenuButton.Image = StatusManager.Image(status);
 
             new Task(() => {
@@ -70,40 +77,36 @@ namespace Khronos_PMS.View {
         }
 
         private void unitPriorityToolStripMenuItem_Click(Object sender, EventArgs e) {
-            Priority priority = (Priority) ((ToolStripItem)sender).Tag;
+            Priority priority = (Priority) ((ToolStripItem) sender).Tag;
             unitPriorityMenuButton.Image = PriorityManager.Image(priority);
 
             new Task(() => {
                 //todo Num 11. unit priority update
                 //PriorityManager.UpdatePriority(selected unit, priority);
             }).Start();
-        }   
+        }
 
-        private void projectsListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void projectsListView_SelectedIndexChanged(object sender, EventArgs e) {
             //inicijalizovati sva polja vezana za projekat (Project name, role, boss, description, dates, ...) 
-            if (projectsListView.SelectedIndex != -1)
-            {
-                Project selectedProject = (Project)projectsListView.SelectedObject;
+            if (projectsListView.SelectedIndex != -1) {
+                Project selectedProject = (Project) projectsListView.SelectedObject;
                 projectNameLabel.Text = selectedProject.Name;
                 projectDescriptionLabel.Text = selectedProject.Description;
                 startDateLabel.Text = selectedProject.StartDate.ToShortDateString();
                 endDateLabel.Text = selectedProject.DeadlineDate.ToShortDateString();
-                budgetLabel.Text = selectedProject.Budget.ToString() + " KM";
-                expenseLabel.Text = selectedProject.Expense.ToString() + " KM";
+                budgetLabel.Text = selectedProject.Budget + " KM";
+                expenseLabel.Text = selectedProject.Expense + " KM";
                 bossNameLabel.Text = selectedProject.Boss.FirstName + " " + selectedProject.Boss.LastName;
                 projectStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById(selectedProject.Status));
                 setRole(selectedProject);
             }
         }
 
-        private void projectsSearchTextbox_TextChanged(object sender, EventArgs e)
-        {
+        private void projectsSearchTextbox_TextChanged(object sender, EventArgs e) {
             searchProjects();
         }
 
-        private void searchProjects()
-        {
+        private void searchProjects() {
             //Ovdje je implementirana pretraga
             projectsListView.UseFiltering = true;
             projectsListView.ModelFilter = new ModelFilter(x => {
@@ -112,47 +115,40 @@ namespace Khronos_PMS.View {
             });
         }
 
-        private void setRole(Project selectedProject)
-        {
-            if (user != null)
-            {
-                if (selectedProject.BossID == user.ID)
-                {
+        private void setRole(Project selectedProject) {
+            if (user != null) {
+                if (selectedProject.BossID == user.ID) {
                     projectRoleLabel.Text = Role.Boss.ToString();
-                }
-                else if (selectedProject.SupervisorID == user.ID)
-                {
+                } else if (selectedProject.SupervisorID == user.ID) {
                     projectRoleLabel.Text = Role.Supervisor.ToString();
-                }
-                else
-                {
+                } else {
                     bool roleSet = false;
-                    foreach (var item in selectedProject.Customers)
-                    {
-                        if (item.ID == user.ID)
-                        {
+                    foreach (var item in selectedProject.Customers) {
+                        if (item.ID == user.ID) {
                             projectRoleLabel.Text = Role.Customer.ToString();
                             roleSet = true;
                         }
                     }
-                    foreach (var item in selectedProject.AssignedWorkers)
-                    {
-                        if (item.WorkerID == user.ID)
-                        {
+                    foreach (var item in selectedProject.AssignedWorkers) {
+                        if (item.WorkerID == user.ID) {
                             projectRoleLabel.Text = Role.Worker.ToString();
                             roleSet = true;
                         }
                     }
-                    if (roleSet != true)
-                    {
+                    if (roleSet != true) {
                         projectRoleLabel.Text = "Unknown";
                     }
                 }
-            }
-            else
-            {
+            } else {
                 projectRoleLabel.Text = "Unknown";
             }
+        }
+
+        private void ShowUnitAssignees(Unit unit) {
+            List<Worker> workers = UnitManager.GetAssigness(unit);
+            assigneesListView.Items.Clear();
+            foreach (Worker worker in workers)
+                assigneesListView.Items.Add(new ListViewItem(worker.FirstName + " " + worker.LastName, 0));
         }
     }
 }

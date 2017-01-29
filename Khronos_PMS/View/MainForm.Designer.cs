@@ -25,7 +25,10 @@ namespace Khronos_PMS.View {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Marko Stijak", 0);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Nemanja Lukić", 0);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,11 +49,9 @@ namespace Khronos_PMS.View {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.projectsListView = new BrightIdeasSoftware.DataListView();
             this.projectName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.projectsSearchTextbox = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.projectsSearchButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.workersListView = new BrightIdeasSoftware.DataListView();
-            this.workersSearchTextBox = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.workersSearchButton = new System.Windows.Forms.Button();
             this.rightTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -60,10 +61,6 @@ namespace Khronos_PMS.View {
             this.label14 = new System.Windows.Forms.Label();
             this.projectStatusToolStrip = new System.Windows.Forms.ToolStrip();
             this.projectStatusMenuButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.expenseLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.budgetLabel = new System.Windows.Forms.Label();
@@ -82,35 +79,26 @@ namespace Khronos_PMS.View {
             this.unitTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.unitsTreeView = new System.Windows.Forms.TreeView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.promptTextBox3 = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.promptTextBox2 = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.unitsSearchButton = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label17 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.manhoursLabel = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.dueDateLabel = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.unitNameLabel = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.unitStatusMenuButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.activeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.inProgressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pausedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.completedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unitPriorityMenuButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.veryHighToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.highToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.veryLowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.noneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -122,6 +110,26 @@ namespace Khronos_PMS.View {
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.sfasidofjiaosdj = new System.Windows.Forms.ToolStrip();
             this.userLabel = new System.Windows.Forms.ToolStripButton();
+            this.smallImageList = new System.Windows.Forms.ImageList(this.components);
+            this.projectsSearchTextbox = new Khronos_PMS.View.CustomControls.PromptTextBox();
+            this.workersSearchTextBox = new Khronos_PMS.View.CustomControls.PromptTextBox();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.promptTextBox3 = new Khronos_PMS.View.CustomControls.PromptTextBox();
+            this.promptTextBox2 = new Khronos_PMS.View.CustomControls.PromptTextBox();
+            this.activeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inProgressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pausedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.completedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.veryHighToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.highToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.veryLowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.noneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assigneesListView = new System.Windows.Forms.ListView();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.leftTableLayout.SuspendLayout();
@@ -325,6 +333,7 @@ namespace Khronos_PMS.View {
             this.projectsListView.CopySelectionOnControlC = false;
             this.projectsListView.CopySelectionOnControlCUsesDragSource = false;
             this.projectsListView.DataSource = null;
+            this.projectsListView.FullRowSelect = true;
             this.projectsListView.HasCollapsibleGroups = false;
             this.projectsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.projectsListView.HideSelection = false;
@@ -339,6 +348,7 @@ namespace Khronos_PMS.View {
             this.projectsListView.Size = new System.Drawing.Size(249, 128);
             this.projectsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.projectsListView.TabIndex = 4;
+            this.projectsListView.TileSize = new System.Drawing.Size(240, 20);
             this.projectsListView.UnfocusedSelectedBackColor = System.Drawing.Color.Yellow;
             this.projectsListView.UnfocusedSelectedForeColor = System.Drawing.Color.Yellow;
             this.projectsListView.UseCompatibleStateImageBehavior = false;
@@ -349,20 +359,6 @@ namespace Khronos_PMS.View {
             // 
             this.projectName.AspectName = "Name";
             this.projectName.IsTileViewColumn = true;
-            // 
-            // projectsSearchTextbox
-            // 
-            this.projectsSearchTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.projectsSearchTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.projectsSearchTextbox.Location = new System.Drawing.Point(7, 21);
-            this.projectsSearchTextbox.Multiline = true;
-            this.projectsSearchTextbox.Name = "projectsSearchTextbox";
-            this.projectsSearchTextbox.Size = new System.Drawing.Size(203, 21);
-            this.projectsSearchTextbox.TabIndex = 3;
-            this.projectsSearchTextbox.WaterMarkColor = System.Drawing.Color.Gray;
-            this.projectsSearchTextbox.WaterMarkText = "Search projects";
-            this.projectsSearchTextbox.TextChanged += new System.EventHandler(this.projectsSearchTextbox_TextChanged);
             // 
             // projectsSearchButton
             // 
@@ -397,25 +393,12 @@ namespace Khronos_PMS.View {
             | System.Windows.Forms.AnchorStyles.Right)));
             this.workersListView.CellEditUseWholeCell = false;
             this.workersListView.DataSource = null;
-            this.workersListView.Location = new System.Drawing.Point(7, 47);
+            this.workersListView.Location = new System.Drawing.Point(7, 48);
             this.workersListView.Name = "workersListView";
-            this.workersListView.Size = new System.Drawing.Size(249, 136);
+            this.workersListView.Size = new System.Drawing.Size(249, 135);
             this.workersListView.TabIndex = 5;
             this.workersListView.UseCompatibleStateImageBehavior = false;
-            this.workersListView.View = System.Windows.Forms.View.Details;
-            // 
-            // workersSearchTextBox
-            // 
-            this.workersSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.workersSearchTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.workersSearchTextBox.Location = new System.Drawing.Point(7, 20);
-            this.workersSearchTextBox.Multiline = true;
-            this.workersSearchTextBox.Name = "workersSearchTextBox";
-            this.workersSearchTextBox.Size = new System.Drawing.Size(203, 21);
-            this.workersSearchTextBox.TabIndex = 4;
-            this.workersSearchTextBox.WaterMarkColor = System.Drawing.Color.Gray;
-            this.workersSearchTextBox.WaterMarkText = "Search workers";
+            this.workersListView.View = System.Windows.Forms.View.SmallIcon;
             // 
             // workersSearchButton
             // 
@@ -549,42 +532,6 @@ namespace Khronos_PMS.View {
             this.projectStatusMenuButton.Size = new System.Drawing.Size(29, 22);
             this.projectStatusMenuButton.Text = "Status";
             this.projectStatusMenuButton.ToolTipText = "Project status";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Image = global::Khronos_PMS.Properties.Resources.status_active;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
-            this.toolStripMenuItem1.Tag = Khronos_PMS.Util.Status.ACTIVE;
-            this.toolStripMenuItem1.Text = "Active";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.projectToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Image = global::Khronos_PMS.Properties.Resources.status_in_progress;
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(133, 22);
-            this.toolStripMenuItem2.Tag = Khronos_PMS.Util.Status.IN_PROGRESS;
-            this.toolStripMenuItem2.Text = "In progress";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.projectToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Image = global::Khronos_PMS.Properties.Resources.status_paused;
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(133, 22);
-            this.toolStripMenuItem3.Tag = Khronos_PMS.Util.Status.PAUSED;
-            this.toolStripMenuItem3.Text = "Paused";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.projectToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Image = global::Khronos_PMS.Properties.Resources.status_completed;
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(133, 22);
-            this.toolStripMenuItem4.Tag = Khronos_PMS.Util.Status.COMPLETED;
-            this.toolStripMenuItem4.Text = "Completed";
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.projectToolStripMenuItem_Click);
             // 
             // expenseLabel
             // 
@@ -789,19 +736,6 @@ namespace Khronos_PMS.View {
             this.tableLayoutPanel3.Size = new System.Drawing.Size(412, 30);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
-            // promptTextBox3
-            // 
-            this.promptTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.promptTextBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.promptTextBox3.Location = new System.Drawing.Point(3, 4);
-            this.promptTextBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.promptTextBox3.Multiline = true;
-            this.promptTextBox3.Name = "promptTextBox3";
-            this.promptTextBox3.Size = new System.Drawing.Size(361, 22);
-            this.promptTextBox3.TabIndex = 8;
-            this.promptTextBox3.WaterMarkColor = System.Drawing.Color.Gray;
-            this.promptTextBox3.WaterMarkText = "Type here to add new unit...";
-            // 
             // button4
             // 
             this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -827,19 +761,6 @@ namespace Khronos_PMS.View {
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(412, 30);
             this.tableLayoutPanel4.TabIndex = 4;
-            // 
-            // promptTextBox2
-            // 
-            this.promptTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.promptTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.promptTextBox2.Location = new System.Drawing.Point(3, 4);
-            this.promptTextBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.promptTextBox2.Multiline = true;
-            this.promptTextBox2.Name = "promptTextBox2";
-            this.promptTextBox2.Size = new System.Drawing.Size(361, 22);
-            this.promptTextBox2.TabIndex = 6;
-            this.promptTextBox2.WaterMarkColor = System.Drawing.Color.Gray;
-            this.promptTextBox2.WaterMarkText = "Search units";
             // 
             // unitsSearchButton
             // 
@@ -874,24 +795,28 @@ namespace Khronos_PMS.View {
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.12635F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.87365F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.62816F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.37184F));
             this.tableLayoutPanel2.Controls.Add(this.label17, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.dateTimePicker1, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.manhoursLabel, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label10, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label13, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.label18, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label12, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.label11, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label12, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label13, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label10, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.label11, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.dueDateLabel, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.label6, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label7, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label16, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.assigneesListView, 2, 3);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 68);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(302, 75);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(302, 152);
             this.tableLayoutPanel2.TabIndex = 28;
             // 
             // label17
@@ -905,53 +830,18 @@ namespace Khronos_PMS.View {
             this.label17.TabIndex = 26;
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "dd.MM.yyyy.";
-            this.dateTimePicker1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(149, 27);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(153, 21);
-            this.dateTimePicker1.TabIndex = 18;
-            // 
             // manhoursLabel
             // 
             this.manhoursLabel.AutoSize = true;
             this.manhoursLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.manhoursLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.manhoursLabel.Location = new System.Drawing.Point(149, 0);
+            this.manhoursLabel.Location = new System.Drawing.Point(131, 0);
             this.manhoursLabel.Margin = new System.Windows.Forms.Padding(0);
             this.manhoursLabel.Name = "manhoursLabel";
-            this.manhoursLabel.Size = new System.Drawing.Size(153, 25);
+            this.manhoursLabel.Size = new System.Drawing.Size(171, 25);
             this.manhoursLabel.TabIndex = 27;
-            this.manhoursLabel.Text = "53h";
+            this.manhoursLabel.Text = "400h";
             this.manhoursLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label10
-            // 
-            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Image = global::Khronos_PMS.Properties.Resources.calendar;
-            this.label10.Location = new System.Drawing.Point(0, 25);
-            this.label10.Margin = new System.Windows.Forms.Padding(0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(25, 25);
-            this.label10.TabIndex = 22;
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.label13.Location = new System.Drawing.Point(25, 50);
-            this.label13.Margin = new System.Windows.Forms.Padding(0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(124, 25);
-            this.label13.TabIndex = 23;
-            this.label13.Text = "Assignees:";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label18
             // 
@@ -961,34 +851,107 @@ namespace Khronos_PMS.View {
             this.label18.Location = new System.Drawing.Point(25, 0);
             this.label18.Margin = new System.Windows.Forms.Padding(0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(124, 25);
+            this.label18.Size = new System.Drawing.Size(106, 25);
             this.label18.TabIndex = 25;
-            this.label18.Text = "Estimated manhours:";
+            this.label18.Text = "Est man-hours:";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label12
             // 
-            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label12.Dock = System.Windows.Forms.DockStyle.Top;
             this.label12.Image = global::Khronos_PMS.Properties.Resources.add_user;
-            this.label12.Location = new System.Drawing.Point(0, 50);
+            this.label12.Location = new System.Drawing.Point(0, 75);
             this.label12.Margin = new System.Windows.Forms.Padding(0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(25, 25);
             this.label12.TabIndex = 24;
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label13
+            // 
+            this.label13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.label13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label13.Location = new System.Drawing.Point(25, 75);
+            this.label13.Margin = new System.Windows.Forms.Padding(0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(106, 25);
+            this.label13.TabIndex = 23;
+            this.label13.Text = "Assignees:";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label10
+            // 
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Image = global::Khronos_PMS.Properties.Resources.calendar;
+            this.label10.Location = new System.Drawing.Point(0, 50);
+            this.label10.Margin = new System.Windows.Forms.Padding(0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(25, 25);
+            this.label10.TabIndex = 22;
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.label11.Location = new System.Drawing.Point(25, 25);
+            this.label11.Location = new System.Drawing.Point(25, 50);
             this.label11.Margin = new System.Windows.Forms.Padding(0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(124, 25);
+            this.label11.Size = new System.Drawing.Size(106, 25);
             this.label11.TabIndex = 17;
             this.label11.Text = "Due date:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // dueDateLabel
+            // 
+            this.dueDateLabel.AutoSize = true;
+            this.dueDateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dueDateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.dueDateLabel.Location = new System.Drawing.Point(131, 50);
+            this.dueDateLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.dueDateLabel.Name = "dueDateLabel";
+            this.dueDateLabel.Size = new System.Drawing.Size(171, 25);
+            this.dueDateLabel.TabIndex = 28;
+            this.dueDateLabel.Text = "25.02.2017.";
+            this.dueDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label6
+            // 
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Image = global::Khronos_PMS.Properties.Resources.clock;
+            this.label6.Location = new System.Drawing.Point(0, 25);
+            this.label6.Margin = new System.Windows.Forms.Padding(0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(25, 25);
+            this.label6.TabIndex = 29;
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.label7.Location = new System.Drawing.Point(25, 25);
+            this.label7.Margin = new System.Windows.Forms.Padding(0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(106, 25);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "Spent man-hours:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.label16.Location = new System.Drawing.Point(131, 25);
+            this.label16.Margin = new System.Windows.Forms.Padding(0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(171, 25);
+            this.label16.TabIndex = 31;
+            this.label16.Text = "0h";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // unitNameLabel
             // 
@@ -1033,42 +996,6 @@ namespace Khronos_PMS.View {
             this.unitStatusMenuButton.Size = new System.Drawing.Size(29, 24);
             this.unitStatusMenuButton.Text = "Status";
             // 
-            // activeToolStripMenuItem
-            // 
-            this.activeToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.status_active;
-            this.activeToolStripMenuItem.Name = "activeToolStripMenuItem";
-            this.activeToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.activeToolStripMenuItem.Tag = Khronos_PMS.Util.Status.ACTIVE;
-            this.activeToolStripMenuItem.Text = "Active";
-            this.activeToolStripMenuItem.Click += new System.EventHandler(this.unitStatusToolStripMenuItem_Click);
-            // 
-            // inProgressToolStripMenuItem
-            // 
-            this.inProgressToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.status_in_progress;
-            this.inProgressToolStripMenuItem.Name = "inProgressToolStripMenuItem";
-            this.inProgressToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.inProgressToolStripMenuItem.Tag = Khronos_PMS.Util.Status.IN_PROGRESS;
-            this.inProgressToolStripMenuItem.Text = "In progress";
-            this.inProgressToolStripMenuItem.Click += new System.EventHandler(this.unitStatusToolStripMenuItem_Click);
-            // 
-            // pausedToolStripMenuItem
-            // 
-            this.pausedToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.status_paused;
-            this.pausedToolStripMenuItem.Name = "pausedToolStripMenuItem";
-            this.pausedToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.pausedToolStripMenuItem.Tag = Khronos_PMS.Util.Status.PAUSED;
-            this.pausedToolStripMenuItem.Text = "Paused";
-            this.pausedToolStripMenuItem.Click += new System.EventHandler(this.unitStatusToolStripMenuItem_Click);
-            // 
-            // completedToolStripMenuItem
-            // 
-            this.completedToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.status_completed;
-            this.completedToolStripMenuItem.Name = "completedToolStripMenuItem";
-            this.completedToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.completedToolStripMenuItem.Tag = Khronos_PMS.Util.Status.COMPLETED;
-            this.completedToolStripMenuItem.Text = "Completed";
-            this.completedToolStripMenuItem.Click += new System.EventHandler(this.unitStatusToolStripMenuItem_Click);
-            // 
             // unitPriorityMenuButton
             // 
             this.unitPriorityMenuButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1085,60 +1012,6 @@ namespace Khronos_PMS.View {
             this.unitPriorityMenuButton.Name = "unitPriorityMenuButton";
             this.unitPriorityMenuButton.Size = new System.Drawing.Size(29, 24);
             this.unitPriorityMenuButton.Text = "Priority";
-            // 
-            // veryHighToolStripMenuItem
-            // 
-            this.veryHighToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.priority_very_high;
-            this.veryHighToolStripMenuItem.Name = "veryHighToolStripMenuItem";
-            this.veryHighToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.veryHighToolStripMenuItem.Tag = Khronos_PMS.Util.Priority.VERY_HIGH;
-            this.veryHighToolStripMenuItem.Text = "Very high";
-            this.veryHighToolStripMenuItem.Click += new System.EventHandler(this.unitPriorityToolStripMenuItem_Click);
-            // 
-            // highToolStripMenuItem
-            // 
-            this.highToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.priority_high;
-            this.highToolStripMenuItem.Name = "highToolStripMenuItem";
-            this.highToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.highToolStripMenuItem.Tag = Khronos_PMS.Util.Priority.HIGH;
-            this.highToolStripMenuItem.Text = "High";
-            this.highToolStripMenuItem.Click += new System.EventHandler(this.unitPriorityToolStripMenuItem_Click);
-            // 
-            // mediumToolStripMenuItem
-            // 
-            this.mediumToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.priority_medium;
-            this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
-            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.mediumToolStripMenuItem.Tag = Khronos_PMS.Util.Priority.MEDIUM;
-            this.mediumToolStripMenuItem.Text = "Medium";
-            this.mediumToolStripMenuItem.Click += new System.EventHandler(this.unitPriorityToolStripMenuItem_Click);
-            // 
-            // lowToolStripMenuItem
-            // 
-            this.lowToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.priority_low;
-            this.lowToolStripMenuItem.Name = "lowToolStripMenuItem";
-            this.lowToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.lowToolStripMenuItem.Tag = Khronos_PMS.Util.Priority.LOW;
-            this.lowToolStripMenuItem.Text = "Low";
-            this.lowToolStripMenuItem.Click += new System.EventHandler(this.unitPriorityToolStripMenuItem_Click);
-            // 
-            // veryLowToolStripMenuItem
-            // 
-            this.veryLowToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.priority_very_low;
-            this.veryLowToolStripMenuItem.Name = "veryLowToolStripMenuItem";
-            this.veryLowToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.veryLowToolStripMenuItem.Tag = Khronos_PMS.Util.Priority.VERY_LOW;
-            this.veryLowToolStripMenuItem.Text = "Very low";
-            this.veryLowToolStripMenuItem.Click += new System.EventHandler(this.unitPriorityToolStripMenuItem_Click);
-            // 
-            // noneToolStripMenuItem
-            // 
-            this.noneToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.priority_none;
-            this.noneToolStripMenuItem.Name = "noneToolStripMenuItem";
-            this.noneToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.noneToolStripMenuItem.Tag = Khronos_PMS.Util.Priority.NONE;
-            this.noneToolStripMenuItem.Text = "None";
-            this.noneToolStripMenuItem.Click += new System.EventHandler(this.unitPriorityToolStripMenuItem_Click);
             // 
             // toolStripButton1
             // 
@@ -1240,6 +1113,207 @@ namespace Khronos_PMS.View {
             this.userLabel.Size = new System.Drawing.Size(83, 21);
             this.userLabel.Text = "User name";
             // 
+            // smallImageList
+            // 
+            this.smallImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("smallImageList.ImageStream")));
+            this.smallImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.smallImageList.Images.SetKeyName(0, "add_user.png");
+            // 
+            // projectsSearchTextbox
+            // 
+            this.projectsSearchTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.projectsSearchTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.projectsSearchTextbox.Location = new System.Drawing.Point(7, 21);
+            this.projectsSearchTextbox.Multiline = true;
+            this.projectsSearchTextbox.Name = "projectsSearchTextbox";
+            this.projectsSearchTextbox.Size = new System.Drawing.Size(203, 21);
+            this.projectsSearchTextbox.TabIndex = 3;
+            this.projectsSearchTextbox.WaterMarkColor = System.Drawing.Color.Gray;
+            this.projectsSearchTextbox.WaterMarkText = "Search projects";
+            this.projectsSearchTextbox.TextChanged += new System.EventHandler(this.projectsSearchTextbox_TextChanged);
+            // 
+            // workersSearchTextBox
+            // 
+            this.workersSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.workersSearchTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.workersSearchTextBox.Location = new System.Drawing.Point(7, 20);
+            this.workersSearchTextBox.Multiline = true;
+            this.workersSearchTextBox.Name = "workersSearchTextBox";
+            this.workersSearchTextBox.Size = new System.Drawing.Size(203, 21);
+            this.workersSearchTextBox.TabIndex = 4;
+            this.workersSearchTextBox.WaterMarkColor = System.Drawing.Color.Gray;
+            this.workersSearchTextBox.WaterMarkText = "Search workers";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Image = global::Khronos_PMS.Properties.Resources.status_active;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
+            this.toolStripMenuItem1.Tag = Khronos_PMS.Util.Status.ACTIVE;
+            this.toolStripMenuItem1.Text = "Active";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.projectToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Image = global::Khronos_PMS.Properties.Resources.status_in_progress;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(133, 22);
+            this.toolStripMenuItem2.Tag = Khronos_PMS.Util.Status.IN_PROGRESS;
+            this.toolStripMenuItem2.Text = "In progress";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.projectToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Image = global::Khronos_PMS.Properties.Resources.status_paused;
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(133, 22);
+            this.toolStripMenuItem3.Tag = Khronos_PMS.Util.Status.PAUSED;
+            this.toolStripMenuItem3.Text = "Paused";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.projectToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Image = global::Khronos_PMS.Properties.Resources.status_completed;
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(133, 22);
+            this.toolStripMenuItem4.Tag = Khronos_PMS.Util.Status.COMPLETED;
+            this.toolStripMenuItem4.Text = "Completed";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.projectToolStripMenuItem_Click);
+            // 
+            // promptTextBox3
+            // 
+            this.promptTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.promptTextBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.promptTextBox3.Location = new System.Drawing.Point(3, 4);
+            this.promptTextBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.promptTextBox3.Multiline = true;
+            this.promptTextBox3.Name = "promptTextBox3";
+            this.promptTextBox3.Size = new System.Drawing.Size(361, 22);
+            this.promptTextBox3.TabIndex = 8;
+            this.promptTextBox3.WaterMarkColor = System.Drawing.Color.Gray;
+            this.promptTextBox3.WaterMarkText = "Type here to add new unit...";
+            // 
+            // promptTextBox2
+            // 
+            this.promptTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.promptTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.promptTextBox2.Location = new System.Drawing.Point(3, 4);
+            this.promptTextBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.promptTextBox2.Multiline = true;
+            this.promptTextBox2.Name = "promptTextBox2";
+            this.promptTextBox2.Size = new System.Drawing.Size(361, 22);
+            this.promptTextBox2.TabIndex = 6;
+            this.promptTextBox2.WaterMarkColor = System.Drawing.Color.Gray;
+            this.promptTextBox2.WaterMarkText = "Search units";
+            // 
+            // activeToolStripMenuItem
+            // 
+            this.activeToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.status_active;
+            this.activeToolStripMenuItem.Name = "activeToolStripMenuItem";
+            this.activeToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.activeToolStripMenuItem.Tag = Khronos_PMS.Util.Status.ACTIVE;
+            this.activeToolStripMenuItem.Text = "Active";
+            this.activeToolStripMenuItem.Click += new System.EventHandler(this.unitStatusToolStripMenuItem_Click);
+            // 
+            // inProgressToolStripMenuItem
+            // 
+            this.inProgressToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.status_in_progress;
+            this.inProgressToolStripMenuItem.Name = "inProgressToolStripMenuItem";
+            this.inProgressToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.inProgressToolStripMenuItem.Tag = Khronos_PMS.Util.Status.IN_PROGRESS;
+            this.inProgressToolStripMenuItem.Text = "In progress";
+            this.inProgressToolStripMenuItem.Click += new System.EventHandler(this.unitStatusToolStripMenuItem_Click);
+            // 
+            // pausedToolStripMenuItem
+            // 
+            this.pausedToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.status_paused;
+            this.pausedToolStripMenuItem.Name = "pausedToolStripMenuItem";
+            this.pausedToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.pausedToolStripMenuItem.Tag = Khronos_PMS.Util.Status.PAUSED;
+            this.pausedToolStripMenuItem.Text = "Paused";
+            this.pausedToolStripMenuItem.Click += new System.EventHandler(this.unitStatusToolStripMenuItem_Click);
+            // 
+            // completedToolStripMenuItem
+            // 
+            this.completedToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.status_completed;
+            this.completedToolStripMenuItem.Name = "completedToolStripMenuItem";
+            this.completedToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.completedToolStripMenuItem.Tag = Khronos_PMS.Util.Status.COMPLETED;
+            this.completedToolStripMenuItem.Text = "Completed";
+            this.completedToolStripMenuItem.Click += new System.EventHandler(this.unitStatusToolStripMenuItem_Click);
+            // 
+            // veryHighToolStripMenuItem
+            // 
+            this.veryHighToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.priority_very_high;
+            this.veryHighToolStripMenuItem.Name = "veryHighToolStripMenuItem";
+            this.veryHighToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.veryHighToolStripMenuItem.Tag = Khronos_PMS.Util.Priority.VERY_HIGH;
+            this.veryHighToolStripMenuItem.Text = "Very high";
+            this.veryHighToolStripMenuItem.Click += new System.EventHandler(this.unitPriorityToolStripMenuItem_Click);
+            // 
+            // highToolStripMenuItem
+            // 
+            this.highToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.priority_high;
+            this.highToolStripMenuItem.Name = "highToolStripMenuItem";
+            this.highToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.highToolStripMenuItem.Tag = Khronos_PMS.Util.Priority.HIGH;
+            this.highToolStripMenuItem.Text = "High";
+            this.highToolStripMenuItem.Click += new System.EventHandler(this.unitPriorityToolStripMenuItem_Click);
+            // 
+            // mediumToolStripMenuItem
+            // 
+            this.mediumToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.priority_medium;
+            this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
+            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.mediumToolStripMenuItem.Tag = Khronos_PMS.Util.Priority.MEDIUM;
+            this.mediumToolStripMenuItem.Text = "Medium";
+            this.mediumToolStripMenuItem.Click += new System.EventHandler(this.unitPriorityToolStripMenuItem_Click);
+            // 
+            // lowToolStripMenuItem
+            // 
+            this.lowToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.priority_low;
+            this.lowToolStripMenuItem.Name = "lowToolStripMenuItem";
+            this.lowToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.lowToolStripMenuItem.Tag = Khronos_PMS.Util.Priority.LOW;
+            this.lowToolStripMenuItem.Text = "Low";
+            this.lowToolStripMenuItem.Click += new System.EventHandler(this.unitPriorityToolStripMenuItem_Click);
+            // 
+            // veryLowToolStripMenuItem
+            // 
+            this.veryLowToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.priority_very_low;
+            this.veryLowToolStripMenuItem.Name = "veryLowToolStripMenuItem";
+            this.veryLowToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.veryLowToolStripMenuItem.Tag = Khronos_PMS.Util.Priority.VERY_LOW;
+            this.veryLowToolStripMenuItem.Text = "Very low";
+            this.veryLowToolStripMenuItem.Click += new System.EventHandler(this.unitPriorityToolStripMenuItem_Click);
+            // 
+            // noneToolStripMenuItem
+            // 
+            this.noneToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.priority_none;
+            this.noneToolStripMenuItem.Name = "noneToolStripMenuItem";
+            this.noneToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.noneToolStripMenuItem.Tag = Khronos_PMS.Util.Priority.NONE;
+            this.noneToolStripMenuItem.Text = "None";
+            this.noneToolStripMenuItem.Click += new System.EventHandler(this.unitPriorityToolStripMenuItem_Click);
+            // 
+            // assigneesListView
+            // 
+            this.assigneesListView.BackColor = System.Drawing.SystemColors.Control;
+            this.assigneesListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.assigneesListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.assigneesListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2});
+            this.assigneesListView.Location = new System.Drawing.Point(134, 78);
+            this.assigneesListView.Name = "assigneesListView";
+            this.assigneesListView.Size = new System.Drawing.Size(165, 71);
+            this.assigneesListView.SmallImageList = this.smallImageList;
+            this.assigneesListView.TabIndex = 32;
+            this.assigneesListView.UseCompatibleStateImageBehavior = false;
+            this.assigneesListView.View = System.Windows.Forms.View.SmallIcon;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1336,7 +1410,6 @@ namespace Khronos_PMS.View {
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label unitNameLabel;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ToolStrip projectStatusToolStrip;
         private System.Windows.Forms.TableLayoutPanel unitTableLayoutPanel;
         private View.CustomControls.PromptTextBox promptTextBox2;
@@ -1389,5 +1462,11 @@ namespace Khronos_PMS.View {
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private BrightIdeasSoftware.OLVColumn projectName;
+        private System.Windows.Forms.Label dueDateLabel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ImageList smallImageList;
+        private System.Windows.Forms.ListView assigneesListView;
     }
 }
