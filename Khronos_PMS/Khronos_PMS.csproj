@@ -230,9 +230,10 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\project_report.png" />
+    <None Include="Resources\project report.png" />
     <None Include="Resources\clock.png" />
     <None Include="Resources\check.png" />
-    <None Include="Resources\unit1.png" />
     <None Include="Resources\unit.png" />
     <None Include="Resources\project.png" />
     <None Include="Resources\dollar.png" />
@@ -250,13 +251,6 @@
     <None Include="Resources\search.png" />
     <None Include="Resources\add.png" />
     <None Include="Resources\close.png" />
-    <None Include="Resources\in_progress11.png" />
-    <None Include="Resources\completed11.png" />
-    <None Include="Resources\active11.png" />
-    <None Include="Resources\paused1.png" />
-    <None Include="Resources\in_progress1.png" />
-    <None Include="Resources\completed1.png" />
-    <None Include="Resources\active1.png" />
     <None Include="Resources\priority_very_high.png" />
     <None Include="Resources\priority_medium.png" />
     <None Include="Resources\priority_low.png" />
@@ -269,10 +263,6 @@
     <None Include="Resources\priority_very_low.png" />
     <None Include="Resources\priority_none.png" />
     <None Include="Resources\set_complete.png" />
-    <None Include="Resources\completed.png" />
-    <None Include="Resources\paused.png" />
-    <None Include="Resources\in_progress.png" />
-    <None Include="Resources\active.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

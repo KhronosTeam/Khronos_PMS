@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,8 +23,8 @@ namespace Khronos_PMS.View {
 
         private void MainForm_Load(Object sender, EventArgs e) {
             //todo Num 0. u zavisnoti ko se prijavio (worker, customer, superviosor) neke opcije trebaju biti prikazane, a neke ne
-            projectsListView.GetColumn(0).ImageGetter = i => 1;
-            workersListView.GetColumn(0).ImageGetter = i => 0;
+            projectsListView.GetColumn(0).ImageGetter = i => 0;
+            workersListView.GetColumn(0).ImageGetter = i => 1;
 
             new Thread(() => {
                 List<Project> projects = ProjectManager.GetProjects(user);
@@ -48,7 +50,6 @@ namespace Khronos_PMS.View {
 
         private void projectsSearchButton_Click(Object sender, EventArgs e) {
             searchProjects();
-            //Nema potrebe za ovim, sad pretrazuje odma na kucanje
         }
 
         private void workersSearchButton_Click(Object sender, EventArgs e) {

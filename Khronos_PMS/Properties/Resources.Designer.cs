@@ -263,6 +263,26 @@ namespace Khronos_PMS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap project_report {
+            get {
+                object obj = ResourceManager.GetObject("project_report", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap project_report1 {
+            get {
+                object obj = ResourceManager.GetObject("project_report1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap search {
             get {
                 object obj = ResourceManager.GetObject("search", resourceCulture);
@@ -286,6 +306,16 @@ namespace Khronos_PMS.Properties {
         internal static System.Drawing.Bitmap search_gray {
             get {
                 object obj = ResourceManager.GetObject("search_gray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap set_complete {
+            get {
+                object obj = ResourceManager.GetObject("set_complete", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
