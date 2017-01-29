@@ -17,12 +17,10 @@ namespace Khronos_PMS.ModelView {
         public int AncestorID { get; set; }
         public int Depth { get; set; }
         public List<UnitView> children { get; set; }
+        private Unit unit;
 
         public UnitView() {
         }
-
-        private Unit unit;
-
         public UnitView(Unit unit) {
             this.unit = unit;
             ID = unit.ID;
@@ -41,9 +39,11 @@ namespace Khronos_PMS.ModelView {
 
         public static void setChildren(UnitView parent) {
             List<UnitView> children = new List<UnitView>();
+            // AncestorClosureUnits predstavlja listu svih unita kojima je ancestor trenutni objekat
             List<ClosureUnit> units = parent.unit.AncestorClosureUnits.ToList();
             foreach (ClosureUnit unit in units) {
                 UnitView newUnitView = new UnitView(ProjectManager.entities.Units.First(u => u.ID == unit.ID));
+                // kako su root uniti predaci sami sebi, ovo sprečava da ubaci sam sebe u listu svojih potomaka
                 if (newUnitView.Depth != 0)
                     children.Add(newUnitView);
             }
@@ -51,14 +51,22 @@ namespace Khronos_PMS.ModelView {
         }
 
         public void setChildren() {
-            setChildren(this);
+            if (children == null) setChildren(this);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>List-u koja predstavlja djecu unita</returns>
         public List<UnitView> getChildren() {
             if (children == null) setChildren(this);
             return children;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ProjectID">int, id projekta čiji se root uniti traže</param>
+        /// <returns> listu root unita</returns>
         public static List<UnitView> getRootUnits(int ProjectID) {
             List<UnitView> toReturn = new List<UnitView>();
 
@@ -72,13 +80,22 @@ namespace Khronos_PMS.ModelView {
             return toReturn;
         }
 
-        public static void test() {
-            List<Unit> units = ProjectManager.entities.Units.ToList();
-            foreach (Unit unit in units) {
-                UnitView unitView = new UnitView(unit);
-                setChildren(unitView);
+        public void setGrandChildren()
+        {
+            foreach (UnitView child in children) {
+                child.setChildren();
             }
         }
+
+        public void setChildrenAndGrandChildren() {
+            setChildren();
+            setGrandChildren();
+        }
+
+        public void addChild(Unit unit) {
+            children.Add(new UnitView(unit));
+        }
+
     }
 
     // TODO preload in unittreeview
