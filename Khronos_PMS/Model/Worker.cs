@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Windows.Forms;
+
 namespace Khronos_PMS.Model
 {
     using System;
@@ -33,5 +35,9 @@ namespace Khronos_PMS.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Project> SupervisorProjects { get; set; }
         public virtual User User { get; set; }
+
+        
+
+
     }
 }

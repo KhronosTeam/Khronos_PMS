@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Navigation;
 using Khronos_PMS.Model;
 using Khronos_PMS.Util;
 using BrightIdeasSoftware;
@@ -20,6 +21,9 @@ namespace Khronos_PMS.View {
 
         private void MainForm_Load(Object sender, EventArgs e) {
             //todo Num 0. u zavisnoti ko se prijavio (worker, customer, superviosor) neke opcije trebaju biti prikazane, a neke ne
+            projectsListView.GetColumn(0).ImageGetter = i => 1;
+            workersListView.GetColumn(0).ImageGetter = i => 0;
+
             new Thread(() => {
                 List<Project> projects = ProjectManager.GetProjects(user);
                 Invoke(new MethodInvoker(() => {
@@ -100,10 +104,13 @@ namespace Khronos_PMS.View {
                 endDateLabel.Text = selectedProject.DeadlineDate.ToShortDateString();
                 budgetLabel.Text = selectedProject.Budget + " KM";
                 expenseLabel.Text = selectedProject.Expense + " KM";
-                bossNameLabel.Text = selectedProject.Boss.FirstName + " " + selectedProject.Boss.LastName;
+                bossNameLabel.Text = selectedProject.Boss.FullName;
                 projectStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById(selectedProject.Status));
                 setRole(selectedProject);
 
+                // možda treba u background
+                workersListView.DataSource = ProjectManager.GetWorkers(selectedProject);
+                /*
                 // postavka unita
                 // TODO pozvati u thread pa invoke
                 //unitsTreeView.Nodes.Add(UnitView.getRootUnits(selectedProject.ID));
@@ -114,6 +121,7 @@ namespace Khronos_PMS.View {
                     rootNode.Tag = unitView;
                     unitsTreeView.Nodes.Add(rootNode);
                 }
+                */
             }
         }
 
@@ -122,7 +130,6 @@ namespace Khronos_PMS.View {
         }
 
         private void searchProjects() {
-            //Ovdje je implementirana pretraga
             projectsListView.UseFiltering = true;
             projectsListView.ModelFilter = new ModelFilter(x => {
                 var myProject = x as Project;
@@ -131,24 +138,8 @@ namespace Khronos_PMS.View {
         }
 
         private void searchWorkers() {
-            //todo ovo nije dobro, treba popraviti, mora u background thread
-            /*
-            Project selectedProject = (Project) projectsListView.SelectedObject;
-            List<Worker> mylist = ProjectManager.GetWorkers(selectedProject);
-            List<Worker> temp = new List<Worker>();
-            if (workersSearchTextBox.Text.Equals("")) {
-                workersListView.DataSource = mylist;
-            } else {
-                foreach (var x in mylist) {
-                    if (x.FirstName.ToLower().Contains(workersSearchTextBox.Text.ToLower())) {
-                        temp.Add(x);
-                    }
-                }
-                workersListView.DataSource = temp;
-            }
-            */
             workersListView.UseFiltering = true;
-            projectsListView.ModelFilter = new ModelFilter(x => {
+            workersListView.ModelFilter = new ModelFilter(x => {
                 var worker = x as Worker;
                 return x != null && (worker.FirstName.ToLower().Contains(workersSearchTextBox.Text.ToLower()));
             });
