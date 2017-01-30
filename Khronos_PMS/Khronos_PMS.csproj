@@ -89,6 +89,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Util\AccountManagement.cs" />
+    <Compile Include="Util\ActivityManager.cs" />
     <Compile Include="Util\LogManager.cs" />
     <Compile Include="Util\LoginManager.cs" />
     <Compile Include="Util\PasswordUtil.cs" />
@@ -104,6 +105,12 @@
     <Compile Include="Util\Role.cs" />
     <Compile Include="Util\StatusManager.cs" />
     <Compile Include="Util\UnitManager.cs" />
+    <Compile Include="View\ActivityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ActivityForm.designer.cs">
+      <DependentUpon>ActivityForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +188,9 @@
     <Compile Include="View\UnitForm.Designer.cs">
       <DependentUpon>UnitForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\ActivityForm.resx">
+      <DependentUpon>ActivityForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
