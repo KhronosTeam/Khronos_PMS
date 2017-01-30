@@ -41,6 +41,8 @@
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
       <Private>True</Private>
@@ -60,6 +62,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -75,6 +78,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModelView\ActivityView.cs" />
     <Compile Include="ModelView\CustomerView.cs" />
     <Compile Include="ModelView\ProjectView.cs" />
     <Compile Include="ModelView\UnitView.cs" />
@@ -105,6 +109,12 @@
     <Compile Include="Util\Role.cs" />
     <Compile Include="Util\StatusManager.cs" />
     <Compile Include="Util\UnitManager.cs" />
+    <Compile Include="View\ActivitiesReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ActivitiesReportForm.Designer.cs">
+      <DependentUpon>ActivitiesReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ActivityForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +138,12 @@
     </Compile>
     <Compile Include="Model\Log.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\FinancialReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FinancialReportForm.Designer.cs">
+      <DependentUpon>FinancialReportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
@@ -182,17 +198,32 @@
     <Compile Include="View\ProjectForm.Designer.cs">
       <DependentUpon>ProjectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ProjectReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ProjectReportForm.Designer.cs">
+      <DependentUpon>ProjectReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\UnitForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\UnitForm.Designer.cs">
       <DependentUpon>UnitForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Report\ActivitiesReport.rdlc" />
+    <EmbeddedResource Include="Report\FinancialReport.rdlc" />
+    <EmbeddedResource Include="Report\ProjectReport.rdlc" />
+    <EmbeddedResource Include="View\ActivitiesReportForm.resx">
+      <DependentUpon>ActivitiesReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ActivityForm.resx">
       <DependentUpon>ActivityForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FinancialReportForm.resx">
+      <DependentUpon>FinancialReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -208,6 +239,9 @@
     <EmbeddedResource Include="View\ProjectForm.resx">
       <DependentUpon>ProjectForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\ProjectReportForm.resx">
+      <DependentUpon>ProjectReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\UnitForm.resx">
       <DependentUpon>UnitForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,6 +253,8 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Khronos_PMS.Model.Unit.datasource" />
+    <None Include="Properties\DataSources\Khronos_PMS.ModelView.ActivityView.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -280,7 +316,6 @@
     <None Include="Resources\priority_none.png" />
     <None Include="Resources\set_complete.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

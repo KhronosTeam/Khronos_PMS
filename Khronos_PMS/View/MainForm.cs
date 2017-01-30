@@ -42,6 +42,10 @@ namespace Khronos_PMS.View {
             unitsTreeView.GetColumn(4).ImageGetter = u => 17;
             unitsTreeView.GetColumn(5).ImageGetter = u => 17;
             unitsTreeView.GetColumn(6).ImageGetter = u => 18;
+            unitsTreeView.GetColumn(4).IsVisible = false;
+            unitsTreeView.GetColumn(5).IsVisible = false;
+            unitsTreeView.GetColumn(6).IsVisible = false;
+            unitsTreeView.RebuildColumns();
             assigneesListView.GetColumn(0).ImageGetter = a => 0;
             rightTableLayout.ColumnStyles[1].Width = 0;
         }
@@ -208,6 +212,24 @@ namespace Khronos_PMS.View {
 
         private void addNewUnitButton_Click(Object sender, EventArgs e) {
             //todo show UnitForm
+        }
+
+        private void financialReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FinancialReportForm fr = new FinancialReportForm((Project)projectsListView.SelectedObject);
+            fr.ShowDialog();
+        }
+
+        private void projectStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProjectReportForm pr = new ProjectReportForm((Project)projectsListView.SelectedObject);
+            pr.ShowDialog();
+        }
+
+        private void activitiesReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ActivitiesReportForm ar = new ActivitiesReportForm((Project)projectsListView.SelectedObject);
+            ar.ShowDialog();
         }
     }
 }
