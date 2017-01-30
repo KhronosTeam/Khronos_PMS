@@ -13,7 +13,6 @@ namespace Khronos_PMS.Util {
         VERY_HIGH
     }
 
-
     public static class PriorityManager {
         public static Bitmap Image(Priority priority) {
             switch (priority) {
@@ -56,11 +55,12 @@ namespace Khronos_PMS.Util {
         public static void UpdatePriority(Unit unit, Priority priority) {
             unit.Priority = (int) priority;
             try {
-                ProjectManagement.entities.Units.Attach(unit);
-                ProjectManagement.entities.Entry(unit).State = System.Data.Entity.EntityState.Modified;
-                ProjectManagement.entities.SaveChanges();
+                ProjectManager.entities.Units.Attach(unit);
+                ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Modified;
+                ProjectManager.entities.SaveChanges();
             } catch (Exception e) {
-                ProjectManagement.entities.Entry(unit).State = System.Data.Entity.EntityState.Detached;
+                Console.Out.WriteLine(e.StackTrace);
+                ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Detached;
             }
         }
 

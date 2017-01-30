@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Khronos_PMS.Model {
     public partial class Worker : User {
@@ -17,5 +19,6 @@ namespace Khronos_PMS.Model {
         public override String GetName() {
             return FullName;
         }
+    
     }
 }

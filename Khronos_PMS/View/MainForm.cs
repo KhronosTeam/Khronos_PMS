@@ -31,7 +31,7 @@ namespace Khronos_PMS.View {
 
             int statusOffset = 7, priorityOffset = 11;
 
-            workersListView.GetColumn(0).ImageGetter = i => 1;
+            workersListView.GetColumn(0).ImageGetter = w => 1;
             unitsTreeView.GetColumn(0).ImageGetter = u => (u as Unit).Status + 2;
             unitsTreeView.GetColumn(1).ImageGetter = u => (u as Unit).Status + statusOffset;
             unitsTreeView.GetColumn(1).AspectToStringConverter = s => StatusManager.Name(StatusManager.getStausById((int) s));
@@ -97,18 +97,18 @@ namespace Khronos_PMS.View {
         private void projectsListView_SelectionChanged(Object sender, EventArgs e) {
             Project selectedProject = (Project) projectsListView.SelectedObject;
             if (selectedProject == null) return;
-            List<Worker> workers = ProjectManager.GetWorkers(selectedProject);
+            List<Worker> workers = ProjectManager.GetWorkers(selectedProject, user);
             workersListView.DataSource = workers;
             projectNameLabel.Text = selectedProject.Name;
             projectDescriptionLabel.Text = selectedProject.Description;
             startDateLabel.Text = selectedProject.StartDate.ToShortDateString();
             endDateLabel.Text = selectedProject.DeadlineDate.ToShortDateString();
-            budgetLabel.Text = selectedProject.Budget + " KM";
-            expenseLabel.Text = selectedProject.Expense + " KM";
+            budgetLabel.Text = String.Format("{0:0.00} KM", selectedProject.Budget);
+            expenseLabel.Text = String.Format("{0:0.00} KM", selectedProject.Expense);
             bossNameLabel.Text = selectedProject.Boss.FullName;
             projectStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById(selectedProject.Status));
             setRole(selectedProject);
-
+            
             List<Unit> u = ProjectManager.GetRootUnits(selectedProject);
             unitsTreeView.Roots = u;
         }
@@ -177,7 +177,7 @@ namespace Khronos_PMS.View {
                 unitEstimatedManhoursLabel.Text = unit.EstManhours + " h";
                 unitSpentManhoursLabel.Text = unit.SpentManhours + " h";
                 unitDueDateLabel.Text = unit.DueDate.ToShortDateString();
-                assigneesListView.DataSource = unit.Assigness;
+                assigneesListView.DataSource = unit.Assignees;
                 rightTableLayout.ColumnStyles[1].Width = 315;
             }
         }
@@ -212,6 +212,7 @@ namespace Khronos_PMS.View {
 
         private void addNewUnitButton_Click(Object sender, EventArgs e) {
             //todo show UnitForm
+            new UnitForm((Project)projectsListView.SelectedObject, promptTextBox3.Text, (Unit)unitsTreeView.SelectedObject).Show(); ;
         }
 
         private void financialReportToolStripMenuItem_Click(object sender, EventArgs e)
