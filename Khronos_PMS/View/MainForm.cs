@@ -39,6 +39,10 @@ namespace Khronos_PMS.View {
             unitsTreeView.GetColumn(2).AspectToStringConverter = s => PriorityManager.Name(PriorityManager.GetPriorityById((int) s));
             unitsTreeView.GetColumn(3).ImageGetter = u => 6;
             unitsTreeView.GetColumn(3).AspectToStringConverter = d => ((DateTime) d).ToShortDateString();
+            unitsTreeView.GetColumn(4).ImageGetter = u => 17;
+            unitsTreeView.GetColumn(5).ImageGetter = u => 17;
+            unitsTreeView.GetColumn(6).ImageGetter = u => 18;
+            rightTableLayout.ColumnStyles[1].Width = 0;
         }
 
         private void MainForm_Load(Object sender, EventArgs e) {
@@ -65,32 +69,24 @@ namespace Khronos_PMS.View {
             Status status = (Status) ((ToolStripItem) sender).Tag;
             projectStatusMenuButton.Image = StatusManager.Image(status);
 
-            new Task(() => {
-                if (projectsListView.SelectedIndex != -1) {
-                    Project selectedProject = (Project) projectsListView.SelectedObject;
-                    StatusManager.UpdateStatus(selectedProject, status);
-                }
-            }).Start();
+            Project selectedProject = (Project) projectsListView.SelectedObject;
+            new Task(() => { StatusManager.UpdateStatus(selectedProject, status); }).Start();
         }
 
         private void unitStatusToolStripMenuItem_Click(Object sender, EventArgs e) {
             Status status = (Status) ((ToolStripItem) sender).Tag;
             unitStatusMenuButton.Image = StatusManager.Image(status);
 
-            new Task(() => {
-                Unit selectedUnit = (Unit) unitsTreeView.SelectedObject;
-                StatusManager.UpdateStatus(selectedUnit, status);
-            }).Start();
+            Unit selectedUnit = (Unit) unitsTreeView.SelectedObject;
+            new Task(() => { StatusManager.UpdateStatus(selectedUnit, status); }).Start();
         }
 
         private void unitPriorityToolStripMenuItem_Click(Object sender, EventArgs e) {
             Priority priority = (Priority) ((ToolStripItem) sender).Tag;
             unitPriorityMenuButton.Image = PriorityManager.Image(priority);
 
-            new Task(() => {
-                Unit selectedUnit = (Unit) unitsTreeView.SelectedObject;
-                PriorityManager.UpdatePriority(selectedUnit, priority);
-            }).Start();
+            Unit selectedUnit = (Unit) unitsTreeView.SelectedObject;
+            new Task(() => { PriorityManager.UpdatePriority(selectedUnit, priority); }).Start();
         }
 
         private void projectsListView_SelectionChanged(Object sender, EventArgs e) {
@@ -167,11 +163,13 @@ namespace Khronos_PMS.View {
 
         private void unitsTreeView_SelectionChanged(Object sender, EventArgs e) {
             Unit unit = (Unit) unitsTreeView.SelectedObject;
-            if (unit == null) return;
+            if (unit == null)
+                rightTableLayout.ColumnStyles[1].Width = 0;
+            else {
+                rightTableLayout.ColumnStyles[1].Width = 315;
+            }
 
-            rightTableLayout.ColumnStyles[1].Width = 315;
-
-            //todo popuniti polja u Unit info vezana za selektovani unit
+            //todo popuniti polja u Unit info vezana za selektovani unit, slično kao za projekte
         }
 
         private void refrshToolStripMenuItem_Click(Object sender, EventArgs e) {
@@ -198,7 +196,7 @@ namespace Khronos_PMS.View {
             unitsTreeView.UseFiltering = true;
             unitsTreeView.ModelFilter = new ModelFilter(x => {
                 var unit = x as Unit;
-                return x != null && unit.Name.ToLower().Contains(unitsSearchTextBox.Text.ToLower());
+                return (x as Unit) != null && unit.Name.ToLower().Contains(unitsSearchTextBox.Text.ToLower());
             });
         }
 
@@ -207,7 +205,6 @@ namespace Khronos_PMS.View {
         }
 
         private void button4_Click(Object sender, EventArgs e) {
-
         }
     }
 }

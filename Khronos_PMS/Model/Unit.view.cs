@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace Khronos_PMS.Model {
     public partial class Unit {
+        private int estimatedManhours = 100;
+        private int spentManhours = 5;
+
+        public int EstimatedManhours => estimatedManhours;
+
+        public int SpentManhours => spentManhours;
+        
+
         public bool HasChildren => AncestorClosureUnits.Any(a => a.AncestorID != a.ID);
 
         public List<Unit> Children => AncestorClosureUnits.Where(c => c.AncestorID != c.ID).Select(c => c.Unit).ToList();

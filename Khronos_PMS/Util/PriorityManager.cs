@@ -54,16 +54,17 @@ namespace Khronos_PMS.Util {
         }
 
         public static void UpdatePriority(Unit unit, Priority priority) {
-            //todo izvršti validaciju čuvanja izmjene prioriteta unita
-            KhronosPMSEntities entities = ProjectManagement.entities;
+            //KhronosPMSEntities entities = ProjectManagement.entities;
             unit.Priority = (int) priority;
             try {
-                entities.Units.Attach(unit);
-                entities.Entry(unit).State = System.Data.Entity.EntityState.Modified;
-                entities.SaveChanges();
-            } catch (Exception) {
-                // in case of an exception, remove "unit" from entry list
-                entities.Entry(unit).State = System.Data.Entity.EntityState.Detached;
+                ProjectManagement.entities.Units.Attach(unit);
+                ProjectManagement.entities.Entry(unit).State = System.Data.Entity.EntityState.Modified;
+                ProjectManagement.entities.SaveChanges();
+                Console.Out.WriteLine("sacuvano");
+            } catch (Exception e) {
+                Console.Out.WriteLine("jijijij");
+                ProjectManagement.entities.Entry(unit).State = System.Data.Entity.EntityState.Detached;
+                Console.Out.WriteLine(e.StackTrace);
             }
         }
 

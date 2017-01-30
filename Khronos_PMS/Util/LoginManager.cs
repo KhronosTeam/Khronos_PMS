@@ -21,7 +21,7 @@ namespace Khronos_PMS.Util {
                 this.password = password;
                 this.isValid = false;
                 queryUser();
-            } catch (Exception e) {
+            } catch (Exception) {
                 message = "Error establishing a database connection.";
             }
         }
