@@ -104,9 +104,9 @@ namespace Khronos_PMS.View {
             bossNameLabel.Text = selectedProject.Boss.FullName;
             projectStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById(selectedProject.Status));
             setRole(selectedProject);
-            /*
+            
             List<Unit> u = ProjectManager.GetRootUnits(selectedProject);
-            unitsTreeView.Roots = u;*/
+            unitsTreeView.Roots = u;
         }
 
         private void projectsSearchTextbox_TextChanged(object sender, EventArgs e) {
