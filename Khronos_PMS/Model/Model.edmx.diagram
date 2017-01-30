@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="KhronosPMSModel.Customer" Width="1.5" PointX="7.5" PointY="12.875" IsExpanded="true" />
         <EntityTypeShape EntityType="KhronosPMSModel.Log" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="KhronosPMSModel.Project" Width="1.5" PointX="5.25" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="KhronosPMSModel.Unit" Width="1.5" PointX="7.5" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="KhronosPMSModel.Unit" Width="1.75" PointX="7.375" PointY="16" IsExpanded="true" />
         <EntityTypeShape EntityType="KhronosPMSModel.User" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="KhronosPMSModel.Worker" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="KhronosPMSModel.WorksOn" Width="1.5" PointX="12.75" PointY="15.125" IsExpanded="true" />

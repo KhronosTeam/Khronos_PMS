@@ -79,7 +79,6 @@ namespace Khronos_PMS.View {
             this.projectNameLabel = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.unitTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.unitsTreeView = new System.Windows.Forms.TreeView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.button4 = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -114,6 +113,11 @@ namespace Khronos_PMS.View {
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.sfasidofjiaosdj = new System.Windows.Forms.ToolStrip();
             this.userLabel = new System.Windows.Forms.ToolStripButton();
+            this.unitsTreeView = new BrightIdeasSoftware.TreeListView();
+            this.unitName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.unitStatus = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.unitPriority = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.unitDueDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.projectsSearchTextbox = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.workersSearchTextBox = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -151,6 +155,7 @@ namespace Khronos_PMS.View {
             this.tableLayoutPanel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.sfasidofjiaosdj.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.unitsTreeView)).BeginInit();
             this.SuspendLayout();
             // 
             // workerName
@@ -236,7 +241,7 @@ namespace Khronos_PMS.View {
             // 
             // projectStatusToolStripMenuItem
             // 
-            this.projectStatusToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("projectStatusToolStripMenuItem.Image")));
+            this.projectStatusToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.project_report;
             this.projectStatusToolStripMenuItem.Name = "projectStatusToolStripMenuItem";
             this.projectStatusToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.projectStatusToolStripMenuItem.Text = "Project report";
@@ -354,10 +359,13 @@ namespace Khronos_PMS.View {
             this.projectsListView.MultiSelect = false;
             this.projectsListView.Name = "projectsListView";
             this.projectsListView.Scrollable = false;
+            this.projectsListView.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            this.projectsListView.SelectedForeColor = System.Drawing.Color.Black;
             this.projectsListView.ShowGroups = false;
             this.projectsListView.Size = new System.Drawing.Size(249, 128);
             this.projectsListView.SmallImageList = this.largeImageList;
             this.projectsListView.TabIndex = 6;
+            this.projectsListView.UnfocusedSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
             this.projectsListView.UseCompatibleStateImageBehavior = false;
             this.projectsListView.View = System.Windows.Forms.View.Details;
             this.projectsListView.SelectionChanged += new System.EventHandler(this.projectsListView_SelectionChanged);
@@ -384,6 +392,17 @@ namespace Khronos_PMS.View {
             this.largeImageList.Images.SetKeyName(3, "unit_in_progress_30x30.png");
             this.largeImageList.Images.SetKeyName(4, "unit_paused_30x30.png");
             this.largeImageList.Images.SetKeyName(5, "unit_completed_30x30.png");
+            this.largeImageList.Images.SetKeyName(6, "calendar_30x30.png");
+            this.largeImageList.Images.SetKeyName(7, "status_active_30x30.png");
+            this.largeImageList.Images.SetKeyName(8, "status_in_progress_30x30.png");
+            this.largeImageList.Images.SetKeyName(9, "status_paused_30x30.png");
+            this.largeImageList.Images.SetKeyName(10, "status_completed_30x30.png");
+            this.largeImageList.Images.SetKeyName(11, "priority_none_30x30.png");
+            this.largeImageList.Images.SetKeyName(12, "priority_very_low_30x30.png");
+            this.largeImageList.Images.SetKeyName(13, "priority_low_30x30.png");
+            this.largeImageList.Images.SetKeyName(14, "priority_medium_30x30.png");
+            this.largeImageList.Images.SetKeyName(15, "priority_high_30x30.png");
+            this.largeImageList.Images.SetKeyName(16, "priority_very_high_30x30.png");
             // 
             // projectsSearchButton
             // 
@@ -426,15 +445,17 @@ namespace Khronos_PMS.View {
             this.workersListView.FullRowSelect = true;
             this.workersListView.GridLines = true;
             this.workersListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.workersListView.HideSelection = false;
             this.workersListView.Location = new System.Drawing.Point(7, 48);
             this.workersListView.MultiSelect = false;
             this.workersListView.Name = "workersListView";
             this.workersListView.Scrollable = false;
+            this.workersListView.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            this.workersListView.SelectedForeColor = System.Drawing.Color.Black;
             this.workersListView.ShowGroups = false;
             this.workersListView.Size = new System.Drawing.Size(249, 135);
             this.workersListView.SmallImageList = this.largeImageList;
             this.workersListView.TabIndex = 5;
+            this.workersListView.UnfocusedSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
             this.workersListView.UseCompatibleStateImageBehavior = false;
             this.workersListView.View = System.Windows.Forms.View.Details;
             // 
@@ -749,16 +770,6 @@ namespace Khronos_PMS.View {
             this.unitTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.unitTableLayoutPanel.Size = new System.Drawing.Size(412, 177);
             this.unitTableLayoutPanel.TabIndex = 0;
-            // 
-            // unitsTreeView
-            // 
-            this.unitsTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.unitsTreeView.Location = new System.Drawing.Point(3, 63);
-            this.unitsTreeView.Name = "unitsTreeView";
-            this.unitsTreeView.Size = new System.Drawing.Size(406, 111);
-            this.unitsTreeView.TabIndex = 2;
-            this.unitsTreeView.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.unitsTreeView_AfterExpand);
-            this.unitsTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.unitsTreeView_NodeMouseClick);
             // 
             // tableLayoutPanel3
             // 
@@ -1177,6 +1188,81 @@ namespace Khronos_PMS.View {
             this.userLabel.Size = new System.Drawing.Size(83, 21);
             this.userLabel.Text = "User name";
             // 
+            // unitsTreeView
+            // 
+            this.unitsTreeView.AllColumns.Add(this.unitName);
+            this.unitsTreeView.AllColumns.Add(this.unitStatus);
+            this.unitsTreeView.AllColumns.Add(this.unitPriority);
+            this.unitsTreeView.AllColumns.Add(this.unitDueDate);
+            this.unitsTreeView.CellEditUseWholeCell = false;
+            this.unitsTreeView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.unitName,
+            this.unitStatus,
+            this.unitPriority,
+            this.unitDueDate});
+            this.unitsTreeView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.unitsTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.unitsTreeView.FullRowSelect = true;
+            this.unitsTreeView.GridLines = true;
+            this.unitsTreeView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.unitsTreeView.HideSelection = false;
+            this.unitsTreeView.Location = new System.Drawing.Point(3, 63);
+            this.unitsTreeView.MultiSelect = false;
+            this.unitsTreeView.Name = "unitsTreeView";
+            this.unitsTreeView.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            this.unitsTreeView.SelectedForeColor = System.Drawing.Color.Black;
+            this.unitsTreeView.ShowGroups = false;
+            this.unitsTreeView.Size = new System.Drawing.Size(406, 111);
+            this.unitsTreeView.SmallImageList = this.largeImageList;
+            this.unitsTreeView.TabIndex = 29;
+            this.unitsTreeView.UnfocusedSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
+            this.unitsTreeView.UseCompatibleStateImageBehavior = false;
+            this.unitsTreeView.View = System.Windows.Forms.View.Details;
+            this.unitsTreeView.VirtualMode = true;
+            this.unitsTreeView.SelectionChanged += new System.EventHandler(this.unitsTreeView_SelectionChanged);
+            // 
+            // unitName
+            // 
+            this.unitName.AspectName = "Name";
+            this.unitName.FillsFreeSpace = true;
+            this.unitName.Groupable = false;
+            this.unitName.IsEditable = false;
+            this.unitName.Text = "Name";
+            this.unitName.Width = 209;
+            // 
+            // unitStatus
+            // 
+            this.unitStatus.AspectName = "Status";
+            this.unitStatus.Groupable = false;
+            this.unitStatus.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.unitStatus.IsEditable = false;
+            this.unitStatus.MaximumWidth = 100;
+            this.unitStatus.MinimumWidth = 100;
+            this.unitStatus.Text = "Status";
+            this.unitStatus.Width = 100;
+            // 
+            // unitPriority
+            // 
+            this.unitPriority.AspectName = "Priority";
+            this.unitPriority.Groupable = false;
+            this.unitPriority.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.unitPriority.IsEditable = false;
+            this.unitPriority.MaximumWidth = 100;
+            this.unitPriority.MinimumWidth = 100;
+            this.unitPriority.Text = "Priority";
+            this.unitPriority.Width = 100;
+            // 
+            // unitDueDate
+            // 
+            this.unitDueDate.AspectName = "DueDate";
+            this.unitDueDate.Groupable = false;
+            this.unitDueDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.unitDueDate.IsEditable = false;
+            this.unitDueDate.MaximumWidth = 120;
+            this.unitDueDate.MinimumWidth = 120;
+            this.unitDueDate.Text = "Due date";
+            this.unitDueDate.Width = 120;
+            // 
             // projectsSearchTextbox
             // 
             this.projectsSearchTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1403,6 +1489,7 @@ namespace Khronos_PMS.View {
             this.toolStrip1.PerformLayout();
             this.sfasidofjiaosdj.ResumeLayout(false);
             this.sfasidofjiaosdj.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.unitsTreeView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1495,7 +1582,6 @@ namespace Khronos_PMS.View {
         private System.Windows.Forms.ToolStripMenuItem projectStatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem financialReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem activitiesReportToolStripMenuItem;
-        private System.Windows.Forms.TreeView unitsTreeView;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label manhoursLabel;
@@ -1513,5 +1599,10 @@ namespace Khronos_PMS.View {
         private BrightIdeasSoftware.DataListView projectsListView;
         private BrightIdeasSoftware.OLVColumn projectName;
         private System.Windows.Forms.ImageList largeImageList;
+        private BrightIdeasSoftware.TreeListView unitsTreeView;
+        private BrightIdeasSoftware.OLVColumn unitName;
+        private BrightIdeasSoftware.OLVColumn unitStatus;
+        private BrightIdeasSoftware.OLVColumn unitPriority;
+        private BrightIdeasSoftware.OLVColumn unitDueDate;
     }
 }

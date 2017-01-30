@@ -37,17 +37,10 @@ namespace Khronos_PMS.Util {
         }
 
         public static List<Unit> GetRootUnits(Project project) {
-            List<Unit> rootUnits = new List<Unit>();
-            var units = project.Units;
-            foreach (var unit in units) {
-                if (unit.AncestorClosureUnits.Count == 0)
-                    rootUnits.Add(unit);
-            }
-            return rootUnits;
+            return project.Units.Where(unit => unit.ClosureUnits.Any(c => c.Depth == 0)).ToList();
         }
 
         public static List<Unit> GetUnits(Project project) {
-            // Vratiti sve unite vezena za projekat
             return project.Units.ToList();
         }
 

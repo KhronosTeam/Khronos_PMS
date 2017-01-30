@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Khronos_PMS.ModelView {
+    [Obsolete("UnitView is deprecated, please use Unit instead.")]
     class UnitView {
         public int ID { get; set; }
         public int ProjectID { get; set; }
@@ -21,6 +22,7 @@ namespace Khronos_PMS.ModelView {
 
         public UnitView() {
         }
+
         public UnitView(Unit unit) {
             this.unit = unit;
             ID = unit.ID;
@@ -62,15 +64,15 @@ namespace Khronos_PMS.ModelView {
             if (children == null) setChildren(this);
             return children;
         }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="ProjectID">int, id projekta čiji se root uniti traže</param>
         /// <returns> listu root unita</returns>
-        public static List<UnitView> getRootUnits(int ProjectID) {
+        public static List<UnitView> getRootUnits(Project project) {
             List<UnitView> toReturn = new List<UnitView>();
-
-            List<Unit> units = ProjectManager.entities.Projects.First(p => p.ID == ProjectID).Units.ToList();
+            var units = project.Units;
             foreach (Unit unit in units) {
                 if (unit.ClosureUnits.ToArray()[0].Depth == 0) {
                     toReturn.Add(new UnitView(unit));
@@ -80,8 +82,7 @@ namespace Khronos_PMS.ModelView {
             return toReturn;
         }
 
-        public void setGrandChildren()
-        {
+        public void setGrandChildren() {
             foreach (UnitView child in children) {
                 child.setChildren();
             }
@@ -95,7 +96,6 @@ namespace Khronos_PMS.ModelView {
         public void addChild(Unit unit) {
             children.Add(new UnitView(unit));
         }
-
     }
 
     // TODO preload in unittreeview

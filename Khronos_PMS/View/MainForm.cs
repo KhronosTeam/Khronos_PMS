@@ -22,11 +22,23 @@ namespace Khronos_PMS.View {
 
             // pošto u LoginForm imamo progress bar ovdje ćemo učitati sve što treba iz baze
             // pa kada se forma pokrene sve bude učitano
-
             projectsListView.GetColumn(0).ImageGetter = i => 0;
-            workersListView.GetColumn(0).ImageGetter = i => 1;
+
             List<Project> projects = ProjectManager.GetProjects(user);
             projectsListView.DataSource = projects;
+            unitsTreeView.CanExpandGetter = u => (u as Unit).HasChildren;
+            unitsTreeView.ChildrenGetter = u => (u as Unit).Children;
+
+            int statusOffset = 7, priorityOffset = 11;
+
+            workersListView.GetColumn(0).ImageGetter = i => 1;
+            unitsTreeView.GetColumn(0).ImageGetter = u => (u as Unit).Status + 2;
+            unitsTreeView.GetColumn(1).ImageGetter = u => (u as Unit).Status + statusOffset;
+            unitsTreeView.GetColumn(1).AspectToStringConverter = s => StatusManager.Name(StatusManager.getStausById((int) s));
+            unitsTreeView.GetColumn(2).ImageGetter = u => (u as Unit).Priority + priorityOffset;
+            unitsTreeView.GetColumn(2).AspectToStringConverter = s => PriorityManager.Name(PriorityManager.GetPriorityById((int) s));
+            unitsTreeView.GetColumn(3).ImageGetter = u => 6;
+            unitsTreeView.GetColumn(3).AspectToStringConverter = d => ((DateTime) d).ToShortDateString();
         }
 
         private void MainForm_Load(Object sender, EventArgs e) {
@@ -66,7 +78,7 @@ namespace Khronos_PMS.View {
             unitStatusMenuButton.Image = StatusManager.Image(status);
 
             new Task(() => {
-                Unit selectedUnit = (Unit) unitsTreeView.SelectedNode.Tag;
+                Unit selectedUnit = (Unit) unitsTreeView.SelectedObject;
                 StatusManager.UpdateStatus(selectedUnit, status);
             }).Start();
         }
@@ -76,13 +88,14 @@ namespace Khronos_PMS.View {
             unitPriorityMenuButton.Image = PriorityManager.Image(priority);
 
             new Task(() => {
-                Unit selectedUnit = (Unit) unitsTreeView.SelectedNode.Tag;
+                Unit selectedUnit = (Unit) unitsTreeView.SelectedObject;
                 PriorityManager.UpdatePriority(selectedUnit, priority);
             }).Start();
         }
 
         private void projectsListView_SelectionChanged(Object sender, EventArgs e) {
             Project selectedProject = (Project) projectsListView.SelectedObject;
+            if (selectedProject == null) return;
             List<Worker> workers = ProjectManager.GetWorkers(selectedProject);
             workersListView.DataSource = workers;
             projectNameLabel.Text = selectedProject.Name;
@@ -94,15 +107,9 @@ namespace Khronos_PMS.View {
             bossNameLabel.Text = selectedProject.Boss.FullName;
             projectStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById(selectedProject.Status));
             setRole(selectedProject);
-
-            unitsTreeView.Nodes.Clear();
-            List<UnitView> units = UnitView.getRootUnits(selectedProject.ID);
-            foreach (UnitView unitView in units) {
-                TreeNode rootNode = new TreeNode(unitView.Name);
-                rootNode.Tag = unitView;
-                unitsTreeView.Nodes.Add(rootNode);
-                setupTreeNode(rootNode);
-            }
+            
+            List<Unit> u = ProjectManager.GetRootUnits(selectedProject);
+            unitsTreeView.Roots = u;
         }
 
         private void projectsSearchTextbox_TextChanged(object sender, EventArgs e) {
@@ -158,47 +165,9 @@ namespace Khronos_PMS.View {
             searchWorkers();
         }
 
-        private void unitsTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
-            // TreeNode selectedNode = e.Node;
-            // UnitView selectedUnit = ((UnitView)selectedNode.Tag);
-            // selectedUnit.setChildrenAndGrandChildren();
-            // if (selectedNode.Nodes.Count == 0)
-            //     foreach (UnitView child in selectedUnit.children) {
-            //         TreeNode childNode = new TreeNode(child.Name);
-            //         childNode.Tag = child;
-            //         selectedNode.Nodes.Add(childNode);
-            //         foreach (UnitView grandChild in child.children)
-            //         {
-            //             TreeNode grandChildNode = new TreeNode(grandChild.Name);
-            //             grandChildNode.Tag = grandChild;
-            //             childNode.Nodes.Add(grandChildNode);
-            //         }
-            //    }
-            // if (selectedNode.IsExpanded)
-            //     selectedNode.Collapse();
-            // else
-            //     selectedNode.Expand();
-        }
-
-        private void unitsTreeView_AfterExpand(object sender, TreeViewEventArgs e) {
-            TreeNode selectedNode = e.Node;
-            setupTreeNode(selectedNode);
-        }
-
-        private void setupTreeNode(TreeNode selectedNode) {
-            UnitView selectedUnit = ((UnitView) selectedNode.Tag);
-            selectedUnit.setChildrenAndGrandChildren();
-            if (selectedNode.Nodes.Count == 0)
-                foreach (UnitView child in selectedUnit.children) {
-                    TreeNode childNode = new TreeNode(child.Name);
-                    childNode.Tag = child;
-                    selectedNode.Nodes.Add(childNode);
-                    foreach (UnitView grandChild in child.children) {
-                        TreeNode grandChildNode = new TreeNode(grandChild.Name);
-                        grandChildNode.Tag = grandChild;
-                        childNode.Nodes.Add(grandChildNode);
-                    }
-                }
+        private void unitsTreeView_SelectionChanged(Object sender, EventArgs e) {
+            Unit unit = (Unit) unitsTreeView.SelectedObject;
+            if (unit == null) return;
         }
     }
 }

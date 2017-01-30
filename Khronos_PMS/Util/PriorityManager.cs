@@ -66,5 +66,9 @@ namespace Khronos_PMS.Util {
                 entities.Entry(unit).State = System.Data.Entity.EntityState.Detached;
             }
         }
+
+        public static Priority GetPriorityById(int id) {
+            return (Priority) Enum.ToObject(typeof(Priority), id);
+        }
     }
 }
