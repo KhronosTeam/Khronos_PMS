@@ -23,17 +23,22 @@ namespace Khronos_PMS.Util {
             return entities.Projects.Where(p => (p.BossID == user.ID) || (p.SupervisorID == user.ID) || (p.Customers.Any(c => c.ID == user.ID)) || (p.AssignedWorkers.Any(w => w.WorkerID == user.ID))).ToList();
         }
 
-        public static List<Worker> GetWorkers(Project project) {
+        public static List<Worker> GetWorkers(Project project, User user) {
+            //todo izbaciti null iz if, za sad ostavljam da se ne morate logovati svaki put
+            if (user == null || project.BossID == user.ID)
+                return GetAllWorkers();
+
             List<Worker> workers = new List<Worker>();
-            try {
-                foreach (AssignedTo assigned in project.AssignedWorkers) {
-                    if (assigned.Worker.User.Active)
-                        workers.Add(assigned.Worker);
-                }
-            } catch (Exception e) {
-                Console.Out.WriteLine(e.StackTrace);
+
+            foreach (AssignedTo assigned in project.AssignedWorkers) {
+                if (assigned.Worker.User.Active)
+                    workers.Add(assigned.Worker);
             }
             return workers;
+        }
+
+        public static List<Worker> GetAllWorkers() {
+            return entities.Workers.ToList();
         }
 
         public static List<Unit> GetRootUnits(Project project) {
@@ -49,6 +54,18 @@ namespace Khronos_PMS.Util {
             foreach (Unit unit in project.Units) {
             }
             return units;
+        }
+
+        public static bool IsWorkerAssigned(Project project, Worker worker) {
+            return true;
+        }
+
+        public static void AssignWorker(Project project, Worker worker) {
+            
+        }
+
+        public static void UnassignWorker(Project project, Worker worker) {
+            
         }
     }
 }

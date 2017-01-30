@@ -246,6 +246,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\edit.png" />
     <None Include="Resources\project_report.png" />
     <None Include="Resources\project report.png" />
     <None Include="Resources\clock.png" />
