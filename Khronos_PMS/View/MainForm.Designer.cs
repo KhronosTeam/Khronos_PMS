@@ -82,6 +82,9 @@ namespace Khronos_PMS.View {
             this.unitStatus = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.unitPriority = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.unitDueDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.unitEstimatedManhours = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.unitSpentManhours = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.unitExpense = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.addNewUnitButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -99,6 +102,8 @@ namespace Khronos_PMS.View {
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.unitSpentManhoursLabel = new System.Windows.Forms.Label();
+            this.assigneesListView = new BrightIdeasSoftware.DataListView();
+            this.assigneeName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.smallImageList = new System.Windows.Forms.ImageList(this.components);
             this.unitNameLabel = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -116,11 +121,6 @@ namespace Khronos_PMS.View {
             this.sfasidofjiaosdj = new System.Windows.Forms.ToolStrip();
             this.userLabel = new System.Windows.Forms.ToolStripDropDownButton();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unitEstimatedManhours = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.unitSpentManhours = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.unitExpense = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.assigneesListView = new BrightIdeasSoftware.DataListView();
-            this.assigneeName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.projectsSearchTextbox = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.workersSearchTextBox = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -157,9 +157,9 @@ namespace Khronos_PMS.View {
             this.tableLayoutPanel4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.assigneesListView)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.sfasidofjiaosdj.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.assigneesListView)).BeginInit();
             this.SuspendLayout();
             // 
             // workerName
@@ -862,6 +862,36 @@ namespace Khronos_PMS.View {
             this.unitDueDate.Text = "Due date";
             this.unitDueDate.Width = 110;
             // 
+            // unitEstimatedManhours
+            // 
+            this.unitEstimatedManhours.AspectName = "EstManhours";
+            this.unitEstimatedManhours.AspectToStringFormat = "{0} h";
+            this.unitEstimatedManhours.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.unitEstimatedManhours.MaximumWidth = 100;
+            this.unitEstimatedManhours.MinimumWidth = 100;
+            this.unitEstimatedManhours.Text = "Est man-hours";
+            this.unitEstimatedManhours.Width = 100;
+            // 
+            // unitSpentManhours
+            // 
+            this.unitSpentManhours.AspectName = "SpentManhours";
+            this.unitSpentManhours.AspectToStringFormat = "{0} h";
+            this.unitSpentManhours.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.unitSpentManhours.MaximumWidth = 110;
+            this.unitSpentManhours.MinimumWidth = 110;
+            this.unitSpentManhours.Text = "Spent man-hours";
+            this.unitSpentManhours.Width = 110;
+            // 
+            // unitExpense
+            // 
+            this.unitExpense.AspectName = "Expense";
+            this.unitExpense.AspectToStringFormat = "{0:0.00}";
+            this.unitExpense.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.unitExpense.MaximumWidth = 200;
+            this.unitExpense.MinimumWidth = 120;
+            this.unitExpense.Text = "Expense (KM)";
+            this.unitExpense.Width = 120;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
@@ -1096,6 +1126,34 @@ namespace Khronos_PMS.View {
             this.unitSpentManhoursLabel.Text = "0h";
             this.unitSpentManhoursLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // assigneesListView
+            // 
+            this.assigneesListView.AllColumns.Add(this.assigneeName);
+            this.assigneesListView.AutoGenerateColumns = false;
+            this.assigneesListView.BackColor = System.Drawing.SystemColors.Control;
+            this.assigneesListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.assigneesListView.CellEditUseWholeCell = false;
+            this.assigneesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.assigneeName});
+            this.assigneesListView.DataSource = null;
+            this.assigneesListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.assigneesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.assigneesListView.Location = new System.Drawing.Point(133, 78);
+            this.assigneesListView.MultiSelect = false;
+            this.assigneesListView.Name = "assigneesListView";
+            this.assigneesListView.ShowGroups = false;
+            this.assigneesListView.Size = new System.Drawing.Size(161, 71);
+            this.assigneesListView.SmallImageList = this.smallImageList;
+            this.assigneesListView.TabIndex = 32;
+            this.assigneesListView.UseCompatibleStateImageBehavior = false;
+            this.assigneesListView.View = System.Windows.Forms.View.Details;
+            // 
+            // assigneeName
+            // 
+            this.assigneeName.AspectName = "FullName";
+            this.assigneeName.FillsFreeSpace = true;
+            this.assigneeName.Text = "Assignees";
+            // 
             // smallImageList
             // 
             this.smallImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("smallImageList.ImageStream")));
@@ -1272,64 +1330,6 @@ namespace Khronos_PMS.View {
             this.logOutToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.logOutToolStripMenuItem.Text = "Log out";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
-            // 
-            // unitEstimatedManhours
-            // 
-            this.unitEstimatedManhours.AspectName = "EstimatedManhours";
-            this.unitEstimatedManhours.AspectToStringFormat = "{0} h";
-            this.unitEstimatedManhours.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.unitEstimatedManhours.MaximumWidth = 100;
-            this.unitEstimatedManhours.MinimumWidth = 100;
-            this.unitEstimatedManhours.Text = "Est man-hours";
-            this.unitEstimatedManhours.Width = 100;
-            // 
-            // unitSpentManhours
-            // 
-            this.unitSpentManhours.AspectName = "SpentManhours";
-            this.unitSpentManhours.AspectToStringFormat = "{0} h";
-            this.unitSpentManhours.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.unitSpentManhours.MaximumWidth = 110;
-            this.unitSpentManhours.MinimumWidth = 110;
-            this.unitSpentManhours.Text = "Spent man-hours";
-            this.unitSpentManhours.Width = 110;
-            // 
-            // unitExpense
-            // 
-            this.unitExpense.AspectName = "Expense";
-            this.unitExpense.AspectToStringFormat = "{0:0.00}";
-            this.unitExpense.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.unitExpense.MaximumWidth = 200;
-            this.unitExpense.MinimumWidth = 120;
-            this.unitExpense.Text = "Expense (KM)";
-            this.unitExpense.Width = 120;
-            // 
-            // assigneesListView
-            // 
-            this.assigneesListView.AllColumns.Add(this.assigneeName);
-            this.assigneesListView.AutoGenerateColumns = false;
-            this.assigneesListView.BackColor = System.Drawing.SystemColors.Control;
-            this.assigneesListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.assigneesListView.CellEditUseWholeCell = false;
-            this.assigneesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.assigneeName});
-            this.assigneesListView.DataSource = null;
-            this.assigneesListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.assigneesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.assigneesListView.Location = new System.Drawing.Point(133, 78);
-            this.assigneesListView.MultiSelect = false;
-            this.assigneesListView.Name = "assigneesListView";
-            this.assigneesListView.ShowGroups = false;
-            this.assigneesListView.Size = new System.Drawing.Size(161, 71);
-            this.assigneesListView.SmallImageList = this.smallImageList;
-            this.assigneesListView.TabIndex = 32;
-            this.assigneesListView.UseCompatibleStateImageBehavior = false;
-            this.assigneesListView.View = System.Windows.Forms.View.Details;
-            // 
-            // assigneeName
-            // 
-            this.assigneeName.AspectName = "FullName";
-            this.assigneeName.FillsFreeSpace = true;
-            this.assigneeName.Text = "Assignees";
             // 
             // projectsSearchTextbox
             // 
@@ -1555,11 +1555,11 @@ namespace Khronos_PMS.View {
             this.groupBox5.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.assigneesListView)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.sfasidofjiaosdj.ResumeLayout(false);
             this.sfasidofjiaosdj.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.assigneesListView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

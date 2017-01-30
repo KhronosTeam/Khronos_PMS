@@ -31,7 +31,6 @@ namespace Khronos_PMS.ModelView {
             DueDate = unit.DueDate;
             Priority = unit.Priority;
             Expense = unit.Priority;
-            Finished = unit.Finished;
             try {
                 Depth = unit.ClosureUnits.ToArray()[0].Depth;
             } catch (Exception e) {

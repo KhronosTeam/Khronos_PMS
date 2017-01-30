@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="KhronosPMSModel.Customer" Width="1.5" PointX="7.5" PointY="12.875" IsExpanded="true" />
         <EntityTypeShape EntityType="KhronosPMSModel.Log" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="KhronosPMSModel.Project" Width="1.5" PointX="5.25" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="KhronosPMSModel.Unit" Width="1.75" PointX="7.375" PointY="16" IsExpanded="true" />
         <EntityTypeShape EntityType="KhronosPMSModel.User" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="KhronosPMSModel.Worker" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="KhronosPMSModel.WorksOn" Width="1.5" PointX="12.75" PointY="15.125" IsExpanded="true" />
@@ -21,16 +20,17 @@
         <AssociationConnector Association="KhronosPMSModel.AssignedTo_ibfk_1" ManuallyRouted="false" />
         <AssociationConnector Association="KhronosPMSModel.AssignedTo_ibfk_2" ManuallyRouted="false" />
         <AssociationConnector Association="KhronosPMSModel.WorksOn_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="KhronosPMSModel.ClosureUnit_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="KhronosPMSModel.ClosureUnit_ibfk_2" ManuallyRouted="false" />
         <AssociationConnector Association="KhronosPMSModel.Customer_ibfk_1" ManuallyRouted="false" />
         <AssociationConnector Association="KhronosPMSModel.Log_ibfk_1" ManuallyRouted="false" />
         <AssociationConnector Association="KhronosPMSModel.Project_ibfk_1" ManuallyRouted="false" />
         <AssociationConnector Association="KhronosPMSModel.Project_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="KhronosPMSModel.Unit_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="KhronosPMSModel.WorksOn_ibfk_1" ManuallyRouted="false" />
         <AssociationConnector Association="KhronosPMSModel.Worker_ibfk_1" ManuallyRouted="false" />
         <AssociationConnector Association="KhronosPMSModel.CustomerProject" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="KhronosPMSModel.Unit" Width="1.5" PointX="7.5" PointY="15.875" />
+        <AssociationConnector Association="KhronosPMSModel.ClosureUnit_ibfk_1" />
+        <AssociationConnector Association="KhronosPMSModel.ClosureUnit_ibfk_2" />
+        <AssociationConnector Association="KhronosPMSModel.Unit_ibfk_1" />
+        <AssociationConnector Association="KhronosPMSModel.WorksOn_ibfk_1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

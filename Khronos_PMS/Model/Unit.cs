@@ -26,10 +26,11 @@ namespace Khronos_PMS.Model
         public int ProjectID { get; set; }
         public string Name { get; set; }
         public System.DateTime DueDate { get; set; }
+        public int Status { get; set; }
         public int Priority { get; set; }
         public decimal Expense { get; set; }
-        public bool Finished { get; set; }
-        public Nullable<int> Status { get; set; }
+        public int EstManhours { get; set; }
+        public int SpentManhours { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClosureUnit> ClosureUnits { get; set; }

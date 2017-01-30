@@ -21,6 +21,7 @@ namespace Khronos_PMS.Model
         public int ProjectID { get; set; }
         public System.DateTime Date { get; set; }
         public int Manhour { get; set; }
+        public decimal Expense { get; set; }
     
         public virtual WorksOn WorksOn { get; set; }
     }

@@ -32,9 +32,9 @@ namespace Khronos_PMS.Model
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
-        public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Worker> Workers { get; set; }
         public virtual DbSet<WorksOn> WorksOns { get; set; }
+        public virtual DbSet<Unit> Units { get; set; }
     }
 }

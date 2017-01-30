@@ -170,7 +170,7 @@ namespace Khronos_PMS.View {
                 unitStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById((int) unit.Status));
                 unitPriorityMenuButton.Image = PriorityManager.Image(PriorityManager.GetPriorityById(unit.Priority));
                 unitNameLabel.Text = unit.Name;
-                unitEstimatedManhoursLabel.Text = unit.EstimatedManhours + " h";
+                unitEstimatedManhoursLabel.Text = unit.EstManhours + " h";
                 unitSpentManhoursLabel.Text = unit.SpentManhours + " h";
                 unitDueDateLabel.Text = unit.DueDate.ToShortDateString();
                 assigneesListView.DataSource = unit.Assigness;
