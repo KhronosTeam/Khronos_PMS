@@ -52,9 +52,10 @@ namespace Khronos_PMS.View {
         {
             InitializeComponent();
             this.selectedProject = selectedProject;
+            this.selectedUnit = selectedUnit;
             onStart();
             unitNameTextBox.Text = name;
-            this.selectedUnit = selectedUnit;
+         
         }
 
         private void onStart() {
@@ -73,7 +74,7 @@ namespace Khronos_PMS.View {
 
             priorityComboBox.DataSource = Enum.GetValues(typeof(Priority));
             if (edit) {
-                foreach (WorksOn worksOn in selectedUnit.Workers)
+                foreach (WorksOn worksOn in selectedUnit.Workers.Where(wo => wo.Active == true).ToList())
                 {
                     workersListView.CheckedObjects.Add(worksOn.AssignedTo.Worker);
                 }
@@ -86,6 +87,10 @@ namespace Khronos_PMS.View {
             }
             else {
                 workersListView.UncheckAll();
+            }
+            if (selectedUnit != null) {
+                unitsTreeView.CheckedObjects.Add(selectedUnit);
+                unitsTreeView.CheckObject(selectedUnit);
             }
 
         }
@@ -148,9 +153,10 @@ namespace Khronos_PMS.View {
         {
             if (edit)
             {
-                setAttributes(selectedUnit);
+                setAttributes(editUnit);
 
-                setAncestorID(selectedUnit);
+                setAncestorID(editUnit);
+                setWorkers(editUnit);
             }
             else {
                 Unit newUnit = new Unit();
@@ -158,8 +164,46 @@ namespace Khronos_PMS.View {
                 ProjectManager.entities.Units.Add(newUnit);
                 ProjectManager.entities.SaveChanges();
                 setAncestorID(newUnit);
-
+                setWorkers(newUnit);
             }
+            this.Close();
+        }
+
+        public void setWorkers(Unit unit) {
+            var list = workersListView.CheckedObjects;
+            var enumerator = list.GetEnumerator();
+            WorksOn[] niz = ProjectManager.entities.WorksOns.Where(wo => wo.Active == true
+                    && wo.UnitID == unit.ID
+                    && wo.ProjectID == selectedProject.ID
+                ).ToArray();
+
+            foreach (WorksOn workson in niz) {
+                workson.Active = false;
+            }
+            while (enumerator.MoveNext()) {
+                Worker selectedWorker = (Worker)enumerator.Current;
+                List<WorksOn> lista = ProjectManager.entities.WorksOns.Where(wo => wo.WorkerID == selectedWorker.ID
+                    && wo.UnitID == unit.ID
+                    && wo.ProjectID == selectedProject.ID
+                ).ToList();
+                if (lista.Count == 0) {
+                    // novi upis, postavi na aktivan
+                    WorksOn newWorksOn = new WorksOn();
+                    newWorksOn.ProjectID = selectedProject.ID;
+                    newWorksOn.UnitID = unit.ID;
+                    newWorksOn.WorkerID = selectedWorker.ID;
+                    newWorksOn.Active = true;
+                    ProjectManager.entities.WorksOns.Add(newWorksOn);
+                    
+                }
+                else {
+                    WorksOn newWorksOn = lista.ToArray()[0];
+                    newWorksOn.Active = true;
+                    ProjectManager.entities.WorksOns.Attach(newWorksOn);
+                    ProjectManager.entities.Entry(newWorksOn).State = System.Data.Entity.EntityState.Modified;
+                }
+            }
+            ProjectManager.entities.SaveChanges();
         }
 
         private void setAttributes(Unit unit) {

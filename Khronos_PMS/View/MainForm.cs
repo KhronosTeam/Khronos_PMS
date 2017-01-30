@@ -208,6 +208,7 @@ namespace Khronos_PMS.View {
 
         private void addNewUnitButton_Click(Object sender, EventArgs e) {
             //todo show UnitForm
+            new UnitForm((Project)projectsListView.SelectedObject, promptTextBox3.Text, (Unit)unitsTreeView.SelectedObject).Show(); ;
         }
     }
 }
