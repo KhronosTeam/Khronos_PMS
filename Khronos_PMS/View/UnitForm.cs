@@ -69,7 +69,7 @@ namespace Khronos_PMS.View {
             unitsTreeView.GetColumn(1).AspectToStringConverter = s => StatusManager.Name(StatusManager.getStausById((int)s));
 
             workersListView.GetColumn(0).ImageGetter = i => 1;
-            List<Worker> workers = ProjectManager.GetWorkers(selectedProject);
+            List<Worker> workers = ProjectManager.GetAllWorkers();
             workersListView.DataSource = workers;
 
             priorityComboBox.DataSource = Enum.GetValues(typeof(Priority));

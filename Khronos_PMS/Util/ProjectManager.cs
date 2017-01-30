@@ -23,11 +23,7 @@ namespace Khronos_PMS.Util {
             return entities.Projects.Where(p => (p.BossID == user.ID) || (p.SupervisorID == user.ID) || (p.Customers.Any(c => c.ID == user.ID)) || (p.AssignedWorkers.Any(w => w.WorkerID == user.ID))).ToList();
         }
 
-        public static List<Worker> GetWorkers(Project project, User user) {
-            //todo izbaciti null iz if, za sad ostavljam da se ne morate logovati svaki put
-            if (user == null || project.BossID == user.ID)
-                return GetAllWorkers();
-
+        public static List<Worker> GetWorkers(Project project) {
             List<Worker> workers = new List<Worker>();
 
             foreach (AssignedTo assigned in project.AssignedWorkers) {
@@ -35,6 +31,10 @@ namespace Khronos_PMS.Util {
                     workers.Add(assigned.Worker);
             }
             return workers;
+        }
+
+        public static List<Worker> GetWorkers(Project project, User user) {
+            return user == null || project.BossID == user.ID ? GetAllWorkers() : GetWorkers(project);
         }
 
         public static List<Worker> GetAllWorkers() {
