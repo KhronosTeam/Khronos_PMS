@@ -21,7 +21,11 @@ namespace Khronos_PMS.View {
             InitializeComponent();
             //todo UnitForm je forma za kreiranje i editovanje unita
         }
-
+        /// <summary>
+        /// POZIVA SE NA EDIT
+        /// </summary>
+        /// <param name="editUnit"></param>
+        /// <param name="selectedProject"></param>
         public UnitForm(Unit editUnit, Project selectedProject)
         {
             InitializeComponent();
@@ -36,6 +40,21 @@ namespace Khronos_PMS.View {
             InitializeComponent();
             this.selectedProject = selectedProject;
             onStart();
+        }
+        /// <summary>
+        /// poziva se na dodavanje novog unita, tekst se upiše u name tetbox za ime unita, a automatski se selektuje
+        /// nadam se i father unit
+        /// </summary>
+        /// <param name="selectedProject"></param>
+        /// <param name="name"></param>
+        /// <param name="selectedUnit"></param>
+        public UnitForm(Project selectedProject, string name, Unit selectedUnit)
+        {
+            InitializeComponent();
+            this.selectedProject = selectedProject;
+            onStart();
+            unitNameTextBox.Text = name;
+            this.selectedUnit = selectedUnit;
         }
 
         private void onStart() {
