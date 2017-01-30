@@ -27,8 +27,6 @@ namespace Khronos_PMS.View {
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Marko Stijak", 0);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Nemanja Lukić", 0);
             this.workerName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,23 +83,22 @@ namespace Khronos_PMS.View {
             this.unitPriority = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.unitDueDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.addNewUnitButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.unitsSearchButton = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label17 = new System.Windows.Forms.Label();
-            this.manhoursLabel = new System.Windows.Forms.Label();
+            this.unitEstimatedManhoursLabel = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.dueDateLabel = new System.Windows.Forms.Label();
+            this.unitDueDateLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.assigneesListView = new System.Windows.Forms.ListView();
+            this.unitSpentManhoursLabel = new System.Windows.Forms.Label();
             this.smallImageList = new System.Windows.Forms.ImageList(this.components);
             this.unitNameLabel = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -122,6 +119,8 @@ namespace Khronos_PMS.View {
             this.unitEstimatedManhours = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.unitSpentManhours = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.unitExpense = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.assigneesListView = new BrightIdeasSoftware.DataListView();
+            this.assigneeName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.projectsSearchTextbox = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.workersSearchTextBox = new Khronos_PMS.View.CustomControls.PromptTextBox();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -160,6 +159,7 @@ namespace Khronos_PMS.View {
             this.tableLayoutPanel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.sfasidofjiaosdj.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.assigneesListView)).BeginInit();
             this.SuspendLayout();
             // 
             // workerName
@@ -860,7 +860,7 @@ namespace Khronos_PMS.View {
             this.unitDueDate.MaximumWidth = 110;
             this.unitDueDate.MinimumWidth = 110;
             this.unitDueDate.Text = "Due date";
-            this.unitDueDate.Width = 120;
+            this.unitDueDate.Width = 110;
             // 
             // tableLayoutPanel3
             // 
@@ -868,7 +868,7 @@ namespace Khronos_PMS.View {
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel3.Controls.Add(this.promptTextBox3, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.button4, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.addNewUnitButton, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
@@ -878,16 +878,16 @@ namespace Khronos_PMS.View {
             this.tableLayoutPanel3.Size = new System.Drawing.Size(417, 30);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
-            // button4
+            // addNewUnitButton
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.Location = new System.Drawing.Point(375, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(39, 24);
-            this.button4.TabIndex = 9;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.addNewUnitButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addNewUnitButton.Image = ((System.Drawing.Image)(resources.GetObject("addNewUnitButton.Image")));
+            this.addNewUnitButton.Location = new System.Drawing.Point(375, 3);
+            this.addNewUnitButton.Name = "addNewUnitButton";
+            this.addNewUnitButton.Size = new System.Drawing.Size(39, 24);
+            this.addNewUnitButton.TabIndex = 9;
+            this.addNewUnitButton.UseVisualStyleBackColor = true;
+            this.addNewUnitButton.Click += new System.EventHandler(this.addNewUnitButton_Click);
             // 
             // tableLayoutPanel4
             // 
@@ -941,16 +941,16 @@ namespace Khronos_PMS.View {
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.62816F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.37184F));
             this.tableLayoutPanel2.Controls.Add(this.label17, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.manhoursLabel, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.unitEstimatedManhoursLabel, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.label18, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label12, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.label13, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.label10, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.label11, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.dueDateLabel, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.unitDueDateLabel, 2, 2);
             this.tableLayoutPanel2.Controls.Add(this.label6, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label7, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label16, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.unitSpentManhoursLabel, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.assigneesListView, 2, 3);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 68);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -973,18 +973,18 @@ namespace Khronos_PMS.View {
             this.label17.TabIndex = 26;
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // manhoursLabel
+            // unitEstimatedManhoursLabel
             // 
-            this.manhoursLabel.AutoSize = true;
-            this.manhoursLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.manhoursLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.manhoursLabel.Location = new System.Drawing.Point(130, 0);
-            this.manhoursLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.manhoursLabel.Name = "manhoursLabel";
-            this.manhoursLabel.Size = new System.Drawing.Size(167, 25);
-            this.manhoursLabel.TabIndex = 27;
-            this.manhoursLabel.Text = "400h";
-            this.manhoursLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.unitEstimatedManhoursLabel.AutoSize = true;
+            this.unitEstimatedManhoursLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.unitEstimatedManhoursLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.unitEstimatedManhoursLabel.Location = new System.Drawing.Point(130, 0);
+            this.unitEstimatedManhoursLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.unitEstimatedManhoursLabel.Name = "unitEstimatedManhoursLabel";
+            this.unitEstimatedManhoursLabel.Size = new System.Drawing.Size(167, 25);
+            this.unitEstimatedManhoursLabel.TabIndex = 27;
+            this.unitEstimatedManhoursLabel.Text = "400h";
+            this.unitEstimatedManhoursLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label18
             // 
@@ -1046,18 +1046,18 @@ namespace Khronos_PMS.View {
             this.label11.Text = "Due date:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dueDateLabel
+            // unitDueDateLabel
             // 
-            this.dueDateLabel.AutoSize = true;
-            this.dueDateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dueDateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.dueDateLabel.Location = new System.Drawing.Point(130, 50);
-            this.dueDateLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.dueDateLabel.Name = "dueDateLabel";
-            this.dueDateLabel.Size = new System.Drawing.Size(167, 25);
-            this.dueDateLabel.TabIndex = 28;
-            this.dueDateLabel.Text = "25.02.2017.";
-            this.dueDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.unitDueDateLabel.AutoSize = true;
+            this.unitDueDateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.unitDueDateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.unitDueDateLabel.Location = new System.Drawing.Point(130, 50);
+            this.unitDueDateLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.unitDueDateLabel.Name = "unitDueDateLabel";
+            this.unitDueDateLabel.Size = new System.Drawing.Size(167, 25);
+            this.unitDueDateLabel.TabIndex = 28;
+            this.unitDueDateLabel.Text = "25.02.2017.";
+            this.unitDueDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
@@ -1083,35 +1083,18 @@ namespace Khronos_PMS.View {
             this.label7.Text = "Spent man-hours:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label16
+            // unitSpentManhoursLabel
             // 
-            this.label16.AutoSize = true;
-            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.label16.Location = new System.Drawing.Point(130, 25);
-            this.label16.Margin = new System.Windows.Forms.Padding(0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(167, 25);
-            this.label16.TabIndex = 31;
-            this.label16.Text = "0h";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // assigneesListView
-            // 
-            this.assigneesListView.BackColor = System.Drawing.SystemColors.Control;
-            this.assigneesListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.assigneesListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.assigneesListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
-            this.assigneesListView.Location = new System.Drawing.Point(133, 78);
-            this.assigneesListView.MultiSelect = false;
-            this.assigneesListView.Name = "assigneesListView";
-            this.assigneesListView.Size = new System.Drawing.Size(161, 71);
-            this.assigneesListView.SmallImageList = this.smallImageList;
-            this.assigneesListView.TabIndex = 32;
-            this.assigneesListView.UseCompatibleStateImageBehavior = false;
-            this.assigneesListView.View = System.Windows.Forms.View.SmallIcon;
+            this.unitSpentManhoursLabel.AutoSize = true;
+            this.unitSpentManhoursLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.unitSpentManhoursLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.unitSpentManhoursLabel.Location = new System.Drawing.Point(130, 25);
+            this.unitSpentManhoursLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.unitSpentManhoursLabel.Name = "unitSpentManhoursLabel";
+            this.unitSpentManhoursLabel.Size = new System.Drawing.Size(167, 25);
+            this.unitSpentManhoursLabel.TabIndex = 31;
+            this.unitSpentManhoursLabel.Text = "0h";
+            this.unitSpentManhoursLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // smallImageList
             // 
@@ -1319,6 +1302,34 @@ namespace Khronos_PMS.View {
             this.unitExpense.MinimumWidth = 120;
             this.unitExpense.Text = "Expense (KM)";
             this.unitExpense.Width = 120;
+            // 
+            // assigneesListView
+            // 
+            this.assigneesListView.AllColumns.Add(this.assigneeName);
+            this.assigneesListView.AutoGenerateColumns = false;
+            this.assigneesListView.BackColor = System.Drawing.SystemColors.Control;
+            this.assigneesListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.assigneesListView.CellEditUseWholeCell = false;
+            this.assigneesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.assigneeName});
+            this.assigneesListView.DataSource = null;
+            this.assigneesListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.assigneesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.assigneesListView.Location = new System.Drawing.Point(133, 78);
+            this.assigneesListView.MultiSelect = false;
+            this.assigneesListView.Name = "assigneesListView";
+            this.assigneesListView.ShowGroups = false;
+            this.assigneesListView.Size = new System.Drawing.Size(161, 71);
+            this.assigneesListView.SmallImageList = this.smallImageList;
+            this.assigneesListView.TabIndex = 32;
+            this.assigneesListView.UseCompatibleStateImageBehavior = false;
+            this.assigneesListView.View = System.Windows.Forms.View.Details;
+            // 
+            // assigneeName
+            // 
+            this.assigneeName.AspectName = "FullName";
+            this.assigneeName.FillsFreeSpace = true;
+            this.assigneeName.Text = "Assignees";
             // 
             // projectsSearchTextbox
             // 
@@ -1548,6 +1559,7 @@ namespace Khronos_PMS.View {
             this.toolStrip1.PerformLayout();
             this.sfasidofjiaosdj.ResumeLayout(false);
             this.sfasidofjiaosdj.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.assigneesListView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1602,7 +1614,7 @@ namespace Khronos_PMS.View {
         private View.CustomControls.PromptTextBox unitsSearchTextBox;
         private System.Windows.Forms.Button unitsSearchButton;
         private View.CustomControls.PromptTextBox promptTextBox3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button addNewUnitButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem unitToolStripMenuItem;
         private System.Windows.Forms.Label label10;
@@ -1641,16 +1653,15 @@ namespace Khronos_PMS.View {
         private System.Windows.Forms.ToolStripMenuItem activitiesReportToolStripMenuItem;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label manhoursLabel;
+        private System.Windows.Forms.Label unitEstimatedManhoursLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label dueDateLabel;
+        private System.Windows.Forms.Label unitDueDateLabel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label unitSpentManhoursLabel;
         private System.Windows.Forms.ImageList smallImageList;
-        private System.Windows.Forms.ListView assigneesListView;
         private BrightIdeasSoftware.DataListView workersListView;
         private BrightIdeasSoftware.OLVColumn workerName;
         private BrightIdeasSoftware.DataListView projectsListView;
@@ -1666,5 +1677,7 @@ namespace Khronos_PMS.View {
         private BrightIdeasSoftware.OLVColumn unitEstimatedManhours;
         private BrightIdeasSoftware.OLVColumn unitSpentManhours;
         private BrightIdeasSoftware.OLVColumn unitExpense;
+        private BrightIdeasSoftware.DataListView assigneesListView;
+        private BrightIdeasSoftware.OLVColumn assigneeName;
     }
 }

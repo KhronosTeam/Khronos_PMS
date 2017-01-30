@@ -42,6 +42,7 @@ namespace Khronos_PMS.View {
             unitsTreeView.GetColumn(4).ImageGetter = u => 17;
             unitsTreeView.GetColumn(5).ImageGetter = u => 17;
             unitsTreeView.GetColumn(6).ImageGetter = u => 18;
+            assigneesListView.GetColumn(0).ImageGetter = a => 0;
             rightTableLayout.ColumnStyles[1].Width = 0;
         }
 
@@ -166,6 +167,13 @@ namespace Khronos_PMS.View {
             if (unit == null)
                 rightTableLayout.ColumnStyles[1].Width = 0;
             else {
+                unitStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById((int) unit.Status));
+                unitPriorityMenuButton.Image = PriorityManager.Image(PriorityManager.GetPriorityById(unit.Priority));
+                unitNameLabel.Text = unit.Name;
+                unitEstimatedManhoursLabel.Text = unit.EstimatedManhours + " h";
+                unitSpentManhoursLabel.Text = unit.SpentManhours + " h";
+                unitDueDateLabel.Text = unit.DueDate.ToShortDateString();
+                assigneesListView.DataSource = unit.Assigness;
                 rightTableLayout.ColumnStyles[1].Width = 315;
             }
 
@@ -202,9 +210,6 @@ namespace Khronos_PMS.View {
 
         private void addNewUnitButton_Click(Object sender, EventArgs e) {
             //todo show UnitForm
-        }
-
-        private void button4_Click(Object sender, EventArgs e) {
         }
     }
 }
