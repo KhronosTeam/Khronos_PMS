@@ -58,7 +58,7 @@ namespace Khronos_PMS.View {
         }
 
         private void unitsSearchButton_Click(Object sender, EventArgs e) {
-            //todo Num 8. implementirati pretragu unita, prikazati obavještenja
+            searchUnits();
         }
 
         private void projectToolStripMenuItem_Click(Object sender, EventArgs e) {
@@ -107,7 +107,7 @@ namespace Khronos_PMS.View {
             bossNameLabel.Text = selectedProject.Boss.FullName;
             projectStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById(selectedProject.Status));
             setRole(selectedProject);
-            
+
             List<Unit> u = ProjectManager.GetRootUnits(selectedProject);
             unitsTreeView.Roots = u;
         }
@@ -168,6 +168,46 @@ namespace Khronos_PMS.View {
         private void unitsTreeView_SelectionChanged(Object sender, EventArgs e) {
             Unit unit = (Unit) unitsTreeView.SelectedObject;
             if (unit == null) return;
+
+            rightTableLayout.ColumnStyles[1].Width = 315;
+
+            //todo popuniti polja u Unit info vezana za selektovani unit
+        }
+
+        private void refrshToolStripMenuItem_Click(Object sender, EventArgs e) {
+            //todo refresh svih vrijednosti
+        }
+
+        private void unitToolStripMenuItem_Click(Object sender, EventArgs e) {
+            //todo same as create unit
+        }
+
+        private void exitToolStripMenuItem_Click(Object sender, EventArgs e) {
+            Close();
+        }
+
+        private void logOutToolStripMenuItem_Click(Object sender, EventArgs e) {
+            //todo vratiti se na login formu
+        }
+
+        private void searchUnitsTextBox_TextChanged(Object sender, EventArgs e) {
+            searchUnits();
+        }
+
+        private void searchUnits() {
+            unitsTreeView.UseFiltering = true;
+            unitsTreeView.ModelFilter = new ModelFilter(x => {
+                var unit = x as Unit;
+                return x != null && unit.Name.ToLower().Contains(unitsSearchTextBox.Text.ToLower());
+            });
+        }
+
+        private void addNewUnitButton_Click(Object sender, EventArgs e) {
+            //todo show UnitForm
+        }
+
+        private void button4_Click(Object sender, EventArgs e) {
+
         }
     }
 }

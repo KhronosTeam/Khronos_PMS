@@ -55,15 +55,5 @@ namespace Khronos_PMS {
         private void cancelButton_Click(Object sender, EventArgs e) {
             Close();
         }
-
-        private void textBox_Enter(Object sender, EventArgs e) {
-            ((Control) sender).BackColor = Color.FromArgb(233, 233, 233);
-            ((Control) sender).ForeColor = Color.FromArgb(38, 38, 38);
-        }
-
-        private void textBox_Leave(Object sender, EventArgs e) {
-            ((Control) sender).BackColor = Color.FromArgb(38, 38, 38);
-            ((Control) sender).ForeColor = Color.FromArgb(233, 233, 233);
-        }
     }
 }
