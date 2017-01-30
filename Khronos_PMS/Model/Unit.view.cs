@@ -19,14 +19,6 @@ namespace Khronos_PMS.Model {
 
         public bool IsRoot => ClosureUnits.Any(unit => unit.Depth == 0);
 
-        public List<Worker> Assigness {
-            get {
-                List<Worker> list = new List<Worker>();
-                foreach (WorksOn worksOn in Workers) {
-                    list.Add(worksOn.AssignedTo.Worker);
-                }
-                return list;
-            }
-        }
+        public List<Worker> Assigness => Workers.Select(worksOn => worksOn.AssignedTo.Worker).ToList();
     }
 }

@@ -176,8 +176,6 @@ namespace Khronos_PMS.View {
                 assigneesListView.DataSource = unit.Assigness;
                 rightTableLayout.ColumnStyles[1].Width = 315;
             }
-
-            //todo popuniti polja u Unit info vezana za selektovani unit, slično kao za projekte
         }
 
         private void refrshToolStripMenuItem_Click(Object sender, EventArgs e) {
