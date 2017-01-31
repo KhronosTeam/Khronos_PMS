@@ -242,13 +242,6 @@ namespace Khronos_PMS.View {
                 assigneesListView.DataSource = new List<Worker>(1);
                 new Task(() => { assigneesListView.SetObjects(unit.Assignees); }).Start();
                 rightTableLayout.ColumnStyles[1].Width = 315;
-
-                activityListView.DataSource = new List<Activity>(1);
-                new Task(() => {
-                    List<Activity> activities = UnitManager.GetActivities(unit, user);
-                    activityListView.SetObjects(activities);
-                    activityListView.BuildList();
-                }).Start();
             }
         }
 
@@ -302,7 +295,7 @@ namespace Khronos_PMS.View {
         }
 
         private void addActivityToolstripMenuItem_Click(object sender, EventArgs e) {
-            new ActivityManager((Unit) unitsTreeView.SelectedObject, user);
+            new ActivityForm((Unit) unitsTreeView.SelectedObject, user, false).ShowDialog();
         }
 
         private void viewAllToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -316,14 +309,10 @@ namespace Khronos_PMS.View {
             //todo edit unit call UnitForm
         }
 
-        private void activityToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (unitsTreeView.SelectedIndex != -1)
-            {
+        private void activityToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (unitsTreeView.SelectedIndex != -1) {
                 addActivityToolstripMenuItem.PerformClick();
-            }
-            else
-            {
+            } else {
                 MessageBox.Show("You must select one unit!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
