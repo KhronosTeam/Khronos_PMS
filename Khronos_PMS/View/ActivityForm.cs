@@ -35,15 +35,26 @@ namespace Khronos_PMS.View
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if("Add new activity".Equals(this.Text))
+            int manhour = int.Parse(manHourSpentTextBox.Text);
+            String note = noteTextBox.Text;
+            double expense = double.Parse(expensesTextBox.Text);
+            if ("Add new activity".Equals(this.Text))
             {
-                int manhour = int.Parse(manHourSpentTextBox.Text);
-                String note = noteTextBox.Text;
-                double expense = double.Parse(expensesTextBox.Text);
+                
                 if (manager.addActivity(manhour, expense, note))
                 {
                     this.Close();
                 }else
+                {
+                    //todo Ispisati neku gresku
+                }
+            }else
+            {
+                if (manager.addActivity(manhour, expense, note))
+                {
+                    this.Close();
+                }
+                else
                 {
                     //todo Ispisati neku gresku
                 }
