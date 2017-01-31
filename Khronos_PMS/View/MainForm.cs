@@ -248,11 +248,14 @@ namespace Khronos_PMS.View {
             new ActivityManager((Unit) unitsTreeView.SelectedObject, user);
         }
 
-        private void viewAllToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Unit unit = (Unit)unitsTreeView.SelectedObject;
+        private void viewAllToolStripMenuItem_Click(object sender, EventArgs e) {
+            Unit unit = (Unit) unitsTreeView.SelectedObject;
             List<Activity> activities = UnitManager.getActivities(unit);
             activityDataListView.DataSource = activities;
+        }
+
+        private void unitEditButton_Click(Object sender, EventArgs e) {
+            //todo edit unit call UnitForm
         }
     }
 }

@@ -118,7 +118,7 @@ namespace Khronos_PMS.View {
             this.addActivityToolstripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSplitButton3 = new System.Windows.Forms.ToolStripButton();
+            this.unitEditButton = new System.Windows.Forms.ToolStripButton();
             this.sfasidofjiaosdj = new System.Windows.Forms.ToolStrip();
             this.userLabel = new System.Windows.Forms.ToolStripDropDownButton();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1233,7 +1233,7 @@ namespace Khronos_PMS.View {
             this.toolStripSeparator6,
             this.toolStripSplitButton1,
             this.toolStripSeparator7,
-            this.toolStripSplitButton3});
+            this.unitEditButton});
             this.toolStrip1.Location = new System.Drawing.Point(3, 17);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(303, 27);
@@ -1323,14 +1323,15 @@ namespace Khronos_PMS.View {
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(6, 27);
             // 
-            // toolStripSplitButton3
+            // unitEditButton
             // 
-            this.toolStripSplitButton3.Image = global::Khronos_PMS.Properties.Resources.edit;
-            this.toolStripSplitButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton3.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
-            this.toolStripSplitButton3.Name = "toolStripSplitButton3";
-            this.toolStripSplitButton3.Size = new System.Drawing.Size(47, 24);
-            this.toolStripSplitButton3.Text = "Edit";
+            this.unitEditButton.Image = global::Khronos_PMS.Properties.Resources.edit;
+            this.unitEditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.unitEditButton.Margin = new System.Windows.Forms.Padding(0, 1, 3, 2);
+            this.unitEditButton.Name = "unitEditButton";
+            this.unitEditButton.Size = new System.Drawing.Size(47, 24);
+            this.unitEditButton.Text = "Edit";
+            this.unitEditButton.Click += new System.EventHandler(this.unitEditButton_Click);
             // 
             // sfasidofjiaosdj
             // 
@@ -1712,7 +1713,7 @@ namespace Khronos_PMS.View {
         private BrightIdeasSoftware.OLVColumn unitSpentManhours;
         private BrightIdeasSoftware.DataListView assigneesListView;
         private BrightIdeasSoftware.OLVColumn assigneeName;
-        private System.Windows.Forms.ToolStripButton toolStripSplitButton3;
+        private System.Windows.Forms.ToolStripButton unitEditButton;
         private BrightIdeasSoftware.DataListView activityDataListView;
         private BrightIdeasSoftware.OLVColumn Worker;
         private BrightIdeasSoftware.OLVColumn Date;
