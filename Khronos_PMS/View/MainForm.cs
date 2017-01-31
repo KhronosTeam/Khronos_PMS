@@ -232,5 +232,10 @@ namespace Khronos_PMS.View {
             ActivitiesReportForm ar = new ActivitiesReportForm((Project)projectsListView.SelectedObject);
             ar.ShowDialog();
         }
+
+        private void addActivityToolstripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ActivityManager((Unit)unitsTreeView.SelectedObject);
+        }
     }
 }
