@@ -19,12 +19,12 @@ namespace Khronos_PMS.View
         {
             InitializeComponent();
             this.manager = manager;
-            if (edit)
+            if (!edit)
             {
-                this.Name = "Add new activity";
+                this.Text = "Add new activity";
             }else
             {
-                this.Name = "Edit activity";
+                this.Text = "Edit activity";
             }
         }
 
@@ -35,16 +35,17 @@ namespace Khronos_PMS.View
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if("Add new activity".Equals(this.Name))
+            if("Add new activity".Equals(this.Text))
             {
                 int manhour = int.Parse(manHourSpentTextBox.Text);
                 String note = noteTextBox.Text;
-                if (manager.addActivity(manhour, note))
+                double expense = double.Parse(expensesLabel.Text);
+                if (manager.addActivity(manhour, expense, note))
                 {
                     this.Close();
                 }else
                 {
-                    //Ispisati neku gresku
+                    //todo Ispisati neku gresku
                 }
             }
         }
