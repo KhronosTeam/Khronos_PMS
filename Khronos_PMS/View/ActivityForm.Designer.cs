@@ -76,7 +76,7 @@ namespace Khronos_PMS.View
             this.cancelButton.Location = new System.Drawing.Point(247, 279);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 4;
+            this.cancelButton.TabIndex = 5;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -86,7 +86,7 @@ namespace Khronos_PMS.View
             this.saveButton.Location = new System.Drawing.Point(166, 279);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 5;
+            this.saveButton.TabIndex = 4;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -105,7 +105,7 @@ namespace Khronos_PMS.View
             this.expensesTextBox.Location = new System.Drawing.Point(113, 38);
             this.expensesTextBox.Name = "expensesTextBox";
             this.expensesTextBox.Size = new System.Drawing.Size(209, 20);
-            this.expensesTextBox.TabIndex = 7;
+            this.expensesTextBox.TabIndex = 2;
             // 
             // ActivityForm
             // 

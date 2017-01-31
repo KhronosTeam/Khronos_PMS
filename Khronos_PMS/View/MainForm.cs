@@ -235,7 +235,7 @@ namespace Khronos_PMS.View {
 
         private void addActivityToolstripMenuItem_Click(object sender, EventArgs e)
         {
-            new ActivityManager((Unit)unitsTreeView.SelectedObject);
+            new ActivityManager((Unit)unitsTreeView.SelectedObject, user);
         }
     }
 }

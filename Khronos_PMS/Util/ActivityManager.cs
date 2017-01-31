@@ -8,18 +8,19 @@ namespace Khronos_PMS.Util
     {
         private User user;
         private Unit unit;
-        public ActivityManager(Unit u)
+
+        public ActivityManager(Unit u, User user)
         {
+            this.user = user;
             unit = u;
-            user = LoginManager.loggedUser;
             if (unit != null)
             {
                 new ActivityForm(this, false).Show();
-            }else
+            }
+            else
             {
                 new ActivityForm(this, true).Show();
             }
-
         }
 
         public bool addActivity(int manhour, double expense, String note)
@@ -30,7 +31,7 @@ namespace Khronos_PMS.Util
                 activity.Manhour = manhour;
                 activity.Expense = (decimal)expense;
                 activity.Note = note;
-                activity.WorkerID = 8;
+                activity.WorkerID = user.ID;
                 activity.Date = DateTime.Now;
                 activity.ProjectID = unit.ProjectID;
                 activity.UnitID = unit.ID;
