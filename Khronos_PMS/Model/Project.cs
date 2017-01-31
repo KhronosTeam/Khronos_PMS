@@ -18,8 +18,8 @@ namespace Khronos_PMS.Model
         public Project()
         {
             this.AssignedWorkers = new HashSet<AssignedTo>();
-            this.Customers = new HashSet<Customer>();
             this.Units = new HashSet<Unit>();
+            this.Customers = new HashSet<Customer>();
         }
     
         public int ID { get; set; }
@@ -28,7 +28,7 @@ namespace Khronos_PMS.Model
         public string Name { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime DeadlineDate { get; set; }
-        public System.DateTime EndDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
         public decimal Budget { get; set; }
         public decimal Expense { get; set; }
         public int Status { get; set; }
@@ -39,8 +39,8 @@ namespace Khronos_PMS.Model
         public virtual Worker Boss { get; set; }
         public virtual Worker Supervisor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customer> Customers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Unit> Units { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Customer> Customers { get; set; }
     }
 }

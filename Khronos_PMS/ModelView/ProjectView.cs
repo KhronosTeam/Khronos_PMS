@@ -31,7 +31,7 @@ namespace Khronos_PMS.ModelView
             public string SupervisorName { get; set; }
             public System.DateTime StartDate { get; set; }
             public System.DateTime DeadlineDate { get; set; }
-            public System.DateTime EndDate { get; set; }
+            public System.DateTime? EndDate { get; set; }
             public decimal Budget { get; set; }
             public decimal Expense { get; set; }
             public int Status { get; set; }

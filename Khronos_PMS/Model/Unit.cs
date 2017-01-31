@@ -36,8 +36,8 @@ namespace Khronos_PMS.Model
         public virtual ICollection<ClosureUnit> ClosureUnits { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClosureUnit> AncestorClosureUnits { get; set; }
-        public virtual Project Project { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WorksOn> Workers { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

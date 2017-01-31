@@ -80,7 +80,7 @@
           <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="DeadlineDate" Type="date" Nullable="false" />
-          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" />
           <Property Name="Budget" Type="decimal" Precision="20" Scale="5" Nullable="false" />
           <Property Name="Expense" Type="decimal" Precision="20" Scale="5" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
@@ -446,8 +446,8 @@
           <Property Name="WorkerID" Type="Int32" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Worker" Relationship="Self.AssignedTo_ibfk_1" FromRole="AssignedTo" ToRole="Worker" />
-          <NavigationProperty Name="Project" Relationship="Self.AssignedTo_ibfk_2" FromRole="AssignedTo" ToRole="Project" />
           <NavigationProperty Name="WorksOns" Relationship="Self.WorksOn_ibfk_2" FromRole="AssignedTo" ToRole="WorksOn" />
+          <NavigationProperty Name="Project" Relationship="KhronosPMSModel.AssignedTo_ibfk_2" FromRole="AssignedTo" ToRole="Project" />
         </EntityType>
         <EntityType Name="ClosureUnit">
           <Key>
@@ -467,7 +467,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.Customer_ibfk_1" FromRole="Customer" ToRole="User" />
-          <NavigationProperty Name="Projects" Relationship="Self.CustomerProject" FromRole="Customer" ToRole="Project" />
+          <NavigationProperty Name="Projects" Relationship="KhronosPMSModel.CustomerProject" FromRole="Customer" ToRole="Project" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -480,27 +480,6 @@
           <Property Name="OperationID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.Log_ibfk_1" FromRole="Log" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Project">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BossID" Type="Int32" Nullable="false" />
-          <Property Name="SupervisorID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" />
-          <Property Name="DeadlineDate" Type="DateTime" Nullable="false" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" />
-          <Property Name="Budget" Type="Decimal" Nullable="false" />
-          <Property Name="Expense" Type="Decimal" Nullable="false" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AssignedWorkers" Relationship="Self.AssignedTo_ibfk_2" FromRole="Project" ToRole="AssignedTo" />
-          <NavigationProperty Name="Boss" Relationship="Self.Project_ibfk_1" FromRole="Project" ToRole="Worker" />
-          <NavigationProperty Name="Supervisor" Relationship="Self.Project_ibfk_2" FromRole="Project" ToRole="Worker" />
-          <NavigationProperty Name="Customers" Relationship="Self.CustomerProject" FromRole="Project" ToRole="Customer" />
-          <Property Name="Description" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Units" Relationship="KhronosPMSModel.Unit_ibfk_1" FromRole="Project" ToRole="Unit" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -523,9 +502,9 @@
           <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="AssignedProjects" Relationship="Self.AssignedTo_ibfk_1" FromRole="Worker" ToRole="AssignedTo" />
-          <NavigationProperty Name="BossProjects" Relationship="Self.Project_ibfk_1" FromRole="Worker" ToRole="Project" />
-          <NavigationProperty Name="SupervisorProjects" Relationship="Self.Project_ibfk_2" FromRole="Worker" ToRole="Project" />
           <NavigationProperty Name="User" Relationship="Self.Worker_ibfk_1" FromRole="Worker" ToRole="User" />
+          <NavigationProperty Name="BossProjects" Relationship="KhronosPMSModel.Project_ibfk_1" FromRole="Worker" ToRole="Project" />
+          <NavigationProperty Name="SupervisorProjects" Relationship="KhronosPMSModel.Project_ibfk_2" FromRole="Worker" ToRole="Project" />
         </EntityType>
         <EntityType Name="WorksOn">
           <Key>
@@ -583,18 +562,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="AssignedTo_ibfk_2">
-          <End Role="Project" Type="Self.Project" Multiplicity="1" />
-          <End Role="AssignedTo" Type="Self.AssignedTo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="AssignedTo">
-              <PropertyRef Name="ProjectID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="WorksOn_ibfk_2">
           <End Role="AssignedTo" Type="Self.AssignedTo" Multiplicity="1" />
           <End Role="WorksOn" Type="Self.WorksOn" Multiplicity="*" />
@@ -635,30 +602,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Project_ibfk_1">
-          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
-          <End Role="Project" Type="Self.Project" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Worker">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Project">
-              <PropertyRef Name="BossID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Project_ibfk_2">
-          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
-          <End Role="Project" Type="Self.Project" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Worker">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Project">
-              <PropertyRef Name="SupervisorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Worker_ibfk_1">
           <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -673,10 +616,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CustomerProject">
-          <End Role="Project" Type="Self.Project" Multiplicity="*" />
-          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="KhronosPMSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Activities" EntityType="Self.Activity" />
           <EntitySet Name="Admins" EntityType="Self.Admin" />
@@ -684,7 +623,6 @@
           <EntitySet Name="ClosureUnits" EntityType="Self.ClosureUnit" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Logs" EntityType="Self.Log" />
-          <EntitySet Name="Projects" EntityType="Self.Project" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Workers" EntityType="Self.Worker" />
           <EntitySet Name="WorksOns" EntityType="Self.WorksOn" />
@@ -700,10 +638,6 @@
             <End Role="Worker" EntitySet="Workers" />
             <End Role="AssignedTo" EntitySet="AssignedToes" />
           </AssociationSet>
-          <AssociationSet Name="AssignedTo_ibfk_2" Association="Self.AssignedTo_ibfk_2">
-            <End Role="Project" EntitySet="Projects" />
-            <End Role="AssignedTo" EntitySet="AssignedToes" />
-          </AssociationSet>
           <AssociationSet Name="WorksOn_ibfk_2" Association="Self.WorksOn_ibfk_2">
             <End Role="AssignedTo" EntitySet="AssignedToes" />
             <End Role="WorksOn" EntitySet="WorksOns" />
@@ -716,21 +650,9 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Log" EntitySet="Logs" />
           </AssociationSet>
-          <AssociationSet Name="Project_ibfk_1" Association="Self.Project_ibfk_1">
-            <End Role="Worker" EntitySet="Workers" />
-            <End Role="Project" EntitySet="Projects" />
-          </AssociationSet>
-          <AssociationSet Name="Project_ibfk_2" Association="Self.Project_ibfk_2">
-            <End Role="Worker" EntitySet="Workers" />
-            <End Role="Project" EntitySet="Projects" />
-          </AssociationSet>
           <AssociationSet Name="Worker_ibfk_1" Association="Self.Worker_ibfk_1">
             <End Role="User" EntitySet="Users" />
             <End Role="Worker" EntitySet="Workers" />
-          </AssociationSet>
-          <AssociationSet Name="CustomerProject" Association="Self.CustomerProject">
-            <End Role="Project" EntitySet="Projects" />
-            <End Role="Customer" EntitySet="Customers" />
           </AssociationSet>
           <EntitySet Name="Units" EntityType="KhronosPMSModel.Unit" />
           <AssociationSet Name="ClosureUnit_ibfk_1" Association="KhronosPMSModel.ClosureUnit_ibfk_1">
@@ -741,13 +663,30 @@
             <End Role="Unit" EntitySet="Units" />
             <End Role="ClosureUnit" EntitySet="ClosureUnits" />
           </AssociationSet>
+          <AssociationSet Name="WorksOn_ibfk_1" Association="KhronosPMSModel.WorksOn_ibfk_1">
+            <End Role="Unit" EntitySet="Units" />
+            <End Role="WorksOn" EntitySet="WorksOns" />
+          </AssociationSet>
+          <EntitySet Name="Projects" EntityType="KhronosPMSModel.Project" />
+          <AssociationSet Name="AssignedTo_ibfk_2" Association="KhronosPMSModel.AssignedTo_ibfk_2">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="AssignedTo" EntitySet="AssignedToes" />
+          </AssociationSet>
+          <AssociationSet Name="Project_ibfk_1" Association="KhronosPMSModel.Project_ibfk_1">
+            <End Role="Worker" EntitySet="Workers" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="Project_ibfk_2" Association="KhronosPMSModel.Project_ibfk_2">
+            <End Role="Worker" EntitySet="Workers" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
           <AssociationSet Name="Unit_ibfk_1" Association="KhronosPMSModel.Unit_ibfk_1">
             <End Role="Project" EntitySet="Projects" />
             <End Role="Unit" EntitySet="Units" />
           </AssociationSet>
-          <AssociationSet Name="WorksOn_ibfk_1" Association="KhronosPMSModel.WorksOn_ibfk_1">
-            <End Role="Unit" EntitySet="Units" />
-            <End Role="WorksOn" EntitySet="WorksOns" />
+          <AssociationSet Name="CustomerProject" Association="KhronosPMSModel.CustomerProject">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Customer" EntitySet="Customers" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Unit">
@@ -765,8 +704,8 @@
           <Property Name="SpentManhours" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ClosureUnits" Relationship="KhronosPMSModel.ClosureUnit_ibfk_1" FromRole="Unit" ToRole="ClosureUnit" />
           <NavigationProperty Name="AncestorClosureUnits" Relationship="KhronosPMSModel.ClosureUnit_ibfk_2" FromRole="Unit" ToRole="ClosureUnit" />
-          <NavigationProperty Name="Project" Relationship="KhronosPMSModel.Unit_ibfk_1" FromRole="Unit" ToRole="Project" />
           <NavigationProperty Name="Workers" Relationship="KhronosPMSModel.WorksOn_ibfk_1" FromRole="Unit" ToRole="WorksOn" />
+          <NavigationProperty Name="Project" Relationship="KhronosPMSModel.Unit_ibfk_1" FromRole="Unit" ToRole="Project" />
         </EntityType>
         <Association Name="ClosureUnit_ibfk_1">
           <End Type="KhronosPMSModel.Unit" Role="Unit" Multiplicity="1" />
@@ -792,6 +731,75 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="WorksOn_ibfk_1">
+          <End Type="KhronosPMSModel.Unit" Role="Unit" Multiplicity="1" />
+          <End Type="KhronosPMSModel.WorksOn" Role="WorksOn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorksOn">
+              <PropertyRef Name="UnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BossID" Type="Int32" Nullable="false" />
+          <Property Name="SupervisorID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="DeadlineDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" />
+          <Property Name="Budget" Type="Decimal" Nullable="false" />
+          <Property Name="Expense" Type="Decimal" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AssignedWorkers" Relationship="KhronosPMSModel.AssignedTo_ibfk_2" FromRole="Project" ToRole="AssignedTo" />
+          <NavigationProperty Name="Boss" Relationship="KhronosPMSModel.Project_ibfk_1" FromRole="Project" ToRole="Worker" />
+          <NavigationProperty Name="Supervisor" Relationship="KhronosPMSModel.Project_ibfk_2" FromRole="Project" ToRole="Worker" />
+          <NavigationProperty Name="Units" Relationship="KhronosPMSModel.Unit_ibfk_1" FromRole="Project" ToRole="Unit" />
+          <NavigationProperty Name="Customers" Relationship="KhronosPMSModel.CustomerProject" FromRole="Project" ToRole="Customer" />
+        </EntityType>
+        <Association Name="AssignedTo_ibfk_2">
+          <End Type="KhronosPMSModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="KhronosPMSModel.AssignedTo" Role="AssignedTo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AssignedTo">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Project_ibfk_1">
+          <End Type="KhronosPMSModel.Worker" Role="Worker" Multiplicity="1" />
+          <End Type="KhronosPMSModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="BossID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Project_ibfk_2">
+          <End Type="KhronosPMSModel.Worker" Role="Worker" Multiplicity="1" />
+          <End Type="KhronosPMSModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="SupervisorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Unit_ibfk_1">
           <End Type="KhronosPMSModel.Project" Role="Project" Multiplicity="1" />
           <End Type="KhronosPMSModel.Unit" Role="Unit" Multiplicity="*" />
@@ -804,17 +812,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="WorksOn_ibfk_1">
-          <End Type="KhronosPMSModel.Unit" Role="Unit" Multiplicity="1" />
-          <End Type="KhronosPMSModel.WorksOn" Role="WorksOn" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Unit">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="WorksOn">
-              <PropertyRef Name="UnitID" />
-            </Dependent>
-          </ReferentialConstraint>
+        <Association Name="CustomerProject">
+          <End Type="KhronosPMSModel.Project" Role="Project" Multiplicity="*" />
+          <End Type="KhronosPMSModel.Customer" Role="Customer" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -883,23 +883,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Projects">
-            <EntityTypeMapping TypeName="KhronosPMSModel.Project">
-              <MappingFragment StoreEntitySet="Project">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="BossID" ColumnName="BossID" />
-                <ScalarProperty Name="SupervisorID" ColumnName="SupervisorID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="Budget" ColumnName="Budget" />
-                <ScalarProperty Name="Expense" ColumnName="Expense" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="KhronosPMSModel.User">
               <MappingFragment StoreEntitySet="User">
@@ -929,14 +912,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="CustomerProject" TypeName="KhronosPMSModel.CustomerProject" StoreEntitySet="CustomerProject">
-            <EndProperty Name="Project">
-              <ScalarProperty Name="ID" ColumnName="ProjectID" />
-            </EndProperty>
-            <EndProperty Name="Customer">
-              <ScalarProperty Name="ID" ColumnName="CustomerID" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="Units">
             <EntityTypeMapping TypeName="KhronosPMSModel.Unit">
               <MappingFragment StoreEntitySet="Unit">
@@ -952,6 +927,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="KhronosPMSModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Expense" ColumnName="Expense" />
+                <ScalarProperty Name="Budget" ColumnName="Budget" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SupervisorID" ColumnName="SupervisorID" />
+                <ScalarProperty Name="BossID" ColumnName="BossID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CustomerProject" TypeName="KhronosPMSModel.CustomerProject" StoreEntitySet="CustomerProject">
+            <EndProperty Name="Customer">
+              <ScalarProperty Name="ID" ColumnName="CustomerID" />
+            </EndProperty>
+            <EndProperty Name="Project">
+              <ScalarProperty Name="ID" ColumnName="ProjectID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
