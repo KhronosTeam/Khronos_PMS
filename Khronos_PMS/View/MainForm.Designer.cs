@@ -378,8 +378,8 @@ namespace Khronos_PMS.View {
             // 
             this.projectsListView.Alignment = System.Windows.Forms.ListViewAlignment.Left;
             this.projectsListView.AllColumns.Add(this.projectName);
-            this.projectsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.projectsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.projectsListView.AutoGenerateColumns = false;
             this.projectsListView.CellEditUseWholeCell = false;
@@ -445,7 +445,7 @@ namespace Khronos_PMS.View {
             // 
             // projectsSearchTextbox
             // 
-            this.projectsSearchTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.projectsSearchTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.projectsSearchTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.projectsSearchTextbox.Location = new System.Drawing.Point(7, 21);
@@ -487,8 +487,8 @@ namespace Khronos_PMS.View {
             // 
             this.workersListView.Alignment = System.Windows.Forms.ListViewAlignment.Left;
             this.workersListView.AllColumns.Add(this.workerName);
-            this.workersListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.workersListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.workersListView.AutoGenerateColumns = false;
             this.workersListView.CellEditUseWholeCell = false;
@@ -519,7 +519,7 @@ namespace Khronos_PMS.View {
             // 
             // workersSearchTextBox
             // 
-            this.workersSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.workersSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.workersSearchTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.workersSearchTextBox.Location = new System.Drawing.Point(7, 20);
@@ -598,7 +598,7 @@ namespace Khronos_PMS.View {
             // 
             // projectInfoTableLayout
             // 
-            this.projectInfoTableLayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.projectInfoTableLayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.projectInfoTableLayout.ColumnCount = 8;
             this.projectInfoTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -779,7 +779,7 @@ namespace Khronos_PMS.View {
             // 
             // projectDescriptionLabel
             // 
-            this.projectDescriptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.projectDescriptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.projectDescriptionLabel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.projectDescriptionLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1156,8 +1156,8 @@ namespace Khronos_PMS.View {
             this.activityListView.AllColumns.Add(this.Worker);
             this.activityListView.AllColumns.Add(this.Date);
             this.activityListView.AllColumns.Add(this.Note);
-            this.activityListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.activityListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.activityListView.AutoArrange = false;
             this.activityListView.AutoGenerateColumns = false;
@@ -1202,7 +1202,7 @@ namespace Khronos_PMS.View {
             // 
             // unitInfoTableLayout
             // 
-            this.unitInfoTableLayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.unitInfoTableLayout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.unitInfoTableLayout.ColumnCount = 3;
             this.unitInfoTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
