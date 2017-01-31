@@ -190,17 +190,15 @@ namespace Khronos_PMS.View {
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.reportsToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(92, 0);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(148, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1018, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -266,14 +264,14 @@ namespace Khronos_PMS.View {
             this.tableLayoutPanel1.Controls.Add(this.leftTableLayout, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.rightTableLayout, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1018, 438);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1018, 414);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // leftTableLayout
@@ -290,7 +288,7 @@ namespace Khronos_PMS.View {
             this.leftTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.leftTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.leftTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.leftTableLayout.Size = new System.Drawing.Size(268, 427);
+            this.leftTableLayout.Size = new System.Drawing.Size(268, 403);
             this.leftTableLayout.TabIndex = 0;
             // 
             // groupBox1
@@ -304,7 +302,7 @@ namespace Khronos_PMS.View {
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(262, 210);
+            this.groupBox1.Size = new System.Drawing.Size(262, 198);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Projects";
@@ -332,7 +330,7 @@ namespace Khronos_PMS.View {
             this.projectsListView.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.projectsListView.SelectedForeColor = System.Drawing.Color.Black;
             this.projectsListView.ShowGroups = false;
-            this.projectsListView.Size = new System.Drawing.Size(249, 153);
+            this.projectsListView.Size = new System.Drawing.Size(249, 141);
             this.projectsListView.SmallImageList = this.largeImageList;
             this.projectsListView.TabIndex = 6;
             this.projectsListView.UnfocusedSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
@@ -386,10 +384,10 @@ namespace Khronos_PMS.View {
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox2.Location = new System.Drawing.Point(3, 213);
+            this.groupBox2.Location = new System.Drawing.Point(3, 201);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(262, 214);
+            this.groupBox2.Size = new System.Drawing.Size(262, 202);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Workers";
@@ -419,7 +417,7 @@ namespace Khronos_PMS.View {
             this.workersListView.SelectedForeColor = System.Drawing.Color.Black;
             this.workersListView.ShowGroups = false;
             this.workersListView.ShowImagesOnSubItems = true;
-            this.workersListView.Size = new System.Drawing.Size(249, 160);
+            this.workersListView.Size = new System.Drawing.Size(249, 148);
             this.workersListView.SmallImageList = this.largeImageList;
             this.workersListView.TabIndex = 5;
             this.workersListView.UnfocusedSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
@@ -441,7 +439,7 @@ namespace Khronos_PMS.View {
             this.rightTableLayout.Name = "rightTableLayout";
             this.rightTableLayout.RowCount = 1;
             this.rightTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.rightTableLayout.Size = new System.Drawing.Size(744, 427);
+            this.rightTableLayout.Size = new System.Drawing.Size(744, 403);
             this.rightTableLayout.TabIndex = 3;
             // 
             // tableLayoutPanel5
@@ -457,7 +455,7 @@ namespace Khronos_PMS.View {
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 184F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(429, 427);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(429, 403);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // groupBox3
@@ -721,7 +719,7 @@ namespace Khronos_PMS.View {
             this.groupBox4.Location = new System.Drawing.Point(3, 184);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(423, 243);
+            this.groupBox4.Size = new System.Drawing.Size(423, 219);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Units";
@@ -741,7 +739,7 @@ namespace Khronos_PMS.View {
             this.unitsTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.unitsTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.unitsTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.unitsTableLayout.Size = new System.Drawing.Size(417, 223);
+            this.unitsTableLayout.Size = new System.Drawing.Size(417, 199);
             this.unitsTableLayout.TabIndex = 0;
             // 
             // unitsTreeView
@@ -772,7 +770,7 @@ namespace Khronos_PMS.View {
             this.unitsTreeView.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.unitsTreeView.SelectedForeColor = System.Drawing.Color.Black;
             this.unitsTreeView.ShowGroups = false;
-            this.unitsTreeView.Size = new System.Drawing.Size(411, 157);
+            this.unitsTreeView.Size = new System.Drawing.Size(411, 133);
             this.unitsTreeView.SmallImageList = this.largeImageList;
             this.unitsTreeView.TabIndex = 29;
             this.unitsTreeView.UnfocusedSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
@@ -889,7 +887,7 @@ namespace Khronos_PMS.View {
             this.groupBox5.Location = new System.Drawing.Point(432, 3);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(309, 424);
+            this.groupBox5.Size = new System.Drawing.Size(309, 400);
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Unit info";
@@ -918,7 +916,7 @@ namespace Khronos_PMS.View {
             this.activityListView.Location = new System.Drawing.Point(6, 246);
             this.activityListView.Name = "activityListView";
             this.activityListView.ShowGroups = false;
-            this.activityListView.Size = new System.Drawing.Size(300, 147);
+            this.activityListView.Size = new System.Drawing.Size(300, 123);
             this.activityListView.SmallImageList = this.largeImageList;
             this.activityListView.TabIndex = 29;
             this.activityListView.UseCompatibleStateImageBehavior = false;
@@ -1176,7 +1174,7 @@ namespace Khronos_PMS.View {
             this.sfasidofjiaosdj.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.sfasidofjiaosdj.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userLabel});
-            this.sfasidofjiaosdj.Location = new System.Drawing.Point(883, 0);
+            this.sfasidofjiaosdj.Location = new System.Drawing.Point(883, 1);
             this.sfasidofjiaosdj.Name = "sfasidofjiaosdj";
             this.sfasidofjiaosdj.Size = new System.Drawing.Size(134, 24);
             this.sfasidofjiaosdj.TabIndex = 2;
@@ -1522,7 +1520,7 @@ namespace Khronos_PMS.View {
             this.editActivityButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.editActivityButton.Image = global::Khronos_PMS.Properties.Resources.edit;
             this.editActivityButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.editActivityButton.Location = new System.Drawing.Point(211, 396);
+            this.editActivityButton.Location = new System.Drawing.Point(211, 372);
             this.editActivityButton.Name = "editActivityButton";
             this.editActivityButton.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.editActivityButton.Size = new System.Drawing.Size(96, 23);
