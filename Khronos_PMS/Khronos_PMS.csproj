@@ -283,6 +283,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\note.png" />
     <None Include="Resources\RemoveRow_16x.png" />
     <None Include="Resources\remove.png" />
     <None Include="Resources\edit.png" />
