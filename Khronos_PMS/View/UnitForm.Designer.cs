@@ -89,10 +89,10 @@
             this.unitsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.unitsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.unitsGroupBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.unitsGroupBox.Location = new System.Drawing.Point(3, 168);
+            this.unitsGroupBox.Location = new System.Drawing.Point(3, 167);
             this.unitsGroupBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.unitsGroupBox.Name = "unitsGroupBox";
-            this.unitsGroupBox.Size = new System.Drawing.Size(387, 343);
+            this.unitsGroupBox.Size = new System.Drawing.Size(387, 344);
             this.unitsGroupBox.TabIndex = 3;
             this.unitsGroupBox.TabStop = false;
             this.unitsGroupBox.Text = "Units";
@@ -110,7 +110,7 @@
             this.unitTableLayoutPanel.RowCount = 2;
             this.unitTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.unitTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.unitTableLayoutPanel.Size = new System.Drawing.Size(381, 323);
+            this.unitTableLayoutPanel.Size = new System.Drawing.Size(381, 324);
             this.unitTableLayoutPanel.TabIndex = 0;
             // 
             // unitsTreeView
@@ -135,7 +135,7 @@
             this.unitsTreeView.SelectedForeColor = System.Drawing.Color.Black;
             this.unitsTreeView.ShowGroups = false;
             this.unitsTreeView.ShowImagesOnSubItems = true;
-            this.unitsTreeView.Size = new System.Drawing.Size(375, 287);
+            this.unitsTreeView.Size = new System.Drawing.Size(375, 288);
             this.unitsTreeView.SmallImageList = this.largeImageList;
             this.unitsTreeView.TabIndex = 29;
             this.unitsTreeView.UnfocusedSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
@@ -245,7 +245,7 @@
             this.unitInformationGroupBox.Location = new System.Drawing.Point(3, 3);
             this.unitInformationGroupBox.Name = "unitInformationGroupBox";
             this.unitInformationGroupBox.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.unitInformationGroupBox.Size = new System.Drawing.Size(387, 162);
+            this.unitInformationGroupBox.Size = new System.Drawing.Size(387, 161);
             this.unitInformationGroupBox.TabIndex = 0;
             this.unitInformationGroupBox.TabStop = false;
             this.unitInformationGroupBox.Text = "Unit Information";
@@ -491,6 +491,7 @@
             this.ClientSize = new System.Drawing.Size(673, 552);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "UnitForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Unit creation";
             this.Load += new System.EventHandler(this.UnitForm_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
