@@ -16,11 +16,11 @@ namespace Khronos_PMS.Util
             newLog.Date = DateTime.Now;
             newLog.OperationID = OperationID;
             newLog.Params = Params;
-            newLog.UserID = LoginManager.loggedUser.ID;
+            newLog.UserID = LoginManager.LoggedUser.ID;
             newLog.TableID = TableID;
 
             entities.Logs.Add(newLog);
-            entities.SaveChanges();
+            entities.SaveChangesAsync();
         }
     }
 }

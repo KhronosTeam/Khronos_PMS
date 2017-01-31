@@ -16,9 +16,9 @@ namespace Khronos_PMS {
     public partial class AdminForm : Form {
         private Admin admin;
 
-        public AdminForm(Admin admin) {
+        public AdminForm(int adminID) {
             InitializeComponent();
-            this.admin = admin;
+            this.admin = ProjectManagement.entities.Admins.Find(adminID);
             newAdminToolStripButton.Click += ToolStripButton_Click;
             newCustomerToolStripButton.Click += ToolStripButton_Click;
             newWorkerToolStripButton.Click += ToolStripButton_Click;

@@ -14,19 +14,13 @@ namespace Khronos_PMS.View {
     public partial class MainForm : Form {
         private User user;
 
-        public MainForm(int userId) {
+        public MainForm(String username, int userID) {
             InitializeComponent();
-            this.user = ProjectManager.entities.Users.Find(userId);
+            this.user = ProjectManager.entities.Users.Find(userID);
 
             if (user != null)
-                userLabel.Text = user.GetName();
+                userLabel.Text = username;
 
-            // pošto u LoginForm imamo progress bar ovdje ćemo učitati sve što treba iz baze
-            // pa kada se forma pokrene sve bude učitano
-            /*projectsListView.GetColumn(0).ImageGetter = i => 0;
-
-            List<Project> projects = ProjectManager.GetProjects(user);
-            projectsListView.DataSource = projects;
             unitsTreeView.CanExpandGetter = u => (u as Unit).HasChildren;
             unitsTreeView.ChildrenGetter = u => (u as Unit).Children;
 
@@ -57,7 +51,7 @@ namespace Khronos_PMS.View {
             unitsTreeView.GetColumn(4).ImageGetter = u => 17;
             unitsTreeView.GetColumn(5).ImageGetter = u => 17;
             assigneesListView.GetColumn(0).ImageGetter = a => 0;
-            rightTableLayout.ColumnStyles[1].Width = 0;*/
+            rightTableLayout.ColumnStyles[1].Width = 0;
         }
 
         private void MainForm_Load(Object sender, EventArgs e) {
@@ -66,38 +60,6 @@ namespace Khronos_PMS.View {
 
             List<Project> projects = ProjectManager.GetProjects(user);
             projectsListView.DataSource = projects;
-            unitsTreeView.CanExpandGetter = u => (u as Unit).HasChildren;
-            unitsTreeView.ChildrenGetter = u => (u as Unit).Children;
-
-            int statusOffset = 7, priorityOffset = 11;
-
-            workersListView.CheckStateGetter = w => (w as Worker).AssignedToProject((Project)projectsListView.SelectedObject) ? CheckState.Checked : CheckState.Unchecked;
-
-            workersListView.CheckStatePutter = (w, value) => {
-                switch (value)
-                {
-                    case CheckState.Checked:
-                        ProjectManager.AssignWorker((Project)projectsListView.SelectedObject, (Worker)w);
-                        return CheckState.Unchecked;
-                    case CheckState.Unchecked:
-                        ProjectManager.UnassignWorker((Project)projectsListView.SelectedObject, (Worker)w);
-                        return CheckState.Checked;
-                    default:
-                        return CheckState.Unchecked;
-                }
-            };
-            workersListView.GetColumn(0).ImageGetter = w => 1;
-            unitsTreeView.GetColumn(0).ImageGetter = u => (u as Unit).Status + 2;
-            unitsTreeView.GetColumn(1).ImageGetter = u => (u as Unit).Status + statusOffset;
-            unitsTreeView.GetColumn(1).AspectToStringConverter = s => StatusManager.Name(StatusManager.getStausById((int)s));
-            unitsTreeView.GetColumn(2).ImageGetter = u => (u as Unit).Priority + priorityOffset;
-            unitsTreeView.GetColumn(2).AspectToStringConverter = s => PriorityManager.Name(PriorityManager.GetPriorityById((int)s));
-            unitsTreeView.GetColumn(3).ImageGetter = u => 6;
-            unitsTreeView.GetColumn(3).AspectToStringConverter = d => ((DateTime)d).ToShortDateString();
-            unitsTreeView.GetColumn(4).ImageGetter = u => 17;
-            unitsTreeView.GetColumn(5).ImageGetter = u => 17;
-            assigneesListView.GetColumn(0).ImageGetter = a => 0;
-            rightTableLayout.ColumnStyles[1].Width = 0;
         }
 
         private void button1_Click(Object sender, EventArgs e) {
@@ -250,7 +212,6 @@ namespace Khronos_PMS.View {
         }
 
         private void unitToolStripMenuItem_Click(Object sender, EventArgs e) {
-            //same as create unit
             addNewUnitButton.PerformClick();
         }
 
@@ -259,7 +220,7 @@ namespace Khronos_PMS.View {
         }
 
         private void logOutToolStripMenuItem_Click(Object sender, EventArgs e) {
-            //todo vratiti se na login formu
+            Application.Restart();
         }
 
         private void searchUnitsTextBox_TextChanged(Object sender, EventArgs e) {

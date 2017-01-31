@@ -7,6 +7,8 @@ using Khronos_PMS.Model;
 
 namespace Khronos_PMS {
     public partial class LoginForm : Form {
+        private User user;
+
         public LoginForm() {
             InitializeComponent();
         }
@@ -36,9 +38,10 @@ namespace Khronos_PMS {
                 LoginManager login = null;
                 progressBar.Visible = true;
                 await Task.Run(() => { login = new LoginManager(username, password); });
-                if (login.IsValid)
-                    startNewForm(login.Form);
-                else {
+                if (login.IsValid) {
+                    DialogResult = DialogResult.OK;
+                    user = login.User;
+                } else {
                     errorTextLabel.Text = login.Message;
                     errorTextLabel.Visible = true;
                 }
@@ -46,14 +49,13 @@ namespace Khronos_PMS {
             }
         }
 
-        private void startNewForm(Form form) {
-            form.Show();
-            form.Closed += (o, args) => { Close(); };
-            Hide();
+        private void cancelButton_Click(Object sender, EventArgs e) {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
-        private void cancelButton_Click(Object sender, EventArgs e) {
-            Close();
+        public User User {
+            get { return user; }
         }
     }
 }
