@@ -16,5 +16,10 @@ namespace Khronos_PMS.Util {
             return list;
         }
 
+        public static List<Activity> getActivities(Unit unit)
+        {
+            return ProjectManager.entities.Activities.Where(a => a.UnitID == unit.ID).ToList();
+        }
+
     }
 }
