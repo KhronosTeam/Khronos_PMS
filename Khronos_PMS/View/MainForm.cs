@@ -210,6 +210,9 @@ namespace Khronos_PMS.View {
                 new Task(() => { assigneesListView.SetObjects(unit.Assignees); }).Start();
                 rightTableLayout.ColumnStyles[1].Width = 315;
             }
+                List<Activity> activities = new List<Activity>(1);
+                activityDataListView.DataSource = activities;
+                activityDataListView.SetObjects(activities);
         }
 
         private void refrshToolStripMenuItem_Click(Object sender, EventArgs e) {
@@ -265,9 +268,10 @@ namespace Khronos_PMS.View {
         }
 
         private void viewAllToolStripMenuItem_Click(object sender, EventArgs e) {
-            Unit unit = (Unit) unitsTreeView.SelectedObject;
+            Unit unit = (Unit)unitsTreeView.SelectedObject;
             List<Activity> activities = UnitManager.getActivities(unit);
             activityDataListView.DataSource = activities;
+            activityDataListView.SetObjects(activities);
         }
 
         private void unitEditButton_Click(Object sender, EventArgs e) {
