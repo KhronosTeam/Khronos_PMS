@@ -211,6 +211,7 @@ namespace Khronos_PMS.View {
                 new Task(() => {
                     List<Activity> activities = UnitManager.GetActivities(unit, user);
                     activityListView.SetObjects(activities);
+                    activityListView.BuildList();
                 }).Start();
             }
         }
@@ -220,7 +221,8 @@ namespace Khronos_PMS.View {
         }
 
         private void unitToolStripMenuItem_Click(Object sender, EventArgs e) {
-            //todo same as create unit
+            //same as create unit
+            addNewUnitButton.PerformClick();
         }
 
         private void exitToolStripMenuItem_Click(Object sender, EventArgs e) {
@@ -276,6 +278,18 @@ namespace Khronos_PMS.View {
 
         private void unitEditButton_Click(Object sender, EventArgs e) {
             //todo edit unit call UnitForm
+        }
+
+        private void activityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (unitsTreeView.SelectedIndex != -1)
+            {
+                addActivityToolstripMenuItem.PerformClick();
+            }
+            else
+            {
+                MessageBox.Show("You must select one unit!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
