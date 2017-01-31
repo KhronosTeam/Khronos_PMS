@@ -35,7 +35,7 @@ namespace Khronos_PMS.View
             this.cancelButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.expensesLabel = new System.Windows.Forms.Label();
-            this.exspensesTextBox = new System.Windows.Forms.TextBox();
+            this.expensesTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // manHourSpentLabel
@@ -100,19 +100,19 @@ namespace Khronos_PMS.View
             this.expensesLabel.TabIndex = 6;
             this.expensesLabel.Text = "Expenses:";
             // 
-            // exspensesTextBox
+            // expensesTextBox
             // 
-            this.exspensesTextBox.Location = new System.Drawing.Point(113, 38);
-            this.exspensesTextBox.Name = "exspensesTextBox";
-            this.exspensesTextBox.Size = new System.Drawing.Size(209, 20);
-            this.exspensesTextBox.TabIndex = 7;
+            this.expensesTextBox.Location = new System.Drawing.Point(113, 38);
+            this.expensesTextBox.Name = "expensesTextBox";
+            this.expensesTextBox.Size = new System.Drawing.Size(209, 20);
+            this.expensesTextBox.TabIndex = 7;
             // 
             // ActivityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(334, 313);
-            this.Controls.Add(this.exspensesTextBox);
+            this.Controls.Add(this.expensesTextBox);
             this.Controls.Add(this.expensesLabel);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.cancelButton);
@@ -136,6 +136,6 @@ namespace Khronos_PMS.View
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Label expensesLabel;
-        private System.Windows.Forms.TextBox exspensesTextBox;
+        private System.Windows.Forms.TextBox expensesTextBox;
     }
 }

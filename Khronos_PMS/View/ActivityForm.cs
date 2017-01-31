@@ -39,7 +39,7 @@ namespace Khronos_PMS.View
             {
                 int manhour = int.Parse(manHourSpentTextBox.Text);
                 String note = noteTextBox.Text;
-                double expense = double.Parse(expensesLabel.Text);
+                double expense = double.Parse(expensesTextBox.Text);
                 if (manager.addActivity(manhour, expense, note))
                 {
                     this.Close();
