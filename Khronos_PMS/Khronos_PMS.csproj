@@ -283,6 +283,8 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\about.png" />
+    <None Include="Resources\view_help.png" />
     <None Include="Resources\logout.png" />
     <None Include="Resources\exit.png" />
     <None Include="Resources\refresh.png" />
