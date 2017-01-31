@@ -9,12 +9,28 @@ namespace Khronos_PMS.Util
     {
         private User user;
         private Unit unit;
+        private Activity activity;
 
         public ActivityManager(Unit u, User user, int manhour, double expense, String note)
         {
             this.user = user;
             unit = u;
             addActivity(manhour, expense, note);
+        }
+
+        public ActivityManager(Activity activity)
+        {
+            this.activity = activity;
+            try
+            {
+                ProjectManager.entities.Activities.Attach(activity);
+                ProjectManager.entities.Entry(activity).State = System.Data.Entity.EntityState.Modified;
+                ProjectManager.entities.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                ProjectManager.entities.Entry(activity).State = System.Data.Entity.EntityState.Detached;
+            }
         }
 
         private void addActivity(int manhour, double expense, String note)

@@ -256,7 +256,7 @@ namespace Khronos_PMS.View {
         }
 
         private void addActivityToolstripMenuItem_Click(object sender, EventArgs e) {
-            new ActivityForm((Unit) unitsTreeView.SelectedObject, user, false).ShowDialog();
+            new ActivityForm((Unit) unitsTreeView.SelectedObject, user, null).ShowDialog();
         }
 
         private void viewAllToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -276,6 +276,18 @@ namespace Khronos_PMS.View {
             } else {
                 MessageBox.Show("You must select one unit!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void editActivityButton_Click(object sender, EventArgs e)
+        {
+            if(activityListView.SelectedIndex != -1)
+            {
+                new ActivityForm((Unit)unitsTreeView.SelectedObject, user, (Activity)activityListView.SelectedObject).ShowDialog();
+            }else
+            {
+                MessageBox.Show("You must select one activity!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
     }
 }
