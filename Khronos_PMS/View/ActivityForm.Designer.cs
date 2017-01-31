@@ -34,6 +34,8 @@ namespace Khronos_PMS.View
             this.noteTextBox = new System.Windows.Forms.TextBox();
             this.cancelButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
+            this.expensesLabel = new System.Windows.Forms.Label();
+            this.expensesTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // manHourSpentLabel
@@ -55,7 +57,7 @@ namespace Khronos_PMS.View
             // noteLabel
             // 
             this.noteLabel.AutoSize = true;
-            this.noteLabel.Location = new System.Drawing.Point(12, 41);
+            this.noteLabel.Location = new System.Drawing.Point(13, 68);
             this.noteLabel.Name = "noteLabel";
             this.noteLabel.Size = new System.Drawing.Size(33, 13);
             this.noteLabel.TabIndex = 2;
@@ -63,10 +65,10 @@ namespace Khronos_PMS.View
             // 
             // noteTextBox
             // 
-            this.noteTextBox.Location = new System.Drawing.Point(12, 57);
+            this.noteTextBox.Location = new System.Drawing.Point(12, 84);
             this.noteTextBox.Multiline = true;
             this.noteTextBox.Name = "noteTextBox";
-            this.noteTextBox.Size = new System.Drawing.Size(310, 216);
+            this.noteTextBox.Size = new System.Drawing.Size(310, 189);
             this.noteTextBox.TabIndex = 3;
             // 
             // cancelButton
@@ -74,7 +76,7 @@ namespace Khronos_PMS.View
             this.cancelButton.Location = new System.Drawing.Point(247, 279);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 4;
+            this.cancelButton.TabIndex = 5;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -84,16 +86,34 @@ namespace Khronos_PMS.View
             this.saveButton.Location = new System.Drawing.Point(166, 279);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 5;
+            this.saveButton.TabIndex = 4;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // expensesLabel
+            // 
+            this.expensesLabel.AutoSize = true;
+            this.expensesLabel.Location = new System.Drawing.Point(13, 41);
+            this.expensesLabel.Name = "expensesLabel";
+            this.expensesLabel.Size = new System.Drawing.Size(56, 13);
+            this.expensesLabel.TabIndex = 6;
+            this.expensesLabel.Text = "Expenses:";
+            // 
+            // expensesTextBox
+            // 
+            this.expensesTextBox.Location = new System.Drawing.Point(113, 38);
+            this.expensesTextBox.Name = "expensesTextBox";
+            this.expensesTextBox.Size = new System.Drawing.Size(209, 20);
+            this.expensesTextBox.TabIndex = 2;
             // 
             // ActivityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(334, 313);
+            this.Controls.Add(this.expensesTextBox);
+            this.Controls.Add(this.expensesLabel);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.noteTextBox);
@@ -115,5 +135,7 @@ namespace Khronos_PMS.View
         private System.Windows.Forms.TextBox noteTextBox;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Label expensesLabel;
+        private System.Windows.Forms.TextBox expensesTextBox;
     }
 }
