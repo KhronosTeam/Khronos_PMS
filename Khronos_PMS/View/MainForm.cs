@@ -191,9 +191,7 @@ namespace Khronos_PMS.View {
                 unitSpentManhoursLabel.Text = unit.SpentManhours + " h";
                 unitDueDateLabel.Text = unit.DueDate.ToShortDateString();
                 assigneesListView.DataSource = new List<Worker>(1);
-                new Task(() => {
-                    assigneesListView.SetObjects(unit.Assignees);
-                }).Start();
+                new Task(() => { assigneesListView.SetObjects(unit.Assignees); }).Start();
                 rightTableLayout.ColumnStyles[1].Width = 315;
             }
         }
@@ -227,7 +225,8 @@ namespace Khronos_PMS.View {
         }
 
         private void addNewUnitButton_Click(Object sender, EventArgs e) {
-            new UnitForm((Project) projectsListView.SelectedObject, promptTextBox3.Text, (Unit) unitsTreeView.SelectedObject).Show();
+            UnitForm unitForm = new UnitForm((Project) projectsListView.SelectedObject, promptTextBox3.Text, (Unit) unitsTreeView.SelectedObject);
+            unitForm.ShowDialog();
         }
 
         private void financialReportToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -245,9 +244,8 @@ namespace Khronos_PMS.View {
             ar.ShowDialog();
         }
 
-        private void addActivityToolstripMenuItem_Click(object sender, EventArgs e)
-        {
-            new ActivityManager((Unit)unitsTreeView.SelectedObject, user);
+        private void addActivityToolstripMenuItem_Click(object sender, EventArgs e) {
+            new ActivityManager((Unit) unitsTreeView.SelectedObject, user);
         }
     }
 }
