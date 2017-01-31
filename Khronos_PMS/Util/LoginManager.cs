@@ -16,7 +16,7 @@ namespace Khronos_PMS.Util {
 
         public LoginManager(String username, String password) {
             try {
-                entities = new KhronosPMSEntities();
+                entities = ProjectManager.entities;
                 this.username = username;
                 this.password = password;
                 this.isValid = false;
@@ -34,9 +34,9 @@ namespace Khronos_PMS.Util {
                 if (user.Admin != null)
                     form = new AdminForm(user.Admin);
                 else if (user.Worker != null)
-                    form = new MainForm(user.Worker);
+                    form = new MainForm(user.ID);
                 else if (user.Customer != null) {
-                    form = new MainForm(user.Customer);
+                    form = new MainForm(user.ID);
                 } else
                     throw new Exception("Something is wrong!");
             } else

@@ -15,7 +15,7 @@ namespace Khronos_PMS {
             //todo obrisati ovaj dio kad login proradi, samo da ima ulogovani user kad se pokrene aplikacija
             //Model.KhronosPMSEntities entities = new Model.KhronosPMSEntities();
             //Model.User user = entities.Users.FirstOrDefault(u => u.Username == "vladanstojnic");
-            Application.Run(new MainForm(null));
+            Application.Run(new LoginForm());
         }
     }
 }
