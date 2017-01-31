@@ -109,7 +109,8 @@ namespace Khronos_PMS.View {
             projectNameLabel.Text = selectedProject.Name;
             projectDescriptionLabel.Text = selectedProject.Description;
             startDateLabel.Text = selectedProject.StartDate.ToShortDateString();
-            endDateLabel.Text = selectedProject.DeadlineDate.ToShortDateString();
+            //Showing end date if project is completed elese deadline
+            setDates(selectedProject);
             budgetLabel.Text = String.Format("{0:0.00} KM", selectedProject.Budget);
             expenseLabel.Text = String.Format("{0:0.00} KM", selectedProject.Expense);
             bossNameLabel.Text = selectedProject.Boss.FullName;
@@ -124,6 +125,21 @@ namespace Khronos_PMS.View {
                 List<Unit> u = ProjectManager.GetRootUnits(selectedProject);
                 unitsTreeView.SetObjects(u);
             }).Start();
+        }
+
+        private void setDates(Project selectedProject)
+        {
+            //Showing end date if project is completed elese deadline
+            if (StatusManager.getStausById(selectedProject.Status) == Status.COMPLETED)
+            {
+                label3.Text = "End date:";
+                endDateLabel.Text = Convert.ToDateTime(selectedProject.EndDate).ToShortDateString();
+            }
+            else
+            {
+                label3.Text = "Deadline:";
+                endDateLabel.Text = selectedProject.DeadlineDate.ToShortDateString();
+            }
         }
 
         private void projectsSearchTextbox_TextChanged(object sender, EventArgs e) {

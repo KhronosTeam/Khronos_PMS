@@ -43,14 +43,26 @@ namespace Khronos_PMS.Util {
             }
         }
 
-        public static void UpdateStatus(Project project, Status status) {
+        public static void UpdateStatus(Project project, Status status)
+        {
             new Task(() => {
-                project.Status = (int) status;
-                try {
+                if (getStausById(project.Status) == Status.COMPLETED && status != Status.COMPLETED)
+                {
+                    project.EndDate = null;
+                }
+                else if (getStausById(project.Status) != Status.COMPLETED && status == Status.COMPLETED)
+                {
+                    project.EndDate = DateTime.Now;
+                }
+                project.Status = (int)status;
+                try
+                {
                     ProjectManager.entities.Projects.Attach(project);
                     ProjectManager.entities.Entry(project).State = System.Data.Entity.EntityState.Modified;
                     ProjectManager.entities.SaveChanges();
-                } catch (Exception) {
+                }
+                catch (Exception)
+                {
                     ProjectManager.entities.Entry(project).State = System.Data.Entity.EntityState.Detached;
                 }
             }).Start();
