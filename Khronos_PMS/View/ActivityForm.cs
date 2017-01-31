@@ -16,18 +16,23 @@ namespace Khronos_PMS.View
     {
         private Unit unit;
         private User user;
+        private Activity activity;
 
-        public ActivityForm(Unit unit, User user, bool edit)
+        public ActivityForm(Unit unit, User user, Activity activity)
         {
             InitializeComponent();
             this.unit = unit;
             this.user = user;
-            if (!edit)
+            this.activity = activity;
+            if (activity == null)
             {
                 this.Text = "Add new activity";
             }else
             {
                 this.Text = "Edit activity";
+                manHourSpentTextBox.Text = activity.Manhour.ToString();
+                expensesTextBox.Text = activity.Expense.ToString();
+                noteTextBox.Text = activity.Note;
             }
         }
 
@@ -47,7 +52,11 @@ namespace Khronos_PMS.View
                 this.Close();
             }else
             {
-                //todo Edit ako bude potreban
+                activity.Manhour = manhour;
+                activity.Expense = (decimal)expense;
+                activity.Note = note;
+                new ActivityManager(activity);
+                this.Close();
             }
         }
     }
