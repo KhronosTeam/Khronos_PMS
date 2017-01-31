@@ -541,9 +541,10 @@ namespace Khronos_PMS.View {
             this.expenseLabel.AutoSize = true;
             this.expenseLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.expenseLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.expenseLabel.Location = new System.Drawing.Point(293, 25);
+            this.expenseLabel.Location = new System.Drawing.Point(272, 25);
+            this.expenseLabel.Margin = new System.Windows.Forms.Padding(0);
             this.expenseLabel.Name = "expenseLabel";
-            this.expenseLabel.Size = new System.Drawing.Size(79, 25);
+            this.expenseLabel.Size = new System.Drawing.Size(87, 25);
             this.expenseLabel.TabIndex = 16;
             this.expenseLabel.Text = "10 000 KM";
             this.expenseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -553,9 +554,10 @@ namespace Khronos_PMS.View {
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.label8.Location = new System.Drawing.Point(223, 25);
+            this.label8.Location = new System.Drawing.Point(212, 25);
+            this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 25);
+            this.label8.Size = new System.Drawing.Size(60, 25);
             this.label8.TabIndex = 15;
             this.label8.Text = "Expense:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -565,9 +567,10 @@ namespace Khronos_PMS.View {
             this.budgetLabel.AutoSize = true;
             this.budgetLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.budgetLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.budgetLabel.Location = new System.Drawing.Point(293, 0);
+            this.budgetLabel.Location = new System.Drawing.Point(272, 0);
+            this.budgetLabel.Margin = new System.Windows.Forms.Padding(0);
             this.budgetLabel.Name = "budgetLabel";
-            this.budgetLabel.Size = new System.Drawing.Size(79, 25);
+            this.budgetLabel.Size = new System.Drawing.Size(87, 25);
             this.budgetLabel.TabIndex = 13;
             this.budgetLabel.Text = "15 000 KM";
             this.budgetLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -577,9 +580,10 @@ namespace Khronos_PMS.View {
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.label9.Location = new System.Drawing.Point(223, 0);
+            this.label9.Location = new System.Drawing.Point(212, 0);
+            this.label9.Margin = new System.Windows.Forms.Padding(0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(64, 25);
+            this.label9.Size = new System.Drawing.Size(60, 25);
             this.label9.TabIndex = 11;
             this.label9.Text = "Budget:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -611,9 +615,10 @@ namespace Khronos_PMS.View {
             this.endDateLabel.AutoSize = true;
             this.endDateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.endDateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.endDateLabel.Location = new System.Drawing.Point(98, 25);
+            this.endDateLabel.Location = new System.Drawing.Point(87, 25);
+            this.endDateLabel.Margin = new System.Windows.Forms.Padding(0);
             this.endDateLabel.Name = "endDateLabel";
-            this.endDateLabel.Size = new System.Drawing.Size(74, 25);
+            this.endDateLabel.Size = new System.Drawing.Size(80, 25);
             this.endDateLabel.TabIndex = 8;
             this.endDateLabel.Text = "28.01.2017.";
             this.endDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -623,9 +628,10 @@ namespace Khronos_PMS.View {
             this.startDateLabel.AutoSize = true;
             this.startDateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startDateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.startDateLabel.Location = new System.Drawing.Point(98, 0);
+            this.startDateLabel.Location = new System.Drawing.Point(87, 0);
+            this.startDateLabel.Margin = new System.Windows.Forms.Padding(0);
             this.startDateLabel.Name = "startDateLabel";
-            this.startDateLabel.Size = new System.Drawing.Size(74, 25);
+            this.startDateLabel.Size = new System.Drawing.Size(80, 25);
             this.startDateLabel.TabIndex = 7;
             this.startDateLabel.Text = "21.01.2017.";
             this.startDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -635,9 +641,10 @@ namespace Khronos_PMS.View {
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.label3.Location = new System.Drawing.Point(28, 25);
+            this.label3.Location = new System.Drawing.Point(25, 25);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 25);
+            this.label3.Size = new System.Drawing.Size(62, 25);
             this.label3.TabIndex = 6;
             this.label3.Text = "Deadline:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -647,9 +654,10 @@ namespace Khronos_PMS.View {
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.label1.Location = new System.Drawing.Point(28, 0);
+            this.label1.Location = new System.Drawing.Point(25, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 25);
+            this.label1.Size = new System.Drawing.Size(62, 25);
             this.label1.TabIndex = 5;
             this.label1.Text = "Start date:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1186,9 +1194,10 @@ namespace Khronos_PMS.View {
             // 
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label15.Image = ((System.Drawing.Image)(resources.GetObject("label15.Image")));
-            this.label15.Location = new System.Drawing.Point(198, 25);
+            this.label15.Location = new System.Drawing.Point(187, 25);
+            this.label15.Margin = new System.Windows.Forms.Padding(0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(19, 25);
+            this.label15.Size = new System.Drawing.Size(25, 25);
             this.label15.TabIndex = 27;
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1196,9 +1205,10 @@ namespace Khronos_PMS.View {
             // 
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label14.Image = ((System.Drawing.Image)(resources.GetObject("label14.Image")));
-            this.label14.Location = new System.Drawing.Point(198, 0);
+            this.label14.Location = new System.Drawing.Point(187, 0);
+            this.label14.Margin = new System.Windows.Forms.Padding(0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(19, 25);
+            this.label14.Size = new System.Drawing.Size(25, 25);
             this.label14.TabIndex = 26;
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1424,9 +1434,10 @@ namespace Khronos_PMS.View {
             // 
             this.unitExpenseLabel.AutoSize = true;
             this.unitExpenseLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.unitExpenseLabel.Location = new System.Drawing.Point(134, 75);
+            this.unitExpenseLabel.Location = new System.Drawing.Point(131, 75);
+            this.unitExpenseLabel.Margin = new System.Windows.Forms.Padding(0);
             this.unitExpenseLabel.Name = "unitExpenseLabel";
-            this.unitExpenseLabel.Size = new System.Drawing.Size(163, 25);
+            this.unitExpenseLabel.Size = new System.Drawing.Size(169, 25);
             this.unitExpenseLabel.TabIndex = 35;
             this.unitExpenseLabel.Text = "500 KM";
             this.unitExpenseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1435,9 +1446,10 @@ namespace Khronos_PMS.View {
             // 
             this.label20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label20.Image = ((System.Drawing.Image)(resources.GetObject("label20.Image")));
-            this.label20.Location = new System.Drawing.Point(3, 25);
+            this.label20.Location = new System.Drawing.Point(0, 25);
+            this.label20.Margin = new System.Windows.Forms.Padding(0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(19, 25);
+            this.label20.Size = new System.Drawing.Size(25, 25);
             this.label20.TabIndex = 29;
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1445,9 +1457,10 @@ namespace Khronos_PMS.View {
             // 
             this.label21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label21.Image = ((System.Drawing.Image)(resources.GetObject("label21.Image")));
-            this.label21.Location = new System.Drawing.Point(3, 0);
+            this.label21.Location = new System.Drawing.Point(0, 0);
+            this.label21.Margin = new System.Windows.Forms.Padding(0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(19, 25);
+            this.label21.Size = new System.Drawing.Size(25, 25);
             this.label21.TabIndex = 30;
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1457,12 +1470,12 @@ namespace Khronos_PMS.View {
             | System.Windows.Forms.AnchorStyles.Right)));
             this.projectInfoTableLayout.ColumnCount = 8;
             this.projectInfoTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.projectInfoTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.projectInfoTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.projectInfoTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.projectInfoTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.projectInfoTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.projectInfoTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.projectInfoTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.projectInfoTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.projectInfoTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
             this.projectInfoTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.projectInfoTableLayout.Controls.Add(this.endDateLabel, 2, 1);
             this.projectInfoTableLayout.Controls.Add(this.label9, 5, 0);
