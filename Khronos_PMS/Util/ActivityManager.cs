@@ -1,6 +1,7 @@
 using Khronos_PMS.Model;
 using Khronos_PMS.View;
 using System;
+using System.Windows.Forms;
 
 namespace Khronos_PMS.Util
 {
@@ -9,21 +10,14 @@ namespace Khronos_PMS.Util
         private User user;
         private Unit unit;
 
-        public ActivityManager(Unit u, User user)
+        public ActivityManager(Unit u, User user, int manhour, double expense, String note)
         {
             this.user = user;
             unit = u;
-            if (unit != null)
-            {
-                new ActivityForm(this, false).Show();
-            }
-            else
-            {
-                new ActivityForm(this, true).Show();
-            }
+            addActivity(manhour, expense, note);
         }
 
-        public bool addActivity(int manhour, double expense, String note)
+        private void addActivity(int manhour, double expense, String note)
         {
             Activity activity = new Activity();
             try
@@ -36,13 +30,11 @@ namespace Khronos_PMS.Util
                 activity.ProjectID = unit.ProjectID;
                 activity.UnitID = unit.ID;
                 ProjectManager.entities.Activities.Add(activity);
-                ProjectManager.entities.SaveChanges();
-                return true;
+                ProjectManager.entities.SaveChangesAsync();
             }
             catch (Exception e)
             {
                 Console.Write(e.StackTrace);
-                return false;
             }
         }
     }

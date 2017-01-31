@@ -259,7 +259,7 @@ namespace Khronos_PMS.View {
         }
 
         private void addActivityToolstripMenuItem_Click(object sender, EventArgs e) {
-            new ActivityManager((Unit) unitsTreeView.SelectedObject, user);
+            new ActivityForm((Unit) unitsTreeView.SelectedObject, user, false).ShowDialog();
         }
 
         private void viewAllToolStripMenuItem_Click(object sender, EventArgs e) {
