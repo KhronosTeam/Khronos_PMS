@@ -102,7 +102,9 @@ namespace Khronos_PMS {
                 return;
             } else {
                 bool result = false;
+                accountProgressBar.Style = ProgressBarStyle.Marquee;
                 await Task.Run(() => { result = AccountManagement.ChangePassword(username, password); });
+                accountProgressBar.Style = ProgressBarStyle.Continuous;
                 if (result) {
                     MessageBox.Show("Success!");
                     resetControls(changePasswordPanel.Controls);
@@ -120,7 +122,9 @@ namespace Khronos_PMS {
                 return;
             } else {
                 bool result = false;
+                accountProgressBar.Style = ProgressBarStyle.Marquee;
                 await Task.Run(() => { result = AccountManagement.CreateCustomer(username, password, name); });
+                accountProgressBar.Style = ProgressBarStyle.Continuous;
                 if (result) {
                     MessageBox.Show("Success!");
                     resetControls(newWorkerPanel.Controls);
@@ -139,7 +143,9 @@ namespace Khronos_PMS {
                 return;
             } else {
                 bool result = false;
+                accountProgressBar.Style = ProgressBarStyle.Marquee;
                 await Task.Run(() => { result = AccountManagement.CreateWorker(username, password, firstname, lastname); });
+                accountProgressBar.Style = ProgressBarStyle.Continuous;
                 if (result) {
                     MessageBox.Show("Success!");
                     resetControls(newWorkerPanel.Controls);
@@ -174,7 +180,9 @@ namespace Khronos_PMS {
                 return;
             } else {
                 bool result = false;
+                accountProgressBar.Style = ProgressBarStyle.Marquee;
                 await Task.Run(() => { result = AccountManagement.CreateAdmin(username, password, firstname, lastname); });
+                accountProgressBar.Style = ProgressBarStyle.Continuous;
                 if (result) {
                     MessageBox.Show("Success!");
                     resetControls(newAdminPanel.Controls);
@@ -186,7 +194,8 @@ namespace Khronos_PMS {
 
         private void changePasswordPanel_VisibleChanged(object sender, EventArgs e) {
             if (((Panel) sender).Visible) {
-                changeUsernameComboBox.DataSource = AccountManagement.GetUsernames();
+                accountProgressBar.Style = ProgressBarStyle.Marquee;
+                new Task(() => { List<string> users = AccountManagement.GetUsernames(); Invoke(new MethodInvoker(() => { changeUsernameComboBox.DataSource = users; accountProgressBar.Style = ProgressBarStyle.Continuous; })); }).Start();
             }
         }
 
@@ -224,6 +233,74 @@ namespace Khronos_PMS {
             ProjectView projectView = (ProjectView) projectDataGridView.SelectedRows[0].DataBoundItem;
             if (projectView != null)
                 new ProjectForm(projectView).Show();
+        }
+
+        private void activateToolStripButton_CheckedChanged(object sender, EventArgs e)
+        {
+            ToolStripButton b = (ToolStripButton)sender;
+            if (b.Checked)
+            {
+                ActivatePanel.Visible = true;
+            }
+            else
+            {
+                resetControls(ActivatePanel.Controls);
+                ActivatePanel.Visible = false;
+            }
+        }
+
+        private void activeOKButton_Click(object sender, EventArgs e)
+        {
+            activate();
+        }
+
+        private async void activate()
+        {
+            string username = activateUsernameComboBox.Text;
+            bool active = activeCheckBox.Checked;
+
+            if (textBoxNotValid(activateUsernameComboBox))
+            {
+                return;
+            }
+            else
+            {
+                bool result = false;
+                accountProgressBar.Style = ProgressBarStyle.Marquee;
+                await Task.Run(() => { result = AccountManagement.Activate(username, active); });
+                accountProgressBar.Style = ProgressBarStyle.Continuous;
+                if (result)
+                {
+                    MessageBox.Show("Success!");
+                    resetControls(ActivatePanel.Controls);
+                }
+                else
+                {
+                    MessageBox.Show("Error!");
+                }
+            }
+        }
+
+        private void ActivatePanel_VisibleChanged(object sender, EventArgs e)
+        {
+            if (((Panel)sender).Visible)
+            {
+                accountProgressBar.Style = ProgressBarStyle.Marquee;
+                new Task(() => { List<User> users = AccountManagement.GetUsers(); Invoke(new MethodInvoker(() => { activateUsernameComboBox.DataSource = users; activateUsernameComboBox.DisplayMember = "Username"; accountProgressBar.Style = ProgressBarStyle.Continuous; })); }).Start();
+            }
+        }
+
+        /*private void activateUsernameComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            activeCheckBox.Checked = ((User)activateUsernameComboBox.SelectedItem).Active;
+        }*/
+
+        private void activateUsernameComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (activateUsernameComboBox.SelectedIndex != -1)
+            {
+                activeCheckBox.Checked = ((User)activateUsernameComboBox.SelectedItem).Active;
+            }
         }
     }
 }

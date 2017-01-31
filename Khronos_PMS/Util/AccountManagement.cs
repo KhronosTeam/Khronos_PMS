@@ -81,6 +81,23 @@ namespace Khronos_PMS.Util
             return false;
         }
 
+        public static bool Activate(string username, bool active)
+        {
+            if (entities.Users.Any(u => u.Username == username))
+            {
+                User user = entities.Users.First(u => u.Username == username);
+                user.Active = active;
+                entities.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public static List<User> GetUsers()
+        {
+            return entities.Users.ToList();
+        }
+
         public static List<string> GetUsernames()
         {
             return entities.Users.Select(u => u.Username).ToList();

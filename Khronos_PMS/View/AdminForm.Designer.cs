@@ -32,6 +32,7 @@
             this.newWorkerToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.newCustomerToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.changePasswordToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.activateToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.newAdminPanel = new System.Windows.Forms.Panel();
             this.adminOKButton = new System.Windows.Forms.Button();
             this.adminLastnameTextBox = new System.Windows.Forms.TextBox();
@@ -66,6 +67,13 @@
             this.changeUsernameComboBox = new System.Windows.Forms.ComboBox();
             this.changeNewPasswordLabel = new System.Windows.Forms.Label();
             this.changeUsernameLabel = new System.Windows.Forms.Label();
+            this.ActivatePanel = new System.Windows.Forms.Panel();
+            this.activeOKButton = new System.Windows.Forms.Button();
+            this.activeCheckBox = new System.Windows.Forms.CheckBox();
+            this.activateUsernameComboBox = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.accountProgressBar = new System.Windows.Forms.ProgressBar();
             this.projectTabPage = new System.Windows.Forms.TabPage();
             this.projectDataGridView = new System.Windows.Forms.DataGridView();
             this.addProjectButton = new System.Windows.Forms.Button();
@@ -84,6 +92,7 @@
             this.newCustomerPanel.SuspendLayout();
             this.newWorkerPanel.SuspendLayout();
             this.changePasswordPanel.SuspendLayout();
+            this.ActivatePanel.SuspendLayout();
             this.projectTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectDataGridView)).BeginInit();
             this.projectGroupBox.SuspendLayout();
@@ -121,12 +130,16 @@
             this.accountTableLayoutPanel.Controls.Add(this.newCustomerPanel, 1, 0);
             this.accountTableLayoutPanel.Controls.Add(this.newWorkerPanel, 1, 0);
             this.accountTableLayoutPanel.Controls.Add(this.changePasswordPanel, 1, 0);
+            this.accountTableLayoutPanel.Controls.Add(this.ActivatePanel, 1, 0);
+            this.accountTableLayoutPanel.Controls.Add(this.accountProgressBar, 1, 2);
             this.accountTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.accountTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.accountTableLayoutPanel.Name = "accountTableLayoutPanel";
             this.accountTableLayoutPanel.RowCount = 1;
-            this.accountTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.accountTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.accountTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 83.33334F));
+            this.accountTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.accountTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.accountTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.accountTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.accountTableLayoutPanel.Size = new System.Drawing.Size(1018, 443);
             this.accountTableLayoutPanel.TabIndex = 0;
@@ -138,11 +151,12 @@
             this.newAdminToolStripButton,
             this.newWorkerToolStripButton,
             this.newCustomerToolStripButton,
-            this.changePasswordToolStripButton});
+            this.changePasswordToolStripButton,
+            this.activateToolStripButton});
             this.accountToolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.accountToolStrip.Location = new System.Drawing.Point(0, 0);
             this.accountToolStrip.Name = "accountToolStrip";
-            this.accountToolStrip.Size = new System.Drawing.Size(210, 211);
+            this.accountToolStrip.Size = new System.Drawing.Size(210, 335);
             this.accountToolStrip.TabIndex = 0;
             this.accountToolStrip.Text = "toolStrip1";
             // 
@@ -188,6 +202,18 @@
             this.changePasswordToolStripButton.Size = new System.Drawing.Size(208, 19);
             this.changePasswordToolStripButton.Text = "Change Password";
             // 
+            // activateToolStripButton
+            // 
+            this.activateToolStripButton.BackColor = System.Drawing.Color.DarkGray;
+            this.activateToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.activateToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("activateToolStripButton.Image")));
+            this.activateToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.activateToolStripButton.Name = "activateToolStripButton";
+            this.activateToolStripButton.Size = new System.Drawing.Size(208, 19);
+            this.activateToolStripButton.Text = "Activate/Deactivate";
+            this.activateToolStripButton.CheckedChanged += new System.EventHandler(this.activateToolStripButton_CheckedChanged);
+            this.activateToolStripButton.Click += new System.EventHandler(this.ToolStripButton_Click);
+            // 
             // newAdminPanel
             // 
             this.newAdminPanel.Controls.Add(this.adminOKButton);
@@ -200,9 +226,9 @@
             this.newAdminPanel.Controls.Add(this.adminPasswordLabel);
             this.newAdminPanel.Controls.Add(this.adminUsernameLabel);
             this.newAdminPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.newAdminPanel.Location = new System.Drawing.Point(213, 214);
+            this.newAdminPanel.Location = new System.Drawing.Point(3, 405);
             this.newAdminPanel.Name = "newAdminPanel";
-            this.newAdminPanel.Size = new System.Drawing.Size(802, 205);
+            this.newAdminPanel.Size = new System.Drawing.Size(204, 14);
             this.newAdminPanel.TabIndex = 1;
             // 
             // adminOKButton
@@ -290,9 +316,9 @@
             this.newCustomerPanel.Controls.Add(this.customerPasswordLabel);
             this.newCustomerPanel.Controls.Add(this.customerUsernameLabel);
             this.newCustomerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.newCustomerPanel.Location = new System.Drawing.Point(3, 425);
+            this.newCustomerPanel.Location = new System.Drawing.Point(213, 405);
             this.newCustomerPanel.Name = "newCustomerPanel";
-            this.newCustomerPanel.Size = new System.Drawing.Size(204, 15);
+            this.newCustomerPanel.Size = new System.Drawing.Size(802, 14);
             this.newCustomerPanel.TabIndex = 10;
             this.newCustomerPanel.Visible = false;
             // 
@@ -367,9 +393,9 @@
             this.newWorkerPanel.Controls.Add(this.workerPasswordLabel);
             this.newWorkerPanel.Controls.Add(this.workerUsernameLabel);
             this.newWorkerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.newWorkerPanel.Location = new System.Drawing.Point(213, 3);
+            this.newWorkerPanel.Location = new System.Drawing.Point(213, 338);
             this.newWorkerPanel.Name = "newWorkerPanel";
-            this.newWorkerPanel.Size = new System.Drawing.Size(802, 205);
+            this.newWorkerPanel.Size = new System.Drawing.Size(802, 61);
             this.newWorkerPanel.TabIndex = 9;
             this.newWorkerPanel.Visible = false;
             // 
@@ -456,9 +482,9 @@
             this.changePasswordPanel.Controls.Add(this.changeNewPasswordLabel);
             this.changePasswordPanel.Controls.Add(this.changeUsernameLabel);
             this.changePasswordPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.changePasswordPanel.Location = new System.Drawing.Point(3, 214);
+            this.changePasswordPanel.Location = new System.Drawing.Point(213, 3);
             this.changePasswordPanel.Name = "changePasswordPanel";
-            this.changePasswordPanel.Size = new System.Drawing.Size(204, 205);
+            this.changePasswordPanel.Size = new System.Drawing.Size(802, 329);
             this.changePasswordPanel.TabIndex = 27;
             this.changePasswordPanel.Visible = false;
             this.changePasswordPanel.VisibleChanged += new System.EventHandler(this.changePasswordPanel_VisibleChanged);
@@ -506,6 +532,76 @@
             this.changeUsernameLabel.Size = new System.Drawing.Size(58, 13);
             this.changeUsernameLabel.TabIndex = 0;
             this.changeUsernameLabel.Text = "Username:";
+            // 
+            // ActivatePanel
+            // 
+            this.ActivatePanel.Controls.Add(this.activeOKButton);
+            this.ActivatePanel.Controls.Add(this.activeCheckBox);
+            this.ActivatePanel.Controls.Add(this.activateUsernameComboBox);
+            this.ActivatePanel.Controls.Add(this.label2);
+            this.ActivatePanel.Controls.Add(this.label1);
+            this.ActivatePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ActivatePanel.Location = new System.Drawing.Point(3, 338);
+            this.ActivatePanel.Name = "ActivatePanel";
+            this.ActivatePanel.Size = new System.Drawing.Size(204, 61);
+            this.ActivatePanel.TabIndex = 18;
+            this.ActivatePanel.Visible = false;
+            this.ActivatePanel.VisibleChanged += new System.EventHandler(this.ActivatePanel_VisibleChanged);
+            // 
+            // activeOKButton
+            // 
+            this.activeOKButton.Location = new System.Drawing.Point(120, 52);
+            this.activeOKButton.Name = "activeOKButton";
+            this.activeOKButton.Size = new System.Drawing.Size(75, 23);
+            this.activeOKButton.TabIndex = 4;
+            this.activeOKButton.Text = "OK";
+            this.activeOKButton.UseVisualStyleBackColor = true;
+            this.activeOKButton.Click += new System.EventHandler(this.activeOKButton_Click);
+            // 
+            // activeCheckBox
+            // 
+            this.activeCheckBox.AutoSize = true;
+            this.activeCheckBox.Location = new System.Drawing.Point(72, 32);
+            this.activeCheckBox.Name = "activeCheckBox";
+            this.activeCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.activeCheckBox.TabIndex = 3;
+            this.activeCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // activateUsernameComboBox
+            // 
+            this.activateUsernameComboBox.FormattingEnabled = true;
+            this.activateUsernameComboBox.Location = new System.Drawing.Point(74, 7);
+            this.activateUsernameComboBox.Name = "activateUsernameComboBox";
+            this.activateUsernameComboBox.Size = new System.Drawing.Size(121, 21);
+            this.activateUsernameComboBox.TabIndex = 2;
+            this.activateUsernameComboBox.SelectedIndexChanged += new System.EventHandler(this.activateUsernameComboBox_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(28, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Active:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Username:";
+            // 
+            // accountProgressBar
+            // 
+            this.accountTableLayoutPanel.SetColumnSpan(this.accountProgressBar, 2);
+            this.accountProgressBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.accountProgressBar.Location = new System.Drawing.Point(3, 425);
+            this.accountProgressBar.Name = "accountProgressBar";
+            this.accountProgressBar.Size = new System.Drawing.Size(1012, 15);
+            this.accountProgressBar.TabIndex = 28;
             // 
             // projectTabPage
             // 
@@ -636,6 +732,8 @@
             this.newWorkerPanel.PerformLayout();
             this.changePasswordPanel.ResumeLayout(false);
             this.changePasswordPanel.PerformLayout();
+            this.ActivatePanel.ResumeLayout(false);
+            this.ActivatePanel.PerformLayout();
             this.projectTabPage.ResumeLayout(false);
             this.projectTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectDataGridView)).EndInit();
@@ -699,5 +797,13 @@
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.Label searchPromptLabel;
         private System.Windows.Forms.DataGridView projectDataGridView;
+        private System.Windows.Forms.ProgressBar accountProgressBar;
+        private System.Windows.Forms.Panel ActivatePanel;
+        private System.Windows.Forms.ToolStripButton activateToolStripButton;
+        private System.Windows.Forms.Button activeOKButton;
+        private System.Windows.Forms.CheckBox activeCheckBox;
+        private System.Windows.Forms.ComboBox activateUsernameComboBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
