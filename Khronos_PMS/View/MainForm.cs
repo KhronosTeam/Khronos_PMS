@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Documents;
@@ -127,16 +128,12 @@ namespace Khronos_PMS.View {
             }).Start();
         }
 
-        private void setDates(Project selectedProject)
-        {
+        private void setDates(Project selectedProject) {
             //Showing end date if project is completed elese deadline
-            if (StatusManager.getStausById(selectedProject.Status) == Status.COMPLETED)
-            {
+            if (StatusManager.getStausById(selectedProject.Status) == Status.COMPLETED) {
                 label3.Text = "End date:";
                 endDateLabel.Text = Convert.ToDateTime(selectedProject.EndDate).ToShortDateString();
-            }
-            else
-            {
+            } else {
                 label3.Text = "Deadline:";
                 endDateLabel.Text = selectedProject.DeadlineDate.ToShortDateString();
             }
@@ -209,10 +206,13 @@ namespace Khronos_PMS.View {
                 assigneesListView.DataSource = new List<Worker>(1);
                 new Task(() => { assigneesListView.SetObjects(unit.Assignees); }).Start();
                 rightTableLayout.ColumnStyles[1].Width = 315;
+
+                activityListView.DataSource = new List<Activity>(1);
+                new Task(() => {
+                    List<Activity> activities = UnitManager.GetActivities(unit, user);
+                    activityListView.SetObjects(activities);
+                }).Start();
             }
-                List<Activity> activities = new List<Activity>(1);
-                activityDataListView.DataSource = activities;
-                activityDataListView.SetObjects(activities);
         }
 
         private void refrshToolStripMenuItem_Click(Object sender, EventArgs e) {
@@ -268,10 +268,10 @@ namespace Khronos_PMS.View {
         }
 
         private void viewAllToolStripMenuItem_Click(object sender, EventArgs e) {
-            Unit unit = (Unit)unitsTreeView.SelectedObject;
-            List<Activity> activities = UnitManager.getActivities(unit);
-            activityDataListView.DataSource = activities;
-            activityDataListView.SetObjects(activities);
+            Unit unit = (Unit) unitsTreeView.SelectedObject;
+            List<Activity> activities = UnitManager.GetActivities(unit, user);
+            activityListView.DataSource = activities;
+            activityListView.SetObjects(activities);
         }
 
         private void unitEditButton_Click(Object sender, EventArgs e) {

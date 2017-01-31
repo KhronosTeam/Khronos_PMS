@@ -76,7 +76,7 @@ namespace Khronos_PMS.View {
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.activityDataListView = new BrightIdeasSoftware.DataListView();
+            this.activityListView = new BrightIdeasSoftware.DataListView();
             this.Worker = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Date = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Note = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -148,6 +148,7 @@ namespace Khronos_PMS.View {
             this.financialReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activitiesReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.describedTaskRenderer1 = new BrightIdeasSoftware.DescribedTaskRenderer();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.leftTableLayout.SuspendLayout();
@@ -165,7 +166,7 @@ namespace Khronos_PMS.View {
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.activityDataListView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.activityListView)).BeginInit();
             this.unitInfoTableLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assigneesListView)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -253,18 +254,18 @@ namespace Khronos_PMS.View {
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.searchToolStripMenuItem.Text = "&Search";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(113, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
             // tableLayoutPanel1
@@ -854,7 +855,7 @@ namespace Khronos_PMS.View {
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.activityDataListView);
+            this.groupBox5.Controls.Add(this.activityListView);
             this.groupBox5.Controls.Add(this.unitInfoTableLayout);
             this.groupBox5.Controls.Add(this.unitNameLabel);
             this.groupBox5.Controls.Add(this.toolStrip1);
@@ -869,40 +870,41 @@ namespace Khronos_PMS.View {
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Unit info";
             // 
-            // activityDataListView
+            // activityListView
             // 
-            this.activityDataListView.AllColumns.Add(this.Worker);
-            this.activityDataListView.AllColumns.Add(this.Date);
-            this.activityDataListView.AllColumns.Add(this.Note);
-            this.activityDataListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.activityListView.AllColumns.Add(this.Worker);
+            this.activityListView.AllColumns.Add(this.Date);
+            this.activityListView.AllColumns.Add(this.Note);
+            this.activityListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.activityDataListView.AutoArrange = false;
-            this.activityDataListView.AutoGenerateColumns = false;
-            this.activityDataListView.BackColor = System.Drawing.SystemColors.Control;
-            this.activityDataListView.CellEditUseWholeCell = false;
-            this.activityDataListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.activityListView.AutoArrange = false;
+            this.activityListView.AutoGenerateColumns = false;
+            this.activityListView.BackColor = System.Drawing.SystemColors.Window;
+            this.activityListView.CellEditUseWholeCell = false;
+            this.activityListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Worker,
             this.Date,
             this.Note});
-            this.activityDataListView.Cursor = System.Windows.Forms.Cursors.Default;
-            this.activityDataListView.DataSource = null;
-            this.activityDataListView.FullRowSelect = true;
-            this.activityDataListView.GridLines = true;
-            this.activityDataListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.activityDataListView.LargeImageList = this.largeImageList;
-            this.activityDataListView.Location = new System.Drawing.Point(6, 246);
-            this.activityDataListView.Name = "activityDataListView";
-            this.activityDataListView.ShowGroups = false;
-            this.activityDataListView.Size = new System.Drawing.Size(300, 122);
-            this.activityDataListView.TabIndex = 29;
-            this.activityDataListView.UseCompatibleStateImageBehavior = false;
-            this.activityDataListView.View = System.Windows.Forms.View.Tile;
+            this.activityListView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.activityListView.DataSource = null;
+            this.activityListView.FullRowSelect = true;
+            this.activityListView.GridLines = true;
+            this.activityListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.activityListView.Location = new System.Drawing.Point(6, 246);
+            this.activityListView.Name = "activityListView";
+            this.activityListView.RowHeight = 50;
+            this.activityListView.ShowGroups = false;
+            this.activityListView.Size = new System.Drawing.Size(300, 122);
+            this.activityListView.TabIndex = 29;
+            this.activityListView.UseCompatibleStateImageBehavior = false;
+            this.activityListView.View = System.Windows.Forms.View.Details;
             // 
             // Worker
             // 
             this.Worker.AspectName = "GetFullName";
             this.Worker.IsEditable = false;
+            this.Worker.Renderer = this.describedTaskRenderer1;
             this.Worker.Text = "Worker";
             this.Worker.Width = 87;
             // 
@@ -1632,7 +1634,7 @@ namespace Khronos_PMS.View {
             // 
             this.unitToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.unit;
             this.unitToolStripMenuItem.Name = "unitToolStripMenuItem";
-            this.unitToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.unitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.unitToolStripMenuItem.Text = "Unit";
             this.unitToolStripMenuItem.Click += new System.EventHandler(this.unitToolStripMenuItem_Click);
             // 
@@ -1640,7 +1642,7 @@ namespace Khronos_PMS.View {
             // 
             this.activityToolStripMenuItem.Image = global::Khronos_PMS.Properties.Resources.activity;
             this.activityToolStripMenuItem.Name = "activityToolStripMenuItem";
-            this.activityToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.activityToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.activityToolStripMenuItem.Text = "Activity";
             // 
             // refrshToolStripMenuItem
@@ -1732,7 +1734,7 @@ namespace Khronos_PMS.View {
             this.tableLayoutPanel4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.activityDataListView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.activityListView)).EndInit();
             this.unitInfoTableLayout.ResumeLayout(false);
             this.unitInfoTableLayout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.assigneesListView)).EndInit();
@@ -1858,7 +1860,7 @@ namespace Khronos_PMS.View {
         private BrightIdeasSoftware.DataListView assigneesListView;
         private BrightIdeasSoftware.OLVColumn assigneeName;
         private System.Windows.Forms.ToolStripButton unitEditButton;
-        private BrightIdeasSoftware.DataListView activityDataListView;
+        private BrightIdeasSoftware.DataListView activityListView;
         private BrightIdeasSoftware.OLVColumn Worker;
         private BrightIdeasSoftware.OLVColumn Date;
         private BrightIdeasSoftware.OLVColumn Note;
@@ -1870,5 +1872,6 @@ namespace Khronos_PMS.View {
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ToolStripMenuItem activityToolStripMenuItem;
+        private BrightIdeasSoftware.DescribedTaskRenderer describedTaskRenderer1;
     }
 }
