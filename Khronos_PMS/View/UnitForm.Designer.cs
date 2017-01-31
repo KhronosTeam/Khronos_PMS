@@ -75,11 +75,12 @@
             this.tableLayoutPanel2.Controls.Add(this.unitInformationGroupBox, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38.88889F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 61.11111F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(390, 511);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 32.87671F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 67.12329F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(393, 511);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // unitsGroupBox
@@ -88,10 +89,10 @@
             this.unitsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.unitsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.unitsGroupBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.unitsGroupBox.Location = new System.Drawing.Point(3, 198);
+            this.unitsGroupBox.Location = new System.Drawing.Point(3, 168);
             this.unitsGroupBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.unitsGroupBox.Name = "unitsGroupBox";
-            this.unitsGroupBox.Size = new System.Drawing.Size(384, 313);
+            this.unitsGroupBox.Size = new System.Drawing.Size(387, 343);
             this.unitsGroupBox.TabIndex = 3;
             this.unitsGroupBox.TabStop = false;
             this.unitsGroupBox.Text = "Units";
@@ -109,7 +110,7 @@
             this.unitTableLayoutPanel.RowCount = 2;
             this.unitTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.unitTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.unitTableLayoutPanel.Size = new System.Drawing.Size(378, 293);
+            this.unitTableLayoutPanel.Size = new System.Drawing.Size(381, 323);
             this.unitTableLayoutPanel.TabIndex = 0;
             // 
             // unitsTreeView
@@ -134,7 +135,7 @@
             this.unitsTreeView.SelectedForeColor = System.Drawing.Color.Black;
             this.unitsTreeView.ShowGroups = false;
             this.unitsTreeView.ShowImagesOnSubItems = true;
-            this.unitsTreeView.Size = new System.Drawing.Size(372, 257);
+            this.unitsTreeView.Size = new System.Drawing.Size(375, 287);
             this.unitsTreeView.SmallImageList = this.largeImageList;
             this.unitsTreeView.TabIndex = 29;
             this.unitsTreeView.UnfocusedSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
@@ -146,12 +147,12 @@
             // unitName
             // 
             this.unitName.AspectName = "Name";
-            this.unitName.FillsFreeSpace = true;
             this.unitName.Groupable = false;
             this.unitName.IsEditable = false;
             this.unitName.MinimumWidth = 200;
             this.unitName.Text = "Name";
-            this.unitName.Width = 209;
+            this.unitName.ToolTipText = "Select ancestor unit.";
+            this.unitName.Width = 270;
             // 
             // unitStatus
             // 
@@ -201,7 +202,7 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(378, 30);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(381, 30);
             this.tableLayoutPanel4.TabIndex = 4;
             // 
             // unitsSearchTextBox
@@ -212,7 +213,7 @@
             this.unitsSearchTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.unitsSearchTextBox.Multiline = true;
             this.unitsSearchTextBox.Name = "unitsSearchTextBox";
-            this.unitsSearchTextBox.Size = new System.Drawing.Size(327, 22);
+            this.unitsSearchTextBox.Size = new System.Drawing.Size(330, 22);
             this.unitsSearchTextBox.TabIndex = 6;
             this.unitsSearchTextBox.WaterMarkColor = System.Drawing.Color.Gray;
             this.unitsSearchTextBox.WaterMarkText = "Search units";
@@ -222,7 +223,7 @@
             // 
             this.unitsSearchButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.unitsSearchButton.Image = ((System.Drawing.Image)(resources.GetObject("unitsSearchButton.Image")));
-            this.unitsSearchButton.Location = new System.Drawing.Point(336, 3);
+            this.unitsSearchButton.Location = new System.Drawing.Point(339, 3);
             this.unitsSearchButton.Name = "unitsSearchButton";
             this.unitsSearchButton.Size = new System.Drawing.Size(39, 24);
             this.unitsSearchButton.TabIndex = 7;
@@ -240,9 +241,11 @@
             this.unitInformationGroupBox.Controls.Add(this.dueDateLabel);
             this.unitInformationGroupBox.Controls.Add(this.unitNameLabel);
             this.unitInformationGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.unitInformationGroupBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.unitInformationGroupBox.Location = new System.Drawing.Point(3, 3);
             this.unitInformationGroupBox.Name = "unitInformationGroupBox";
-            this.unitInformationGroupBox.Size = new System.Drawing.Size(384, 192);
+            this.unitInformationGroupBox.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.unitInformationGroupBox.Size = new System.Drawing.Size(387, 162);
             this.unitInformationGroupBox.TabIndex = 0;
             this.unitInformationGroupBox.TabStop = false;
             this.unitInformationGroupBox.Text = "Unit Information";
@@ -253,9 +256,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.priorityComboBox.FormattingEnabled = true;
-            this.priorityComboBox.Location = new System.Drawing.Point(124, 117);
+            this.priorityComboBox.Location = new System.Drawing.Point(124, 123);
             this.priorityComboBox.Name = "priorityComboBox";
-            this.priorityComboBox.Size = new System.Drawing.Size(220, 21);
+            this.priorityComboBox.Size = new System.Drawing.Size(223, 21);
             this.priorityComboBox.TabIndex = 7;
             // 
             // dueDateDateTimePicker
@@ -263,9 +266,9 @@
             this.dueDateDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dueDateDateTimePicker.Location = new System.Drawing.Point(124, 65);
+            this.dueDateDateTimePicker.Location = new System.Drawing.Point(124, 71);
             this.dueDateDateTimePicker.Name = "dueDateDateTimePicker";
-            this.dueDateDateTimePicker.Size = new System.Drawing.Size(220, 20);
+            this.dueDateDateTimePicker.Size = new System.Drawing.Size(223, 20);
             this.dueDateDateTimePicker.TabIndex = 6;
             // 
             // estimatedManhoursTextBox
@@ -273,9 +276,9 @@
             this.estimatedManhoursTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.estimatedManhoursTextBox.Location = new System.Drawing.Point(124, 91);
+            this.estimatedManhoursTextBox.Location = new System.Drawing.Point(124, 97);
             this.estimatedManhoursTextBox.Name = "estimatedManhoursTextBox";
-            this.estimatedManhoursTextBox.Size = new System.Drawing.Size(220, 20);
+            this.estimatedManhoursTextBox.Size = new System.Drawing.Size(223, 20);
             this.estimatedManhoursTextBox.TabIndex = 5;
             // 
             // unitNameTextBox
@@ -283,15 +286,17 @@
             this.unitNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.unitNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.unitNameTextBox.Location = new System.Drawing.Point(5, 39);
             this.unitNameTextBox.Name = "unitNameTextBox";
-            this.unitNameTextBox.Size = new System.Drawing.Size(373, 20);
+            this.unitNameTextBox.Size = new System.Drawing.Size(376, 24);
             this.unitNameTextBox.TabIndex = 4;
             // 
             // priorityLabel
             // 
             this.priorityLabel.AutoSize = true;
-            this.priorityLabel.Location = new System.Drawing.Point(15, 120);
+            this.priorityLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.priorityLabel.Location = new System.Drawing.Point(15, 126);
             this.priorityLabel.Name = "priorityLabel";
             this.priorityLabel.Size = new System.Drawing.Size(41, 13);
             this.priorityLabel.TabIndex = 3;
@@ -300,7 +305,8 @@
             // estimatedManhoursLabel
             // 
             this.estimatedManhoursLabel.AutoSize = true;
-            this.estimatedManhoursLabel.Location = new System.Drawing.Point(15, 94);
+            this.estimatedManhoursLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.estimatedManhoursLabel.Location = new System.Drawing.Point(15, 100);
             this.estimatedManhoursLabel.Name = "estimatedManhoursLabel";
             this.estimatedManhoursLabel.Size = new System.Drawing.Size(106, 13);
             this.estimatedManhoursLabel.TabIndex = 2;
@@ -309,7 +315,8 @@
             // dueDateLabel
             // 
             this.dueDateLabel.AutoSize = true;
-            this.dueDateLabel.Location = new System.Drawing.Point(15, 71);
+            this.dueDateLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.dueDateLabel.Location = new System.Drawing.Point(15, 77);
             this.dueDateLabel.Name = "dueDateLabel";
             this.dueDateLabel.Size = new System.Drawing.Size(56, 13);
             this.dueDateLabel.TabIndex = 1;
@@ -318,6 +325,7 @@
             // unitNameLabel
             // 
             this.unitNameLabel.AutoSize = true;
+            this.unitNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.unitNameLabel.Location = new System.Drawing.Point(15, 24);
             this.unitNameLabel.Name = "unitNameLabel";
             this.unitNameLabel.Size = new System.Drawing.Size(60, 13);
@@ -333,10 +341,10 @@
             this.workersGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.workersGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.workersGroupBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.workersGroupBox.Location = new System.Drawing.Point(399, 0);
-            this.workersGroupBox.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.workersGroupBox.Location = new System.Drawing.Point(399, 5);
+            this.workersGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 0);
             this.workersGroupBox.Name = "workersGroupBox";
-            this.workersGroupBox.Size = new System.Drawing.Size(271, 517);
+            this.workersGroupBox.Size = new System.Drawing.Size(268, 509);
             this.workersGroupBox.TabIndex = 2;
             this.workersGroupBox.TabStop = false;
             this.workersGroupBox.Text = "Workers";
@@ -373,11 +381,10 @@
             this.workersListView.Location = new System.Drawing.Point(7, 48);
             this.workersListView.MultiSelect = false;
             this.workersListView.Name = "workersListView";
-            this.workersListView.Scrollable = false;
             this.workersListView.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
             this.workersListView.SelectedForeColor = System.Drawing.Color.Black;
             this.workersListView.ShowGroups = false;
-            this.workersListView.Size = new System.Drawing.Size(258, 463);
+            this.workersListView.Size = new System.Drawing.Size(255, 455);
             this.workersListView.SmallImageList = this.largeImageList;
             this.workersListView.TabIndex = 5;
             this.workersListView.UnfocusedSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(235)))), ((int)(((byte)(249)))));
@@ -389,12 +396,13 @@
             this.workerName.AspectName = "FullName";
             this.workerName.AutoCompleteEditor = false;
             this.workerName.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.workerName.FillsFreeSpace = true;
             this.workerName.Groupable = false;
             this.workerName.Hideable = false;
             this.workerName.ImageAspectName = "add_user";
             this.workerName.IsEditable = false;
             this.workerName.Text = "Full name";
-            this.workerName.Width = 245;
+            this.workerName.Width = 250;
             // 
             // workersSearchTextBox
             // 
@@ -404,7 +412,7 @@
             this.workersSearchTextBox.Location = new System.Drawing.Point(7, 20);
             this.workersSearchTextBox.Multiline = true;
             this.workersSearchTextBox.Name = "workersSearchTextBox";
-            this.workersSearchTextBox.Size = new System.Drawing.Size(212, 21);
+            this.workersSearchTextBox.Size = new System.Drawing.Size(209, 21);
             this.workersSearchTextBox.TabIndex = 4;
             this.workersSearchTextBox.WaterMarkColor = System.Drawing.Color.Gray;
             this.workersSearchTextBox.WaterMarkText = "Search workers";
@@ -413,7 +421,7 @@
             // workersSearchButton
             // 
             this.workersSearchButton.Image = ((System.Drawing.Image)(resources.GetObject("workersSearchButton.Image")));
-            this.workersSearchButton.Location = new System.Drawing.Point(216, 19);
+            this.workersSearchButton.Location = new System.Drawing.Point(223, 19);
             this.workersSearchButton.Name = "workersSearchButton";
             this.workersSearchButton.Size = new System.Drawing.Size(40, 23);
             this.workersSearchButton.TabIndex = 5;
@@ -437,6 +445,7 @@
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
@@ -448,15 +457,15 @@
             this.panel1.Controls.Add(this.okButton);
             this.panel1.Controls.Add(this.cancelButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(399, 520);
+            this.panel1.Location = new System.Drawing.Point(399, 517);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(271, 29);
+            this.panel1.Size = new System.Drawing.Size(268, 29);
             this.panel1.TabIndex = 3;
             // 
             // okButton
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.Location = new System.Drawing.Point(106, 3);
+            this.okButton.Location = new System.Drawing.Point(107, 3);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 1;
@@ -467,7 +476,7 @@
             // cancelButton
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.Location = new System.Drawing.Point(187, 3);
+            this.cancelButton.Location = new System.Drawing.Point(188, 3);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 0;
@@ -482,7 +491,7 @@
             this.ClientSize = new System.Drawing.Size(673, 552);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "UnitForm";
-            this.Text = "UnitForm";
+            this.Text = "Unit creation";
             this.Load += new System.EventHandler(this.UnitForm_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.unitsGroupBox.ResumeLayout(false);

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using Khronos_PMS.Model;
 using Khronos_PMS.Properties;
 
@@ -53,19 +55,28 @@ namespace Khronos_PMS.Util {
         }
 
         public static void UpdatePriority(Unit unit, Priority priority) {
-            unit.Priority = (int) priority;
-            try {
-                ProjectManager.entities.Units.Attach(unit);
-                ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Modified;
-                ProjectManager.entities.SaveChanges();
-            } catch (Exception e) {
-                Console.Out.WriteLine(e.StackTrace);
-                ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Detached;
-            }
+            new Task(() => {
+                unit.Priority = (int) priority;
+                try {
+                    ProjectManager.entities.Units.Attach(unit);
+                    ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Modified;
+                    ProjectManager.entities.SaveChanges();
+                } catch (Exception e) {
+                    Console.Out.WriteLine(e.StackTrace);
+                    ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Detached;
+                }
+            }).Start();
         }
 
         public static Priority GetPriorityById(int id) {
             return (Priority) Enum.ToObject(typeof(Priority), id);
+        }
+
+        public static List<String> GetPriorities() {
+            List<String> priorities = new List<String>();
+            foreach (object value in Enum.GetValues(typeof(Priority)))
+                priorities.Add(Name((Priority) value));
+            return priorities;
         }
     }
 }

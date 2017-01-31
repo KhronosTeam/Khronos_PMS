@@ -31,6 +31,20 @@ namespace Khronos_PMS.View {
 
             int statusOffset = 7, priorityOffset = 11;
 
+            workersListView.CheckStateGetter = w => (w as Worker).AssignedToProject((Project) projectsListView.SelectedObject) ? CheckState.Checked : CheckState.Unchecked;
+
+            workersListView.CheckStatePutter = (w, value) => {
+                switch (value) {
+                    case CheckState.Checked:
+                        ProjectManager.AssignWorker((Project) projectsListView.SelectedObject, (Worker) w);
+                        return CheckState.Unchecked;
+                    case CheckState.Unchecked:
+                        ProjectManager.UnassignWorker((Project) projectsListView.SelectedObject, (Worker) w);
+                        return CheckState.Checked;
+                    default:
+                        return CheckState.Unchecked;
+                }
+            };
             workersListView.GetColumn(0).ImageGetter = w => 1;
             unitsTreeView.GetColumn(0).ImageGetter = u => (u as Unit).Status + 2;
             unitsTreeView.GetColumn(1).ImageGetter = u => (u as Unit).Status + statusOffset;
@@ -41,11 +55,6 @@ namespace Khronos_PMS.View {
             unitsTreeView.GetColumn(3).AspectToStringConverter = d => ((DateTime) d).ToShortDateString();
             unitsTreeView.GetColumn(4).ImageGetter = u => 17;
             unitsTreeView.GetColumn(5).ImageGetter = u => 17;
-            unitsTreeView.GetColumn(6).ImageGetter = u => 18;
-            unitsTreeView.GetColumn(4).IsVisible = false;
-            unitsTreeView.GetColumn(5).IsVisible = false;
-            unitsTreeView.GetColumn(6).IsVisible = false;
-            unitsTreeView.RebuildColumns();
             assigneesListView.GetColumn(0).ImageGetter = a => 0;
             rightTableLayout.ColumnStyles[1].Width = 0;
         }
@@ -83,7 +92,7 @@ namespace Khronos_PMS.View {
             unitStatusMenuButton.Image = StatusManager.Image(status);
 
             Unit selectedUnit = (Unit) unitsTreeView.SelectedObject;
-            new Task(() => { StatusManager.UpdateStatus(selectedUnit, status); }).Start();
+            StatusManager.UpdateStatus(selectedUnit, status);
         }
 
         private void unitPriorityToolStripMenuItem_Click(Object sender, EventArgs e) {
@@ -91,14 +100,12 @@ namespace Khronos_PMS.View {
             unitPriorityMenuButton.Image = PriorityManager.Image(priority);
 
             Unit selectedUnit = (Unit) unitsTreeView.SelectedObject;
-            new Task(() => { PriorityManager.UpdatePriority(selectedUnit, priority); }).Start();
+            PriorityManager.UpdatePriority(selectedUnit, priority);
         }
 
         private void projectsListView_SelectionChanged(Object sender, EventArgs e) {
             Project selectedProject = (Project) projectsListView.SelectedObject;
             if (selectedProject == null) return;
-            List<Worker> workers = ProjectManager.GetWorkers(selectedProject, user);
-            workersListView.DataSource = workers;
             projectNameLabel.Text = selectedProject.Name;
             projectDescriptionLabel.Text = selectedProject.Description;
             startDateLabel.Text = selectedProject.StartDate.ToShortDateString();
@@ -108,9 +115,15 @@ namespace Khronos_PMS.View {
             bossNameLabel.Text = selectedProject.Boss.FullName;
             projectStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById(selectedProject.Status));
             setRole(selectedProject);
-            
-            List<Unit> u = ProjectManager.GetRootUnits(selectedProject);
-            unitsTreeView.Roots = u;
+            unitsTreeView.Roots = new List<Unit>(1);
+
+            new Task(() => {
+                List<Worker> workers = ProjectManager.GetWorkers(selectedProject, user);
+                workersListView.SetObjects(workers);
+
+                List<Unit> u = ProjectManager.GetRootUnits(selectedProject);
+                unitsTreeView.SetObjects(u);
+            }).Start();
         }
 
         private void projectsSearchTextbox_TextChanged(object sender, EventArgs e) {
@@ -177,7 +190,10 @@ namespace Khronos_PMS.View {
                 unitEstimatedManhoursLabel.Text = unit.EstManhours + " h";
                 unitSpentManhoursLabel.Text = unit.SpentManhours + " h";
                 unitDueDateLabel.Text = unit.DueDate.ToShortDateString();
-                assigneesListView.DataSource = unit.Assignees;
+                assigneesListView.DataSource = new List<Worker>(1);
+                new Task(() => {
+                    assigneesListView.SetObjects(unit.Assignees);
+                }).Start();
                 rightTableLayout.ColumnStyles[1].Width = 315;
             }
         }
@@ -211,25 +227,21 @@ namespace Khronos_PMS.View {
         }
 
         private void addNewUnitButton_Click(Object sender, EventArgs e) {
-            //todo show UnitForm
-            new UnitForm((Project)projectsListView.SelectedObject, promptTextBox3.Text, (Unit)unitsTreeView.SelectedObject).Show(); ;
+            new UnitForm((Project) projectsListView.SelectedObject, promptTextBox3.Text, (Unit) unitsTreeView.SelectedObject).Show();
         }
 
-        private void financialReportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FinancialReportForm fr = new FinancialReportForm((Project)projectsListView.SelectedObject);
+        private void financialReportToolStripMenuItem_Click(object sender, EventArgs e) {
+            FinancialReportForm fr = new FinancialReportForm((Project) projectsListView.SelectedObject);
             fr.ShowDialog();
         }
 
-        private void projectStatusToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ProjectReportForm pr = new ProjectReportForm((Project)projectsListView.SelectedObject);
+        private void projectStatusToolStripMenuItem_Click(object sender, EventArgs e) {
+            ProjectReportForm pr = new ProjectReportForm((Project) projectsListView.SelectedObject);
             pr.ShowDialog();
         }
 
-        private void activitiesReportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ActivitiesReportForm ar = new ActivitiesReportForm((Project)projectsListView.SelectedObject);
+        private void activitiesReportToolStripMenuItem_Click(object sender, EventArgs e) {
+            ActivitiesReportForm ar = new ActivitiesReportForm((Project) projectsListView.SelectedObject);
             ar.ShowDialog();
         }
     }
