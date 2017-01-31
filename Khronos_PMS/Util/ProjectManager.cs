@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Khronos_PMS.Model;
+using Microsoft.Win32;
 
 namespace Khronos_PMS.Util {
     public static class ProjectManager {
@@ -48,24 +52,36 @@ namespace Khronos_PMS.Util {
         public static List<Unit> GetUnits(Project project) {
             return project.Units.ToList();
         }
-
-        public static List<Unit> GetUnits(Project project, User user) {
-            List<Unit> units = new List<Unit>();
-            foreach (Unit unit in project.Units) {
-            }
-            return units;
-        }
-
-        public static bool IsWorkerAssigned(Project project, Worker worker) {
-            return true;
-        }
-
+        
         public static void AssignWorker(Project project, Worker worker) {
-            
+            new Task(() => {
+                AssignedTo assignedTo = worker.AssignedProjects.FirstOrDefault(a => a.ProjectID == project.ID);
+                lock (entities) {
+                    if (assignedTo != null) {
+                        assignedTo.Active = true;
+                        entities.AssignedToes.Attach(assignedTo);
+                        entities.Entry(assignedTo).State = EntityState.Modified;
+                    } else {
+                        assignedTo = new AssignedTo {ProjectID = project.ID, WorkerID = worker.ID, Active = true};
+                        entities.AssignedToes.Add(assignedTo);
+                    }
+                    entities.SaveChanges();
+                }
+            }).Start();
         }
 
         public static void UnassignWorker(Project project, Worker worker) {
-            
+            new Task(() => {
+                AssignedTo assignedTo = worker.AssignedProjects.FirstOrDefault(a => a.ProjectID == project.ID);
+                if (assignedTo != null) {
+                    assignedTo.Active = false;
+                    lock (entities) {
+                        entities.AssignedToes.Attach(assignedTo);
+                        entities.Entry(assignedTo).State = EntityState.Modified;
+                        entities.SaveChanges();
+                    }
+                }
+            }).Start();
         }
     }
 }

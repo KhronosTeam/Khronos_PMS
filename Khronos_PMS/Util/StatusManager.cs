@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using Khronos_PMS.Model;
 using Khronos_PMS.Properties;
 
@@ -43,25 +44,29 @@ namespace Khronos_PMS.Util {
         }
 
         public static void UpdateStatus(Project project, Status status) {
-            project.Status = (int) status;
-            try {
-                ProjectManager.entities.Projects.Attach(project);
-                ProjectManager.entities.Entry(project).State = System.Data.Entity.EntityState.Modified;
-                ProjectManager.entities.SaveChanges();
-            } catch (Exception) {
-                ProjectManager.entities.Entry(project).State = System.Data.Entity.EntityState.Detached;
-            }
+            new Task(() => {
+                project.Status = (int) status;
+                try {
+                    ProjectManager.entities.Projects.Attach(project);
+                    ProjectManager.entities.Entry(project).State = System.Data.Entity.EntityState.Modified;
+                    ProjectManager.entities.SaveChanges();
+                } catch (Exception) {
+                    ProjectManager.entities.Entry(project).State = System.Data.Entity.EntityState.Detached;
+                }
+            }).Start();
         }
 
         public static void UpdateStatus(Unit unit, Status status) {
-            unit.Status = (int) status;
-            try {
-                ProjectManager.entities.Units.Attach(unit);
-                ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Modified;
-                ProjectManager.entities.SaveChanges();
-            } catch (Exception) {
-                ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Detached;
-            }
+            new Task(() => {
+                unit.Status = (int) status;
+                try {
+                    ProjectManager.entities.Units.Attach(unit);
+                    ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Modified;
+                    ProjectManager.entities.SaveChanges();
+                } catch (Exception) {
+                    ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Detached;
+                }
+            }).Start();
         }
 
         public static Status getStausById(int id) {

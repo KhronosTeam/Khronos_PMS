@@ -19,6 +19,9 @@ namespace Khronos_PMS.Model {
         public override String GetName() {
             return FullName;
         }
-    
+
+        public bool AssignedToProject(Project project) {
+            return AssignedProjects.Any(p => p.ProjectID == project.ID && p.Active);
+        }
     }
 }
