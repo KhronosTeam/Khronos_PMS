@@ -109,7 +109,8 @@ namespace Khronos_PMS.View {
             projectNameLabel.Text = selectedProject.Name;
             projectDescriptionLabel.Text = selectedProject.Description;
             startDateLabel.Text = selectedProject.StartDate.ToShortDateString();
-            endDateLabel.Text = selectedProject.DeadlineDate.ToShortDateString();
+            //Showing end date if project is completed elese deadline
+            setDates(selectedProject);
             budgetLabel.Text = String.Format("{0:0.00} KM", selectedProject.Budget);
             expenseLabel.Text = String.Format("{0:0.00} KM", selectedProject.Expense);
             bossNameLabel.Text = selectedProject.Boss.FullName;
@@ -124,6 +125,21 @@ namespace Khronos_PMS.View {
                 List<Unit> u = ProjectManager.GetRootUnits(selectedProject);
                 unitsTreeView.SetObjects(u);
             }).Start();
+        }
+
+        private void setDates(Project selectedProject)
+        {
+            //Showing end date if project is completed elese deadline
+            if (StatusManager.getStausById(selectedProject.Status) == Status.COMPLETED)
+            {
+                label3.Text = "End date:";
+                endDateLabel.Text = Convert.ToDateTime(selectedProject.EndDate).ToShortDateString();
+            }
+            else
+            {
+                label3.Text = "Deadline:";
+                endDateLabel.Text = selectedProject.DeadlineDate.ToShortDateString();
+            }
         }
 
         private void projectsSearchTextbox_TextChanged(object sender, EventArgs e) {
@@ -194,6 +210,9 @@ namespace Khronos_PMS.View {
                 new Task(() => { assigneesListView.SetObjects(unit.Assignees); }).Start();
                 rightTableLayout.ColumnStyles[1].Width = 315;
             }
+                List<Activity> activities = new List<Activity>(1);
+                activityDataListView.DataSource = activities;
+                activityDataListView.SetObjects(activities);
         }
 
         private void refrshToolStripMenuItem_Click(Object sender, EventArgs e) {
@@ -249,9 +268,10 @@ namespace Khronos_PMS.View {
         }
 
         private void viewAllToolStripMenuItem_Click(object sender, EventArgs e) {
-            Unit unit = (Unit) unitsTreeView.SelectedObject;
+            Unit unit = (Unit)unitsTreeView.SelectedObject;
             List<Activity> activities = UnitManager.getActivities(unit);
             activityDataListView.DataSource = activities;
+            activityDataListView.SetObjects(activities);
         }
 
         private void unitEditButton_Click(Object sender, EventArgs e) {
