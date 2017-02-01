@@ -291,6 +291,8 @@ namespace Khronos_PMS.View {
 
         private void unitEditButton_Click(Object sender, EventArgs e) {
             //todo edit unit call UnitForm
+            UnitForm unitform = new UnitForm((Unit)unitsTreeView.SelectedObject,(Project)projectsListView.SelectedObject);
+            unitform.ShowDialog();
         }
 
         private void activityToolStripMenuItem_Click(object sender, EventArgs e) {
