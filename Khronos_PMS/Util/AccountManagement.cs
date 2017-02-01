@@ -20,6 +20,7 @@ namespace Khronos_PMS.Util
                 user.Active = true;
                 entities.Users.Add(user);
                 entities.SaveChanges();
+                LogManager.writeToLog(entities, "User", "insert", user.ID.ToString(), LoginManager.LoggedUser.ID);
                 return true;
             }
             return false;
@@ -35,6 +36,7 @@ namespace Khronos_PMS.Util
                 admin.User = entities.Users.First(u => u.Username == username);
                 entities.Admins.Add(admin);
                 entities.SaveChanges();
+                LogManager.writeToLog(entities, "Admin", "insert", admin.ID.ToString(), LoginManager.LoggedUser.ID);
                 return true;
             }
             return false;
@@ -50,6 +52,7 @@ namespace Khronos_PMS.Util
                 worker.User= entities.Users.First(u => u.Username == username);
                 entities.Workers.Add(worker);
                 entities.SaveChanges();
+                LogManager.writeToLog(entities, "Worker", "insert", worker.ID.ToString(), LoginManager.LoggedUser.ID);
                 return true;
             }
             return false;
@@ -64,6 +67,7 @@ namespace Khronos_PMS.Util
                 customer.User = entities.Users.First(u => u.Username == username);
                 entities.Customers.Add(customer);
                 entities.SaveChanges();
+                LogManager.writeToLog(entities, "Customer", "insert", customer.ID.ToString(), LoginManager.LoggedUser.ID);
                 return true;
             }
             return false;
@@ -76,6 +80,7 @@ namespace Khronos_PMS.Util
                 User user = entities.Users.First(u => u.Username == username);
                 user.Password = PasswordUtil.GenerateHash(newPassword);
                 entities.SaveChanges();
+                LogManager.writeToLog(entities, "User", "update", "password changed for user: "+user.ID.ToString(), LoginManager.LoggedUser.ID);
                 return true;
             }
             return false;
@@ -88,6 +93,7 @@ namespace Khronos_PMS.Util
                 User user = entities.Users.First(u => u.Username == username);
                 user.Active = active;
                 entities.SaveChanges();
+                LogManager.writeToLog(entities, "User", "update", "user activated " + user.ID.ToString() + "->" + user.Active.ToString(), LoginManager.LoggedUser.ID);
                 return true;
             }
             return false;
