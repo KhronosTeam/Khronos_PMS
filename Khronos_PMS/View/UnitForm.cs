@@ -12,6 +12,7 @@ namespace Khronos_PMS.View {
         private Project selectedProject;
         private Unit selectedUnit;
         private Unit editUnit;
+        private Unit rootUnit;
         private Boolean edit = false;
 
         public UnitForm() {
@@ -150,11 +151,15 @@ namespace Khronos_PMS.View {
                 ProjectManager.entities.Units.Add(newUnit);
                 setAncestorID(newUnit);
                 setWorkers(newUnit);
+                if(unitsTreeView.SelectedIndex == -1)
+                {
+                    rootUnit = newUnit;
+                }
                 ProjectManager.entities.SaveChangesAsync();
             }
+            DialogResult = DialogResult.OK;
             this.Close();
         }
-
         public void setWorkers(Unit unit) {
             var list = workersListView.CheckedObjects;
             var enumerator = list.GetEnumerator();
@@ -286,6 +291,11 @@ namespace Khronos_PMS.View {
                 ProjectManager.entities.SaveChangesAsync();
             }
             */
+        }
+
+        public Unit getRootUnit()
+        {
+            return rootUnit;
         }
 
 

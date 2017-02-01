@@ -260,7 +260,16 @@ namespace Khronos_PMS.View {
 
         private void addNewUnitButton_Click(Object sender, EventArgs e) {
             UnitForm unitForm = new UnitForm((Project) projectsListView.SelectedObject, promptTextBox3.Text, (Unit) unitsTreeView.SelectedObject);
-            unitForm.ShowDialog();
+            DialogResult result = unitForm.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                Unit u = unitForm.getRootUnit();
+                if (u.IsRoot)
+                {
+                    unitsTreeView.AddObject(u);
+                }
+                unitsTreeView.Refresh();
+            }
         }
 
         private void financialReportToolStripMenuItem_Click(object sender, EventArgs e) {
