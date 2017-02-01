@@ -125,6 +125,14 @@ namespace Khronos_PMS.View
             if (edit) {
                 try
                 {
+                    string logParams =project.ID.ToString() + "#" +
+                        project.Name + "#"
+                        + project.BossID.ToString() + "#" +
+                        project.SupervisorID.ToString() + "#" +
+                        project.StartDate.ToString() + "#" +
+                        project.DeadlineDate.ToString() + "#" +
+                        project.Budget.ToString() + "#" +
+                        project.Description.ToString();
                     project.Name = projectNameTextBox.Text;
                 project.BossID = ((WorkerView)bossUsernameComboBox.SelectedItem).ID;
                 project.SupervisorID = ((WorkerView)supervisorUsernameComboBox.SelectedItem).ID;
@@ -134,14 +142,18 @@ namespace Khronos_PMS.View
                     project.Description = descriptionTextBox.Text;
 
                     project.Customers = new List<Customer>();
+                    string customerLog = "";
                 foreach (CustomerView customer in projectCustomers)
                 {
                     Customer cc = ProjectManagement.entities.Customers.Where(c => c.ID == customer.ID).First();
                     project.Customers.Add(cc);
+                        customerLog += "newCustomerID:" + customer.ID + "#";
                 }
-
-                ProjectManagement.entities.Projects.Attach(project);
+                    LogManager.writeToLog(ProjectManagement.entities, "CustomerProject", "insert", customerLog, LoginManager.LoggedUser.ID);
+                    ProjectManagement.entities.Projects.Attach(project);
                 ProjectManagement.entities.Entry(project).State = System.Data.Entity.EntityState.Modified;
+                LogManager.writeToLog(ProjectManagement.entities, "Project", "insert", logParams, LoginManager.LoggedUser.ID);
+
                 ProjectManagement.entities.SaveChanges();
                 this.Close();
                 }
@@ -166,6 +178,8 @@ namespace Khronos_PMS.View
                     }
 
                     ProjectManagement.entities.Projects.Add(newProject);
+                    LogManager.writeToLog(ProjectManagement.entities, "Project", "insert", newProject.ID.ToString(), LoginManager.LoggedUser.ID);
+
                     ProjectManagement.entities.SaveChanges();
                     this.Close();
 
