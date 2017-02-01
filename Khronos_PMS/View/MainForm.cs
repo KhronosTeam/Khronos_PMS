@@ -377,5 +377,10 @@ namespace Khronos_PMS.View {
                 MessageBox.Show("You must select one activity!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AboutMessageBox();
+        }
     }
 }
