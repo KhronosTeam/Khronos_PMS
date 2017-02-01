@@ -20,7 +20,8 @@ namespace Khronos_PMS.Util {
         }
 
         public static List<Project> GetProjects(User user) {
-            return entities.Projects.Where(p => (p.BossID == user.ID) || (p.SupervisorID == user.ID) || (p.Customers.Any(c => c.ID == user.ID)) || (p.AssignedWorkers.Any(w => w.WorkerID == user.ID))).ToList();
+            List<int> assigned_projects = entities.AssignedToes.Where(a => a.WorkerID == user.ID && a.Active).Select(a => a.ProjectID).ToList();
+            return entities.Projects.Where(p => (p.BossID == user.ID) || (p.SupervisorID == user.ID) || (p.Customers.Any(c => c.ID == user.ID)) || (assigned_projects.Contains(p.ID))).ToList();
         }
 
         public static List<Worker> GetWorkers(Project project) {
