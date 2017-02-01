@@ -125,6 +125,7 @@
     <Compile Include="Util\Role.cs" />
     <Compile Include="Util\StatusManager.cs" />
     <Compile Include="Util\UnitManager.cs" />
+    <Compile Include="View\AboutMessageBox.cs" />
     <Compile Include="View\ActivitiesReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
