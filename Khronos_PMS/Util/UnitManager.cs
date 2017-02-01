@@ -26,8 +26,7 @@ namespace Khronos_PMS.Util {
         }
 
         public static List<Activity> GetActivities(Unit unit, User user) {
-            //todo izbaciti null
-            if (user == null || unit.Project.BossID == user.ID || unit.Project.SupervisorID == user.ID)
+            if (unit.Project.BossID == user.ID || unit.Project.SupervisorID == user.ID)
                 return GetActivities(unit);
 
             WorksOn worksOn = unit.Workers.FirstOrDefault(w => w.WorkerID == user.ID);

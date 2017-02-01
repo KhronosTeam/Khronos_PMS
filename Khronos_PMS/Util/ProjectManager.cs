@@ -20,10 +20,6 @@ namespace Khronos_PMS.Util {
         }
 
         public static List<Project> GetProjects(User user) {
-            if (user == null) {
-                //todo Ovo treba obrisati za sad ostavljam da se ne morate logovati svaki put
-                return GetProjects();
-            }
             return entities.Projects.Where(p => (p.BossID == user.ID) || (p.SupervisorID == user.ID) || (p.Customers.Any(c => c.ID == user.ID)) || (p.AssignedWorkers.Any(w => w.WorkerID == user.ID))).ToList();
         }
 

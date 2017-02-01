@@ -63,7 +63,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 134F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(351, 307);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(296, 258);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel3
@@ -97,7 +97,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(345, 131);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(290, 131);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
             // label2
@@ -137,7 +137,7 @@
             this.workerLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.workerLabel.Location = new System.Drawing.Point(124, 0);
             this.workerLabel.Name = "workerLabel";
-            this.workerLabel.Size = new System.Drawing.Size(218, 25);
+            this.workerLabel.Size = new System.Drawing.Size(163, 25);
             this.workerLabel.TabIndex = 11;
             this.workerLabel.Text = "0 h";
             this.workerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -169,7 +169,7 @@
             this.manhoursLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.manhoursLabel.Location = new System.Drawing.Point(124, 50);
             this.manhoursLabel.Name = "manhoursLabel";
-            this.manhoursLabel.Size = new System.Drawing.Size(218, 25);
+            this.manhoursLabel.Size = new System.Drawing.Size(163, 25);
             this.manhoursLabel.TabIndex = 10;
             this.manhoursLabel.Text = "0";
             this.manhoursLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -191,7 +191,7 @@
             this.dateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateLabel.Location = new System.Drawing.Point(124, 25);
             this.dateLabel.Name = "dateLabel";
-            this.dateLabel.Size = new System.Drawing.Size(218, 25);
+            this.dateLabel.Size = new System.Drawing.Size(163, 25);
             this.dateLabel.TabIndex = 14;
             this.dateLabel.Text = "1.1.1970.";
             this.dateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -250,7 +250,7 @@
             this.expanseLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.expanseLabel.Location = new System.Drawing.Point(124, 75);
             this.expanseLabel.Name = "expanseLabel";
-            this.expanseLabel.Size = new System.Drawing.Size(218, 25);
+            this.expanseLabel.Size = new System.Drawing.Size(163, 25);
             this.expanseLabel.TabIndex = 17;
             this.expanseLabel.Text = "label9";
             this.expanseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -263,7 +263,7 @@
             this.noteTextBox.Name = "noteTextBox";
             this.noteTextBox.ReadOnly = true;
             this.noteTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.noteTextBox.Size = new System.Drawing.Size(339, 127);
+            this.noteTextBox.Size = new System.Drawing.Size(284, 78);
             this.noteTextBox.TabIndex = 2;
             this.noteTextBox.TabStop = false;
             // 
@@ -275,17 +275,17 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel2.Controls.Add(this.cancelButton, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 273);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 224);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(342, 28);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(287, 28);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(265, 3);
+            this.cancelButton.Location = new System.Drawing.Point(210, 3);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(74, 22);
             this.cancelButton.TabIndex = 4;
@@ -297,7 +297,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 313);
+            this.ClientSize = new System.Drawing.Size(302, 264);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
