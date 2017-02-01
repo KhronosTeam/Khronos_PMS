@@ -123,6 +123,12 @@
     <Compile Include="View\ActivityForm.designer.cs">
       <DependentUpon>ActivityForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ActivityViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ActivityViewForm.Designer.cs">
+      <DependentUpon>ActivityViewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +227,9 @@
     <EmbeddedResource Include="View\ActivityForm.resx">
       <DependentUpon>ActivityForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\ActivityViewForm.resx">
+      <DependentUpon>ActivityViewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -284,6 +293,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\view.png" />
     <None Include="Resources\about.png" />
     <None Include="Resources\view_help.png" />
     <None Include="Resources\logout.png" />

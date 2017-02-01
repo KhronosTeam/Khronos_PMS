@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -53,6 +54,12 @@ namespace Khronos_PMS.View {
             unitsTreeView.GetColumn(5).ImageGetter = u => 17;
             assigneesListView.GetColumn(0).ImageGetter = a => 0;
             rightTableLayout.ColumnStyles[1].Width = 0;
+
+            describedTaskRenderer.TitleFont = new Font(label1.Font, FontStyle.Bold);
+            describedTaskRenderer.DescriptionAspectName = "Note";
+            describedTaskRenderer.ImageList = activityImageList;
+            describedTaskRenderer.TitleDescriptionSpace = 6;
+            activityListView.GetColumn(0).ImageGetter = a => 0;
         }
 
         private void MainForm_Load(Object sender, EventArgs e) {
@@ -226,6 +233,7 @@ namespace Khronos_PMS.View {
                 unitExpenseLabel.Text = string.Format("{0:0.00} KM", unit.Expense);
                 assigneesListView.DataSource = new List<Worker>(1);
                 new Task(() => { assigneesListView.SetObjects(unit.Assignees); }).Start();
+                activitiesTableLayout.Hide();
                 rightTableLayout.ColumnStyles[1].Width = 315;
             }
         }
@@ -279,14 +287,18 @@ namespace Khronos_PMS.View {
         }
 
         private void addActivityToolstripMenuItem_Click(object sender, EventArgs e) {
-            new ActivityForm((Unit) unitsTreeView.SelectedObject, user, null).ShowDialog();
+            ActivityForm activityForm = new ActivityForm((Unit) unitsTreeView.SelectedObject, user, null);
+            activityForm.ShowDialog();
+            if (activityForm.DialogResult == DialogResult.OK) {
+                activityListView.AddObject(activityForm.Activity);
+            }
         }
 
         private void viewAllToolStripMenuItem_Click(object sender, EventArgs e) {
             Unit unit = (Unit) unitsTreeView.SelectedObject;
             List<Activity> activities = UnitManager.GetActivities(unit, user);
-            activityListView.DataSource = activities;
             activityListView.SetObjects(activities);
+            activitiesTableLayout.Show();
         }
 
         private void unitEditButton_Click(Object sender, EventArgs e) {
@@ -355,6 +367,14 @@ namespace Khronos_PMS.View {
             unitEditButton.Visible = false;
             unitInfoTableLayout.RowStyles[3].Height = 0;
             editActivityButton.Visible = false;
+        }
+
+        private void viewActivityButton_Click(Object sender, EventArgs e) {
+            if (activityListView.SelectedIndex != -1) {
+                new ActivityViewForm((Activity) activityListView.SelectedObject).ShowDialog();
+            } else {
+                MessageBox.Show("You must select one activity!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

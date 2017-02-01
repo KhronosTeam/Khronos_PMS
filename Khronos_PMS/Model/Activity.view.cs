@@ -13,5 +13,7 @@ namespace Khronos_PMS.Model {
         public String GetDate() {
             return Date.ToShortDateString();
         }
+
+        public String Info => WorksOn.AssignedTo.Worker.FullName + "   (" + Date.ToShortDateString() + ")";
     }
 }

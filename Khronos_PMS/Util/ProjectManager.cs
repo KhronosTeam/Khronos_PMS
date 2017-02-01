@@ -31,7 +31,7 @@ namespace Khronos_PMS.Util {
             List<Worker> workers = new List<Worker>();
 
             foreach (AssignedTo assigned in project.AssignedWorkers) {
-                if (assigned.Worker.User.Active)
+                if (assigned.Active)
                     workers.Add(assigned.Worker);
             }
             return workers;
