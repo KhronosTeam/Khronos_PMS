@@ -223,6 +223,7 @@ namespace Khronos_PMS.View {
                 unitEstimatedManhoursLabel.Text = unit.EstManhours + " h";
                 unitSpentManhoursLabel.Text = unit.SpentManhours + " h";
                 unitDueDateLabel.Text = unit.DueDate.ToShortDateString();
+                unitExpenseLabel.Text = string.Format("{0:0.00} KM", unit.Expense);
                 assigneesListView.DataSource = new List<Worker>(1);
                 new Task(() => { assigneesListView.SetObjects(unit.Assignees); }).Start();
                 rightTableLayout.ColumnStyles[1].Width = 315;
