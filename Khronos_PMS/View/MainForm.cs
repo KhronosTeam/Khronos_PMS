@@ -137,11 +137,15 @@ namespace Khronos_PMS.View {
             unitsTreeView.Roots = new List<Unit>(1);
 
             new Task(() => {
-                List<Worker> workers = ProjectManager.GetWorkers(selectedProject, user);
-                workersListView.SetObjects(workers);
+                try {
+                    List<Worker> workers = ProjectManager.GetWorkers(selectedProject, user);
+                    workersListView.SetObjects(workers);
 
-                List<Unit> u = ProjectManager.GetRootUnits(selectedProject);
-                unitsTreeView.SetObjects(u);
+                    List<Unit> u = ProjectManager.GetRootUnits(selectedProject);
+                    unitsTreeView.SetObjects(u);
+                } catch (Exception ex) {
+                    Console.Out.WriteLine(ex.StackTrace);
+                }
             }).Start();
         }
 

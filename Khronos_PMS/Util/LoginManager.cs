@@ -29,7 +29,7 @@ namespace Khronos_PMS.Util {
         private void queryUser() {
             User user = entities.Users.FirstOrDefault(u => u.Username == username);
             LoggedUser = user;
-            if (user != null && PasswordUtil.CheckPassword(this.password, user.Password)) {
+            if (user != null && user.Active && PasswordUtil.CheckPassword(this.password, user.Password)) {
                 isValid = true;
                 if (user.Admin != null)
                     this.user = user.Admin;    
