@@ -27,8 +27,7 @@ namespace Khronos_PMS {
                     Application.Run(new AdminForm(user.ID));
                 else
                     Application.Run(new MainForm(user.GetName(), user.ID));
-            }
-            
+            }  
         }
     }
 }

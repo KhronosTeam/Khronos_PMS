@@ -12,6 +12,7 @@ namespace Khronos_PMS.View {
         private Project selectedProject;
         private Unit selectedUnit;
         private Unit editUnit;
+        private Unit rootUnit;
         private Boolean edit = false;
 
         public UnitForm() {
@@ -69,11 +70,13 @@ namespace Khronos_PMS.View {
             workersListView.SetObjects(workers);
 
             if (edit) {
-                foreach (WorksOn worksOn in selectedUnit.Workers.Where(wo => wo.Active).ToList()) {
+                foreach (WorksOn worksOn in editUnit.Workers.Where(wo => wo.Active).ToList()) {
                     workersListView.CheckedObjects.Add(worksOn.AssignedTo.Worker);
+                    workersListView.CheckObject(worksOn.AssignedTo.Worker);
                 }
                 if (editUnit.ClosureUnits.ToArray()[0].Depth != 0) {
-                    selectedUnit = ProjectManager.entities.Units.First(u => u.ID == editUnit.ClosureUnits.ToArray()[0].AncestorID);
+                    int ancestorId = editUnit.ClosureUnits.ToArray()[0].AncestorID;
+                    selectedUnit = ProjectManager.entities.Units.First(u => u.ID == ancestorId);
                     unitsTreeView.CheckedObjects.Add(selectedUnit);
                 }
                 fillFields();
@@ -148,11 +151,15 @@ namespace Khronos_PMS.View {
                 ProjectManager.entities.Units.Add(newUnit);
                 setAncestorID(newUnit);
                 setWorkers(newUnit);
+                if(unitsTreeView.SelectedIndex == -1)
+                {
+                    rootUnit = newUnit;
+                }
                 ProjectManager.entities.SaveChangesAsync();
             }
+            DialogResult = DialogResult.OK;
             this.Close();
         }
-
         public void setWorkers(Unit unit) {
             var list = workersListView.CheckedObjects;
             var enumerator = list.GetEnumerator();
@@ -194,6 +201,7 @@ namespace Khronos_PMS.View {
             unit.ProjectID = selectedProject.ID;
         }
 
+
         private void setAncestorID(Unit unit) {
             // unit se uvijek nalazi u closureunit ako nije novi
             ClosureUnit closureUnit;
@@ -203,14 +211,41 @@ namespace Khronos_PMS.View {
                 closureUnit = new ClosureUnit();
                 closureUnit.ID = unit.ID;
             }
+            ClosureUnit newclosureUnit = new ClosureUnit();
 
+            // test
+            if (edit) { 
+            ProjectManager.entities.ClosureUnits.Attach(closureUnit);
+            ProjectManager.entities.Entry(closureUnit).State = System.Data.Entity.EntityState.Deleted;
+        }
             if (unitsTreeView.CheckedObjects.Count == 0) {
                 // unit je root unit, jer nema selektovanih unita, postavi na root
                 // a to znači depth 0 i ancestor id jednak njemu samom
                 // uh, mijenjanje primarnih ključeva? :D
+                //prepravka stabla ukoliko je unit imao djecu
+                if (edit && unit.HasChildren)
+                {
+                    Unit[] children = unit.Children.ToArray();
+                    foreach (Unit child in children)
+                    {
+                        ClosureUnit childClosureUnit = child.ClosureUnits.ToArray()[0];
+                        ProjectManager.entities.ClosureUnits.Attach(childClosureUnit);
+                        ProjectManager.entities.Entry(childClosureUnit).State = System.Data.Entity.EntityState.Deleted;
+                        ClosureUnit newChild = new ClosureUnit();
 
-                closureUnit.AncestorID = unit.ID;
-                closureUnit.Depth = 0;
+                        if(closureUnit.ID ==closureUnit.AncestorID)
+                        newChild.AncestorID = child.ID;
+                        else
+                            newChild.AncestorID = closureUnit.AncestorID;
+                        newChild.ID = child.ID;
+                        newChild.Depth = closureUnit.Depth;
+                        ProjectManager.entities.ClosureUnits.Add(newChild);
+                    }
+                }
+
+                newclosureUnit.ID = unit.ID;
+                newclosureUnit.AncestorID = unit.ID;
+                newclosureUnit.Depth = 0;
             } else {
                 // postaviti ga kao sina selektovanog unita
                 /*
@@ -218,11 +253,35 @@ namespace Khronos_PMS.View {
                 var enumerator = list.GetEnumerator();
                 enumerator.MoveNext();
                 */
+                if (edit && unit.HasChildren)
+                {
+                    Unit[] children = unit.Children.ToArray();
+                    foreach (Unit child in children)
+                    {
+
+                        ClosureUnit childClosureUnit = child.ClosureUnits.ToArray()[0];
+                        ProjectManager.entities.ClosureUnits.Attach(childClosureUnit);
+                        ProjectManager.entities.Entry(childClosureUnit).State = System.Data.Entity.EntityState.Deleted;
+                        ClosureUnit newChild = new ClosureUnit();
+                        if (closureUnit.ID == closureUnit.AncestorID)
+                            newChild.AncestorID = child.ID;
+                        else
+                            newChild.AncestorID = closureUnit.AncestorID;
+                        newChild.ID = child.ID;
+                        newChild.Depth = closureUnit.Depth;
+                        ProjectManager.entities.ClosureUnits.Add(newChild);
+                    }
+                }
                 selectedUnit = (Unit) unitsTreeView.CheckedObject;
-                closureUnit.AncestorID = selectedUnit.ID;
-                closureUnit.Depth = selectedUnit.ClosureUnits.ToArray()[0].Depth + 1;
+                newclosureUnit.ID = unit.ID;
+                newclosureUnit.AncestorID = selectedUnit.ID;
+                // ne koristimo depth
+                newclosureUnit.Depth =  1;
             }
 
+            ProjectManager.entities.ClosureUnits.Add(newclosureUnit);
+            ProjectManager.entities.SaveChangesAsync();
+            /*
             if (edit) {
                 ProjectManager.entities.ClosureUnits.Attach(closureUnit);
                 ProjectManager.entities.Entry(closureUnit).State = System.Data.Entity.EntityState.Modified;
@@ -231,6 +290,12 @@ namespace Khronos_PMS.View {
                 ProjectManager.entities.ClosureUnits.Add(closureUnit);
                 ProjectManager.entities.SaveChangesAsync();
             }
+            */
+        }
+
+        public Unit getRootUnit()
+        {
+            return rootUnit;
         }
 
 
