@@ -60,6 +60,8 @@ namespace Khronos_PMS.View {
 
         private void MainForm_Load(Object sender, EventArgs e) {
             List<Project> projects = ProjectManager.GetProjects(user);
+            setRole(projects[0]);
+            SetVisibility();
             projectsListView.DataSource = projects;
         }
 
@@ -117,22 +119,7 @@ namespace Khronos_PMS.View {
             projectStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById(selectedProject.Status));
             setRole(selectedProject);
 
-            switch ((Role) projectRoleLabel.Tag) {
-                case Role.Boss:
-                    SetVisibilityForBoss();
-                    break;
-                case Role.Worker:
-                    SetVisibilityForWorker();
-                    break;
-                case Role.Supervisor:
-                    SetVisibilityForSupervisor();
-                    break;
-                case Role.Customer:
-                    SetVisibilityForCustomer();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            SetVisibility();
 
             unitsTreeView.Roots = new List<Unit>(1);
 
@@ -326,6 +313,25 @@ namespace Khronos_PMS.View {
             }
         }
 
+        private void SetVisibility() {
+            switch ((Role) projectRoleLabel.Tag) {
+                case Role.Boss:
+                    SetVisibilityForBoss();
+                    break;
+                case Role.Worker:
+                    SetVisibilityForWorker();
+                    break;
+                case Role.Supervisor:
+                    SetVisibilityForSupervisor();
+                    break;
+                case Role.Customer:
+                    SetVisibilityForCustomer();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
         private void SetVisibilityForWorker() {
             unitToolStripMenuItem.Visible = false;
             reportsToolStripMenuItem.Visible = false;
@@ -336,6 +342,8 @@ namespace Khronos_PMS.View {
             unitEditButton.Visible = false;
             unitInfoTableLayout.RowStyles[3].Height = 0;
             editActivityButton.Visible = false;
+            projectInfoTableLayout.Hide();
+            addActivityToolstripMenuItem.Visible = true;
         }
 
         private void SetVisibilityForBoss() {
@@ -348,6 +356,8 @@ namespace Khronos_PMS.View {
             unitEditButton.Visible = true;
             unitInfoTableLayout.RowStyles[3].Height = 25;
             editActivityButton.Visible = true;
+            projectInfoTableLayout.Show();
+            addActivityToolstripMenuItem.Visible = true;
         }
 
         private void SetVisibilityForSupervisor() {
@@ -360,6 +370,8 @@ namespace Khronos_PMS.View {
             unitEditButton.Visible = false;
             unitInfoTableLayout.RowStyles[3].Height = 25;
             editActivityButton.Visible = false;
+            projectInfoTableLayout.Show();
+            addActivityToolstripMenuItem.Visible = false;
         }
 
         private void SetVisibilityForCustomer() {
@@ -372,6 +384,9 @@ namespace Khronos_PMS.View {
             unitEditButton.Visible = false;
             unitInfoTableLayout.RowStyles[3].Height = 0;
             editActivityButton.Visible = false;
+            activitiesToolStripSplitButton.Visible = false;
+            projectInfoTableLayout.Hide();
+            addActivityToolstripMenuItem.Visible = false;
         }
 
         private void viewActivityButton_Click(Object sender, EventArgs e) {
@@ -382,8 +397,7 @@ namespace Khronos_PMS.View {
             }
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
             new AboutMessageBox();
         }
     }
