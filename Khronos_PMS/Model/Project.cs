@@ -23,15 +23,15 @@ namespace Khronos_PMS.Model
         }
     
         public int ID { get; set; }
-        public int BossID { get; set; }
         public int SupervisorID { get; set; }
+        public int BossID { get; set; }
         public string Name { get; set; }
         public System.DateTime StartDate { get; set; }
+        public decimal Budget { get; set; }
+        public int Status { get; set; }
         public System.DateTime DeadlineDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
-        public decimal Budget { get; set; }
-        public decimal Expense { get; set; }
-        public int Status { get; set; }
+        public Nullable<decimal> Expense { get; set; }
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

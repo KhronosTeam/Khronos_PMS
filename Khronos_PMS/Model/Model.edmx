@@ -15,16 +15,16 @@
           <Property Name="UnitID" Type="int" Nullable="false" />
           <Property Name="ProjectID" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="Manhour" Type="int" Nullable="false" />
+          <Property Name="Manhour" Type="double" Nullable="false" />
           <Property Name="Expense" Type="decimal" Precision="20" Scale="5" Nullable="false" />
         </EntityType>
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
+          <Property Name="FirstName" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="18" Nullable="false" />
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="FirstName" Type="char" MaxLength="18" Nullable="false" />
-          <Property Name="LastName" Type="char" MaxLength="18" Nullable="false" />
         </EntityType>
         <EntityType Name="AssignedTo">
           <Key>
@@ -32,8 +32,8 @@
             <PropertyRef Name="WorkerID" />
           </Key>
           <Property Name="ProjectID" Type="int" Nullable="false" />
-          <Property Name="WorkerID" Type="int" Nullable="false" />
           <Property Name="Active" Type="bool" Nullable="false" />
+          <Property Name="WorkerID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ClosureUnit">
           <Key>
@@ -75,16 +75,16 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BossID" Type="int" Nullable="false" />
           <Property Name="SupervisorID" Type="int" Nullable="false" />
+          <Property Name="BossID" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="Budget" Type="decimal" Precision="20" Scale="5" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="DeadlineDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" />
-          <Property Name="Budget" Type="decimal" Precision="20" Scale="5" Nullable="false" />
-          <Property Name="Expense" Type="decimal" Precision="20" Scale="5" Nullable="false" />
-          <Property Name="Status" Type="int" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="2048" />
+          <Property Name="Expense" Type="decimal" Precision="20" Scale="5" />
+          <Property Name="Description" Type="text" Nullable="false" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -93,21 +93,21 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProjectID" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Expense" Type="decimal" Precision="20" Scale="5" />
           <Property Name="DueDate" Type="date" Nullable="false" />
-          <Property Name="Status" Type="int" Nullable="false" />
-          <Property Name="Priority" Type="int" Nullable="false" />
-          <Property Name="Expense" Type="decimal" Precision="20" Scale="5" Nullable="false" />
-          <Property Name="EstManhours" Type="int" Nullable="false" />
-          <Property Name="SpentManhours" Type="int" Nullable="false" />
+          <Property Name="Priority" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="EstManhours" Type="double" Nullable="false" />
+          <Property Name="SpentManhours" Type="double" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Username" Type="char" MaxLength="18" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="1024" Nullable="false" />
-          <Property Name="Active" Type="bool" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="Password" Type="char" MaxLength="64" Nullable="false" />
+          <Property Name="Active" Type="bool" />
         </EntityType>
         <EntityType Name="Worker">
           <Key>
@@ -505,7 +505,7 @@
           <NavigationProperty Name="User" Relationship="Self.Worker_ibfk_1" FromRole="Worker" ToRole="User" />
           <NavigationProperty Name="BossProjects" Relationship="KhronosPMSModel.Project_ibfk_1" FromRole="Worker" ToRole="Project" />
           <NavigationProperty Name="SupervisorProjects" Relationship="KhronosPMSModel.Project_ibfk_2" FromRole="Worker" ToRole="Project" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="WorksOn">
           <Key>
             <PropertyRef Name="WorkerID" />
@@ -688,7 +688,7 @@
             <End Role="Project" EntitySet="Projects" />
             <End Role="Customer" EntitySet="Customers" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Unit">
           <Key>
             <PropertyRef Name="ID" />
@@ -748,16 +748,16 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BossID" Type="Int32" Nullable="false" />
           <Property Name="SupervisorID" Type="Int32" Nullable="false" />
+          <Property Name="BossID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="Budget" Type="Decimal" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="DeadlineDate" Type="DateTime" Nullable="false" />
           <Property Name="EndDate" Type="DateTime" />
-          <Property Name="Budget" Type="Decimal" Nullable="false" />
-          <Property Name="Expense" Type="Decimal" Nullable="false" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
+          <Property Name="Expense" Type="Decimal" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AssignedWorkers" Relationship="KhronosPMSModel.AssignedTo_ibfk_2" FromRole="Project" ToRole="AssignedTo" />
           <NavigationProperty Name="Boss" Relationship="KhronosPMSModel.Project_ibfk_1" FromRole="Project" ToRole="Worker" />
           <NavigationProperty Name="Supervisor" Relationship="KhronosPMSModel.Project_ibfk_2" FromRole="Project" ToRole="Worker" />
@@ -816,7 +816,7 @@
           <End Type="KhronosPMSModel.Project" Role="Project" Multiplicity="*" />
           <End Type="KhronosPMSModel.Customer" Role="Customer" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -931,15 +931,15 @@
             <EntityTypeMapping TypeName="KhronosPMSModel.Project">
               <MappingFragment StoreEntitySet="Project">
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Expense" ColumnName="Expense" />
-                <ScalarProperty Name="Budget" ColumnName="Budget" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Budget" ColumnName="Budget" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="SupervisorID" ColumnName="SupervisorID" />
                 <ScalarProperty Name="BossID" ColumnName="BossID" />
+                <ScalarProperty Name="SupervisorID" ColumnName="SupervisorID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -952,7 +952,7 @@
               <ScalarProperty Name="ID" ColumnName="ProjectID" />
             </EndProperty>
           </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

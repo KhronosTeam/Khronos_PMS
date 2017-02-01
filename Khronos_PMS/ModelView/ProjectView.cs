@@ -19,7 +19,7 @@ namespace Khronos_PMS.ModelView
                 this.DeadlineDate = project.DeadlineDate;
                 this.EndDate = project.EndDate;
                 this.Budget = project.Budget;
-                this.Expense = project.Expense;
+                this.Expense = project.Expense ?? 0;
                 this.Status = project.Status;
                 this.ID = project.ID;
                 this.Boss = project.Boss;
