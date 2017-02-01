@@ -30,10 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.ProjectReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectReportForm));
             this.UnitBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ProjectReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.UnitBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // UnitBindingSource
+            // 
+            this.UnitBindingSource.DataSource = typeof(Khronos_PMS.Model.Unit);
             // 
             // ProjectReportViewer
             // 
@@ -47,16 +52,13 @@
             this.ProjectReportViewer.Size = new System.Drawing.Size(418, 262);
             this.ProjectReportViewer.TabIndex = 0;
             // 
-            // UnitBindingSource
-            // 
-            this.UnitBindingSource.DataSource = typeof(Khronos_PMS.Model.Unit);
-            // 
             // ProjectReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(418, 262);
             this.Controls.Add(this.ProjectReportViewer);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProjectReportForm";
             this.Text = "ProjectReportForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

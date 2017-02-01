@@ -30,10 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.financialReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FinancialReportForm));
             this.UnitBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.financialReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.UnitBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // UnitBindingSource
+            // 
+            this.UnitBindingSource.DataSource = typeof(Khronos_PMS.Model.Unit);
             // 
             // financialReportViewer
             // 
@@ -47,16 +52,13 @@
             this.financialReportViewer.Size = new System.Drawing.Size(419, 269);
             this.financialReportViewer.TabIndex = 0;
             // 
-            // UnitBindingSource
-            // 
-            this.UnitBindingSource.DataSource = typeof(Khronos_PMS.Model.Unit);
-            // 
             // FinancialReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(419, 269);
             this.Controls.Add(this.financialReportViewer);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FinancialReportForm";
             this.Text = "FinancialReportForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

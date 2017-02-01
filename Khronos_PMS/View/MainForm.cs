@@ -40,6 +40,7 @@ namespace Khronos_PMS.View {
                         return CheckState.Unchecked;
                 }
             };
+            projectsListView.GetColumn(0).ImageGetter = i => 0;
             workersListView.GetColumn(0).ImageGetter = w => 1;
             unitsTreeView.GetColumn(0).ImageGetter = u => (u as Unit).Status + 2;
             unitsTreeView.GetColumn(1).ImageGetter = u => (u as Unit).Status + statusOffset;
@@ -56,7 +57,6 @@ namespace Khronos_PMS.View {
 
         private void MainForm_Load(Object sender, EventArgs e) {
             //todo neke labele treba sakriti u zavisnoti ko se prijavio
-            projectsListView.GetColumn(0).ImageGetter = i => 0;
 
             List<Project> projects = ProjectManager.GetProjects(user);
             projectsListView.DataSource = projects;
@@ -115,6 +115,24 @@ namespace Khronos_PMS.View {
             bossNameLabel.Text = selectedProject.Boss.FullName;
             projectStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById(selectedProject.Status));
             setRole(selectedProject);
+
+            switch ((Role) projectRoleLabel.Tag) {
+                case Role.Boss:
+                    SetVisibilityForBoss();
+                    break;
+                case Role.Worker:
+                    SetVisibilityForWorker();
+                    break;
+                case Role.Supervisor:
+                    SetVisibilityForSupervisor();
+                    break;
+                case Role.Customer:
+                    SetVisibilityForCustomer();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
             unitsTreeView.Roots = new List<Unit>(1);
 
             new Task(() => {
@@ -161,19 +179,23 @@ namespace Khronos_PMS.View {
             if (user != null) {
                 if (selectedProject.BossID == user.ID) {
                     projectRoleLabel.Text = Role.Boss.ToString();
+                    projectRoleLabel.Tag = Role.Boss;
                 } else if (selectedProject.SupervisorID == user.ID) {
                     projectRoleLabel.Text = Role.Supervisor.ToString();
+                    projectRoleLabel.Tag = Role.Supervisor;
                 } else {
                     bool roleSet = false;
                     foreach (var item in selectedProject.Customers) {
                         if (item.ID == user.ID) {
                             projectRoleLabel.Text = Role.Customer.ToString();
+                            projectRoleLabel.Tag = Role.Customer;
                             roleSet = true;
                         }
                     }
                     foreach (var item in selectedProject.AssignedWorkers) {
                         if (item.WorkerID == user.ID) {
                             projectRoleLabel.Text = Role.Worker.ToString();
+                            projectRoleLabel.Tag = Role.Worker;
                             roleSet = true;
                         }
                     }
@@ -278,16 +300,60 @@ namespace Khronos_PMS.View {
             }
         }
 
-        private void editActivityButton_Click(object sender, EventArgs e)
-        {
-            if(activityListView.SelectedIndex != -1)
-            {
-                new ActivityForm((Unit)unitsTreeView.SelectedObject, user, (Activity)activityListView.SelectedObject).ShowDialog();
-            }else
-            {
+        private void editActivityButton_Click(object sender, EventArgs e) {
+            if (activityListView.SelectedIndex != -1) {
+                new ActivityForm((Unit) unitsTreeView.SelectedObject, user, (Activity) activityListView.SelectedObject).ShowDialog();
+            } else {
                 MessageBox.Show("You must select one activity!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+        }
+
+        private void SetVisibilityForWorker() {
+            unitToolStripMenuItem.Visible = false;
+            reportsToolStripMenuItem.Visible = false;
+            workersListView.CheckBoxes = false;
+            workersListView.HeaderStyle = ColumnHeaderStyle.None;
+            projectStatusMenuButton.Enabled = false;
+            unitsTableLayout.RowStyles[0].Height = 0;
+            unitEditButton.Visible = false;
+            unitInfoTableLayout.RowStyles[3].Height = 0;
+            editActivityButton.Visible = false;
+        }
+
+        private void SetVisibilityForBoss() {
+            unitToolStripMenuItem.Visible = true;
+            reportsToolStripMenuItem.Visible = true;
+            workersListView.CheckBoxes = true;
+            workersListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            projectStatusMenuButton.Enabled = true;
+            unitsTableLayout.RowStyles[0].Height = 30;
+            unitEditButton.Visible = true;
+            unitInfoTableLayout.RowStyles[3].Height = 25;
+            editActivityButton.Visible = true;
+        }
+
+        private void SetVisibilityForSupervisor() {
+            unitToolStripMenuItem.Visible = false;
+            reportsToolStripMenuItem.Visible = true;
+            workersListView.CheckBoxes = false;
+            workersListView.HeaderStyle = ColumnHeaderStyle.None;
+            projectStatusMenuButton.Enabled = false;
+            unitsTableLayout.RowStyles[0].Height = 0;
+            unitEditButton.Visible = false;
+            unitInfoTableLayout.RowStyles[3].Height = 25;
+            editActivityButton.Visible = false;
+        }
+
+        private void SetVisibilityForCustomer() {
+            unitToolStripMenuItem.Visible = false;
+            reportsToolStripMenuItem.Visible = true;
+            workersListView.CheckBoxes = false;
+            workersListView.HeaderStyle = ColumnHeaderStyle.None;
+            projectStatusMenuButton.Enabled = false;
+            unitsTableLayout.RowStyles[0].Height = 0;
+            unitEditButton.Visible = false;
+            unitInfoTableLayout.RowStyles[3].Height = 0;
+            editActivityButton.Visible = false;
         }
     }
 }

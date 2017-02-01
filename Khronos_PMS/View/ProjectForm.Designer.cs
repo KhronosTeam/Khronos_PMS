@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectForm));
             this.projectNameLabel = new System.Windows.Forms.Label();
             this.bossUsernameLabel = new System.Windows.Forms.Label();
             this.supervisorUsernameLabel = new System.Windows.Forms.Label();
@@ -263,6 +264,7 @@
             this.Controls.Add(this.supervisorUsernameLabel);
             this.Controls.Add(this.bossUsernameLabel);
             this.Controls.Add(this.projectNameLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProjectForm";
             this.Text = "ProjectForm";
             this.Load += new System.EventHandler(this.ProjectForm_Load);

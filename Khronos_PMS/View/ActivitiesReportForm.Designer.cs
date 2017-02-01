@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActivitiesReportForm));
             this.ActivityViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.activitiesReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.ActivityViewBindingSource)).BeginInit();
@@ -57,6 +58,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(592, 296);
             this.Controls.Add(this.activitiesReportViewer);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ActivitiesReportForm";
             this.Text = "ActivitiesReportForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

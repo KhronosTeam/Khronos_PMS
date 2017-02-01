@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Khronos_PMS.View;
 using System.Linq;
 using Khronos_PMS.Model;
+using Khronos_PMS.Util;
 
 namespace Khronos_PMS {
     public static class Program {
@@ -27,6 +28,7 @@ namespace Khronos_PMS {
                 else
                     Application.Run(new MainForm(user.GetName(), user.ID));
             }
+            
         }
     }
 }

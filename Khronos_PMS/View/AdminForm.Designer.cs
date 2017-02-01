@@ -716,6 +716,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1032, 475);
             this.Controls.Add(this.adminTabControl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdminForm";
             this.Text = "Khronos Project Management System Administration";
             this.adminTabControl.ResumeLayout(false);
