@@ -108,6 +108,7 @@
             this.adminTabControl.SelectedIndex = 0;
             this.adminTabControl.Size = new System.Drawing.Size(1032, 475);
             this.adminTabControl.TabIndex = 0;
+            this.adminTabControl.SelectedIndexChanged += new System.EventHandler(this.adminTabControl_SelectedIndexChanged);
             // 
             // accountTabPage
             // 
