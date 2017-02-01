@@ -266,7 +266,7 @@
             this.Controls.Add(this.projectNameLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProjectForm";
-            this.Text = "ProjectForm";
+            this.Text = "Project Creation";
             this.Load += new System.EventHandler(this.ProjectForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.customerDataGridView)).EndInit();
             this.ResumeLayout(false);
