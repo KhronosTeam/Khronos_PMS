@@ -21,6 +21,10 @@ namespace Khronos_PMS.Util {
                 ProjectManager.entities.Activities.Attach(activity);
                 ProjectManager.entities.Entry(activity).State = System.Data.Entity.EntityState.Modified;
                 ProjectManager.entities.SaveChangesAsync();
+                string toLog = activity.ID + "#" +
+                    activity.Note + "#" +
+                    activity.Manhour + "#";
+                LogManager.writeToLog(ProjectManager.entities, "Activity", "update", toLog, LoginManager.LoggedUser.ID);
             } catch (Exception) {
                 ProjectManager.entities.Entry(activity).State = System.Data.Entity.EntityState.Detached;
             }
@@ -38,6 +42,7 @@ namespace Khronos_PMS.Util {
                 activity.UnitID = unit.ID;
                 ProjectManager.entities.Activities.Add(activity);
                 ProjectManager.entities.SaveChangesAsync();
+                LogManager.writeToLog(ProjectManager.entities, "Activity", "insert", activity.ID.ToString(), LoginManager.LoggedUser.ID);
             } catch (Exception e) {
                 Console.Write(e.StackTrace);
             }
