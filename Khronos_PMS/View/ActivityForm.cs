@@ -36,21 +36,25 @@ namespace Khronos_PMS.View {
         }
 
         private void saveButton_Click(object sender, EventArgs e) {
-            int manhour = int.Parse(manHourSpentTextBox.Text);
-            String note = noteTextBox.Text;
-            double expense = double.Parse(expensesTextBox.Text);
-            ActivityManager activityManager;
-            if ("Add new activity".Equals(this.Text)) {
-                activityManager = new ActivityManager(unit, user, manhour, expense, note);
-                DialogResult = DialogResult.OK;
-            } else {
-                activity.Manhour = manhour;
-                activity.Expense = (decimal) expense;
-                activity.Note = note;
-                activityManager = new ActivityManager(activity);
+            try {
+                int manhour = int.Parse(manHourSpentTextBox.Text);
+                String note = noteTextBox.Text;
+                double expense = double.Parse(expensesTextBox.Text);
+                ActivityManager activityManager;
+                if ("Add new activity".Equals(this.Text)) {
+                    activityManager = new ActivityManager(unit, user, manhour, expense, note);
+                    DialogResult = DialogResult.OK;
+                } else {
+                    activity.Manhour = manhour;
+                    activity.Expense = (decimal) expense;
+                    activity.Note = note;
+                    activityManager = new ActivityManager(activity);
+                    DialogResult = DialogResult.Cancel;
+                }
+                activity = activityManager.Activity;
+            } catch (Exception ex) {
+                Console.Out.WriteLine(ex.StackTrace);
             }
-            activity = activityManager.Activity;
-            this.Close();
         }
 
         public Activity Activity {

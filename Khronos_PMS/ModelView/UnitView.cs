@@ -96,6 +96,4 @@ namespace Khronos_PMS.ModelView {
             children.Add(new UnitView(unit));
         }
     }
-
-    // TODO preload in unittreeview
 }

@@ -27,7 +27,7 @@ namespace Khronos_PMS.View {
         }
 
         private void cancelButton_Click(Object sender, EventArgs e) {
-            Close();
+            DialogResult = DialogResult.OK;
         }
     }
 }

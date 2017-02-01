@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using Khronos_PMS.Model;
 using Khronos_PMS.Util;
 using BrightIdeasSoftware;
-using Khronos_PMS.ModelView;
 
 namespace Khronos_PMS.View {
     public partial class MainForm : Form {
@@ -63,8 +59,6 @@ namespace Khronos_PMS.View {
         }
 
         private void MainForm_Load(Object sender, EventArgs e) {
-            //todo neke labele treba sakriti u zavisnoti ko se prijavio
-
             List<Project> projects = ProjectManager.GetProjects(user);
             projectsListView.DataSource = projects;
         }
@@ -269,14 +263,11 @@ namespace Khronos_PMS.View {
         private void addNewUnitButton_Click(Object sender, EventArgs e) {
             UnitForm unitForm = new UnitForm((Project) projectsListView.SelectedObject, promptTextBox3.Text, (Unit) unitsTreeView.SelectedObject);
             DialogResult result = unitForm.ShowDialog();
-            if(result == DialogResult.OK)
-            {
+            if (result == DialogResult.OK) {
                 Unit u = unitForm.getRootUnit();
-                if (u.IsRoot)
-                {
+                if (u.IsRoot) {
                     unitsTreeView.AddObject(u);
                 }
-                unitsTreeView.Refresh();
             }
         }
 
@@ -299,7 +290,7 @@ namespace Khronos_PMS.View {
             ActivityForm activityForm = new ActivityForm((Unit) unitsTreeView.SelectedObject, user, null);
             activityForm.ShowDialog();
             if (activityForm.DialogResult == DialogResult.OK) {
-                activityListView.AddObject(activityForm.Activity);
+                activityListView.SetObjects(UnitManager.GetActivities((Unit) unitsTreeView.SelectedObject, user));
             }
         }
 
@@ -311,8 +302,7 @@ namespace Khronos_PMS.View {
         }
 
         private void unitEditButton_Click(Object sender, EventArgs e) {
-            //todo edit unit call UnitForm
-            UnitForm unitform = new UnitForm((Unit)unitsTreeView.SelectedObject,(Project)projectsListView.SelectedObject);
+            UnitForm unitform = new UnitForm((Unit) unitsTreeView.SelectedObject, (Project) projectsListView.SelectedObject);
             unitform.ShowDialog();
         }
 

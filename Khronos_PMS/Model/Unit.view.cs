@@ -12,6 +12,6 @@ namespace Khronos_PMS.Model {
 
         public bool IsRoot => ClosureUnits.Any(unit => unit.Depth == 0);
 
-        public List<Worker> Assignees => Workers.Select(worksOn => worksOn.AssignedTo.Worker).ToList();
+        public List<Worker> Assignees => Workers.Where(w => w.Active).Select(worksOn => worksOn.AssignedTo.Worker).ToList();
     }
 }

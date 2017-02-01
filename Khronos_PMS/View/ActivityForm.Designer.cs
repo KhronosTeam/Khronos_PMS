@@ -64,7 +64,7 @@ namespace Khronos_PMS.View
             this.manHourSpentTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.manHourSpentTextBox.Location = new System.Drawing.Point(123, 3);
             this.manHourSpentTextBox.Name = "manHourSpentTextBox";
-            this.manHourSpentTextBox.Size = new System.Drawing.Size(251, 20);
+            this.manHourSpentTextBox.Size = new System.Drawing.Size(161, 20);
             this.manHourSpentTextBox.TabIndex = 0;
             // 
             // noteLabel
@@ -85,12 +85,12 @@ namespace Khronos_PMS.View
             this.noteTextBox.Location = new System.Drawing.Point(6, 90);
             this.noteTextBox.Multiline = true;
             this.noteTextBox.Name = "noteTextBox";
-            this.noteTextBox.Size = new System.Drawing.Size(371, 192);
+            this.noteTextBox.Size = new System.Drawing.Size(281, 137);
             this.noteTextBox.TabIndex = 2;
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(297, 3);
+            this.cancelButton.Location = new System.Drawing.Point(207, 3);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(74, 22);
             this.cancelButton.TabIndex = 4;
@@ -100,7 +100,7 @@ namespace Khronos_PMS.View
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(217, 3);
+            this.saveButton.Location = new System.Drawing.Point(127, 3);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(74, 22);
             this.saveButton.TabIndex = 3;
@@ -124,7 +124,7 @@ namespace Khronos_PMS.View
             this.expensesTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.expensesTextBox.Location = new System.Drawing.Point(123, 28);
             this.expensesTextBox.Name = "expensesTextBox";
-            this.expensesTextBox.Size = new System.Drawing.Size(251, 20);
+            this.expensesTextBox.Size = new System.Drawing.Size(161, 20);
             this.expensesTextBox.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -142,7 +142,7 @@ namespace Khronos_PMS.View
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 84F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(383, 322);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(293, 267);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -154,12 +154,12 @@ namespace Khronos_PMS.View
             this.tableLayoutPanel2.Controls.Add(this.saveButton, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.cancelButton, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 288);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 233);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(374, 28);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(284, 28);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // tableLayoutPanel3
@@ -185,7 +185,7 @@ namespace Khronos_PMS.View
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(377, 81);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(287, 81);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
             // label2
@@ -224,7 +224,7 @@ namespace Khronos_PMS.View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 328);
+            this.ClientSize = new System.Drawing.Size(299, 273);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
