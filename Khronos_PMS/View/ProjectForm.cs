@@ -35,10 +35,12 @@ namespace Khronos_PMS.View
 
         private async void setupComponents() {
             List<WorkerView> workerList = null;
+            List<WorkerView> workerList2 = null;
             List<CustomerView> customerList = null;
             this.Enabled = false;
             await Task.Run(() => {
                 workerList = ProjectManagement.GetWorkers();
+                workerList2 = ProjectManagement.GetWorkers();
                 customerList = ProjectManagement.GetCustomers();
             });
 
@@ -46,7 +48,7 @@ namespace Khronos_PMS.View
             bossUsernameComboBox.DisplayMember = "Username";
             bossUsernameComboBox.ValueMember = "ID";
 
-            supervisorUsernameComboBox.DataSource = workerList;
+            supervisorUsernameComboBox.DataSource = workerList2;
             supervisorUsernameComboBox.DisplayMember = "Username";
             supervisorUsernameComboBox.ValueMember = "ID";
 
