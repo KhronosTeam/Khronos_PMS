@@ -139,12 +139,15 @@ namespace Khronos_PMS.View {
             this.Close();
         }
 
-        private void okButton_Click(object sender, EventArgs e) {
+        private async void okButton_Click(object sender, EventArgs e) {
             if (edit) {
+                string toLog = editUnit.Name + "#" +
+                    editUnit.EstManhours + "#";
                 setAttributes(editUnit);
 
                 setAncestorID(editUnit);
                 setWorkers(editUnit);
+                LogManager.writeToLog(ProjectManager.entities, "Unit", "insert", toLog, LoginManager.LoggedUser.ID);
             } else {
                 Unit newUnit = new Unit();
                 setAttributes(newUnit);
@@ -155,7 +158,8 @@ namespace Khronos_PMS.View {
                 {
                     rootUnit = newUnit;
                 }
-                ProjectManager.entities.SaveChangesAsync();
+                await ProjectManager.entities.SaveChangesAsync();
+                LogManager.writeToLog(ProjectManager.entities, "Unit", "insert", newUnit.ID.ToString(), LoginManager.LoggedUser.ID);
             }
             DialogResult = DialogResult.OK;
             this.Close();
@@ -223,6 +227,13 @@ namespace Khronos_PMS.View {
                 // a to znači depth 0 i ancestor id jednak njemu samom
                 // uh, mijenjanje primarnih ključeva? :D
                 //prepravka stabla ukoliko je unit imao djecu
+                if (edit) {
+                    if (closureUnit.ID == closureUnit.AncestorID)
+                    {                 
+                        ProjectManager.entities.Entry(closureUnit).State = System.Data.Entity.EntityState.Unchanged;
+                        return;
+                    }
+                }
                 if (edit && unit.HasChildren)
                 {
                     Unit[] children = unit.Children.ToArray();
@@ -253,6 +264,9 @@ namespace Khronos_PMS.View {
                 var enumerator = list.GetEnumerator();
                 enumerator.MoveNext();
                 */
+                selectedUnit = (Unit)unitsTreeView.CheckedObject;
+                if (selectedUnit != null) 
+                if (edit && selectedUnit.ID == editUnit.ID) return;
                 if (edit && unit.HasChildren)
                 {
                     Unit[] children = unit.Children.ToArray();
