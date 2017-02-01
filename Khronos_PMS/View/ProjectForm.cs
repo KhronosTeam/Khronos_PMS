@@ -149,13 +149,15 @@ namespace Khronos_PMS.View
                     project.Customers.Add(cc);
                         customerLog += "newCustomerID:" + customer.ID + "#";
                 }
-                    LogManager.writeToLog(ProjectManagement.entities, "CustomerProject", "insert", customerLog, LoginManager.LoggedUser.ID);
-                    ProjectManagement.entities.Projects.Attach(project);
+                   ProjectManagement.entities.Projects.Attach(project);
                 ProjectManagement.entities.Entry(project).State = System.Data.Entity.EntityState.Modified;
-                LogManager.writeToLog(ProjectManagement.entities, "Project", "insert", logParams, LoginManager.LoggedUser.ID);
 
                 ProjectManagement.entities.SaveChanges();
-                this.Close();
+
+                    LogManager.writeToLog(ProjectManagement.entities, "Project", "insert", logParams, LoginManager.LoggedUser.ID);
+                    LogManager.writeToLog(ProjectManagement.entities, "CustomerProject", "insert", customerLog, LoginManager.LoggedUser.ID);
+
+                    this.Close();
                 }
                 catch (Exception) { }
             }
@@ -170,17 +172,20 @@ namespace Khronos_PMS.View
                     newProject.DeadlineDate = deadlineDateTimePicker.Value.Date;
                     newProject.Budget = decimal.Parse(budgetTextBox.Text);
                     newProject.Description = descriptionTextBox.Text;
-                   
 
+                    string customerLog = "";
                     foreach (CustomerView customer in projectCustomers) {
                         Customer cc = ProjectManagement.entities.Customers.Where(c => c.ID == customer.ID).First();
                         newProject.Customers.Add(cc);
+                        customerLog += "newCustomerID:" + customer.ID + "#";
                     }
 
                     ProjectManagement.entities.Projects.Add(newProject);
-                    LogManager.writeToLog(ProjectManagement.entities, "Project", "insert", newProject.ID.ToString(), LoginManager.LoggedUser.ID);
-
+                    
                     ProjectManagement.entities.SaveChanges();
+                    LogManager.writeToLog(ProjectManagement.entities, "Project", "insert", newProject.ID.ToString(), LoginManager.LoggedUser.ID);
+                    LogManager.writeToLog(ProjectManagement.entities, "CustomerProject", "insert", customerLog, LoginManager.LoggedUser.ID);
+
                     this.Close();
 
                 }
