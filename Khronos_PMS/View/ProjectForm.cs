@@ -154,7 +154,7 @@ namespace Khronos_PMS.View
 
                 ProjectManagement.entities.SaveChanges();
 
-                    LogManager.writeToLog(ProjectManagement.entities, "Project", "insert", logParams, LoginManager.LoggedUser.ID);
+                    LogManager.writeToLog(ProjectManagement.entities, "Project", "update", logParams, LoginManager.LoggedUser.ID);
                     LogManager.writeToLog(ProjectManagement.entities, "CustomerProject", "insert", customerLog, LoginManager.LoggedUser.ID);
 
                     this.Close();
