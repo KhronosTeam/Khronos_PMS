@@ -200,13 +200,18 @@ namespace Khronos_PMS {
         }
 
         private async void refreshButton_Click(object sender, EventArgs e) {
+            refresh();
+        }
+
+        private async void refresh() {
             refreshButton.Enabled = false;
             List<ProjectView> data = new List<ProjectView>();
             await Task.Run(() => { data.AddRange(ProjectManagement.getData(ProjectManagement.entities)); });
             projectDataGridView.DataSource = data;
 
             ProjectManagement.formatColumns(projectDataGridView);
-            if (projectDataGridView.RowCount > 0) {
+            if (projectDataGridView.RowCount > 0)
+            {
                 projectDataGridView.Rows[0].Selected = true;
             }
             refreshButton.Enabled = true;
@@ -301,6 +306,11 @@ namespace Khronos_PMS {
             {
                 activeCheckBox.Checked = ((User)activateUsernameComboBox.SelectedItem).Active;
             }
+        }
+
+        private void adminTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (adminTabControl.SelectedTab.Equals(projectTabPage)) refresh();
         }
     }
 }
