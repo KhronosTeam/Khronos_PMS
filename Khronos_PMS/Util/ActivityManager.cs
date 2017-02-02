@@ -25,7 +25,8 @@ namespace Khronos_PMS.Util {
                     activity.Note + "#" +
                     activity.Manhour + "#";
                 LogManager.writeToLog(ProjectManager.entities, "Activity", "update", toLog, LoginManager.LoggedUser.ID);
-            } catch (Exception) {
+            } catch (Exception ex) {
+                Console.Out.WriteLine(ex.StackTrace);
                 ProjectManager.entities.Entry(activity).State = System.Data.Entity.EntityState.Detached;
             }
         }
