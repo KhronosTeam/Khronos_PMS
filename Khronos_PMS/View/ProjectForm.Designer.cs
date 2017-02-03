@@ -135,6 +135,7 @@
             this.descriptionTextBox.Location = new System.Drawing.Point(389, 137);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.descriptionTextBox.Size = new System.Drawing.Size(284, 126);
             this.descriptionTextBox.TabIndex = 9;
             // 
@@ -264,7 +265,10 @@
             this.Controls.Add(this.supervisorUsernameLabel);
             this.Controls.Add(this.bossUsernameLabel);
             this.Controls.Add(this.projectNameLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ProjectForm";
             this.Text = "Project Creation";
             this.Load += new System.EventHandler(this.ProjectForm_Load);

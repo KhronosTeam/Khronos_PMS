@@ -63,6 +63,7 @@ namespace Khronos_PMS.Util {
 
         public static void formatColumns(DataGridView dataGridView) {
             dataGridView.Columns[0].HeaderText = "Name";
+            dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView.Columns[1].HeaderText = "Boss Name";
             dataGridView.Columns[2].HeaderText = "Supervisor Name";
             dataGridView.Columns[3].HeaderText = "Start Date";

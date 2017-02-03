@@ -67,6 +67,8 @@ namespace Khronos_PMS.View
                 bs = new BindingSource();
                 bs.DataSource = projectCustomers;
                 customerDataGridView.DataSource = bs;
+                customerDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                customerDataGridView.Columns[2].Visible = false;
             }
             this.Enabled = true;
         }

@@ -33,16 +33,23 @@ namespace Khronos_PMS.Util
         /// <param name="userID">Id trenutno prijavljenog korisnika</param>
         public static void writeToLog(KhronosPMSEntities enteties, string TableID, string OperationID, string Params, int userID)
         {
-            Log newLog = new Log();
-            newLog.Date = DateTime.Now;
-            newLog.OperationID = OperationID;
-            newLog.Params = Params;
-            newLog.UserID = LoginManager.LoggedUser.ID;
-            newLog.TableID = TableID;
-            newLog.UserID = userID;
+            try
+            {
+                Log newLog = new Log();
+                newLog.Date = DateTime.Now;
+                newLog.OperationID = OperationID;
+                newLog.Params = Params;
+                newLog.UserID = LoginManager.LoggedUser.ID;
+                newLog.TableID = TableID;
+                newLog.UserID = userID;
 
-            entities.Logs.Add(newLog);
-            entities.SaveChangesAsync();
+                entities.Logs.Add(newLog);
+                entities.SaveChangesAsync();
+            }
+            catch (Exception e) {
+                Console.WriteLine(e.Message);
+            }
+
         }
     }
 }

@@ -626,6 +626,9 @@
             // 
             this.projectDataGridView.AllowUserToAddRows = false;
             this.projectDataGridView.AllowUserToDeleteRows = false;
+            this.projectDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.projectDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.projectDataGridView.Location = new System.Drawing.Point(3, 34);
             this.projectDataGridView.Name = "projectDataGridView";
@@ -638,6 +641,7 @@
             // 
             // addProjectButton
             // 
+            this.addProjectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.addProjectButton.Location = new System.Drawing.Point(941, 272);
             this.addProjectButton.Name = "addProjectButton";
             this.addProjectButton.Size = new System.Drawing.Size(75, 23);
@@ -648,6 +652,7 @@
             // 
             // editProjectButton
             // 
+            this.editProjectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.editProjectButton.Location = new System.Drawing.Point(860, 272);
             this.editProjectButton.Name = "editProjectButton";
             this.editProjectButton.Size = new System.Drawing.Size(75, 23);
@@ -658,6 +663,8 @@
             // 
             // projectGroupBox
             // 
+            this.projectGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.projectGroupBox.Controls.Add(this.projectDetailsTextBox);
             this.projectGroupBox.Location = new System.Drawing.Point(11, 272);
             this.projectGroupBox.Name = "projectGroupBox";
@@ -668,15 +675,20 @@
             // 
             // projectDetailsTextBox
             // 
-            this.projectDetailsTextBox.Enabled = false;
+            this.projectDetailsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.projectDetailsTextBox.Location = new System.Drawing.Point(6, 19);
             this.projectDetailsTextBox.Multiline = true;
             this.projectDetailsTextBox.Name = "projectDetailsTextBox";
+            this.projectDetailsTextBox.ReadOnly = true;
+            this.projectDetailsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.projectDetailsTextBox.Size = new System.Drawing.Size(772, 144);
             this.projectDetailsTextBox.TabIndex = 0;
             // 
             // refreshButton
             // 
+            this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.refreshButton.Location = new System.Drawing.Point(941, 6);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(75, 23);
@@ -687,6 +699,7 @@
             // 
             // searchButton
             // 
+            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchButton.Location = new System.Drawing.Point(312, 6);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(75, 23);
@@ -697,6 +710,8 @@
             // 
             // searchTextBox
             // 
+            this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.searchTextBox.Location = new System.Drawing.Point(112, 8);
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(194, 20);
