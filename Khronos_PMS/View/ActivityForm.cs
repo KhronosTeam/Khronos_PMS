@@ -43,8 +43,12 @@ namespace Khronos_PMS.View {
                 ActivityManager activityManager;
                 if ("Add new activity".Equals(this.Text)) {
                     activityManager = new ActivityManager(unit, user, manhour, expense, note);
+                    unit.SpentManhours += manhour;
+                    unit.Expense += (decimal) expense;
                     DialogResult = DialogResult.OK;
                 } else {
+                    unit.SpentManhours = unit.SpentManhours - activity.Manhour + manhour;
+                    unit.Expense = unit.Expense - activity.Expense + (decimal) expense;
                     activity.Manhour = manhour;
                     activity.Expense = (decimal) expense;
                     activity.Note = note;

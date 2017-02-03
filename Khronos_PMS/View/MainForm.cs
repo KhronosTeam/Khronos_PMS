@@ -223,10 +223,6 @@ namespace Khronos_PMS.View {
             }
         }
 
-        private void refrshToolStripMenuItem_Click(Object sender, EventArgs e) {
-            //todo refresh svih vrijednosti
-        }
-
         private void unitToolStripMenuItem_Click(Object sender, EventArgs e) {
             addNewUnitButton.PerformClick();
         }
@@ -278,11 +274,13 @@ namespace Khronos_PMS.View {
         }
 
         private void addActivityToolstripMenuItem_Click(object sender, EventArgs e) {
-            ActivityForm activityForm = new ActivityForm((Unit) unitsTreeView.SelectedObject, user, null);
+            Unit unit = (Unit) unitsTreeView.SelectedObject;
+            ActivityForm activityForm = new ActivityForm(unit, user, null);
             activityForm.ShowDialog();
             if (activityForm.DialogResult == DialogResult.OK) {
-                activityListView.SetObjects(UnitManager.GetActivities((Unit) unitsTreeView.SelectedObject, user));
+                activityListView.SetObjects(UnitManager.GetActivities(unit, user));
             }
+            //UpdateValues(unit);
         }
 
         private void viewAllToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -357,7 +355,7 @@ namespace Khronos_PMS.View {
             unitInfoTableLayout.RowStyles[3].Height = 25;
             editActivityButton.Visible = true;
             projectInfoTableLayout.Show();
-            addActivityToolstripMenuItem.Visible = true;
+            addActivityToolstripMenuItem.Visible = false;
         }
 
         private void SetVisibilityForSupervisor() {
@@ -399,6 +397,11 @@ namespace Khronos_PMS.View {
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
             new AboutMessageBox();
+        }
+
+        private void UpdateValues(Unit unit) {
+            unitSpentManhoursLabel.Text = String.Format("{0:0.00} h", unit.SpentManhours);
+            unitExpenseLabel.Text = String.Format("{0:0.00} KM", unit.Expense);
         }
     }
 }
