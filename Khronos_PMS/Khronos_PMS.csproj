@@ -72,7 +72,6 @@
     <Compile Include="ModelView\ActivityView.cs" />
     <Compile Include="ModelView\CustomerView.cs" />
     <Compile Include="ModelView\ProjectView.cs" />
-    <Compile Include="ModelView\UnitView.cs" />
     <Compile Include="ModelView\WorkerView.cs" />
     <Compile Include="Model\Activity.view.cs" />
     <Compile Include="Model\Admin.view.cs" />
@@ -201,11 +200,11 @@
     <Compile Include="View\ProjectReportForm.Designer.cs">
       <DependentUpon>ProjectReportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\UnitForm.cs">
+    <Compile Include="View\UnitForm2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\UnitForm.Designer.cs">
-      <DependentUpon>UnitForm.cs</DependentUpon>
+    <Compile Include="View\UnitForm2.Designer.cs">
+      <DependentUpon>UnitForm2.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Report\ActivitiesReport.rdlc" />
     <EmbeddedResource Include="Report\FinancialReport.rdlc" />
@@ -242,8 +241,8 @@
     <EmbeddedResource Include="View\ProjectReportForm.resx">
       <DependentUpon>ProjectReportForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\UnitForm.resx">
-      <DependentUpon>UnitForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\UnitForm2.resx">
+      <DependentUpon>UnitForm2.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Model\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

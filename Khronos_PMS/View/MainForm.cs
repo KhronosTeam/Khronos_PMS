@@ -212,7 +212,7 @@ namespace Khronos_PMS.View {
                 rightTableLayout.ColumnStyles[1].Width = 0;
             else {
                 unitStatusMenuButton.Image = StatusManager.Image(StatusManager.getStausById((int) unit.Status));
-                unitPriorityMenuButton.Image = PriorityManager.Image(PriorityManager.GetPriorityById(unit.Priority));
+                unitPriorityMenuButton.Image = PriorityManager.Image(PriorityManager.GetPriorityById((int)unit.Priority));
                 unitNameLabel.Text = unit.Name;
                 unitEstimatedManhoursLabel.Text = unit.EstManhours + " h";
                 unitSpentManhoursLabel.Text = unit.SpentManhours + " h";
@@ -250,7 +250,7 @@ namespace Khronos_PMS.View {
         }
 
         private void addNewUnitButton_Click(Object sender, EventArgs e) {
-            UnitForm unitForm = new UnitForm((Project) projectsListView.SelectedObject, promptTextBox3.Text, (Unit) unitsTreeView.SelectedObject);
+            UnitForm2 unitForm = new UnitForm2((Project) projectsListView.SelectedObject, promptTextBox3.Text, (Unit) unitsTreeView.SelectedObject);
             DialogResult result = unitForm.ShowDialog();
             if (result == DialogResult.OK) {
                 Unit u = unitForm.getRootUnit();
@@ -293,7 +293,7 @@ namespace Khronos_PMS.View {
         }
 
         private void unitEditButton_Click(Object sender, EventArgs e) {
-            UnitForm unitform = new UnitForm((Unit) unitsTreeView.SelectedObject, (Project) projectsListView.SelectedObject);
+            UnitForm2 unitform = new UnitForm2((Unit) unitsTreeView.SelectedObject, (Project) projectsListView.SelectedObject);
             unitform.ShowDialog();
         }
 
