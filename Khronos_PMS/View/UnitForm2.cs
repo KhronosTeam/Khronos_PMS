@@ -86,7 +86,7 @@ namespace Khronos_PMS.View
                 if (!editUnit.IsRoot)
                 {
                     selectedUnit = editUnit.Ancestor;
-                    unitsTreeView.CheckedObjects.Add(selectedUnit);
+                    unitsTreeView.CheckObject(selectedUnit);
                 }
             }
             else
@@ -242,6 +242,7 @@ namespace Khronos_PMS.View
             unit.Status = 0;
             unit.SpentManhours = 0;
             unit.Expense = 0;
+            unit.Active = true;
         }
         
         private void setAncestorID(Unit unit)
@@ -249,7 +250,7 @@ namespace Khronos_PMS.View
             if (edit)
             {
                 selectedUnit = (Unit)unitsTreeView.CheckedObject;
-                if (selectedUnit == null)
+                if (selectedUnit == null || selectedUnit.ID == editUnit.ID)
                 {
                     unit.Ancestor = null;
                 }
@@ -267,7 +268,7 @@ namespace Khronos_PMS.View
             else
             {
                 selectedUnit = (Unit)unitsTreeView.CheckedObject;
-                if (selectedUnit == null)
+                if (selectedUnit == null )
                 {
                     unit.Ancestor = null;
                 }
