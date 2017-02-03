@@ -177,7 +177,7 @@ namespace Khronos_PMS.View
                 ProjectManager.entities.SaveChanges();
                 LogManager.writeToLog(ProjectManager.entities, "Unit", "insert", newUnit.ID.ToString(), LoginManager.LoggedUser.ID);
             }
-            if (editUnit.IsRoot) {
+            if (editUnit != null && editUnit.IsRoot) {
                 rootUnit = editUnit;
             }
             if (newUnit != null && newUnit.IsRoot) {
@@ -248,7 +248,7 @@ namespace Khronos_PMS.View
                 selectedUnit = (Unit)unitsTreeView.CheckedObject;
                 if (selectedUnit == null)
                 {
-                    unit.Ancestor = unit;
+                    unit.Ancestor = null;
                 }
                 else
                 {

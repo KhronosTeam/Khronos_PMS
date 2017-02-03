@@ -254,7 +254,7 @@ namespace Khronos_PMS.View {
             DialogResult result = unitForm.ShowDialog();
             if (result == DialogResult.OK) {
                 Unit u = unitForm.getRootUnit();
-                if (u.IsRoot) {
+                if (u != null && u.IsRoot) {
                     unitsTreeView.AddObject(u);
                 }
             }
