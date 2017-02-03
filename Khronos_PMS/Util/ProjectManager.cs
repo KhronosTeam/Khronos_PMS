@@ -16,7 +16,7 @@ namespace Khronos_PMS.Util {
         }
 
         public static List<Project> GetProjects() {
-            return entities.Projects.ToList();
+            return entities.Projects.Where(p => p.Active).ToList();
         }
 
         public static List<Project> GetProjects(User user) {
@@ -39,7 +39,7 @@ namespace Khronos_PMS.Util {
         }
 
         public static List<Worker> GetAllWorkers(Project project) {
-            return entities.Workers.Where(worker => worker.ID != project.BossID && worker.ID != project.SupervisorID).ToList();
+            return entities.Workers.Where(worker => worker.User.Active && worker.ID != project.BossID && worker.ID != project.SupervisorID).ToList();
         }
 
         public static List<Unit> GetRootUnits(Project project) {
