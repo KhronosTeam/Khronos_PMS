@@ -130,9 +130,6 @@
     <Compile Include="Model\AssignedTo.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ClosureUnit.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Customer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

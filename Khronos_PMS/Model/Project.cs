@@ -33,6 +33,7 @@ namespace Khronos_PMS.Model
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<decimal> Expense { get; set; }
         public string Description { get; set; }
+        public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssignedTo> AssignedWorkers { get; set; }

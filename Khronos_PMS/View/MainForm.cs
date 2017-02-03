@@ -60,8 +60,10 @@ namespace Khronos_PMS.View {
 
         private void MainForm_Load(Object sender, EventArgs e) {
             List<Project> projects = ProjectManager.GetProjects(user);
-            setRole(projects[0]);
-            SetVisibility();
+            if (projects.Count > 0) {
+                setRole(projects[0]);
+                SetVisibility();
+            }
             projectsListView.DataSource = projects;
         }
 
@@ -280,7 +282,7 @@ namespace Khronos_PMS.View {
             if (activityForm.DialogResult == DialogResult.OK) {
                 activityListView.SetObjects(UnitManager.GetActivities(unit, user));
             }
-            //UpdateValues(unit);
+            UpdateValues(unit);
         }
 
         private void viewAllToolStripMenuItem_Click(object sender, EventArgs e) {

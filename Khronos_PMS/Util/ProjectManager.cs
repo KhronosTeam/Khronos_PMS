@@ -43,7 +43,7 @@ namespace Khronos_PMS.Util {
         }
 
         public static List<Unit> GetRootUnits(Project project) {
-            return project.Units.Where(unit => unit.ClosureUnits.Any(c => c.Depth == 0)).ToList();
+            return project.Units.Where(unit => unit.IsRoot).ToList();
         }
 
         public static List<Unit> GetUnits(Project project) {
