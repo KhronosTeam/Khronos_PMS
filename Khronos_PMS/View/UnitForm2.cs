@@ -239,6 +239,9 @@ namespace Khronos_PMS.View
             unit.DueDate = dueDateDateTimePicker.Value.Date;
             unit.Priority = priorityComboBox.SelectedIndex;
             unit.ProjectID = selectedProject.ID;
+            unit.Status = 0;
+            unit.SpentManhours = 0;
+            unit.Expense = 0;
         }
         
         private void setAncestorID(Unit unit)
@@ -266,7 +269,7 @@ namespace Khronos_PMS.View
                 selectedUnit = (Unit)unitsTreeView.CheckedObject;
                 if (selectedUnit == null)
                 {
-                    unit.Ancestor = unit;
+                    unit.Ancestor = null;
                 }
                 else
                 {
