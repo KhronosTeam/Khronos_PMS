@@ -121,6 +121,7 @@ namespace Khronos_PMS.View
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -142,7 +143,13 @@ namespace Khronos_PMS.View
                 project.SupervisorID = ((WorkerView)supervisorUsernameComboBox.SelectedItem).ID;
                 project.StartDate = startDateDateTimePicker.Value.Date;
                 project.DeadlineDate = deadlineDateTimePicker.Value.Date;
-                project.Budget = decimal.Parse(budgetTextBox.Text);
+                    try
+                    {
+                        project.Budget = decimal.Parse(budgetTextBox.Text);
+                    }
+                    catch (Exception) {
+                        project.Budget = 0;
+                    }
                     project.Description = descriptionTextBox.Text;
 
                     project.Customers = new List<Customer>();
@@ -160,7 +167,7 @@ namespace Khronos_PMS.View
 
                     LogManager.writeToLog(ProjectManagement.entities, "Project", "update", logParams, LoginManager.LoggedUser.ID);
                     LogManager.writeToLog(ProjectManagement.entities, "CustomerProject", "insert", customerLog, LoginManager.LoggedUser.ID);
-
+                    DialogResult = DialogResult.OK;
                     this.Close();
                 }
                 catch (Exception) { }
@@ -174,7 +181,14 @@ namespace Khronos_PMS.View
                     newProject.SupervisorID = ((WorkerView)supervisorUsernameComboBox.SelectedItem).ID;
                     newProject.StartDate = startDateDateTimePicker.Value.Date;
                     newProject.DeadlineDate = deadlineDateTimePicker.Value.Date;
-                    newProject.Budget = decimal.Parse(budgetTextBox.Text);
+                    try
+                    {
+                        newProject.Budget = decimal.Parse(budgetTextBox.Text);
+                    }
+                    catch (Exception)
+                    {
+                        newProject.Budget = 0;
+                    }
                     newProject.Description = descriptionTextBox.Text;
 
                     string customerLog = "";
@@ -189,7 +203,7 @@ namespace Khronos_PMS.View
                     ProjectManagement.entities.SaveChanges();
                     LogManager.writeToLog(ProjectManagement.entities, "Project", "insert", newProject.ID.ToString(), LoginManager.LoggedUser.ID);
                     LogManager.writeToLog(ProjectManagement.entities, "CustomerProject", "insert", customerLog, LoginManager.LoggedUser.ID);
-
+                    DialogResult = DialogResult.OK;
                     this.Close();
 
                 }
