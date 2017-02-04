@@ -167,7 +167,7 @@ namespace Khronos_PMS.View
 
                     LogManager.writeToLog(ProjectManagement.entities, "Project", "update", logParams, LoginManager.LoggedUser.ID);
                     LogManager.writeToLog(ProjectManagement.entities, "CustomerProject", "insert", customerLog, LoginManager.LoggedUser.ID);
-
+                    DialogResult = DialogResult.OK;
                     this.Close();
                 }
                 catch (Exception) { }
@@ -203,7 +203,7 @@ namespace Khronos_PMS.View
                     ProjectManagement.entities.SaveChanges();
                     LogManager.writeToLog(ProjectManagement.entities, "Project", "insert", newProject.ID.ToString(), LoginManager.LoggedUser.ID);
                     LogManager.writeToLog(ProjectManagement.entities, "CustomerProject", "insert", customerLog, LoginManager.LoggedUser.ID);
-
+                    DialogResult = DialogResult.OK;
                     this.Close();
 
                 }
