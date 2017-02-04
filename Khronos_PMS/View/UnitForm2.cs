@@ -12,7 +12,6 @@ namespace Khronos_PMS.View {
         private Project selectedProject;
         private Unit selectedUnit;
         private Unit editUnit;
-        private Unit rootUnit;
         private Boolean edit = false;
         /*-----------------------------------------------------------------------------------------*/
 
@@ -47,8 +46,6 @@ namespace Khronos_PMS.View {
             onStart();
             unitNameTextBox.Text = name;
         }
-
-        /*-----------------------------------------------------------------------------------------*/
 
         private void setUp() {
             unitsTreeView.CanExpandGetter = un => (un as Unit).HasChildren;
@@ -94,13 +91,8 @@ namespace Khronos_PMS.View {
             unitNameTextBox.Text = editUnit.Name;
             dueDateDateTimePicker.Value = editUnit.DueDate;
             estimatedManhoursTextBox.Text = editUnit.EstManhours.ToString();
-            if (editUnit.Priority != null)
-                priorityComboBox.SelectedIndex = (int) editUnit.Priority;
-            else
-                priorityComboBox.SelectedIndex = 0;
+            priorityComboBox.SelectedIndex = 0;
         }
-
-        /*-----------------------------------------------------------------------------------------*/
 
         private void searchUnits() {
             unitsTreeView.UseFiltering = true;
@@ -134,18 +126,12 @@ namespace Khronos_PMS.View {
             searchWorkers();
         }
 
-        /*-----------------------------------------------------------------------------------------*/
-
         private void UnitForm_Load(object sender, EventArgs e) {
         }
-
-        /*-----------------------------------------------------------------------------------------*/
 
         private void cancelButton_Click(object sender, EventArgs e) {
             DialogResult = DialogResult.Cancel;
         }
-
-        /*-----------------------------------------------------------------------------------------*/
 
         private void okButton_Click(object sender, EventArgs e) {
             Unit unit;
@@ -163,12 +149,12 @@ namespace Khronos_PMS.View {
             setWorkers(unit);
 
             if (edit) {
-                //LogManager.writeToLog(ProjectManager.entities, "Unit", "insert", toLog, LoginManager.LoggedUser.ID);
+                LogManager.writeToLog(ProjectManager.entities, "Unit", "insert", toLog, LoginManager.LoggedUser.ID);
                 ProjectManager.entities.Units.Attach(unit);
                 ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Modified;
             } else {
                 ProjectManager.entities.Units.Add(unit);
-                //LogManager.writeToLog(ProjectManager.entities, "Unit", "insert", unit.ID.ToString(), LoginManager.LoggedUser.ID);
+                LogManager.writeToLog(ProjectManager.entities, "Unit", "insert", unit.ID.ToString(), LoginManager.LoggedUser.ID);
             }
 
             try {
@@ -177,49 +163,34 @@ namespace Khronos_PMS.View {
                 ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Detached;
             }
 
-            if (unit != null && unit.IsRoot) {
-                rootUnit = unit;
-            }
-
             DialogResult = DialogResult.OK;
         }
 
-        /*-----------------------------------------------------------------------------------------*/
-
-        public Unit getRootUnit() {
-            return rootUnit;
-        }
-
         public void setWorkers(Unit unit) {
-            try {
-                var list = workersListView.CheckedObjects;
-                var enumerator = list.GetEnumerator();
-                WorksOn[] niz = ProjectManager.entities.WorksOns.Where(wo => wo.Active && wo.UnitID == unit.ID && wo.ProjectID == selectedProject.ID).ToArray();
+            var list = workersListView.CheckedObjects;
+            var enumerator = list.GetEnumerator();
+            WorksOn[] niz = ProjectManager.entities.WorksOns.Where(wo => wo.Active && wo.UnitID == unit.ID && wo.ProjectID == selectedProject.ID).ToArray();
 
-                foreach (WorksOn workson in niz) {
-                    workson.Active = false;
+            foreach (WorksOn workson in niz) {
+                workson.Active = false;
+            }
+            while (enumerator.MoveNext()) {
+                Worker selectedWorker = (Worker) enumerator.Current;
+                List<WorksOn> lista = ProjectManager.entities.WorksOns.Where(wo => wo.WorkerID == selectedWorker.ID && wo.UnitID == unit.ID && wo.ProjectID == selectedProject.ID).ToList();
+                if (lista.Count == 0) {
+                    // novi upis, postavi na aktivan
+                    WorksOn newWorksOn = new WorksOn();
+                    newWorksOn.ProjectID = selectedProject.ID;
+                    newWorksOn.UnitID = unit.ID;
+                    newWorksOn.WorkerID = selectedWorker.ID;
+                    newWorksOn.Active = true;
+                    ProjectManager.entities.WorksOns.Add(newWorksOn);
+                } else {
+                    WorksOn newWorksOn = lista.ToArray()[0];
+                    newWorksOn.Active = true;
+                    ProjectManager.entities.WorksOns.Attach(newWorksOn);
+                    ProjectManager.entities.Entry(newWorksOn).State = System.Data.Entity.EntityState.Modified;
                 }
-                while (enumerator.MoveNext()) {
-                    Worker selectedWorker = (Worker) enumerator.Current;
-                    List<WorksOn> lista = ProjectManager.entities.WorksOns.Where(wo => wo.WorkerID == selectedWorker.ID && wo.UnitID == unit.ID && wo.ProjectID == selectedProject.ID).ToList();
-                    if (lista.Count == 0) {
-                        // novi upis, postavi na aktivan
-                        WorksOn newWorksOn = new WorksOn();
-                        newWorksOn.ProjectID = selectedProject.ID;
-                        newWorksOn.UnitID = unit.ID;
-                        newWorksOn.WorkerID = selectedWorker.ID;
-                        newWorksOn.Active = true;
-                        ProjectManager.entities.WorksOns.Add(newWorksOn);
-                    } else {
-                        WorksOn newWorksOn = lista.ToArray()[0];
-                        newWorksOn.Active = true;
-                        ProjectManager.entities.WorksOns.Attach(newWorksOn);
-                        ProjectManager.entities.Entry(newWorksOn).State = System.Data.Entity.EntityState.Modified;
-                    }
-                }
-                //ProjectManager.entities.SaveChangesAsync();
-            } catch (Exception e) {
-                Console.Out.WriteLine(e.StackTrace);
             }
         }
 
@@ -243,15 +214,11 @@ namespace Khronos_PMS.View {
             unit.Ancestor = (Unit) unitsTreeView.CheckedObject;
         }
 
-        /*-----------------------------------------------------------------------------------------*/
-
         private void unitsTreeView_ItemCheck(object sender, ItemCheckEventArgs e) {
             if (e.NewValue == CheckState.Checked)
                 if (unitsTreeView.CheckedObjects.Count == 1) {
                     unitsTreeView.CheckedObjects = null;
                 }
         }
-
-        /*-----------------------------------------------------------------------------------------*/
     }
 }

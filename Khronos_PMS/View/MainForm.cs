@@ -253,10 +253,7 @@ namespace Khronos_PMS.View {
             UnitForm2 unitForm = new UnitForm2((Project) projectsListView.SelectedObject, promptTextBox3.Text, (Unit) unitsTreeView.SelectedObject);
             DialogResult result = unitForm.ShowDialog();
             if (result == DialogResult.OK) {
-                Unit u = unitForm.getRootUnit();
-                if (u != null && u.IsRoot) {
-                    unitsTreeView.AddObject(u);
-                }
+                unitsTreeView.SetObjects(ProjectManager.GetRootUnits((Project)projectsListView.SelectedObject));
             }
         }
 

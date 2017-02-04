@@ -14,7 +14,7 @@ namespace Khronos_PMS {
         public static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            /*
+            
             DialogResult loginRezultat;
             User user;
             using (var loginForma = new LoginForm()) {
@@ -28,8 +28,8 @@ namespace Khronos_PMS {
                 else
                     Application.Run(new MainForm(user.GetName(), user.ID));
             }
-            */
-            Application.Run(new MainForm("Student", 2));
+            
+            //Application.Run(new MainForm("Student", 2));
         }
     }
 }
