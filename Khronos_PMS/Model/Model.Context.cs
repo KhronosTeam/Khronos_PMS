@@ -34,7 +34,6 @@ namespace Khronos_PMS.Model
         public virtual DbSet<Worker> Workers { get; set; }
         public virtual DbSet<WorksOn> WorksOns { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
-        public virtual DbSet<ClosureUnit> ClosureUnits { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
     }
 }
