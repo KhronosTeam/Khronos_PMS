@@ -351,7 +351,7 @@ namespace Khronos_PMS.View {
         private void SetVisibilityForBoss() {
             unitToolStripMenuItem.Visible = true;
             reportsToolStripMenuItem.Visible = true;
-            workersListView.CheckBoxes = true;
+            //workersListView.CheckBoxes = true;
             workersListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             projectStatusMenuButton.Enabled = true;
             unitsTableLayout.RowStyles[0].Height = 30;

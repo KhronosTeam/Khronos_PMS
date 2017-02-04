@@ -163,12 +163,12 @@ namespace Khronos_PMS.View {
             setWorkers(unit);
 
             if (edit) {
-                LogManager.writeToLog(ProjectManager.entities, "Unit", "insert", toLog, LoginManager.LoggedUser.ID);
+                //LogManager.writeToLog(ProjectManager.entities, "Unit", "insert", toLog, LoginManager.LoggedUser.ID);
                 ProjectManager.entities.Units.Attach(unit);
                 ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Modified;
             } else {
                 ProjectManager.entities.Units.Add(unit);
-                LogManager.writeToLog(ProjectManager.entities, "Unit", "insert", unit.ID.ToString(), LoginManager.LoggedUser.ID);
+                //LogManager.writeToLog(ProjectManager.entities, "Unit", "insert", unit.ID.ToString(), LoginManager.LoggedUser.ID);
             }
 
             try {
@@ -217,7 +217,7 @@ namespace Khronos_PMS.View {
                         ProjectManager.entities.Entry(newWorksOn).State = System.Data.Entity.EntityState.Modified;
                     }
                 }
-                ProjectManager.entities.SaveChangesAsync();
+                //ProjectManager.entities.SaveChangesAsync();
             } catch (Exception e) {
                 Console.Out.WriteLine(e.StackTrace);
             }
