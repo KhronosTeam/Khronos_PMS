@@ -232,15 +232,21 @@ namespace Khronos_PMS {
         }
 
         private void addProjectButton_Click(object sender, EventArgs e) {
-            new ProjectForm().ShowDialog();
-            refresh();
+            ProjectForm projectForm = new ProjectForm();
+            projectForm.ShowDialog();
+            if (projectForm.DialogResult != DialogResult.Cancel)
+                refresh();
         }
 
         private void editProjectButton_Click(object sender, EventArgs e) {
             ProjectView projectView = (ProjectView) projectDataGridView.SelectedRows[0].DataBoundItem;
             if (projectView != null)
-                new ProjectForm(projectView).ShowDialog();
-            refresh();
+            {
+                ProjectForm projectForm = new ProjectForm(projectView);
+                projectForm.ShowDialog();
+                if (projectForm.DialogResult != DialogResult.Cancel)
+                refresh();
+            }
         }
 
         private void activateToolStripButton_CheckedChanged(object sender, EventArgs e)

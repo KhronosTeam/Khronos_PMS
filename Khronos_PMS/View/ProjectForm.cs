@@ -121,6 +121,7 @@ namespace Khronos_PMS.View
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
