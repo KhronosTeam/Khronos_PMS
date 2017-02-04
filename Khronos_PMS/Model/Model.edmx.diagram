@@ -21,14 +21,15 @@
         <AssociationConnector Association="KhronosPMSModel.Log_ibfk_1" ManuallyRouted="false" />
         <AssociationConnector Association="KhronosPMSModel.Worker_ibfk_1" ManuallyRouted="false" />
         <EntityTypeShape EntityType="KhronosPMSModel.Project" Width="1.5" PointX="5.25" PointY="16.5" />
-        <EntityTypeShape EntityType="KhronosPMSModel.Unit" Width="1.5" PointX="7.5" PointY="16.875" />
         <AssociationConnector Association="KhronosPMSModel.AssignedTo_ibfk_2" />
         <AssociationConnector Association="KhronosPMSModel.Project_ibfk_1" />
         <AssociationConnector Association="KhronosPMSModel.Project_ibfk_2" />
+        <AssociationConnector Association="KhronosPMSModel.CustomerProject" />
+        <EntityTypeShape EntityType="KhronosPMSModel.ClosureUnit" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KhronosPMSModel.Unit" Width="1.5" PointX="7.5" PointY="16.75" />
+        <AssociationConnector Association="KhronosPMSModel.Unit_ibfk_2" />
         <AssociationConnector Association="KhronosPMSModel.Unit_ibfk_1" />
         <AssociationConnector Association="KhronosPMSModel.WorksOn_ibfk_1" />
-        <AssociationConnector Association="KhronosPMSModel.CustomerProject" />
-        <AssociationConnector Association="KhronosPMSModel.ClosureUnit" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

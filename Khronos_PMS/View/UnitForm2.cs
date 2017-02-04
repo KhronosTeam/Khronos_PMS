@@ -7,18 +7,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Khronos_PMS.View
-{
-    public partial class UnitForm2 : Form
-    {
+namespace Khronos_PMS.View {
+    public partial class UnitForm2 : Form {
         private Project selectedProject;
         private Unit selectedUnit;
         private Unit editUnit;
-        private Unit rootUnit;
         private Boolean edit = false;
         /*-----------------------------------------------------------------------------------------*/
-        public UnitForm2()
-        {
+
+        public UnitForm2() {
             InitializeComponent();
         }
 
@@ -27,8 +24,7 @@ namespace Khronos_PMS.View
         /// </summary>
         /// <param name="editUnit"></param>
         /// <param name="selectedProject"></param>
-        public UnitForm2(Unit editUnit, Project selectedProject)
-        {
+        public UnitForm2(Unit editUnit, Project selectedProject) {
             InitializeComponent();
             this.editUnit = editUnit;
             this.selectedProject = selectedProject;
@@ -43,17 +39,15 @@ namespace Khronos_PMS.View
         /// <param name="selectedProject"></param>
         /// <param name="name"></param>
         /// <param name="selectedUnit"></param>
-        public UnitForm2(Project selectedProject, string name, Unit selectedUnit)
-        {
+        public UnitForm2(Project selectedProject, string name, Unit selectedUnit) {
             InitializeComponent();
             this.selectedProject = selectedProject;
             this.selectedUnit = selectedUnit;
             onStart();
             unitNameTextBox.Text = name;
         }
-        /*-----------------------------------------------------------------------------------------*/
-        private void setUp()
-        {
+
+        private void setUp() {
             unitsTreeView.CanExpandGetter = un => (un as Unit).HasChildren;
             unitsTreeView.ChildrenGetter = un => (un as Unit).Children;
 
@@ -61,7 +55,7 @@ namespace Khronos_PMS.View
 
             unitsTreeView.GetColumn(0).ImageGetter = un => (un as Unit).Status + 2;
             unitsTreeView.GetColumn(1).ImageGetter = un => (un as Unit).Status + statusOffset;
-            unitsTreeView.GetColumn(1).AspectToStringConverter = s => StatusManager.Name(StatusManager.getStausById((int)s));
+            unitsTreeView.GetColumn(1).AspectToStringConverter = s => StatusManager.Name(StatusManager.getStausById((int) s));
 
             priorityComboBox.DataSource = PriorityManager.GetPriorities();
 
@@ -73,139 +67,117 @@ namespace Khronos_PMS.View
             unitsTreeView.Roots = u;
             unitsTreeView.ExpandAll();
         }
-        private void onStart()
-        {
+
+        private void onStart() {
             setUp();
-            if (edit)
-            {
+            if (edit) {
                 fillFields();
-                foreach (WorksOn worksOn in editUnit.Workers.Where(wo => wo.Active).ToList())
-                {
+                foreach (WorksOn worksOn in editUnit.Workers.Where(wo => wo.Active).ToList()) {
                     workersListView.CheckObject(worksOn.AssignedTo.Worker);
                 }
-                if (!editUnit.IsRoot)
-                {
+                if (!editUnit.IsRoot) {
                     selectedUnit = editUnit.Ancestor;
                     unitsTreeView.CheckObject(selectedUnit);
                 }
-            }
-            else
-            {
+            } else {
                 workersListView.UncheckAll();
-                if (selectedUnit != null)
-                {
+                if (selectedUnit != null) {
                     unitsTreeView.CheckObject(selectedUnit);
                 }
             }
         }
-        private void fillFields()
-        {
+
+        private void fillFields() {
             unitNameTextBox.Text = editUnit.Name;
             dueDateDateTimePicker.Value = editUnit.DueDate;
             estimatedManhoursTextBox.Text = editUnit.EstManhours.ToString();
-            if (editUnit.Priority != null)
-                priorityComboBox.SelectedIndex = (int)editUnit.Priority;
-            else
-                priorityComboBox.SelectedIndex = 0;
+            priorityComboBox.SelectedIndex = 0;
         }
 
-        /*-----------------------------------------------------------------------------------------*/
-        private void searchUnits()
-        {
+        private void searchUnits() {
             unitsTreeView.UseFiltering = true;
-            unitsTreeView.ModelFilter = new ModelFilter(x =>
-            {
+            unitsTreeView.ModelFilter = new ModelFilter(x => {
                 var unit = x as Unit;
                 return (x as Unit) != null && unit.Name.ToLower().Contains(unitsSearchTextBox.Text.ToLower());
             });
         }
-        private void unitsSearchTextBox_TextChanged(object sender, EventArgs e)
-        {
+
+        private void unitsSearchTextBox_TextChanged(object sender, EventArgs e) {
             searchUnits();
         }
-        private void unitsSearchButton_Click(object sender, EventArgs e)
-        {
+
+        private void unitsSearchButton_Click(object sender, EventArgs e) {
             searchUnits();
         }
-        private void searchWorkers()
-        {
+
+        private void searchWorkers() {
             workersListView.UseFiltering = true;
-            workersListView.ModelFilter = new ModelFilter(x =>
-            {
+            workersListView.ModelFilter = new ModelFilter(x => {
                 var worker = x as Worker;
                 return x != null && (worker.FirstName.ToLower().Contains(workersSearchTextBox.Text.ToLower()));
             });
         }
-        private void workersSearchTextBox_TextChanged(object sender, EventArgs e)
-        {
-            searchWorkers();
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            searchWorkers();
-        }
-        /*-----------------------------------------------------------------------------------------*/
-        private void UnitForm_Load(object sender, EventArgs e)
-        {
 
+        private void workersSearchTextBox_TextChanged(object sender, EventArgs e) {
+            searchWorkers();
         }
-        /*-----------------------------------------------------------------------------------------*/
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
+
+        private void button1_Click(object sender, EventArgs e) {
+            searchWorkers();
         }
-        /*-----------------------------------------------------------------------------------------*/
-        private void okButton_Click(object sender, EventArgs e)
-        {
-            Unit newUnit = null;
-            if (edit)
-            {
-                string toLog = editUnit.Name + "#" +
-                    editUnit.EstManhours + "#";
-                setAttributes(editUnit);
-                setAncestorID(editUnit);
-                setWorkers(editUnit);
+
+        private void UnitForm_Load(object sender, EventArgs e) {
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e) {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void okButton_Click(object sender, EventArgs e) {
+            Unit unit;
+            string toLog = "";
+
+            if (edit) {
+                unit = editUnit;
+                toLog = editUnit.Name + "#" + editUnit.EstManhours + "#";
+            } else {
+                unit = new Unit();
+            }
+
+            setAttributes(unit);
+            setAncestorID(unit);
+            setWorkers(unit);
+
+            if (edit) {
                 LogManager.writeToLog(ProjectManager.entities, "Unit", "insert", toLog, LoginManager.LoggedUser.ID);
+                ProjectManager.entities.Units.Attach(unit);
+                ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Modified;
+            } else {
+                ProjectManager.entities.Units.Add(unit);
+                LogManager.writeToLog(ProjectManager.entities, "Unit", "insert", unit.ID.ToString(), LoginManager.LoggedUser.ID);
             }
-            else
-            {
-                newUnit = new Unit();
-                setAttributes(newUnit);
-                ProjectManager.entities.Units.Add(newUnit);
-                setAncestorID(newUnit);
-                setWorkers(newUnit);
-                ProjectManager.entities.SaveChanges();
-                LogManager.writeToLog(ProjectManager.entities, "Unit", "insert", newUnit.ID.ToString(), LoginManager.LoggedUser.ID);
+
+            try {
+                ProjectManager.entities.SaveChangesAsync();
+            } catch (Exception) {
+                ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Detached;
             }
-            if (editUnit != null && editUnit.IsRoot) {
-                rootUnit = editUnit;
-            }
-            if (newUnit != null && newUnit.IsRoot) {
-                rootUnit = newUnit;
-            }
+
             DialogResult = DialogResult.OK;
-            this.Close();
         }
-        /*-----------------------------------------------------------------------------------------*/
-        public Unit getRootUnit() {
-            return rootUnit;
-        }
-        public void setWorkers(Unit unit)
-        {
+
+        public void setWorkers(Unit unit) {
             var list = workersListView.CheckedObjects;
             var enumerator = list.GetEnumerator();
-            WorksOn[] niz = ProjectManager.entities.WorksOns.Where(wo => wo.Active == true && wo.UnitID == unit.ID && wo.ProjectID == selectedProject.ID).ToArray();
+            WorksOn[] niz = ProjectManager.entities.WorksOns.Where(wo => wo.Active && wo.UnitID == unit.ID && wo.ProjectID == selectedProject.ID).ToArray();
 
-            foreach (WorksOn workson in niz)
-            {
+            foreach (WorksOn workson in niz) {
                 workson.Active = false;
             }
-            while (enumerator.MoveNext())
-            {
-                Worker selectedWorker = (Worker)enumerator.Current;
+            while (enumerator.MoveNext()) {
+                Worker selectedWorker = (Worker) enumerator.Current;
                 List<WorksOn> lista = ProjectManager.entities.WorksOns.Where(wo => wo.WorkerID == selectedWorker.ID && wo.UnitID == unit.ID && wo.ProjectID == selectedProject.ID).ToList();
-                if (lista.Count == 0)
-                {
+                if (lista.Count == 0) {
                     // novi upis, postavi na aktivan
                     WorksOn newWorksOn = new WorksOn();
                     newWorksOn.ProjectID = selectedProject.ID;
@@ -213,27 +185,20 @@ namespace Khronos_PMS.View
                     newWorksOn.WorkerID = selectedWorker.ID;
                     newWorksOn.Active = true;
                     ProjectManager.entities.WorksOns.Add(newWorksOn);
-                }
-                else
-                {
+                } else {
                     WorksOn newWorksOn = lista.ToArray()[0];
                     newWorksOn.Active = true;
                     ProjectManager.entities.WorksOns.Attach(newWorksOn);
                     ProjectManager.entities.Entry(newWorksOn).State = System.Data.Entity.EntityState.Modified;
                 }
             }
-            ProjectManager.entities.SaveChangesAsync();
         }
 
-        private void setAttributes(Unit unit)
-        {
+        private void setAttributes(Unit unit) {
             unit.Name = unitNameTextBox.Text;
-            try
-            {
+            try {
                 unit.EstManhours = int.Parse(estimatedManhoursTextBox.Text);
-            }
-            catch (Exception)
-            {
+            } catch (Exception) {
                 unit.EstManhours = 0;
             }
             unit.DueDate = dueDateDateTimePicker.Value.Date;
@@ -244,56 +209,16 @@ namespace Khronos_PMS.View
             unit.Expense = 0;
             unit.Active = true;
         }
-        
-        private void setAncestorID(Unit unit)
-        {
-            if (edit)
-            {
-                selectedUnit = (Unit)unitsTreeView.CheckedObject;
-                if (selectedUnit == null || selectedUnit.ID == editUnit.ID)
-                {
-                    unit.Ancestor = null;
-                }
-                else
-                {
-                    unit.Ancestor = selectedUnit;
-                }
-                try {
-                    ProjectManager.entities.Units.Attach(unit);
-                    ProjectManager.entities.Entry(unit).State = System.Data.Entity.EntityState.Modified;
-                    ProjectManager.entities.SaveChanges();
-                }
-                catch (Exception) { }
-            }
-            else
-            {
-                selectedUnit = (Unit)unitsTreeView.CheckedObject;
-                if (selectedUnit == null )
-                {
-                    unit.Ancestor = null;
-                }
-                else
-                {
-                    unit.Ancestor = selectedUnit;
-                }
-                try
-                {
-                    ProjectManager.entities.Units.Add(unit);
-                    ProjectManager.entities.SaveChanges();
-                }
-                catch (Exception) { }
-            }
-          
+
+        private void setAncestorID(Unit unit) {
+            unit.Ancestor = (Unit) unitsTreeView.CheckedObject;
         }
-        /*-----------------------------------------------------------------------------------------*/
-        private void unitsTreeView_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
+
+        private void unitsTreeView_ItemCheck(object sender, ItemCheckEventArgs e) {
             if (e.NewValue == CheckState.Checked)
-                if (unitsTreeView.CheckedObjects.Count == 1)
-                {
+                if (unitsTreeView.CheckedObjects.Count == 1) {
                     unitsTreeView.CheckedObjects = null;
                 }
         }
-        /*-----------------------------------------------------------------------------------------*/
     }
 }

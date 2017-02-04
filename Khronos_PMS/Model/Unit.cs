@@ -17,26 +17,27 @@ namespace Khronos_PMS.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Unit()
         {
-            this.Workers = new HashSet<WorksOn>();
             this.Children = new HashSet<Unit>();
+            this.Workers = new HashSet<WorksOn>();
         }
     
         public int ID { get; set; }
+        public Nullable<int> AncestorID { get; set; }
         public int ProjectID { get; set; }
         public string Name { get; set; }
-        public Nullable<decimal> Expense { get; set; }
+        public decimal Expense { get; set; }
         public System.DateTime DueDate { get; set; }
-        public Nullable<int> Priority { get; set; }
-        public Nullable<int> Status { get; set; }
+        public int Priority { get; set; }
+        public int Status { get; set; }
         public double EstManhours { get; set; }
-        public Nullable<double> SpentManhours { get; set; }
+        public double SpentManhours { get; set; }
         public bool Active { get; set; }
     
         public virtual Project Project { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorksOn> Workers { get; set; }
+        public virtual ICollection<Unit> Children { get; set; }
         public virtual Unit Ancestor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Unit> Children { get; set; }
+        public virtual ICollection<WorksOn> Workers { get; set; }
     }
 }

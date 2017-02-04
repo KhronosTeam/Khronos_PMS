@@ -253,10 +253,7 @@ namespace Khronos_PMS.View {
             UnitForm2 unitForm = new UnitForm2((Project) projectsListView.SelectedObject, promptTextBox3.Text, (Unit) unitsTreeView.SelectedObject);
             DialogResult result = unitForm.ShowDialog();
             if (result == DialogResult.OK) {
-                Unit u = unitForm.getRootUnit();
-                if (u != null && u.IsRoot) {
-                    unitsTreeView.AddObject(u);
-                }
+                unitsTreeView.SetObjects(ProjectManager.GetRootUnits((Project)projectsListView.SelectedObject));
             }
         }
 
@@ -293,8 +290,10 @@ namespace Khronos_PMS.View {
         }
 
         private void unitEditButton_Click(Object sender, EventArgs e) {
-            UnitForm2 unitform = new UnitForm2((Unit) unitsTreeView.SelectedObject, (Project) projectsListView.SelectedObject);
+            Project project = (Project) projectsListView.SelectedObject;
+            UnitForm2 unitform = new UnitForm2((Unit) unitsTreeView.SelectedObject, project);
             unitform.ShowDialog();
+            unitsTreeView.SetObjects(ProjectManager.GetRootUnits(project));
         }
 
         private void activityToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -349,7 +348,7 @@ namespace Khronos_PMS.View {
         private void SetVisibilityForBoss() {
             unitToolStripMenuItem.Visible = true;
             reportsToolStripMenuItem.Visible = true;
-            workersListView.CheckBoxes = true;
+            //workersListView.CheckBoxes = true;
             workersListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             projectStatusMenuButton.Enabled = true;
             unitsTableLayout.RowStyles[0].Height = 30;
