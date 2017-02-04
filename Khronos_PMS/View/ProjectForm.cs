@@ -142,7 +142,13 @@ namespace Khronos_PMS.View
                 project.SupervisorID = ((WorkerView)supervisorUsernameComboBox.SelectedItem).ID;
                 project.StartDate = startDateDateTimePicker.Value.Date;
                 project.DeadlineDate = deadlineDateTimePicker.Value.Date;
-                project.Budget = decimal.Parse(budgetTextBox.Text);
+                    try
+                    {
+                        project.Budget = decimal.Parse(budgetTextBox.Text);
+                    }
+                    catch (Exception) {
+                        project.Budget = 0;
+                    }
                     project.Description = descriptionTextBox.Text;
 
                     project.Customers = new List<Customer>();
@@ -174,7 +180,14 @@ namespace Khronos_PMS.View
                     newProject.SupervisorID = ((WorkerView)supervisorUsernameComboBox.SelectedItem).ID;
                     newProject.StartDate = startDateDateTimePicker.Value.Date;
                     newProject.DeadlineDate = deadlineDateTimePicker.Value.Date;
-                    newProject.Budget = decimal.Parse(budgetTextBox.Text);
+                    try
+                    {
+                        newProject.Budget = decimal.Parse(budgetTextBox.Text);
+                    }
+                    catch (Exception)
+                    {
+                        newProject.Budget = 0;
+                    }
                     newProject.Description = descriptionTextBox.Text;
 
                     string customerLog = "";

@@ -201,6 +201,7 @@ namespace Khronos_PMS {
 
         private async void refreshButton_Click(object sender, EventArgs e) {
             refresh();
+            searchTextBox.Text = "";
         }
 
         private async void refresh() {
@@ -231,13 +232,15 @@ namespace Khronos_PMS {
         }
 
         private void addProjectButton_Click(object sender, EventArgs e) {
-            new ProjectForm().Show();
+            new ProjectForm().ShowDialog();
+            refresh();
         }
 
         private void editProjectButton_Click(object sender, EventArgs e) {
             ProjectView projectView = (ProjectView) projectDataGridView.SelectedRows[0].DataBoundItem;
             if (projectView != null)
-                new ProjectForm(projectView).Show();
+                new ProjectForm(projectView).ShowDialog();
+            refresh();
         }
 
         private void activateToolStripButton_CheckedChanged(object sender, EventArgs e)
@@ -312,5 +315,7 @@ namespace Khronos_PMS {
         {
             if (adminTabControl.SelectedTab.Equals(projectTabPage)) refresh();
         }
+
+
     }
 }
