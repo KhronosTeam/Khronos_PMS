@@ -14,7 +14,7 @@ namespace Khronos_PMS.ModelView
             {
                 this.Name = project.Name;
                 this.BossName = project.Boss.FirstName + " " + project.Boss.LastName;
-                this.SupervisorName = project.Boss.FirstName + " " + project.Boss.LastName;
+                this.SupervisorName = project.Supervisor.FullName;
                 this.StartDate = project.StartDate;
                 this.DeadlineDate = project.DeadlineDate;
                 this.EndDate = project.EndDate;
