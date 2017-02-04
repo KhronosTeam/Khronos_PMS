@@ -200,11 +200,11 @@
     <Compile Include="View\ProjectReportForm.Designer.cs">
       <DependentUpon>ProjectReportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\UnitForm2.cs">
+    <Compile Include="View\UnitForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\UnitForm2.Designer.cs">
-      <DependentUpon>UnitForm2.cs</DependentUpon>
+    <Compile Include="View\UnitForm.Designer.cs">
+      <DependentUpon>UnitForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Report\ActivitiesReport.rdlc" />
     <EmbeddedResource Include="Report\FinancialReport.rdlc" />
@@ -241,8 +241,8 @@
     <EmbeddedResource Include="View\ProjectReportForm.resx">
       <DependentUpon>ProjectReportForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\UnitForm2.resx">
-      <DependentUpon>UnitForm2.cs</DependentUpon>
+    <EmbeddedResource Include="View\UnitForm.resx">
+      <DependentUpon>UnitForm.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Model\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
