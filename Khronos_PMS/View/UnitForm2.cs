@@ -211,7 +211,9 @@ namespace Khronos_PMS.View {
         }
 
         private void setAncestorID(Unit unit) {
-            unit.Ancestor = (Unit) unitsTreeView.CheckedObject;
+            Unit selectedUnit = (Unit) unitsTreeView.CheckedObject;
+            if (selectedUnit != null && selectedUnit.ID != unit.ID)
+                unit.Ancestor = selectedUnit;
         }
 
         private void unitsTreeView_ItemCheck(object sender, ItemCheckEventArgs e) {

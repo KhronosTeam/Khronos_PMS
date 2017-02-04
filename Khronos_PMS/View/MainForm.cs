@@ -343,12 +343,13 @@ namespace Khronos_PMS.View {
             editActivityButton.Visible = false;
             projectInfoTableLayout.Hide();
             addActivityToolstripMenuItem.Visible = true;
+            activityToolStripMenuItem.Visible = true;
         }
 
         private void SetVisibilityForBoss() {
             unitToolStripMenuItem.Visible = true;
             reportsToolStripMenuItem.Visible = true;
-            //workersListView.CheckBoxes = true;
+            workersListView.CheckBoxes = true;
             workersListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             projectStatusMenuButton.Enabled = true;
             unitsTableLayout.RowStyles[0].Height = 30;
@@ -357,6 +358,7 @@ namespace Khronos_PMS.View {
             editActivityButton.Visible = true;
             projectInfoTableLayout.Show();
             addActivityToolstripMenuItem.Visible = false;
+            activityToolStripMenuItem.Visible = false;
         }
 
         private void SetVisibilityForSupervisor() {
@@ -371,6 +373,7 @@ namespace Khronos_PMS.View {
             editActivityButton.Visible = false;
             projectInfoTableLayout.Show();
             addActivityToolstripMenuItem.Visible = false;
+            activityToolStripMenuItem.Visible = false;
         }
 
         private void SetVisibilityForCustomer() {
@@ -386,6 +389,7 @@ namespace Khronos_PMS.View {
             activitiesToolStripSplitButton.Visible = false;
             projectInfoTableLayout.Hide();
             addActivityToolstripMenuItem.Visible = false;
+            activityToolStripMenuItem.Visible = false;
         }
 
         private void viewActivityButton_Click(Object sender, EventArgs e) {
