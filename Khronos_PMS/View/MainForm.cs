@@ -293,8 +293,10 @@ namespace Khronos_PMS.View {
         }
 
         private void unitEditButton_Click(Object sender, EventArgs e) {
-            UnitForm2 unitform = new UnitForm2((Unit) unitsTreeView.SelectedObject, (Project) projectsListView.SelectedObject);
+            Project project = (Project) projectsListView.SelectedObject;
+            UnitForm2 unitform = new UnitForm2((Unit) unitsTreeView.SelectedObject, project);
             unitform.ShowDialog();
+            unitsTreeView.SetObjects(ProjectManager.GetRootUnits(project));
         }
 
         private void activityToolStripMenuItem_Click(object sender, EventArgs e) {

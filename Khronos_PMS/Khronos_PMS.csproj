@@ -75,6 +75,9 @@
     <Compile Include="ModelView\WorkerView.cs" />
     <Compile Include="Model\Activity.view.cs" />
     <Compile Include="Model\Admin.view.cs" />
+    <Compile Include="Model\ClosureUnit.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Customer.view.cs" />
     <Compile Include="Model\Unit.view.cs" />
     <Compile Include="Model\User.view.cs" />
